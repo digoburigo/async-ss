@@ -1,8 +1,13 @@
 FROM node:24-alpine AS base
 
+ENV NODE_ENV=production
+
 WORKDIR /app
 
-ENV NODE_ENV=production
+# =========================================================================== #
+
+FROM base AS builder-base
+
 ENV TURBO_TELEMETRY_DISABLED=1
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
@@ -12,24 +17,18 @@ RUN corepack enable pnpm
 
 # =========================================================================== #
 
-FROM base AS builder
+FROM builder-base AS builder
 
 RUN pnpm install --global turbo@^2
 
 COPY . .
 
 # https://turbo.build/repo/docs/guides/tools/docker#the-solution
-RUN turbo prune @acme/web --docker
+RUN turbo prune @acme/server --docker
 
 # =========================================================================== #
 
-FROM base AS installer
-
-ARG PUBLIC_SERVER_URL
-ENV PUBLIC_SERVER_URL=${PUBLIC_SERVER_URL}
-
-ARG PUBLIC_SERVER_API_PATH
-ENV PUBLIC_SERVER_API_PATH=${PUBLIC_SERVER_API_PATH}
+FROM builder-base AS installer
 
 COPY --from=builder /app/out/json/ .
 RUN pnpm install --frozen-lockfile
@@ -39,14 +38,17 @@ RUN pnpm build
 
 # =========================================================================== #
 
-FROM nginx:stable-alpine AS production
+FROM base AS production
 
-WORKDIR /app
+RUN addgroup --system --gid 1001 nodejs \
+    && adduser --system --uid 1001 elysia
 
-COPY apps/web/nginx.conf /etc/nginx/nginx.conf
-COPY --from=installer /app/apps/web/dist /usr/share/nginx/html
+# COPY --from=installer --chown=elysia:nodejs /app/apps/server/node_modules /app/node_modules
+COPY --from=installer --chown=elysia:nodejs /app/apps/server/dist /app/dist
+
+USER elysia
 
 HEALTHCHECK --interval=30s --timeout=10s --retries=3 \
-  CMD curl --fail --silent http://0.0.0.0:80/healthcheck || exit 1
+  CMD wget --quiet --spider http://${SERVER_HOST}:${SERVER_PORT}/api/healthcheck || exit 1
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["node", "/app/dist/index.mjs"]

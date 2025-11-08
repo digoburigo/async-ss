@@ -2,6 +2,7 @@ import { cors } from "@elysiajs/cors";
 import { node } from "@elysiajs/node";
 import { fromTypes, openapi } from "@elysiajs/openapi";
 import { Elysia, t } from "elysia";
+import { sql } from "kysely";
 
 import { db } from "@acme/zen-v3";
 
@@ -53,7 +54,9 @@ export const app = new Elysia({
     async () => {
       const data = await db.$qb
         .selectFrom("Post")
-        .select(["updatedAt"])
+        .select((eb) => [
+          sql<Date>`${eb.ref("Post.updatedAt")}`.as("updatedAt"),
+        ])
         .execute();
 
       return data;

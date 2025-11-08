@@ -1,0 +1,49 @@
+services:
+  # web:
+  #   build:
+  #     context: .
+  #     dockerfile: ./apps/web/Dockerfile
+  #     args:
+  #       # Backend API server - used at build time to create the bundle
+  #       PUBLIC_SERVER_URL: http://localhost:3035
+  #       PUBLIC_SERVER_API_PATH: /api
+  #   ports:
+  #     - 8085:80
+  #   healthcheck:
+  #     interval: 30s
+  #     timeout: 10s
+  #     retries: 3
+  #     test:
+  #       ['CMD-SHELL', 'curl --fail --silent http://localhost:80/healthcheck']
+  #   depends_on:
+  #     - server
+
+  server:
+    # platform: linux/amd64
+    build:
+      context: .
+      dockerfile: ./apps/server/Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - POSTGRES_URL="postgresql://postgres:password@localhost:5432/vtnc2"
+      - DATABASE_URL="postgresql://postgres:password@localhost:5432/vtnc2"
+      - AUTH_SECRET='supersecret'
+      - AUTH_DISCORD_ID='abc123'
+      - AUTH_DISCORD_SECRET='abc123'
+      - PUBLIC_SERVER_URL=http://localhost:3000
+      - PUBLIC_SERVER_API_PATH=/api
+      - PUBLIC_WEB_URL=http://localhost:3001
+
+    # healthcheck:
+    #   interval: 30s
+    #   timeout: 10s
+    #   retries: 3
+    #   test:
+    #     [
+    #       "CMD-SHELL",
+    #       "wget --quiet --spider http://$$SERVER_HOST:$$SERVER_PORT/api/healthcheck",
+    #     ]
+
+volumes:
+  postgres_data21:
