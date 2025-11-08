@@ -6,6 +6,10 @@ import { Elysia, t } from "elysia";
 import { zenstackController } from "./modules/zenstack";
 import { betterAuth } from "./plugins/better-auth";
 
+const trustedOrigins = [
+  process.env.PUBLIC_WEB_URL ?? "http://localhost:3001",
+].map((url) => new URL(url).origin);
+
 export const app = new Elysia({
   adapter: node(),
   prefix: "/api",
@@ -26,7 +30,7 @@ export const app = new Elysia({
   // })
   .use(
     cors({
-      origin: process.env.CORS_ORIGIN || "http://localhost:3000",
+      origin: trustedOrigins,
       methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
       allowedHeaders: ["Content-Type", "Authorization"],
       credentials: true,

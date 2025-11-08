@@ -261,7 +261,7 @@ importers:
         version: 11.7.1(@tanstack/react-query@5.90.7(react@19.1.1))(@trpc/client@11.7.1(@trpc/server@11.7.1(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.7.1(typescript@5.9.3))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.3)
       '@zenstackhq/server':
         specifier: ^3.0.0-beta.19
-        version: 3.0.0-beta.19(better-sqlite3@12.4.1)(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(kysely@0.27.6)(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(pg@8.16.3)(zod@4.1.12)
+        version: 3.0.0-beta.19(better-sqlite3@12.4.1)(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(kysely@0.27.6)(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(pg@8.16.3)(zod@4.1.12)
       '@zenstackhq/tanstack-query':
         specifier: ^3.0.0-beta.19
         version: 3.0.0-beta.19(@tanstack/react-query@5.90.7(react@19.1.1))(better-sqlite3@12.4.1)(kysely@0.27.6)(pg@8.16.3)(zod@4.1.12)
@@ -337,22 +337,22 @@ importers:
         version: link:../../packages/zen-v3
       '@elysiajs/cors':
         specifier: ^1.4.0
-        version: 1.4.0(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.0(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@elysiajs/node':
         specifier: ^1.4.2
-        version: 1.4.2(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.2(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@elysiajs/openapi':
         specifier: ^1.4.1
-        version: 1.4.11(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.11(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@sinclair/typebox':
         specifier: ^0.34.41
         version: 0.34.41
       '@zenstackhq/server':
         specifier: ^3.0.0-beta.19
-        version: 3.0.0-beta.19(better-sqlite3@12.4.1)(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(kysely@0.27.6)(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(pg@8.16.3)(zod@4.1.12)
+        version: 3.0.0-beta.19(better-sqlite3@12.4.1)(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(kysely@0.27.6)(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(pg@8.16.3)(zod@4.1.12)
       elysia:
         specifier: ^1.4.15
-        version: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+        version: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       superjson:
         specifier: 2.2.5
         version: 2.2.5
@@ -365,7 +365,7 @@ importers:
         version: link:../../tooling/typescript
       '@types/bun':
         specifier: ^1.3.1
-        version: 1.3.2(@types/react@19.2.2)
+        version: 1.3.1(@types/react@19.2.2)
       '@types/node':
         specifier: 'catalog:'
         version: 24.10.0
@@ -431,7 +431,7 @@ importers:
         version: 11.7.1(@tanstack/react-query@5.90.7(react@19.1.1))(@trpc/client@11.7.1(@trpc/server@11.7.1(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.7.1(typescript@5.9.3))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(typescript@5.9.3)
       '@zenstackhq/server':
         specifier: ^3.0.0-beta.19
-        version: 3.0.0-beta.19(better-sqlite3@12.4.1)(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(kysely@0.27.6)(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(pg@8.16.3)(zod@4.1.12)
+        version: 3.0.0-beta.19(better-sqlite3@12.4.1)(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(kysely@0.27.6)(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(pg@8.16.3)(zod@4.1.12)
       '@zenstackhq/tanstack-query':
         specifier: ^3.0.0-beta.19
         version: 3.0.0-beta.19(@tanstack/react-query@5.90.7(react@19.1.1))(better-sqlite3@12.4.1)(kysely@0.27.6)(pg@8.16.3)(zod@4.1.12)
@@ -440,7 +440,7 @@ importers:
         version: 1.4.0-beta.18(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(react-dom@19.1.1(react@19.1.1))(react@19.1.1)(solid-js@1.9.10)
       nitro:
         specifier: npm:nitro-nightly@latest
-        version: nitro-nightly@3.0.1-20251108-010549-1ea01a41(better-sqlite3@12.4.1)(chokidar@4.0.3)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))(vite@7.2.2(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1))
+        version: nitro-nightly@3.0.1-20251108-010549-1ea01a41(better-sqlite3@12.4.1)(chokidar@4.0.3)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))(vite@7.2.2(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1))
       react:
         specifier: catalog:react19
         version: 19.1.1
@@ -687,7 +687,7 @@ importers:
         version: link:../../tooling/typescript
       '@better-auth/cli':
         specifier: 'catalog:'
-        version: 1.4.0-beta.18(@neondatabase/serverless@0.9.5)(@types/pg@8.15.6)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
+        version: 1.4.0-beta.18(@neondatabase/serverless@0.9.5)(@types/pg@8.15.6)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
       '@types/pg':
         specifier: ^8.15.6
         version: 8.15.6
@@ -708,10 +708,10 @@ importers:
         version: 0.10.0
       drizzle-orm:
         specifier: ^0.44.7
-        version: 0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))
+        version: 0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))
       drizzle-zod:
         specifier: ^0.8.3
-        version: 0.8.3(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))(zod@4.1.12)
+        version: 0.8.3(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))(zod@4.1.12)
       zod:
         specifier: 'catalog:'
         version: 4.1.12
@@ -4173,8 +4173,8 @@ packages:
   '@types/babel__traverse@7.28.0':
     resolution: {integrity: sha512-8PvcXf70gTDZBgt9ptxJ8elBeBjcLOAcOtoO/mPJjtji1+CdGbHgm77om1GrsPxsiE+uXIpNSK64UYaIwQXd4Q==}
 
-  '@types/bun@1.3.2':
-    resolution: {integrity: sha512-t15P7k5UIgHKkxwnMNkJbWlh/617rkDGEdSsDbu+qNHTaz9SKf7aC8fiIlUdD5RPpH6GEkP0cK7WlvmrEBRtWg==}
+  '@types/bun@1.3.1':
+    resolution: {integrity: sha512-4jNMk2/K9YJtfqwoAa28c8wK+T7nvJFOjxI4h/7sORWcypRNxBpr+TPNaCfVWq70tLCJsqoFwcf0oI0JU/fvMQ==}
 
   '@types/estree@0.0.39':
     resolution: {integrity: sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==}
@@ -4785,8 +4785,8 @@ packages:
     resolution: {integrity: sha512-WDtdLmJvAuNNPzByAYpRo2rF1Mmradw6gvWsQKf63476DDXmomT9zUiGypLcG4ibIM67vhAj8jJRdbmEws2Aqw==}
     engines: {node: '>=6.14.2'}
 
-  bun-types@1.3.2:
-    resolution: {integrity: sha512-i/Gln4tbzKNuxP70OWhJRZz1MRfvqExowP7U6JKoI8cntFrtxg7RJK3jvz7wQW54UuvNC8tbKHHri5fy74FVqg==}
+  bun-types@1.3.1:
+    resolution: {integrity: sha512-NMrcy7smratanWJ2mMXdpatalovtxVggkj11bScuWuiOoXTiKIu2eVS1/7qbyI/4yHedtsn175n4Sm4JcdHLXw==}
     peerDependencies:
       '@types/react': ^19
 
@@ -10289,7 +10289,7 @@ snapshots:
       '@babel/helper-string-parser': 7.27.1
       '@babel/helper-validator-identifier': 7.28.5
 
-  '@better-auth/cli@1.4.0-beta.18(@neondatabase/serverless@0.9.5)(@types/pg@8.15.6)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
+  '@better-auth/cli@1.4.0-beta.18(@neondatabase/serverless@0.9.5)(@types/pg@8.15.6)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)':
     dependencies:
       '@babel/core': 7.28.5
       '@babel/preset-react': 7.28.5(@babel/core@7.28.5)
@@ -10304,7 +10304,7 @@ snapshots:
       chalk: 5.6.2
       commander: 12.1.0
       dotenv: 17.2.3
-      drizzle-orm: 0.33.0(@neondatabase/serverless@0.9.5)(@prisma/client@5.22.0(prisma@5.22.0))(@types/pg@8.15.6)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@5.22.0)(react@19.1.1)
+      drizzle-orm: 0.33.0(@neondatabase/serverless@0.9.5)(@prisma/client@5.22.0(prisma@5.22.0))(@types/pg@8.15.6)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@5.22.0)(react@19.1.1)
       get-tsconfig: 4.13.0
       jiti: 2.6.1
       open: 10.2.0
@@ -10441,19 +10441,19 @@ snapshots:
     dependencies:
       '@types/hammerjs': 2.0.46
 
-  '@elysiajs/cors@1.4.0(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/cors@1.4.0(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
-      elysia: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
 
-  '@elysiajs/node@1.4.2(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/node@1.4.2(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
       crossws: 0.4.1(srvx@0.9.5)
-      elysia: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       srvx: 0.9.5
 
-  '@elysiajs/openapi@1.4.11(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/openapi@1.4.11(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
-      elysia: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
 
   '@emnapi/runtime@1.7.0':
     dependencies:
@@ -11022,8 +11022,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@img/colour@1.0.0':
-    optional: true
+  '@img/colour@1.0.0': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:
@@ -13070,9 +13069,9 @@ snapshots:
     dependencies:
       '@babel/types': 7.28.5
 
-  '@types/bun@1.3.2(@types/react@19.2.2)':
+  '@types/bun@1.3.1(@types/react@19.2.2)':
     dependencies:
-      bun-types: 1.3.2(@types/react@19.2.2)
+      bun-types: 1.3.1(@types/react@19.2.2)
     transitivePeerDependencies:
       - '@types/react'
 
@@ -13361,7 +13360,7 @@ snapshots:
       ts-pattern: 5.9.0
       typescript: 5.9.3
 
-  '@zenstackhq/server@3.0.0-beta.19(better-sqlite3@12.4.1)(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(kysely@0.27.6)(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(pg@8.16.3)(zod@4.1.12)':
+  '@zenstackhq/server@3.0.0-beta.19(better-sqlite3@12.4.1)(elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(kysely@0.27.6)(next@16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1))(pg@8.16.3)(zod@4.1.12)':
     dependencies:
       '@zenstackhq/common-helpers': 3.0.0-beta.19
       '@zenstackhq/orm': 3.0.0-beta.19(better-sqlite3@12.4.1)(kysely@0.27.6)(pg@8.16.3)(zod@4.1.12)
@@ -13373,7 +13372,7 @@ snapshots:
       zod: 4.1.12
       zod-validation-error: 4.0.2(zod@4.1.12)
     optionalDependencies:
-      elysia: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       next: 16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.1(react@19.1.1))(react@19.1.1)
     transitivePeerDependencies:
       - better-sqlite3
@@ -13858,7 +13857,7 @@ snapshots:
     dependencies:
       node-gyp-build: 4.8.4
 
-  bun-types@1.3.2(@types/react@19.2.2):
+  bun-types@1.3.1(@types/react@19.2.2):
     dependencies:
       '@types/node': 24.10.0
       '@types/react': 19.2.2
@@ -14256,10 +14255,10 @@ snapshots:
       es-errors: 1.3.0
       is-data-view: 1.0.2
 
-  db0@0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))):
+  db0@0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))):
     optionalDependencies:
       better-sqlite3: 12.4.1
-      drizzle-orm: 0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))
+      drizzle-orm: 0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))
 
   debug@2.6.9:
     dependencies:
@@ -14403,7 +14402,7 @@ snapshots:
 
   dotenv-expand@11.0.7:
     dependencies:
-      dotenv: 16.4.7
+      dotenv: 16.6.1
 
   dotenv-expand@12.0.3:
     dependencies:
@@ -14426,7 +14425,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@prisma/client@5.22.0(prisma@5.22.0))(@types/pg@8.15.6)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@5.22.0)(react@19.1.1):
+  drizzle-orm@0.33.0(@neondatabase/serverless@0.9.5)(@prisma/client@5.22.0(prisma@5.22.0))(@types/pg@8.15.6)(@types/react@19.2.2)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@5.22.0)(react@19.1.1):
     optionalDependencies:
       '@neondatabase/serverless': 0.9.5
       '@prisma/client': 5.22.0(prisma@5.22.0)
@@ -14434,28 +14433,28 @@ snapshots:
       '@types/react': 19.2.2
       '@vercel/postgres': 0.10.0
       better-sqlite3: 12.4.1
-      bun-types: 1.3.2(@types/react@19.2.2)
+      bun-types: 1.3.1(@types/react@19.2.2)
       kysely: 0.27.6
       pg: 8.16.3
       postgres: 3.4.7
       prisma: 5.22.0
       react: 19.1.1
 
-  drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)):
+  drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)):
     optionalDependencies:
       '@prisma/client': 5.22.0(prisma@6.19.0(typescript@5.9.3))
       '@types/pg': 8.15.6
       '@vercel/postgres': 0.10.0
       better-sqlite3: 12.4.1
-      bun-types: 1.3.2(@types/react@19.2.2)
+      bun-types: 1.3.1(@types/react@19.2.2)
       kysely: 0.27.6
       pg: 8.16.3
       postgres: 3.4.7
       prisma: 6.19.0(typescript@5.9.3)
 
-  drizzle-zod@0.8.3(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))(zod@4.1.12):
+  drizzle-zod@0.8.3(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))(zod@4.1.12):
     dependencies:
-      drizzle-orm: 0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))
+      drizzle-orm: 0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))
       zod: 4.1.12
 
   dunder-proto@1.0.1:
@@ -14479,7 +14478,7 @@ snapshots:
 
   electron-to-chromium@1.5.249: {}
 
-  elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3):
+  elysia@1.4.15(@sinclair/typebox@0.34.41)(@types/bun@1.3.1(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.41))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3):
     dependencies:
       '@sinclair/typebox': 0.34.41
       cookie: 1.0.2
@@ -14489,7 +14488,7 @@ snapshots:
       memoirist: 0.4.0
       openapi-types: 12.1.3
     optionalDependencies:
-      '@types/bun': 1.3.2(@types/react@19.2.2)
+      '@types/bun': 1.3.1(@types/react@19.2.2)
       typescript: 5.9.3
 
   emoji-regex@8.0.0: {}
@@ -16626,11 +16625,11 @@ snapshots:
 
   nice-try@1.0.5: {}
 
-  nitro-nightly@3.0.1-20251108-010549-1ea01a41(better-sqlite3@12.4.1)(chokidar@4.0.3)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))(vite@7.2.2(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1)):
+  nitro-nightly@3.0.1-20251108-010549-1ea01a41(better-sqlite3@12.4.1)(chokidar@4.0.3)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))(vite@7.2.2(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1)):
     dependencies:
       consola: 3.4.2
       crossws: 0.4.1(srvx@0.9.5)
-      db0: 0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))
+      db0: 0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))
       esbuild: 0.25.12
       h3: 2.0.1-rc.5(crossws@0.4.1(srvx@0.9.5))
       jiti: 2.6.1
@@ -16641,7 +16640,7 @@ snapshots:
       srvx: 0.9.5
       undici: 7.16.0
       unenv: 2.0.0-rc.24
-      unstorage: 2.0.0-alpha.4(chokidar@4.0.3)(db0@0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))))(ofetch@2.0.0-alpha.3)
+      unstorage: 2.0.0-alpha.4(chokidar@4.0.3)(db0@0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))))(ofetch@2.0.0-alpha.3)
     optionalDependencies:
       vite: 7.2.2(@types/node@24.10.0)(jiti@2.6.1)(lightningcss@1.30.2)(terser@5.44.1)(tsx@4.20.6)(yaml@2.8.1)
     transitivePeerDependencies:
@@ -17793,7 +17792,7 @@ snapshots:
     dependencies:
       decode-ico: 0.4.1
       ico-endec: 0.1.6
-      sharp: 0.33.5
+      sharp: 0.34.5
 
   sharp@0.33.5:
     dependencies:
@@ -17851,7 +17850,6 @@ snapshots:
       '@img/sharp-win32-arm64': 0.34.5
       '@img/sharp-win32-ia32': 0.34.5
       '@img/sharp-win32-x64': 0.34.5
-    optional: true
 
   shebang-command@1.2.0:
     dependencies:
@@ -18495,10 +18493,10 @@ snapshots:
       picomatch: 4.0.3
       webpack-virtual-modules: 0.6.2
 
-  unstorage@2.0.0-alpha.4(chokidar@4.0.3)(db0@0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))))(ofetch@2.0.0-alpha.3):
+  unstorage@2.0.0-alpha.4(chokidar@4.0.3)(db0@0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3))))(ofetch@2.0.0-alpha.3):
     optionalDependencies:
       chokidar: 4.0.3
-      db0: 0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.2(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))
+      db0: 0.3.4(better-sqlite3@12.4.1)(drizzle-orm@0.44.7(@prisma/client@5.22.0(prisma@6.19.0(typescript@5.9.3)))(@types/pg@8.15.6)(@vercel/postgres@0.10.0)(better-sqlite3@12.4.1)(bun-types@1.3.1(@types/react@19.2.2))(kysely@0.27.6)(pg@8.16.3)(postgres@3.4.7)(prisma@6.19.0(typescript@5.9.3)))
       ofetch: 2.0.0-alpha.3
 
   upath@1.2.0: {}

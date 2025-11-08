@@ -1,7 +1,7 @@
 import React from "react";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
 
-import { authClient } from "../clients/authClient";
+import { authClient } from "~/clients/authClient";
 
 export const Route = createRootRoute({
   component: RootComponent,

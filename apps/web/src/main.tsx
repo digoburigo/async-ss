@@ -1,4 +1,4 @@
-import "@/style.css";
+import "~/style.css";
 
 import React from "react";
 import { RouterProvider } from "@tanstack/react-router";
