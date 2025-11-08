@@ -9,7 +9,7 @@ plugin policy {
 
 /// Shape of the `auth()` function
 type Auth {
-  userId           String  @id
+  userId           String
   organizationId   String?
   organizationRole String?
 

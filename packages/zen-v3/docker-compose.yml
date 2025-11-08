@@ -21,4 +21,3 @@ services:
 
 volumes:
   vtnc2_postgres_data:
-  drizzle_gateway:

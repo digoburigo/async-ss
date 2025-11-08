@@ -10,7 +10,7 @@ import {
 import { Test } from "./_components/test";
 
 export default function HomePage() {
-  prefetch(trpc.post.all.queryOptions());
+  // prefetch(trpc.post.all.queryOptions());
 
   return (
     <HydrateClient>

@@ -3,6 +3,7 @@ import { z } from "zod/v4";
 
 import { desc, eq } from "@acme/db";
 import { CreatePostSchema, Post } from "@acme/db/schema";
+import { db, pool } from "@acme/zen-v3";
 
 import { protectedProcedure, publicProcedure } from "../trpc";
 
@@ -30,5 +31,16 @@ export const postRouter = {
 
   delete: protectedProcedure.input(z.string()).mutation(({ ctx, input }) => {
     return ctx.db.delete(Post).where(eq(Post.id, input));
+  }),
+
+  sql: publicProcedure.query(async () => {
+    // const result = await db.$queryRawUnsafe('SELECT * FROM "Post"');
+    const res = await pool.query('SELECT * from "Post"');
+    console.log(res);
+    // return result;
+    return {
+      message: "Hello World",
+      message2: res.rows,
+    };
   }),
 } satisfies TRPCRouterRecord;

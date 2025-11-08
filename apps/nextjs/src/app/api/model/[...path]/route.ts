@@ -2,7 +2,7 @@ import type { NextRequest } from "next/server";
 import { RPCApiHandler } from "@zenstackhq/server/api";
 import { NextRequestHandler } from "@zenstackhq/server/next";
 
-import { authDb } from "@acme/zen-v3";
+import { authDb, db } from "@acme/zen-v3";
 import { schema } from "@acme/zen-v3/zenstack/schema";
 
 function getAuth(req: NextRequest) {
@@ -17,7 +17,8 @@ const handler = NextRequestHandler({
   apiHandler: new RPCApiHandler({ schema }),
   // getSessionUser extracts the current session user from the request, its
   // implementation depends on your auth solution
-  getClient: (req: NextRequest) => authDb.$setAuth(getAuth(req) as any),
+  getClient: (req: NextRequest) => authDb.$setAuth(getAuth(req)),
+  // getClient: (req: NextRequest) => db,
   useAppDir: true,
 });
 

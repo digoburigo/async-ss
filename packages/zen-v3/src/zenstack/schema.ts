@@ -109,7 +109,31 @@ export const schema = {
             }
         }
     },
-    authType: "User",
+    typeDefs: {
+        Auth: {
+            name: "Auth",
+            fields: {
+                userId: {
+                    name: "userId",
+                    type: "String"
+                },
+                organizationId: {
+                    name: "organizationId",
+                    type: "String",
+                    optional: true
+                },
+                organizationRole: {
+                    name: "organizationRole",
+                    type: "String",
+                    optional: true
+                }
+            },
+            attributes: [
+                { name: "@@auth" }
+            ]
+        }
+    },
+    authType: "Auth",
     plugins: {}
 } as const satisfies SchemaDef;
 export type SchemaType = typeof schema;
