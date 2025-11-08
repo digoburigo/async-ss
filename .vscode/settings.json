@@ -15,7 +15,8 @@
     { "pattern": "tooling/*/" }
   ],
   "files.associations": {
-    "*.css": "tailwindcss"
+    "*.css": "tailwindcss",
+    "*.zmodel": "zmodel-v3" // use "zmodel" for ZenStack v2 projects
   },
   "files.readonlyInclude": {
     "**/routeTree.gen.ts": true

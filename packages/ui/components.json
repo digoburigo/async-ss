@@ -12,6 +12,10 @@
   "aliases": {
     "utils": "@acme/ui",
     "components": "src/",
-    "ui": "src/"
+    "ui": "src/",
+    "hooks": "src/hooks"
+  },
+  "registries": {
+    "@coss": "https://coss.com/ui/r/{name}.json"
   }
 }

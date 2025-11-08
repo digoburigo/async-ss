@@ -3,14 +3,13 @@
 import type { ToasterProps } from "sonner";
 import { Toaster as Sonner, toast } from "sonner";
 
-import { useTheme } from "./theme";
+import { useTheme } from "@acme/ui/theme";
 
 export const Toaster = ({ ...props }: ToasterProps) => {
   const { themeMode } = useTheme();
 
   return (
     <Sonner
-      theme={themeMode === "auto" ? "system" : themeMode}
       className="toaster group"
       style={
         {
@@ -19,6 +18,7 @@ export const Toaster = ({ ...props }: ToasterProps) => {
           "--normal-border": "var(--border)",
         } as React.CSSProperties
       }
+      theme={themeMode === "auto" ? "system" : themeMode}
       {...props}
     />
   );

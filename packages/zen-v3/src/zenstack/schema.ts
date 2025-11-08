@@ -103,6 +103,9 @@ export const schema = {
                     ]
                 }
             },
+            attributes: [
+                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("all") }, { name: "condition", value: ExpressionUtils.literal(true) }] }
+            ],
             idFields: ["id"],
             uniqueFields: {
                 id: { type: "String" }

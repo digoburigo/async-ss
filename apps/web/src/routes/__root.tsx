@@ -1,20 +1,24 @@
 import React from "react";
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import { FormDevtools } from "@tanstack/react-form-devtools";
+import { ReactQueryDevtoolsPanel } from "@tanstack/react-query-devtools";
 import { createRootRoute, Outlet } from "@tanstack/react-router";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { setDefaultOptions } from "date-fns";
+import { ptBR } from "date-fns/locale";
+import { scan } from "react-scan"; // must be imported before React and React DOM
 
-import { authClient } from "~/clients/authClient";
+import { authClient } from "~/clients/auth-client";
+
+setDefaultOptions({ locale: ptBR });
+
+scan({
+  enabled: true,
+});
 
 export const Route = createRootRoute({
   component: RootComponent,
 });
-
-// https://tanstack.com/router/v1/docs/framework/react/devtools
-const TanStackRouterDevtools = import.meta.env.PROD
-  ? () => null
-  : React.lazy(() =>
-      import("@tanstack/router-devtools").then((res) => ({
-        default: res.TanStackRouterDevtools,
-      })),
-    );
 
 function RootComponent() {
   const { data: session, isPending } = authClient.useSession();
@@ -30,9 +34,25 @@ function RootComponent() {
       <div className="p-2 md:p-4">
         <Outlet />
       </div>
-      <React.Suspense>
-        <TanStackRouterDevtools position="bottom-right" />
-      </React.Suspense>
+      <TanStackDevtools
+        config={{
+          position: "middle-right",
+        }}
+        plugins={[
+          {
+            name: "Tanstack Router",
+            render: <TanStackRouterDevtoolsPanel />,
+          },
+          {
+            name: "Tanstack Query",
+            render: <ReactQueryDevtoolsPanel />,
+          },
+          {
+            name: "TanStack Form",
+            render: <FormDevtools />,
+          },
+        ]}
+      />
     </>
   );
 }

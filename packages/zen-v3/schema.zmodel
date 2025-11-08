@@ -18,8 +18,8 @@ type Auth {
 
 model User {
     id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) 
+    updatedAt DateTime @updatedAt 
     email     String   @unique
     name      String?
     posts     Post[]
@@ -27,12 +27,14 @@ model User {
 
 model Post {
     id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    createdAt DateTime @default(now()) 
+    updatedAt DateTime @updatedAt 
     title     String
     published Boolean  @default(false)
     author    User     @relation(fields: [authorId], references: [id], onUpdate: Cascade, onDelete: Cascade)
-    authorId  String
+    authorId  String   
+
+    @@allow('all', true)
 }
 
 

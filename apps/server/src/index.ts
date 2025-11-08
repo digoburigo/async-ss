@@ -3,6 +3,8 @@ import { node } from "@elysiajs/node";
 import { fromTypes, openapi } from "@elysiajs/openapi";
 import { Elysia, t } from "elysia";
 
+import { db } from "@acme/zen-v3";
+
 import { zenstackController } from "./modules/zenstack";
 import { betterAuth } from "./plugins/better-auth";
 
@@ -46,6 +48,26 @@ export const app = new Elysia({
       }),
     },
   })
+  .get(
+    "/test",
+    async () => {
+      const data = await db.$qb
+        .selectFrom("Post")
+        .select(["updatedAt"])
+        .execute();
+
+      return data;
+    },
+    {
+      response: {
+        200: t.Array(
+          t.Object({
+            updatedAt: t.Date(),
+          }),
+        ),
+      },
+    },
+  )
   .get(
     "/error",
     ({ status }) => {

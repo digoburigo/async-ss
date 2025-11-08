@@ -1,10 +1,13 @@
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import tailwindcss from "@tailwindcss/vite";
+import { devtools } from "@tanstack/devtools-vite";
 import tanstackRouter from "@tanstack/router-plugin/vite";
 import react from "@vitejs/plugin-react";
+import { reactGrab } from "react-grab/plugins/vite";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import tsConfigPaths from "vite-tsconfig-paths";
 import * as z from "zod";
 
 /**
@@ -44,12 +47,17 @@ const ReactCompilerConfig = {};
 const env = z.parse(envSchema, process.env);
 const webUrl = new URL(env.PUBLIC_WEB_URL);
 const host = webUrl.hostname;
-console.log(`🚀 -> host:`, host);
 const port = parseInt(webUrl.port, 10);
-console.log(`🚀 -> port:`, port);
 
 export default defineConfig({
   plugins: [
+    tsConfigPaths({
+      projects: ["./tsconfig.json"],
+    }),
+    reactGrab({
+      enabled: true,
+    }),
+    devtools(),
     tanstackRouter({
       routeToken: "layout",
       autoCodeSplitting: true,

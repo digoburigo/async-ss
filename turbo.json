@@ -10,9 +10,27 @@
       "outputs": [".cache/tsbuildinfo.json", "dist/**"]
     },
     "dev": {
-      "dependsOn": ["^dev"],
+      "cache": false
+    },
+    "@acme/server#dev": {
       "cache": false,
-      "persistent": false
+      "persistent": true
+    },
+    "@acme/web#dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@acme/expo#dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@acme/nextjs#dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "@acme/tanstack-start#dev": {
+      "cache": false,
+      "persistent": true
     },
     "format": {
       "outputs": [".cache/.prettiercache"],
