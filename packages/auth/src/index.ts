@@ -1,19 +1,11 @@
 import type { BetterAuthOptions, BetterAuthPlugin } from "better-auth";
 import { expo } from "@better-auth/expo";
 import { betterAuth } from "better-auth";
-import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { oAuthProxy } from "better-auth/plugins";
-// import { db as zenDb } from "@acme/zen-v3";
-
-// console.log(`🚀 -> zenDb:`, zenDb);
-
+import { admin } from "better-auth/plugins/admin";
+import { organization } from "better-auth/plugins/organization";
 import { Pool } from "pg";
-
-import { db } from "@acme/db/client";
-
-const pool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+import { v7 as uuidv7 } from "uuid";
 
 export function initAuth<
   TExtraPlugins extends BetterAuthPlugin[] = [],
@@ -27,19 +19,34 @@ export function initAuth<
   extraPlugins?: TExtraPlugins;
 }) {
   const config = {
-    database: pool,
-    // database: drizzleAdapter(db, {
-    //   provider: "pg",
-    // }),
+    database: new Pool({
+      connectionString: process.env.DATABASE_URL,
+    }),
+    session: {
+      cookieCache: {
+        enabled: true,
+        maxAge: 5 * 60, // Cache duration in seconds
+      },
+    },
     baseURL: options.baseUrl,
     secret: options.secret,
+    advanced: {
+      database: {
+        generateId: () => uuidv7(),
+      },
+    },
     plugins: [
       oAuthProxy({
         productionURL: options.productionUrl,
       }),
       expo(),
+      admin(),
+      organization(),
       ...(options.extraPlugins ?? []),
     ],
+    emailAndPassword: {
+      enabled: true,
+    },
     socialProviders: {
       discord: {
         clientId: options.discordClientId,

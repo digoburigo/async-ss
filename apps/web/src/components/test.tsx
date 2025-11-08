@@ -1,17 +1,22 @@
-import { useClientQueries } from "@zenstackhq/tanstack-query/react";
+// import { useClientQueries } from "@zenstackhq/tanstack-query/react";
 
-import { schema } from "@acme/zen-v3/zenstack/schema";
+// import { schema } from "@acme/zen-v3/zenstack/schema";
 
 export function Test() {
-  const client = useClientQueries(schema);
-  const { data, error } = client.post.useFindMany({
-    take: 10,
-  });
-  console.log("🚀 -> data:", data);
-  console.log(`🚀 -> error:`, error);
+  // const client = useClientQueries(schema);
+  // const { data, error } = client.post.useFindMany({
+  //   take: 10,
+  //   orderBy: {
+  //     author: {
+  //       name: "asc",
+  //     },
+  //   },
+  // });
+  // console.log("🚀 -> data:", data);
+  // console.log(`🚀 -> error:`, error);
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
-  }
+  // if (error) {
+  //   return <div>Error: {error.message}</div>;
+  // }
   return <div>TestClient</div>;
 }

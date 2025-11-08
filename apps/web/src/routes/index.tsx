@@ -20,20 +20,20 @@ function RouteComponent() {
   const { resolvedTheme, setTheme } = useTheme();
   console.log(`🚀 -> resolvedTheme:`, resolvedTheme);
 
-  const { data: firstPostUpdatedAt } = useQuery({
-    queryKey: ["posts"],
-    queryFn: async () => {
-      const { data, error } = await api.test.get();
-      console.log(`🚀 -> data:`, data);
+  // const { data: firstPostUpdatedAt } = useQuery({
+  //   queryKey: ["posts"],
+  //   queryFn: async () => {
+  //     const { data, error } = await api.test.get();
+  //     console.log(`🚀 -> data:`, data);
 
-      if (error) {
-        console.log(`🚀 -> error:`, error);
-        throw error;
-      }
+  //     if (error) {
+  //       console.log(`🚀 -> error:`, error);
+  //       throw error;
+  //     }
 
-      return data?.at(0)?.updatedAt;
-    },
-  });
+  //     return data?.at(0)?.updatedAt;
+  //   },
+  // });
 
   return (
     <div className="mt-1">
@@ -42,9 +42,9 @@ function RouteComponent() {
 
       <BaseButton size={"lg"}>Click me</BaseButton>
       <Button>Click me</Button>
-      {firstPostUpdatedAt
+      {/* {firstPostUpdatedAt
         ? formatDistanceToNow(firstPostUpdatedAt)
-        : "No posts"}
+        : "No posts"} */}
     </div>
   );
 }

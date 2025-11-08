@@ -13,6 +13,7 @@ const baseUrl =
     : process.env.VERCEL_ENV === "preview"
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000";
+console.log(`🚀 -> baseUrl:`, baseUrl);
 
 export const auth = initAuth({
   baseUrl,

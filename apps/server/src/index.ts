@@ -53,9 +53,9 @@ export const app = new Elysia({
     "/test",
     async () => {
       const data = await db.$qb
-        .selectFrom("Post")
+        .selectFrom("Todo")
         .select((eb) => [
-          sql<Date>`${eb.ref("Post.updatedAt")}`.as("updatedAt"),
+          sql<Date>`${eb.ref("Todo.updatedAt")}`.as("updatedAt"),
         ])
         .execute();
 
