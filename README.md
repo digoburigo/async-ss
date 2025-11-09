@@ -1,8 +1,4 @@
-# create-t3-turbo
-
-> [!NOTE]
->
-> create-t3-turbo now includes the option to use Tanstack Start for the web app!
+# zen-t3-turbo
 
 ## Installation
 
@@ -10,19 +6,7 @@
 >
 > Make sure to follow the system requirements specified in [`package.json#engines`](./package.json#L4) before proceeding.
 
-There are two ways of initializing an app using the `create-t3-turbo` starter. You can either use this repository as a template:
-
-![use-as-template](https://github.com/t3-oss/create-t3-turbo/assets/51714798/bb6c2e5d-d8b6-416e-aeb3-b3e50e2ca994)
-
-or use Turbo's CLI to init your project (use PNPM as package manager):
-
-```bash
-npx create-turbo@latest -e https://github.com/t3-oss/create-t3-turbo
-```
-
 ## About
-
-Ever wondered how to migrate your T3 application into a monorepo? Stop right here! This is the perfect starter repo to get you running with the perfect stack!
 
 It uses [Turborepo](https://turborepo.com) and contains:
 
@@ -39,16 +23,16 @@ apps
   │   ├─ Navigation using Expo Router
   │   ├─ Tailwind CSS v4 using NativeWind v5
   │   └─ Typesafe API calls using tRPC
-  ├─ nextjs
-  │   ├─ Next.js 15
-  │   ├─ React 19
-  │   ├─ Tailwind CSS v4
-  │   └─ E2E Typesafe API Server & Client
-  └─ tanstack-start
-      ├─ Tanstack Start v1 (rc)
-      ├─ React 19
-      ├─ Tailwind CSS v4
-      └─ E2E Typesafe API Server & Client
+  ├─ server
+  │   ├─ Elysia 1.4.15
+  │   ├─ ZenStack v3
+  │   └─ Better-Auth
+  ├─ web
+  │   ├─ Tanstack Router
+  │   ├─ Tanstack Query
+  │   ├─ Tanstack Table
+  │   └─ ZenStack v3 (E2E Typesafe API Server & Client)
+
 packages
   ├─ api
   │   └─ tRPC v11 router definition
@@ -56,8 +40,14 @@ packages
   │   └─ Authentication using better-auth.
   ├─ db
   │   └─ Typesafe db calls using Drizzle & Supabase
+  ├─ email
+  │   └─ Email templates. Emails are built with React Email.
+  ├─ validators
+  │   └─ Typesafe validation using Zod
+  ├─ zen-v3
+  │   └─ Database schema and utilities with ZenStack v3
   └─ ui
-      └─ Start of a UI package for the webapp using shadcn-ui
+      └─ Start of a UI package for the webapp using shadcn-ui and baseui
 tooling
   ├─ eslint
   │   └─ shared, fine-grained, eslint presets
@@ -177,12 +167,6 @@ To add a new package, simply run `pnpm turbo gen init` in the monorepo root. Thi
 The generator sets up the `package.json`, `tsconfig.json` and a `index.ts`, as well as configures all the necessary configurations for tooling around your package such as formatting, linting and typechecking. When the package is created, you're ready to go build out the package.
 
 ## FAQ
-
-### Does the starter include Solito?
-
-No. Solito will not be included in this repo. It is a great tool if you want to share code between your Next.js and Expo app. However, the main purpose of this repo is not the integration between Next.js and Expo — it's the code splitting of your T3 App into a monorepo. The Expo app is just a bonus example of how you can utilize the monorepo with multiple apps but can just as well be any app such as Vite, Electron, etc.
-
-Integrating Solito into this repo isn't hard, and there are a few [official templates](https://github.com/nandorojo/solito/tree/master/example-monorepos) by the creators of Solito that you can use as a reference.
 
 ### Does this pattern leak backend code to my client applications?
 
