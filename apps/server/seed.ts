@@ -1,38 +1,22 @@
-import { auth } from "@repo/auth";
-import { db, eq, reset, schema, todosCrud } from "@repo/db";
-import { config } from "dotenv";
+import { authDb, db } from "@acme/zen-v3";
 
-config({ path: "../apps/clinic/.env" });
-
-const { member, organization, user } = schema;
-
-function generateFakeScope({
-  userId,
-  organizationId,
-  organizationRole,
-  role,
-}: {
-  userId: string;
-  organizationId: string;
-  organizationRole: string | null;
-  role: string;
-}) {
-  return {
-    actor: {
-      type: "user",
-      properties: {
-        userId,
-        organizationId,
-        organizationRole,
-        role,
-      },
-    },
-    scope: { organizationId },
-  };
-}
+import { auth } from "./src/plugins/better-auth";
 
 async function main() {
-  await reset(db, schema);
+  console.log("🌱 Clearing database...");
+
+  await Promise.all([
+    db.user.deleteMany(),
+    db.member.deleteMany(),
+    db.organization.deleteMany(),
+    db.todo.deleteMany(),
+    db.session.deleteMany(),
+    db.account.deleteMany(),
+    db.verification.deleteMany(),
+    db.invitation.deleteMany(),
+  ]);
+
+  console.log("🌱 Seeding database...");
 
   const [aUser, bUser] = await Promise.all([
     auth.api.signUpEmail({
@@ -51,152 +35,65 @@ async function main() {
     }),
   ]);
 
-  const [orgAResult, orgBResult] = await Promise.all([
-    db
-      .insert(organization)
-      .values({
-        id: "1",
-        name: "Org A",
-        slug: "org-a",
-        createdAt: new Date(),
-      })
-      .returning({ id: organization.id }),
-    db
-      .insert(organization)
-      .values({
-        id: "2",
-        name: "Org B",
-        slug: "org-b",
-        createdAt: new Date(),
-      })
-      .returning({ id: organization.id }),
-  ]);
-
-  const orgAId = orgAResult[0]?.id ?? "";
-  const orgBId = orgBResult[0]?.id ?? "";
+  const [orgA, orgB] = await db.organization.createManyAndReturn({
+    data: [
+      { name: "Org A", slug: "org-a" },
+      { name: "Org B", slug: "org-b" },
+    ],
+  });
 
   await Promise.all([
-    db
-      .update(user)
-      .set({
-        role: "admin",
-        emailVerified: true,
-      })
-      .where(eq(user.id, aUser.user.id)),
-
-    db
-      .update(user)
-      .set({
-        role: "member",
-        emailVerified: true,
-      })
-      .where(eq(user.id, bUser.user.id)),
-
-    db.insert(member).values({
-      id: "1",
-      organizationId: orgAId,
-      userId: aUser.user.id,
-      role: "owner",
-      createdAt: new Date(),
+    db.user.update({
+      where: { id: aUser.user.id },
+      data: { role: "admin", emailVerified: true },
     }),
-
-    db.insert(member).values({
-      id: "2",
-      organizationId: orgBId,
-      userId: aUser.user.id,
-      role: "owner",
-      createdAt: new Date(),
+    db.user.update({
+      where: { id: bUser.user.id },
+      data: { role: "member", emailVerified: true },
     }),
-
-    db.insert(member).values({
-      id: "3",
-      organizationId: orgAId,
-      userId: bUser.user.id,
-      role: "member",
-      createdAt: new Date(),
+    db.member.createMany({
+      data: [
+        {
+          userId: aUser.user.id,
+          organizationId: orgA?.id ?? "",
+          role: "admin",
+        },
+        {
+          userId: bUser.user.id,
+          organizationId: orgA?.id ?? "",
+          role: "member",
+        },
+        {
+          userId: aUser.user.id,
+          organizationId: orgB?.id ?? "",
+          role: "owner",
+        },
+        {
+          userId: bUser.user.id,
+          organizationId: orgB?.id ?? "",
+          role: "member",
+        },
+      ],
     }),
   ]);
 
-  const createTodoPermission = await db
-    .insert(schema.permission)
-    .values({
-      operation: "create",
-      resource: "todos",
-      organizationId: orgAId,
-      description: "Create todos",
-    })
-    .returning({ id: schema.permission.id });
-  const createTodoPermissionId = createTodoPermission[0]?.id ?? "";
+  console.log("🌱 Setting auth...");
 
-  const adminRole = await db
-    .insert(schema.role)
-    .values({
-      name: "admin",
-      description: "Admin role",
-      organizationId: orgAId,
-    })
-    .returning({ id: schema.role.id });
-  const adminRoleId = adminRole[0]?.id ?? "";
-
-  await db.insert(schema.permissionsToRoles).values({
-    roleId: adminRoleId,
-    permissionId: createTodoPermissionId,
-  });
-
-  const listTodoPermission = await db
-    .insert(schema.permission)
-    .values({
-      operation: "list",
-      resource: "todos",
-      organizationId: orgAId,
-      description: "List todos",
-    })
-    .returning({ id: schema.permission.id });
-  const listTodoPermissionId = listTodoPermission[0]?.id ?? "";
-
-  const memberRole = await db
-    .insert(schema.role)
-    .values({
-      name: "member",
-      description: "Member role",
-      organizationId: orgAId,
-    })
-    .returning({ id: schema.role.id });
-  const memberRoleId = memberRole[0]?.id ?? "";
-
-  await db.insert(schema.permissionsToRoles).values({
-    roleId: adminRoleId,
-    permissionId: listTodoPermissionId,
-  });
-
-  await db.insert(schema.permissionsToRoles).values({
-    roleId: memberRoleId,
-    permissionId: listTodoPermissionId,
-  });
-
-  await db.insert(schema.membersToRoles).values({
-    roleId: memberRoleId,
-    memberId: "3", // Member ID for bUser in orgA
-  });
-
-  const scope = generateFakeScope({
+  const userDb = authDb.$setAuth({
     userId: aUser.user.id,
-    organizationId: orgAId,
-    organizationRole: "owner",
+    organizationId: orgA?.id ?? "",
+    organizationRole: "admin",
     role: "admin",
+  } as any);
+
+  console.log("🌱 Creating todo...");
+  await userDb.todo.create({
+    data: {
+      title: "Todo 1",
+    },
   });
 
-  const todo = await todosCrud.create(
-    {
-      title: "Todo 1",
-      organizationId: orgAId,
-      createdBy: aUser.user.id,
-      updatedBy: aUser.user.id,
-    },
-    scope
-  );
-
-  console.log(todo);
+  console.log("🌱 Database seeded successfully");
 }
 
 main();

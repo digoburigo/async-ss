@@ -47,6 +47,10 @@ model User {
   updatedTodos Todo[] @relation("updatedTodos") 
   deletedTodos Todo[] @relation("deletedTodos") 
 
+  createdTests Test[] @relation("createdTests") 
+  updatedTests Test[] @relation("updatedTests") 
+  deletedTests Test[] @relation("deletedTests") 
+
   @@allow('create,read', true)
 
   // only the user can update or delete their own profile
@@ -120,6 +124,7 @@ model Organization {
   invitations                 Invitation[]
 
   todos Todo[]
+  tests Test[]
 
   @@unique([slug])
 
@@ -201,10 +206,41 @@ model Todo {
     deletedAt DateTime? 
     deletedReason String? 
 
-    organizationId String? @default(auth().userId) 
+    organizationId String? @default(auth().organizationId) 
     organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
 
     @@deny('read', deletedAt != null)
 
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
     @@map("todo")
+}
+
+model Test {
+    id        String   @id @default(dbgenerated("uuidv7()"))
+    name String
+
+    createdAt DateTime @default(now()) 
+    createdById String  @default(auth().userId) 
+    createdByUser User @relation('createdTests', fields: [createdById], references: [id], onDelete: Cascade)
+
+    updatedAt DateTime @updatedAt 
+    updatedById String?  @default(auth().userId) 
+    updatedByUser User? @relation('updatedTests', fields: [updatedById], references: [id], onDelete: Cascade)
+
+    deletedById String? 
+    deletedByUser User? @relation('deletedTests', fields: [deletedById], references: [id], onDelete: Cascade)
+    deletedAt DateTime? 
+    deletedReason String? 
+
+    organizationId String? @default(auth().organizationId) 
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@deny('read', deletedAt != null)
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("test")
 }

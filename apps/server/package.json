@@ -10,8 +10,7 @@
   "scripts": {
     "check-types": "tsc --noEmit",
     "clean": "git clean -xdf node_modules .turbo",
-    "db:reset": "bun reset.ts",
-    "db:seed": "bun seed.ts",
+    "db:seed": "pnpm with-env tsx seed.ts",
     "dev": "pnpm with-env tsx watch src/index.ts",
     "build": "tsdown",
     "generate:component": "turbo gen react-component",
@@ -26,7 +25,7 @@
     "@elysiajs/node": "^1.4.2",
     "@elysiajs/openapi": "^1.4.1",
     "@sinclair/typebox": "^0.34.41",
-    "@zenstackhq/server": "^3.0.0-beta.19",
+    "@zenstackhq/server": "^3.0.0-beta.20",
     "elysia": "^1.4.15",
     "kysely": "catalog:",
     "superjson": "2.2.5"

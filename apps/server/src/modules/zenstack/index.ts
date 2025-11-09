@@ -8,11 +8,10 @@ import { schema } from "@acme/zen-v3/zenstack/schema";
 
 import { auth, betterAuth } from "../../plugins/better-auth";
 
-async function getSessionUser({ headers }: { headers: Headers }) {
+async function getSessionUser({ request }: { request: Request }) {
   const sessionResult = await auth.api.getSession({
-    headers,
+    headers: request.headers,
   });
-
   if (!sessionResult) {
     return null;
   }
@@ -24,7 +23,7 @@ async function getSessionUser({ headers }: { headers: Headers }) {
   if (session.activeOrganizationId) {
     const { role } = await auth.api.getActiveMemberRole({
       // This endpoint requires session cookies.
-      headers,
+      headers: request.headers,
     });
     organizationRole = role;
   }
@@ -33,6 +32,7 @@ async function getSessionUser({ headers }: { headers: Headers }) {
     userId: user.id,
     organizationId: session.activeOrganizationId,
     organizationRole,
+    role: user.role,
   };
 }
 
@@ -44,15 +44,13 @@ export const zenstackController = new Elysia()
         apiHandler: new RPCApiHandler({
           schema,
         }),
-        // apiHandler: new RestApiHandler({
-        //   schema,
-        //   endpoint: "/api/model/crud",
-        // }),
         basePath: "/api/model",
         // getSessionUser extracts the current session user from the request,
         // its implementation depends on your auth solution
         getClient: async (context: any) => {
-          const user = await getSessionUser({ headers: context.headers });
+          const user = await getSessionUser({
+            request: context.request,
+          });
 
           if (!user) {
             return authDb.$setAuth(undefined);
@@ -60,7 +58,6 @@ export const zenstackController = new Elysia()
 
           return authDb.$setAuth(user as any);
         },
-        // getClient: (context) => db,
       }),
     ),
   );

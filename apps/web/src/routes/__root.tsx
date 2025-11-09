@@ -7,6 +7,7 @@ import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
 import { setDefaultOptions } from "date-fns";
 import { ptBR } from "date-fns/locale";
 import { scan } from "react-scan"; // must be imported before React and React DOM
+import { Toaster } from "sonner";
 
 import { authClient } from "~/clients/auth-client";
 
@@ -30,10 +31,10 @@ function RootComponent() {
   return (
     <>
       {/* <Navbar session={session} /> */}
-      {/* <Toaster /> */}
       <div className="p-2 md:p-4">
         <Outlet />
       </div>
+      <Toaster />
       <TanStackDevtools
         config={{
           position: "middle-right",

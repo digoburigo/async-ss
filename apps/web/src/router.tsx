@@ -3,7 +3,7 @@ import { createRouter as createTanstackRouter } from "@tanstack/react-router";
 import { QuerySettingsProvider } from "@zenstackhq/tanstack-query/react";
 
 // import { env } from '@/env';
-import { queryClient } from "~/clients/query-client";
+import { myFetch, queryClient } from "~/clients/query-client";
 import { routeTree } from "~/routeTree.gen";
 
 // import Spinner from '@/routes/-components/common/spinner';
@@ -21,6 +21,7 @@ export function createRouter() {
           <QuerySettingsProvider
             value={{
               endpoint: `${import.meta.env.PUBLIC_SERVER_URL}/api/model`,
+              fetch: myFetch,
             }}
           >
             {children}

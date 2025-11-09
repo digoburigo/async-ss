@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { formatDistanceToNow } from "date-fns";
 import { useTheme } from "next-themes";
 
@@ -9,8 +9,15 @@ import { Button } from "@acme/ui/button";
 import { api } from "~/clients/api-client";
 import { authClient } from "~/clients/auth-client";
 import { Test } from "~/components/test";
+import { UserAvatar } from "~/components/user-avatar";
 
 export const Route = createFileRoute("/")({
+  beforeLoad: async () => {
+    const { data: session } = await authClient.getSession();
+    if (!session?.session) {
+      throw redirect({ to: "/auth/login" });
+    }
+  },
   component: RouteComponent,
 });
 
@@ -42,6 +49,8 @@ function RouteComponent() {
 
       <BaseButton size={"lg"}>Click me</BaseButton>
       <Button>Click me</Button>
+
+      {session?.user ? <UserAvatar user={session?.user} /> : null}
       {/* {firstPostUpdatedAt
         ? formatDistanceToNow(firstPostUpdatedAt)
         : "No posts"} */}
