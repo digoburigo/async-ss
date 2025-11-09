@@ -7,7 +7,7 @@ import { schema } from "@acme/zen-v3/zenstack/schema";
 import { authClient } from "~/clients/auth-client";
 import { ProductForm } from "~/components/products/product-form";
 
-export const Route = createFileRoute("/(app)/products/new")({
+export const Route = createFileRoute("/(app)/products/old-new")({
   component: RouteComponent,
 });
 

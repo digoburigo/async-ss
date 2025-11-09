@@ -1,3 +1,5 @@
+"use no memo"
+
 import { useEffect, useState } from 'react'
 import { getRouteApi } from '@tanstack/react-router'
 import {
