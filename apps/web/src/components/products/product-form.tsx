@@ -5,10 +5,9 @@ import { Button } from "@acme/ui/button";
 import { Checkbox } from "@acme/ui/checkbox";
 import { Input } from "@acme/ui/input";
 import { Label } from "@acme/ui/label";
-import {
-  NativeSelect,
-  NativeSelectOption,
-} from "@acme/ui/native-select";
+import { NativeSelect, NativeSelectOption } from "@acme/ui/native-select";
+
+import { Uploader } from "~/components/uploader";
 
 interface ProductFormData {
   code: string;
@@ -90,6 +89,8 @@ export function ProductForm({
         form.handleSubmit();
       }}
     >
+      <Uploader />
+
       <div className="grid gap-6 md:grid-cols-2">
         <form.Field name="code">
           {(field) => (
@@ -104,7 +105,7 @@ export function ProductForm({
                 value={field.state.value}
               />
               {field.state.meta.errors.map((error) => (
-                <p className="text-sm text-destructive" key={error?.message}>
+                <p className="text-destructive text-sm" key={error?.message}>
                   {error?.message}
                 </p>
               ))}
@@ -125,7 +126,7 @@ export function ProductForm({
                 value={field.state.value}
               />
               {field.state.meta.errors.map((error) => (
-                <p className="text-sm text-destructive" key={error?.message}>
+                <p className="text-destructive text-sm" key={error?.message}>
                   {error?.message}
                 </p>
               ))}
@@ -162,14 +163,24 @@ export function ProductForm({
               >
                 <NativeSelectOption value="">Selecione...</NativeSelectOption>
                 <NativeSelectOption value="un">Unidade (un)</NativeSelectOption>
-                <NativeSelectOption value="kg">Quilograma (kg)</NativeSelectOption>
+                <NativeSelectOption value="kg">
+                  Quilograma (kg)
+                </NativeSelectOption>
                 <NativeSelectOption value="g">Grama (g)</NativeSelectOption>
                 <NativeSelectOption value="l">Litro (l)</NativeSelectOption>
-                <NativeSelectOption value="ml">Mililitro (ml)</NativeSelectOption>
+                <NativeSelectOption value="ml">
+                  Mililitro (ml)
+                </NativeSelectOption>
                 <NativeSelectOption value="m">Metro (m)</NativeSelectOption>
-                <NativeSelectOption value="cm">Centímetro (cm)</NativeSelectOption>
-                <NativeSelectOption value="m²">Metro quadrado (m²)</NativeSelectOption>
-                <NativeSelectOption value="m³">Metro cúbico (m³)</NativeSelectOption>
+                <NativeSelectOption value="cm">
+                  Centímetro (cm)
+                </NativeSelectOption>
+                <NativeSelectOption value="m²">
+                  Metro quadrado (m²)
+                </NativeSelectOption>
+                <NativeSelectOption value="m³">
+                  Metro cúbico (m³)
+                </NativeSelectOption>
               </NativeSelect>
             </div>
           )}
@@ -189,7 +200,7 @@ export function ProductForm({
                 value={field.state.value}
               />
               {field.state.meta.errors.map((error) => (
-                <p className="text-sm text-destructive" key={error?.message}>
+                <p className="text-destructive text-sm" key={error?.message}>
                   {error?.message}
                 </p>
               ))}
@@ -211,7 +222,7 @@ export function ProductForm({
                 value={field.state.value}
               />
               {field.state.meta.errors.map((error) => (
-                <p className="text-sm text-destructive" key={error?.message}>
+                <p className="text-destructive text-sm" key={error?.message}>
                   {error?.message}
                 </p>
               ))}
@@ -232,7 +243,7 @@ export function ProductForm({
                 value={field.state.value}
               />
               {field.state.meta.errors.map((error) => (
-                <p className="text-sm text-destructive" key={error?.message}>
+                <p className="text-destructive text-sm" key={error?.message}>
                   {error?.message}
                 </p>
               ))}
@@ -267,10 +278,7 @@ export function ProductForm({
                 field.handleChange(checked === true)
               }
             />
-            <Label
-              className="!mt-0 cursor-pointer"
-              htmlFor={field.name}
-            >
+            <Label className="!mt-0 cursor-pointer" htmlFor={field.name}>
               Produto ativo
             </Label>
           </div>
@@ -294,4 +302,3 @@ export function ProductForm({
     </form>
   );
 }
-

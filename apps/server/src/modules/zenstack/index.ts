@@ -8,7 +8,7 @@ import { schema } from "@acme/zen-v3/zenstack/schema";
 
 import { auth, betterAuth } from "../../plugins/better-auth";
 
-async function getSessionUser({ request }: { request: Request }) {
+export async function getSessionUser({ request }: { request: Request }) {
   const sessionResult = await auth.api.getSession({
     headers: request.headers,
   });

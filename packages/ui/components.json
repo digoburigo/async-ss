@@ -9,13 +9,15 @@
     "baseColor": "zinc",
     "cssVariables": true
   },
+  "iconLibrary": "radix",
   "aliases": {
-    "utils": "@acme/ui",
     "components": "src/",
+    "utils": "@acme/ui",
     "ui": "src/",
     "hooks": "src/hooks"
   },
   "registries": {
-    "@coss": "https://coss.com/ui/r/{name}.json"
+    "@coss": "https://coss.com/ui/r/{name}.json",
+    "@better-upload": "https://better-upload.com/r/{name}.json"
   }
 }

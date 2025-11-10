@@ -56,13 +56,15 @@
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint --flag unstable_native_nodejs_ts_config",
     "typecheck": "tsc --noEmit --emitDeclarationOnly false",
-    "ui-add": "pnpm dlx shadcn@latest add && prettier src --write --list-different"
+    "ui:add": "pnpm dlx shadcn@latest add && prettier src --write --list-different",
+    "ui-add": "pnpm dlx shadcn@latest add"
   },
   "prettier": "@acme/prettier-config",
   "dependencies": {
     "@ai-sdk/react": "^2.0.89",
     "@ariakit/react": "^0.4.19",
     "@base-ui-components/react": "1.0.0-beta.4",
+    "@better-upload/client": "^3.0.0",
     "@emoji-mart/data": "^1.2.1",
     "@faker-js/faker": "^10.1.0",
     "@platejs/ai": "^51.0.1",
@@ -145,6 +147,7 @@
     "react-day-picker": "^9.11.1",
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
+    "react-dropzone": "^14.3.8",
     "react-hook-form": "^7.66.0",
     "react-lite-youtube-embed": "^2.5.6",
     "react-player": "^3.3.3",

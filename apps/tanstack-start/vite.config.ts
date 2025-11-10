@@ -13,9 +13,9 @@ export default defineConfig({
     tsConfigPaths({
       projects: ["./tsconfig.json"],
     }),
-    nitro(),
+    tailwindcss(),
     tanstackStart(),
     viteReact(),
-    tailwindcss(),
+    nitro(),
   ],
 });

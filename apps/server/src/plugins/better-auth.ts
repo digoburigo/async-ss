@@ -33,6 +33,7 @@ export const betterAuth = new Elysia({ name: "better-auth" })
         const session = await auth.api.getSession({
           headers,
         });
+        console.log(`🚀 -> session:`, session);
 
         if (!session) {
           return status(401);

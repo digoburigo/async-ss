@@ -8,6 +8,7 @@ import { db } from "@acme/zen-v3";
 
 import { zenstackController } from "./modules/zenstack";
 import { betterAuth } from "./plugins/better-auth";
+import { betterUpload } from "./plugins/better-upload";
 
 const trustedOrigins = [
   process.env.PUBLIC_WEB_URL ?? "http://localhost:3001",
@@ -40,6 +41,7 @@ export const app = new Elysia({
     }),
   )
   .use(betterAuth)
+  .use(betterUpload)
   .use(zenstackController)
   .get("/", () => ({ message: "Hello Elysia!" }))
   .get("/healthcheck", () => ({ message: "OK" }), {
