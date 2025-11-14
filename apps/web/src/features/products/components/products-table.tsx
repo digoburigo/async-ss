@@ -27,6 +27,7 @@ import {
 } from "@acme/ui/table";
 import { schema } from "@acme/zen-v3/zenstack/schema";
 
+import { api } from "~/clients/api-client";
 import { authClient } from "~/clients/auth-client";
 import { DataTablePagination, DataTableToolbar } from "~/components/data-table";
 import { useTableUrlState } from "~/hooks/use-table-url-state";
@@ -38,10 +39,16 @@ const route = getRouteApi("/_authenticated/products/");
 
 export function ProductsTable() {
   const { data: activeOrganization } = authClient.useActiveOrganization();
-  const client = useClientQueries(schema);
 
+  const client = useClientQueries(schema);
   const { data: products = [], isFetching } = client.product.useFindMany(
-    {},
+    {
+      where: {
+        category: {
+          equals: "teste",
+        },
+      },
+    },
     {
       enabled: !!activeOrganization?.id,
     },
