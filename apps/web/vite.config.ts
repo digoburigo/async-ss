@@ -69,6 +69,7 @@ export default defineConfig({
         plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]],
       },
     }),
+    Icons({ compiler: "jsx", jsx: "react" }),
     VitePWA({
       registerType: "autoUpdate",
       manifest: {
@@ -80,7 +81,6 @@ export default defineConfig({
       pwaAssets: { disabled: false, config: true },
       devOptions: { enabled: true },
     }),
-    Icons({ compiler: "jsx", jsx: "react" }),
   ],
   // base: env.PUBLIC_BASE_PATH,
   envPrefix: "PUBLIC_",

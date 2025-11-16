@@ -43,25 +43,12 @@ export function ProductsTable() {
 
   const client = useClientQueries(schema);
   const { data: products = [], isFetching } = client.product.useFindMany(
-    {
-      where: {
-        category: {
-          equals: "teste",
-        },
-      },
-    },
+    {},
     {
       enabled: !!activeOrganization?.id,
     },
   );
-
-  const { data: healthcheck } = useQuery({
-    queryKey: ["healthcheck"],
-    queryFn: async () => {
-      const response = await api.healthcheck.get();
-      return response;
-    },
-  });
+  console.log(`🚀 -> products:`, products);
 
   // Local UI-only states
   const [rowSelection, setRowSelection] = useState({});
