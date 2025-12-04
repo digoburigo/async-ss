@@ -641,8 +641,8 @@ importers:
         specifier: 'catalog:'
         version: 3.7.4
       react-grab:
-        specifier: 0.0.66
-        version: 0.0.66(@types/react@19.1.17)(react@19.1.2)
+        specifier: 0.0.67
+        version: 0.0.67(@types/react@19.1.17)(react@19.1.2)
       react-scan:
         specifier: ^0.4.3
         version: 0.4.3(@types/react@19.1.17)(next@16.0.1(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.2(react@19.1.2))(react@19.1.2)(sass@1.51.0))(react-dom@19.1.2(react@19.1.2))(react@19.1.2)(rollup@2.79.2)
@@ -12341,8 +12341,8 @@ packages:
     peerDependencies:
       react: '>=17.0.0'
 
-  react-grab@0.0.66:
-    resolution: {integrity: sha512-tckRz4Z7lytbAuClvy7qUTG8OjAo+GbhVf4NCrkEoSmCvBhp42VhlhDe9jbj+DA45UyWX5o7GmnKVAYwCLHxlw==}
+  react-grab@0.0.67:
+    resolution: {integrity: sha512-JSuMJZvAA/EoIs2XFr/Ji0zvhDdHt+vQP/FsFYujVAV+7yrsSl+AASkgBZAjpsTSnG91GOuibfsaXipOa9QqwQ==}
 
   react-hook-form@7.68.0:
     resolution: {integrity: sha512-oNN3fjrZ/Xo40SWlHf1yCjlMK417JxoSJVUXQjGdvdRCU07NTFei1i1f8ApUAts+IVh14e4EdakeLEA+BEAs/Q==}
@@ -28700,7 +28700,7 @@ snapshots:
     dependencies:
       react: 19.1.2
 
-  react-grab@0.0.66(@types/react@19.1.17)(react@19.1.2):
+  react-grab@0.0.67(@types/react@19.1.17)(react@19.1.2):
     dependencies:
       bippy: 0.5.25(@types/react@19.1.17)(react@19.1.2)
       solid-js: 1.9.10
