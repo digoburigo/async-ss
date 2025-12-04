@@ -62,7 +62,7 @@
   "dependencies": {
     "@ai-sdk/react": "^2.0.106",
     "@ariakit/react": "^0.4.20",
-    "@base-ui-components/react": "1.0.0-beta.7",
+    "@base-ui-components/react": "1.0.0-rc.0",
     "@better-upload/client": "^3.0.5",
     "@emoji-mart/data": "^1.2.1",
     "@faker-js/faker": "^10.1.0",
@@ -147,7 +147,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dropzone": "^14.3.8",
-    "react-hook-form": "^7.67.0",
+    "react-hook-form": "^7.68.0",
     "react-lite-youtube-embed": "^3.3.3",
     "react-player": "^3.4.0",
     "react-resizable-panels": "^3.0.6",
