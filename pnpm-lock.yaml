@@ -187,8 +187,8 @@ importers:
         specifier: ~15.0.10
         version: 15.0.10(expo@54.0.27)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))
       lucide-react-native:
-        specifier: ^0.559.0
-        version: 0.559.0(react-native-svg@15.12.1(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2))(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2)
+        specifier: ^0.560.0
+        version: 0.560.0(react-native-svg@15.12.1(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2))(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2)
       nativewind:
         specifier: 5.0.0-preview.2
         version: 5.0.0-preview.2(react-native-css@3.0.1(@expo/metro-config@54.0.10(bufferutil@4.0.9)(expo@54.0.27))(lightningcss@1.30.2)(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2))(tailwindcss@4.1.17)
@@ -532,8 +532,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
       lucide-react:
-        specifier: ^0.559.0
-        version: 0.559.0(react@19.1.2)
+        specifier: ^0.560.0
+        version: 0.560.0(react@19.1.2)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
@@ -590,8 +590,8 @@ importers:
         specifier: ^10.1.0
         version: 10.1.0
       '@iconify/json':
-        specifier: ^2.2.416
-        version: 2.2.416
+        specifier: ^2.2.417
+        version: 2.2.417
       '@svgr/core':
         specifier: ^8.1.0
         version: 8.1.0(typescript@5.9.3)
@@ -806,8 +806,8 @@ importers:
   packages/ui:
     dependencies:
       '@ai-sdk/react':
-        specifier: ^2.0.111
-        version: 2.0.111(react@19.1.2)(zod@4.1.13)
+        specifier: ^2.0.112
+        version: 2.0.112(react@19.1.2)(zod@4.1.13)
       '@ariakit/react':
         specifier: ^0.4.20
         version: 0.4.20(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
@@ -1007,8 +1007,8 @@ importers:
         specifier: ^7.3.3
         version: 7.3.3(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.2(react@19.1.2))(react@19.1.2)(sass@1.51.0))(react@19.1.2)(uploadthing@7.7.4(next@16.0.7(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.2(react@19.1.2))(react@19.1.2)(sass@1.51.0))(tailwindcss@4.1.17))
       ai:
-        specifier: ^5.0.109
-        version: 5.0.109(zod@4.1.13)
+        specifier: ^5.0.110
+        version: 5.0.110(zod@4.1.13)
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -1040,8 +1040,8 @@ importers:
         specifier: ^3.3.0
         version: 3.3.0
       lucide-react:
-        specifier: ^0.559.0
-        version: 0.559.0(react@19.1.2)
+        specifier: ^0.560.0
+        version: 0.560.0(react@19.1.2)
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.2(react@19.1.2))(react@19.1.2)
@@ -1339,8 +1339,8 @@ packages:
       graphql:
         optional: true
 
-  '@ai-sdk/gateway@2.0.18':
-    resolution: {integrity: sha512-sDQcW+6ck2m0pTIHW6BPHD7S125WD3qNkx/B8sEzJp/hurocmJ5Cni0ybExg6sQMGo+fr/GWOwpHF1cmCdg5rQ==}
+  '@ai-sdk/gateway@2.0.19':
+    resolution: {integrity: sha512-cybb+k/3Kj9BX+Am1mun3dafZsHQLIzW2A4fu5FVTLSIGXXbcuXwXNNdYMGs+B0y6RYOQ8VHbf1QslMSDIxQMA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -1355,8 +1355,8 @@ packages:
     resolution: {integrity: sha512-6o7Y2SeO9vFKB8lArHXehNuusnpddKPk7xqL7T2/b+OvXMRIXUO1rR4wcv1hAFUAT9avGZshty3Wlua/XA7TvA==}
     engines: {node: '>=18'}
 
-  '@ai-sdk/react@2.0.111':
-    resolution: {integrity: sha512-CY2HW/bxTwpRMvd1SmnF1Fg/zv+v4wSDz+a6Vg+7AqF5YkFSmxsyYHEjZ8WzoeQDaDZXJbLM2ToajUHAQoZNtQ==}
+  '@ai-sdk/react@2.0.112':
+    resolution: {integrity: sha512-TiDEKzgfG58FfN0uKph+NjjRRF+/pRkpbvJDgqfLG2jy0+P5K8aFDi9ZJS51yjYt/a0ArBv0dmgif/eFOl0mIg==}
     engines: {node: '>=18'}
     peerDependencies:
       react: ^18 || ~19.0.1 || ~19.1.2 || ^19.2.1
@@ -3160,8 +3160,8 @@ packages:
       prettier-plugin-ember-template-tag:
         optional: true
 
-  '@iconify/json@2.2.416':
-    resolution: {integrity: sha512-9cD842bd/unmBJhM79Vo+x2LNpc9aN29VYSlsa2i6hKJFB6u6bvSgr3XPCcqht1SRv3kSdcWlbMjSeJ8xSc1Mw==}
+  '@iconify/json@2.2.417':
+    resolution: {integrity: sha512-/MzthgckJ4vEwdHmAbAn6Bph5WnR4tzVcHMs/nZl3v5hOVRw80SK28UPnG7jjsCB41WWjWPnWdMEdOZfUMZS5w==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -7308,8 +7308,8 @@ packages:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
 
-  ai@5.0.109:
-    resolution: {integrity: sha512-tW8K4Z0bcYH9PzP7gMmPilgBwgpylEL25bRtWruUnrTS45S6ryNJ6YSEh6mZajlIEDS6bcur7srdXVGERxjVXQ==}
+  ai@5.0.110:
+    resolution: {integrity: sha512-ZBq+5bvef4e5qoIG4U6NJ1UpCPWGjuaWERHXbHu2T2ND3c02nJ2zlnjm+N6zAAplQPxwqm7Sb16mrRX5uQNWtQ==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -10760,15 +10760,15 @@ packages:
     resolution: {integrity: sha512-Lkk/vx6ak3rYkRR0Nhu4lFUT2VDnQSxBe8Hbl7f36358p6ow8Bnvr8lrLt98H8J1aGxfhbX4Fs5tYg2+FTwr5Q==}
     engines: {bun: '>=1.0.0', deno: '>=1.30.0', node: '>=8.0.0'}
 
-  lucide-react-native@0.559.0:
-    resolution: {integrity: sha512-vVpXLV/vf2fPCpOTYwqzTjE6qgkOzXRjP25c3pPIFhRPCczAghQWoJBSjmhrt8J9lMQrVfEhTtmzJbq97acWPA==}
+  lucide-react-native@0.560.0:
+    resolution: {integrity: sha512-ZmCN+2RrzJ3gUdyWbFQfuzdGIXxmqXz9J2T7WfE6d3/JbKxfLe2WYT61JJ3yY4R2hm6TYi+bzV/xoisNQercUw==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-native: '*'
       react-native-svg: ^12.0.0 || ^13.0.0 || ^14.0.0 || ^15.0.0
 
-  lucide-react@0.559.0:
-    resolution: {integrity: sha512-3ymrkBPXWk3U2bwUDg6TdA6hP5iGDMgPEAMLhchEgTQmA+g0Zk24tOtKtXMx35w1PizTmsBC3RhP88QYm+7mHQ==}
+  lucide-react@0.560.0:
+    resolution: {integrity: sha512-NwKoUA/aBShsdL8WE5lukV2F/tjHzQRlonQs7fkNGI1sCT0Ay4a9Ap3ST2clUUkcY+9eQ0pBe2hybTQd2fmyDA==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -14612,7 +14612,7 @@ snapshots:
 
   '@0no-co/graphql.web@1.2.0': {}
 
-  '@ai-sdk/gateway@2.0.18(zod@4.1.13)':
+  '@ai-sdk/gateway@2.0.19(zod@4.1.13)':
     dependencies:
       '@ai-sdk/provider': 2.0.0
       '@ai-sdk/provider-utils': 3.0.18(zod@4.1.13)
@@ -14630,10 +14630,10 @@ snapshots:
     dependencies:
       json-schema: 0.4.0
 
-  '@ai-sdk/react@2.0.111(react@19.1.2)(zod@4.1.13)':
+  '@ai-sdk/react@2.0.112(react@19.1.2)(zod@4.1.13)':
     dependencies:
       '@ai-sdk/provider-utils': 3.0.18(zod@4.1.13)
-      ai: 5.0.109(zod@4.1.13)
+      ai: 5.0.110(zod@4.1.13)
       react: 19.1.2
       swr: 2.3.6(react@19.1.2)
       throttleit: 2.1.0
@@ -17083,7 +17083,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@iconify/json@2.2.416':
+  '@iconify/json@2.2.417':
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 2.0.3
@@ -22336,9 +22336,9 @@ snapshots:
       clean-stack: 2.2.0
       indent-string: 4.0.0
 
-  ai@5.0.109(zod@4.1.13):
+  ai@5.0.110(zod@4.1.13):
     dependencies:
-      '@ai-sdk/gateway': 2.0.18(zod@4.1.13)
+      '@ai-sdk/gateway': 2.0.19(zod@4.1.13)
       '@ai-sdk/provider': 2.0.0
       '@ai-sdk/provider-utils': 3.0.18(zod@4.1.13)
       '@opentelemetry/api': 1.9.0
@@ -26193,13 +26193,13 @@ snapshots:
 
   lru.min@1.1.3: {}
 
-  lucide-react-native@0.559.0(react-native-svg@15.12.1(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2))(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2):
+  lucide-react-native@0.560.0(react-native-svg@15.12.1(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2))(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2):
     dependencies:
       react: 19.1.2
       react-native: 0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2)
       react-native-svg: 15.12.1(react-native@0.81.5(@babel/core@7.28.5)(@types/react@19.1.17)(bufferutil@4.0.9)(react@19.1.2))(react@19.1.2)
 
-  lucide-react@0.559.0(react@19.1.2):
+  lucide-react@0.560.0(react@19.1.2):
     dependencies:
       react: 19.1.2
 
