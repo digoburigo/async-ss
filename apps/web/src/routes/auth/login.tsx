@@ -1,20 +1,19 @@
 import { useForm } from "@tanstack/react-form";
 import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { toast } from "sonner";
 import * as z from "zod";
 
 import { Button } from "@acme/ui/base-ui/button";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardFooter,
   CardHeader,
-  CardPanel,
   CardTitle,
 } from "@acme/ui/base-ui/card";
-import { Field, FieldLabel } from "@acme/ui/base-ui/field";
-import { Fieldset } from "@acme/ui/base-ui/fieldset";
+import { Field, FieldLabel, FieldSet } from "@acme/ui/base-ui/field";
 import { Input } from "@acme/ui/base-ui/input";
-import { toastManager } from "@acme/ui/base-ui/toast";
 import { FieldError } from "@acme/ui/field";
 
 import { authClient } from "~/clients/auth-client";
@@ -51,15 +50,10 @@ function RouteComponent() {
             navigate({
               to: "/",
             });
-            toastManager.add({
-              type: "success",
-              title: "Login realizado com sucesso",
-            });
+            toast.success("Login realizado com sucesso");
           },
           onError: (error) => {
-            toastManager.add({
-              type: "error",
-              title: "Erro ao fazer login",
+            toast.error("Erro ao fazer login", {
               description: error.error.message || error.error.statusText,
             });
           },
@@ -87,8 +81,8 @@ function RouteComponent() {
               form.handleSubmit();
             }}
           >
-            <CardPanel>
-              <Fieldset className="flex flex-col gap-4">
+            <CardContent>
+              <FieldSet className="flex flex-col gap-4">
                 <form.Field
                   children={(field) => (
                     <Field>
@@ -128,8 +122,8 @@ function RouteComponent() {
                   )}
                   name="password"
                 />
-              </Fieldset>
-            </CardPanel>
+              </FieldSet>
+            </CardContent>
             <CardFooter>
               <form.Subscribe
                 children={({ isSubmitting }) => (
