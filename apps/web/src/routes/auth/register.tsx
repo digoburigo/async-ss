@@ -12,9 +12,15 @@ import {
   CardHeader,
   CardTitle,
 } from "@acme/ui/base-ui/card";
-import { Field, FieldLabel, FieldSet } from "@acme/ui/base-ui/field";
+import {
+  Field,
+  FieldError,
+  FieldLabel,
+  FieldSet,
+} from "@acme/ui/base-ui/field";
 import { Input } from "@acme/ui/base-ui/input";
-import { FieldError } from "@acme/ui/field";
+
+// import { FieldError } from "@acme/ui/field";
 
 import { authClient } from "~/clients/auth-client";
 
