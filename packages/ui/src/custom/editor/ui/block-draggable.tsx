@@ -425,7 +425,7 @@ const createDragPreviewElements = (
 
 		if (lastDomNode) {
 			const lastDomNodeRect = editor.api
-				.toDOMNode(lastDomNode)!
+				.toDOMNode(lastDomNode)
 				.parentElement!.getBoundingClientRect();
 
 			const domNodeRect = domNode.parentElement!.getBoundingClientRect();

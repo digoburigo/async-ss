@@ -1,5 +1,5 @@
 import { cn } from "@acme/ui";
-import { SidebarInset, SidebarProvider } from "@acme/ui/sidebar";
+import { SidebarInset, SidebarProvider } from "@acme/ui/base-ui/sidebar";
 import { Outlet } from "@tanstack/react-router";
 
 import { AppSidebar } from "~/components/layout/app-sidebar";

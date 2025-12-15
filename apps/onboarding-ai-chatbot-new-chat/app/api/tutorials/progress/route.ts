@@ -1,55 +1,65 @@
-import { NextRequest, NextResponse } from "next/server"
-import { createServerClient } from "@/lib/supabase/server"
+import { type NextRequest, NextResponse } from "next/server";
+import { createServerClient } from "@/lib/supabase/server";
 
 export async function GET(request: NextRequest) {
-  try {
-    const supabase = await createServerClient()
-    
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+	try {
+		const supabase = await createServerClient();
 
-    const { data: progress, error } = await supabase
-      .from("tutorial_step_progress")
-      .select("*")
-      .eq("user_id", user.id)
+		const {
+			data: { user },
+		} = await supabase.auth.getUser();
+		if (!user) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+		}
 
-    if (error) throw error
+		const { data: progress, error } = await supabase
+			.from("tutorial_step_progress")
+			.select("*")
+			.eq("user_id", user.id);
 
-    return NextResponse.json(progress)
-  } catch (error) {
-    console.error("Error fetching tutorial progress:", error)
-    return NextResponse.json({ error: "Failed to fetch tutorial progress" }, { status: 500 })
-  }
+		if (error) throw error;
+
+		return NextResponse.json(progress);
+	} catch (error) {
+		console.error("Error fetching tutorial progress:", error);
+		return NextResponse.json(
+			{ error: "Failed to fetch tutorial progress" },
+			{ status: 500 },
+		);
+	}
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    const supabase = await createServerClient()
-    const body = await request.json()
-    
-    const { data: { user } } = await supabase.auth.getUser()
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+	try {
+		const supabase = await createServerClient();
+		const body = await request.json();
 
-    const { data, error } = await supabase
-      .from("tutorial_step_progress")
-      .upsert({
-        user_id: user.id,
-        step_id: body.step_id,
-        completed: body.completed,
-        completed_at: body.completed ? new Date().toISOString() : null,
-      })
-      .select()
-      .single()
+		const {
+			data: { user },
+		} = await supabase.auth.getUser();
+		if (!user) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+		}
 
-    if (error) throw error
+		const { data, error } = await supabase
+			.from("tutorial_step_progress")
+			.upsert({
+				user_id: user.id,
+				step_id: body.step_id,
+				completed: body.completed,
+				completed_at: body.completed ? new Date().toISOString() : null,
+			})
+			.select()
+			.single();
 
-    return NextResponse.json(data)
-  } catch (error) {
-    console.error("Error updating tutorial progress:", error)
-    return NextResponse.json({ error: "Failed to update tutorial progress" }, { status: 500 })
-  }
+		if (error) throw error;
+
+		return NextResponse.json(data);
+	} catch (error) {
+		console.error("Error updating tutorial progress:", error);
+		return NextResponse.json(
+			{ error: "Failed to update tutorial progress" },
+			{ status: 500 },
+		);
+	}
 }

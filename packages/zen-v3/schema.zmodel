@@ -51,9 +51,13 @@ model User {
   updatedTests Test[] @relation("updatedTests") 
   deletedTests Test[] @relation("deletedTests")
 
-  createdProducts Product[] @relation("createdProducts") 
-  updatedProducts Product[] @relation("updatedProducts") 
+  createdProducts Product[] @relation("createdProducts")
+  updatedProducts Product[] @relation("updatedProducts")
   deletedProducts Product[] @relation("deletedProducts")
+
+  createdKanbanCards KanbanCard[] @relation("createdKanbanCards")
+  updatedKanbanCards KanbanCard[] @relation("updatedKanbanCards")
+  deletedKanbanCards KanbanCard[] @relation("deletedKanbanCards")
 
   createdClients Client[] @relation("createdClients") 
   updatedClients Client[] @relation("updatedClients") 
@@ -70,6 +74,23 @@ model User {
   userAchievements UserAchievement[]
   userActionCounts UserActionCount[]
   tutorialStepProgress TutorialStepProgress[]
+
+  // Meeting & Mindmap relations
+  meetings Meeting[]
+  mindmaps Mindmap[]
+
+  // Offboarding relations
+  offboardingProcessesAsUser OffboardingProcess[] @relation("OffboardingProcessUser")
+  offboardingProcessesAsInitiator OffboardingProcess[] @relation("OffboardingProcessInitiator")
+  offboardingProgressCompletedBy OffboardingProgress[] @relation("OffboardingProgressCompletedBy")
+  offboardingProgressApprovedBy OffboardingProgress[] @relation("OffboardingProgressApprovedBy")
+  offboardingHandoverAssignments OffboardingHandoverTask[] @relation("OffboardingHandoverAssignee")
+
+  // Preboarding relations
+  createdJobPositions PreboardingJobPosition[] @relation("JobPositionCreatedBy")
+  createdCandidates PreboardingCandidate[] @relation("CandidateCreatedBy")
+  createdActivities PreboardingActivity[] @relation("ActivityCreatedBy")
+  createdDocuments PreboardingCandidateDocument[] @relation("DocumentCreatedBy")
 
   @@allow('create,read', true)
 
@@ -163,6 +184,25 @@ model Organization {
   userActionCounts UserActionCount[]
   tutorialSectors TutorialSector[]
   tutorialStepProgress TutorialStepProgress[]
+
+  // Meeting & Mindmap relations
+  meetings Meeting[]
+  mindmaps Mindmap[]
+
+  // Offboarding relations
+  offboardingChecklistSteps OffboardingChecklistStep[]
+  offboardingProcesses OffboardingProcess[]
+  offboardingProgress OffboardingProgress[]
+  offboardingHandoverTasks OffboardingHandoverTask[]
+
+  // Preboarding relations
+  preboardingStages PreboardingStage[]
+  preboardingJobPositions PreboardingJobPosition[]
+  preboardingCandidates PreboardingCandidate[]
+  preboardingActivities PreboardingActivity[]
+  preboardingInterviews PreboardingInterview[]
+  preboardingCandidateQuestions PreboardingCandidateQuestion[]
+  preboardingCandidateDocuments PreboardingCandidateDocument[]
 
   @@unique([slug])
 
@@ -352,6 +392,118 @@ enum MilestoneType {
   onboarding
 }
 
+enum GroupChatMessageType {
+  user
+  ai
+  system
+}
+
+enum OffboardingCategory {
+  handover
+  documentation
+  administrative
+  equipment
+  access
+}
+
+enum OffboardingStatus {
+  in_progress
+  pending_approval
+  completed
+  cancelled
+}
+
+enum OffboardingReason {
+  resignation
+  termination
+  retirement
+  transfer
+}
+
+enum HandoverTaskStatus {
+  pending
+  in_progress
+  completed
+}
+
+enum HandoverTaskPriority {
+  low
+  medium
+  high
+  critical
+}
+
+enum CandidateStatus {
+  active
+  hired
+  rejected
+  withdrawn
+}
+
+enum ActivityType {
+  note
+  stage_change
+  interview
+  email
+  call
+  document
+  other
+}
+
+enum InterviewType {
+  phone
+  video
+  in_person
+  technical
+  behavioral
+}
+
+enum InterviewStatus {
+  scheduled
+  completed
+  cancelled
+  no_show
+}
+
+enum WorkModel {
+  presencial
+  remoto
+  hibrido
+}
+
+enum EmploymentType {
+  clt
+  pj
+  estagio
+  temporario
+}
+
+enum JobPositionPriority {
+  baixa
+  normal
+  alta
+  urgente
+}
+
+enum JobPositionStatus {
+  aberta
+  pausada
+  fechada
+  cancelada
+}
+
+enum QuestionType {
+  hard_skills
+  soft_skills
+}
+
+enum MeetingStatus {
+  scheduled
+  in_progress
+  completed
+  cancelled
+}
+
 model Client {
     id        String   @id @default(dbgenerated("uuidv7()"))
 
@@ -469,20 +621,25 @@ model KnowledgeChat {
 
 model GroupChatMessage {
     id String @id @default(dbgenerated("uuidv7()"))
-    
+
     userId String
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
     userName String
     message String
-    
+    messageType GroupChatMessageType @default(user)
+    parentMessageId String?
+    parentMessage GroupChatMessage? @relation("GroupChatReplies", fields: [parentMessageId], references: [id], onDelete: SetNull)
+    replies GroupChatMessage[] @relation("GroupChatReplies")
+    metadata Json?
+
     createdAt DateTime @default(now())
-    
+
     organizationId String? @default(auth().organizationId)
     organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-    
+
     @@allow('create', auth() != null)
     @@allow('read,update,delete', auth().organizationId == organizationId)
-    
+
     @@map("group_chat_messages")
 }
 
@@ -534,27 +691,40 @@ model OnboardingChecklistProgress {
 
 // CALENDAR MODELS ======================================================
 
+enum CalendarEventType {
+  MEETING
+  ONBOARDING
+  TRAINING
+  INTERVIEW
+  TASK
+  OTHER
+}
+
 model CalendarEvent {
     id String @id @default(dbgenerated("uuidv7()"))
-    
+
     userId String
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
     title String
     description String?
-    startTime DateTime
-    endTime DateTime
+    start DateTime
+    end DateTime
     allDay Boolean @default(false)
     color String @default("#3b82f6")
-    
+    eventType CalendarEventType @default(OTHER)
+    rrule String?
+    meetingId String?
+    meeting Meeting? @relation(fields: [meetingId], references: [id], onDelete: Cascade)
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    
+
     organizationId String? @default(auth().organizationId)
     organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-    
+
     @@allow('create', auth() != null)
     @@allow('read,update,delete', auth().organizationId == organizationId)
-    
+
     @@map("calendar_events")
 }
 
@@ -612,7 +782,19 @@ model KanbanCard {
     dueDate DateTime?
     
     createdAt DateTime @default(now())
+    createdById String @default(auth().userId)
+    createdByUser User @relation('createdKanbanCards', fields: [createdById], references: [id], onDelete: Cascade)
+    
     updatedAt DateTime @updatedAt
+    updatedById String? @default(auth().userId)
+    updatedByUser User? @relation('updatedKanbanCards', fields: [updatedById], references: [id], onDelete: Cascade)
+    
+    deletedAt DateTime?
+    deletedById String?
+    deletedByUser User? @relation('deletedKanbanCards', fields: [deletedById], references: [id], onDelete: Cascade)
+    deletedReason String?
+    
+    @@deny('read', deletedAt != null)
     
     @@allow('create', auth() != null)
     @@allow('read,update,delete', auth() != null)
@@ -837,24 +1019,404 @@ model TutorialStep {
 
 model TutorialStepProgress {
     id String @id @default(dbgenerated("uuidv7()"))
-    
+
     userId String
     user User @relation(fields: [userId], references: [id], onDelete: Cascade)
     stepId String
     step TutorialStep @relation(fields: [stepId], references: [id], onDelete: Cascade)
     completed Boolean @default(false)
     completedAt DateTime?
-    
+
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
-    
+
     organizationId String? @default(auth().organizationId)
     organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
-    
+
     @@unique([userId, stepId])
-    
+
     @@allow('create', auth() != null)
     @@allow('read,update,delete', auth().organizationId == organizationId)
-    
+
     @@map("tutorial_step_progress")
+}
+
+// MEETING MODELS ======================================================
+
+model Meeting {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    userId String
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    title String
+    description String?
+    meetingDate DateTime
+    durationMinutes Int @default(60)
+    location String?
+    participants String[]
+    notes String?
+    transcript String?
+    rrule String?
+    status MeetingStatus @default(scheduled)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    calendarEvents CalendarEvent[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("meetings")
+}
+
+// MINDMAP MODELS ======================================================
+
+model Mindmap {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    userId String
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    title String
+    description String?
+    nodes Json @default("[]")
+    edges Json @default("[]")
+    viewport Json @default("{\"x\": 0, \"y\": 0, \"zoom\": 1}")
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("mindmaps")
+}
+
+// OFFBOARDING MODELS ======================================================
+
+model OffboardingChecklistStep {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    title String
+    description String?
+    category OffboardingCategory @default(handover)
+    orderIndex Int @default(0)
+    requiresAdminApproval Boolean @default(false)
+
+    createdAt DateTime @default(now())
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    progress OffboardingProgress[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("offboarding_checklist_steps")
+}
+
+model OffboardingProcess {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    userId String
+    user User @relation("OffboardingProcessUser", fields: [userId], references: [id], onDelete: Cascade)
+    initiatedById String
+    initiatedBy User @relation("OffboardingProcessInitiator", fields: [initiatedById], references: [id], onDelete: Cascade)
+    employeeName String
+    employeeEmail String
+    department String?
+    lastWorkingDay DateTime?
+    reason OffboardingReason?
+    status OffboardingStatus @default(in_progress)
+    notes String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    completedAt DateTime?
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    progress OffboardingProgress[]
+    handoverTasks OffboardingHandoverTask[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("offboarding_processes")
+}
+
+model OffboardingProgress {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    processId String
+    process OffboardingProcess @relation(fields: [processId], references: [id], onDelete: Cascade)
+    stepId String
+    step OffboardingChecklistStep @relation(fields: [stepId], references: [id], onDelete: Cascade)
+    completed Boolean @default(false)
+    completedAt DateTime?
+    completedById String?
+    completedBy User? @relation("OffboardingProgressCompletedBy", fields: [completedById], references: [id], onDelete: SetNull)
+    adminApproved Boolean @default(false)
+    adminApprovedAt DateTime?
+    adminApprovedById String?
+    adminApprovedBy User? @relation("OffboardingProgressApprovedBy", fields: [adminApprovedById], references: [id], onDelete: SetNull)
+    notes String?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@unique([processId, stepId])
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("offboarding_progress")
+}
+
+model OffboardingHandoverTask {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    processId String
+    process OffboardingProcess @relation(fields: [processId], references: [id], onDelete: Cascade)
+    taskTitle String
+    taskDescription String?
+    assignedToId String?
+    assignedTo User? @relation("OffboardingHandoverAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+    assignedToName String?
+    status HandoverTaskStatus @default(pending)
+    priority HandoverTaskPriority @default(medium)
+    dueDate DateTime?
+    completedAt DateTime?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("offboarding_handover_tasks")
+}
+
+// PREBOARDING MODELS ======================================================
+
+model PreboardingStage {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    name String
+    description String?
+    color String @default("#6366f1")
+    orderIndex Int @default(0)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    candidates PreboardingCandidate[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("preboarding_stages")
+}
+
+model PreboardingJobPosition {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    title String
+    department String?
+    description String?
+    requirements String?
+    responsibilities String?
+    location String?
+    workModel WorkModel @default(presencial)
+    employmentType EmploymentType @default(clt)
+    salaryMin Float?
+    salaryMax Float?
+    vacancies Int @default(1)
+    filledVacancies Int @default(0)
+    priority JobPositionPriority @default(normal)
+    status JobPositionStatus @default(aberta)
+    hiringManager String?
+    hiringManagerEmail String?
+    deadline DateTime?
+
+    createdById String?
+    createdBy User? @relation("JobPositionCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    candidates PreboardingCandidate[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("preboarding_job_positions")
+}
+
+model PreboardingCandidate {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    name String
+    email String?
+    phone String?
+    position String
+    department String?
+    stageId String?
+    stage PreboardingStage? @relation(fields: [stageId], references: [id], onDelete: SetNull)
+    jobPositionId String?
+    jobPosition PreboardingJobPosition? @relation(fields: [jobPositionId], references: [id], onDelete: SetNull)
+    source String?
+    resumeUrl String?
+    expectedSalary Float?
+    expectedStartDate DateTime?
+    notes String?
+    rating Int?
+    status CandidateStatus @default(active)
+
+    createdById String?
+    createdBy User? @relation("CandidateCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    activities PreboardingActivity[]
+    interviews PreboardingInterview[]
+    questions PreboardingCandidateQuestion[]
+    documents PreboardingCandidateDocument[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("preboarding_candidates")
+}
+
+model PreboardingActivity {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    candidateId String
+    candidate PreboardingCandidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+    activityType ActivityType
+    title String
+    description String?
+
+    createdById String?
+    createdBy User? @relation("ActivityCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+
+    createdAt DateTime @default(now())
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("preboarding_activities")
+}
+
+model PreboardingInterview {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    candidateId String
+    candidate PreboardingCandidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+    interviewerName String
+    interviewerEmail String?
+    interviewType InterviewType
+    scheduledAt DateTime
+    durationMinutes Int @default(60)
+    location String?
+    meetingLink String?
+    notes String?
+    feedback String?
+    rating Int?
+    status InterviewStatus @default(scheduled)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("preboarding_interviews")
+}
+
+model PreboardingCandidateQuestion {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    candidateId String
+    candidate PreboardingCandidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+    questionType QuestionType
+    question String
+    expectedAnswer String?
+    answer String?
+    rating Int?
+    notes String?
+    orderIndex Int @default(0)
+    isAiGenerated Boolean @default(true)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("preboarding_candidate_questions")
+}
+
+model PreboardingCandidateDocument {
+    id String @id @default(dbgenerated("uuidv7()"))
+
+    candidateId String
+    candidate PreboardingCandidate @relation(fields: [candidateId], references: [id], onDelete: Cascade)
+    documentType String
+    title String
+    fileName String
+    fileUrl String
+    fileSize Int?
+    mimeType String?
+    aiAnalysis String?
+    adherenceScore Float?
+    analyzedAt DateTime?
+
+    createdById String?
+    createdBy User? @relation("DocumentCreatedBy", fields: [createdById], references: [id], onDelete: SetNull)
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    organizationId String? @default(auth().organizationId)
+    organization Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("preboarding_candidate_documents")
 }

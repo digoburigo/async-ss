@@ -1,11 +1,11 @@
 import { cn } from "@acme/ui";
-import { Button } from "@acme/ui/button";
 import {
 	SidebarMenu,
 	SidebarMenuButton,
 	SidebarMenuItem,
 	useSidebar,
-} from "@acme/ui/sidebar";
+} from "@acme/ui/base-ui/sidebar";
+import { Button } from "@acme/ui/button";
 import { Link } from "@tanstack/react-router";
 import { Menu, X } from "lucide-react";
 

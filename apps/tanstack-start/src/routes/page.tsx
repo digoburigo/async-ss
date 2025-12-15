@@ -1,3 +1,6 @@
+import { Button } from "@acme/ui/base-ui/button";
+import { Card, CardContent } from "@acme/ui/base-ui/card";
+import { Sparkles as SparklesComponent } from "@acme/ui/base-ui/sparkles";
 import { Link } from "@tanstack/react-router";
 import {
 	ArrowRight,
@@ -10,9 +13,6 @@ import {
 	TrendingUp,
 	Users,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Sparkles as SparklesComponent } from "@/components/ui/sparkles";
 
 export default function ProductPage() {
 	return (

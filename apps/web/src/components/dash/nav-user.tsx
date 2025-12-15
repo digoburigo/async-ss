@@ -16,7 +16,9 @@ import {
 	SidebarMenuItem,
 	useSidebar,
 } from "@acme/ui/sidebar";
+import { schema } from "@acme/zen-v3/zenstack/schema";
 import { useNavigate } from "@tanstack/react-router";
+import { useClientQueries } from "@zenstackhq/tanstack-query/react";
 import {
 	Bell,
 	CreditCard,
@@ -24,6 +26,7 @@ import {
 	Moon,
 	MoreVertical,
 	Sun,
+	Trophy,
 	UserCircle,
 } from "lucide-react";
 import { useTheme } from "next-themes";
@@ -42,6 +45,20 @@ export function NavUser({
 	const { isMobile } = useSidebar();
 	const navigate = useNavigate();
 	const { resolvedTheme, setTheme } = useTheme();
+	const { data: session } = authClient.useSession();
+	const { data: activeOrganization } = authClient.useActiveOrganization();
+	const client = useClientQueries(schema);
+
+	const { data: userScore } = client.userScore.useFindFirst(
+		{
+			where: { userId: session?.user?.id },
+		},
+		{
+			enabled: !!activeOrganization?.id && !!session?.user?.id,
+		},
+	);
+
+	const totalPoints = userScore?.totalPoints ?? 0;
 
 	const handleSignOut = async () => {
 		await authClient.signOut();
@@ -78,6 +95,12 @@ export function NavUser({
 								<span className="text-muted-foreground truncate text-xs">
 									{user.email}
 								</span>
+								{totalPoints > 0 && (
+									<span className="flex items-center gap-1 text-xs text-amber-500">
+										<Trophy className="h-3 w-3" />
+										{totalPoints.toLocaleString("pt-BR")} pts
+									</span>
+								)}
 							</div>
 							<MoreVertical className="ml-auto size-4" />
 						</SidebarMenuButton>
@@ -105,6 +128,12 @@ export function NavUser({
 									<span className="text-muted-foreground truncate text-xs">
 										{user.email}
 									</span>
+									{totalPoints > 0 && (
+										<span className="flex items-center gap-1 text-xs text-amber-500">
+											<Trophy className="h-3 w-3" />
+											{totalPoints.toLocaleString("pt-BR")} pts
+										</span>
+									)}
 								</div>
 							</div>
 						</DropdownMenuLabel>

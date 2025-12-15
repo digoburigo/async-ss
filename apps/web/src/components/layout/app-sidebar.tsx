@@ -4,7 +4,7 @@ import {
 	SidebarFooter,
 	SidebarHeader,
 	SidebarRail,
-} from "@acme/ui/sidebar";
+} from "@acme/ui/base-ui/sidebar";
 
 import { authClient } from "~/clients/auth-client";
 import { useLayout } from "~/context/layout-provider";
@@ -35,20 +35,13 @@ export function AppSidebar() {
 		<Sidebar collapsible={collapsible} variant={variant}>
 			<SidebarHeader>
 				<TeamSwitcher />
-
-				{/* Replace <TeamSwitch /> with the following <AppTitle />
-         /* if you want to use the normal app title instead of TeamSwitch dropdown */}
-				{/* <AppTitle /> */}
 			</SidebarHeader>
 			<SidebarContent>
 				{sidebarData.navGroups.map((props) => (
 					<NavGroup key={props.title} {...props} />
 				))}
 			</SidebarContent>
-			<SidebarFooter>
-				{/* <NavUser user={sidebarData.user} /> */}
-				{session?.user && <NavUser user={user} />}
-			</SidebarFooter>
+			<SidebarFooter>{session?.user && <NavUser user={user} />}</SidebarFooter>
 			<SidebarRail />
 		</Sidebar>
 	);

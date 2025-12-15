@@ -1,4 +1,5 @@
 import { cn } from "@acme/ui";
+import { useSidebar } from "@acme/ui/base-ui/sidebar";
 import { Button } from "@acme/ui/button";
 import {
 	Sheet,
@@ -9,7 +10,6 @@ import {
 	SheetTitle,
 	SheetTrigger,
 } from "@acme/ui/sheet";
-import { useSidebar } from "@acme/ui/sidebar";
 import { Item, Root as Radio } from "@radix-ui/react-radio-group";
 import { CircleCheck, RotateCcw, Settings } from "lucide-react";
 import type { SVGProps } from "react";
@@ -297,7 +297,7 @@ function LayoutConfig() {
 						icon: IconLayoutCompact,
 					},
 					{
-						value: "offcanvas",
+						value: "offExamples",
 						label: "Full layout",
 						icon: IconLayoutFull,
 					},

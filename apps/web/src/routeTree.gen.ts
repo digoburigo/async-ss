@@ -30,14 +30,20 @@ import { Route as authOtpRouteImport } from './routes/(auth)/otp'
 import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-password'
 import { Route as AuthenticatedSettingsLayoutRouteImport } from './routes/_authenticated/settings/layout'
 import { Route as AuthenticatedProductsLayoutRouteImport } from './routes/_authenticated/products/layout'
+import { Route as AuthenticatedMindmapsLayoutRouteImport } from './routes/_authenticated/mindmaps/layout'
+import { Route as AuthenticatedKanbanLayoutRouteImport } from './routes/_authenticated/kanban/layout'
 import { Route as AuthenticatedClientsLayoutRouteImport } from './routes/_authenticated/clients/layout'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedProductsIndexRouteImport } from './routes/_authenticated/products/index'
+import { Route as AuthenticatedMindmapsIndexRouteImport } from './routes/_authenticated/mindmaps/index'
+import { Route as AuthenticatedKanbanIndexRouteImport } from './routes/_authenticated/kanban/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
+import { Route as AuthenticatedGamificationIndexRouteImport } from './routes/_authenticated/gamification/index'
 import { Route as AuthenticatedClientsIndexRouteImport } from './routes/_authenticated/clients/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
+import { Route as AuthenticatedCalendarIndexRouteImport } from './routes/_authenticated/calendar/index'
 import { Route as AuthenticatedAppsIndexRouteImport } from './routes/_authenticated/apps/index'
 import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes/_authenticated/settings/notifications'
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
@@ -45,6 +51,8 @@ import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_a
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
 import { Route as AuthenticatedProductsNewRouteImport } from './routes/_authenticated/products/new'
 import { Route as AuthenticatedProductsProductIdRouteImport } from './routes/_authenticated/products/$productId'
+import { Route as AuthenticatedMindmapsMindmapIdRouteImport } from './routes/_authenticated/mindmaps/$mindmapId'
+import { Route as AuthenticatedKanbanBoardIdRouteImport } from './routes/_authenticated/kanban/$boardId'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 import { Route as AuthenticatedClientsNewRouteImport } from './routes/_authenticated/clients/new'
 import { Route as AuthenticatedClientsClientIdRouteImport } from './routes/_authenticated/clients/$clientId'
@@ -155,6 +163,18 @@ const AuthenticatedProductsLayoutRoute =
     path: '/products',
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any)
+const AuthenticatedMindmapsLayoutRoute =
+  AuthenticatedMindmapsLayoutRouteImport.update({
+    id: '/mindmaps',
+    path: '/mindmaps',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
+const AuthenticatedKanbanLayoutRoute =
+  AuthenticatedKanbanLayoutRouteImport.update({
+    id: '/kanban',
+    path: '/kanban',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
 const AuthenticatedClientsLayoutRoute =
   AuthenticatedClientsLayoutRouteImport.update({
     id: '/clients',
@@ -183,10 +203,28 @@ const AuthenticatedProductsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedProductsLayoutRoute,
   } as any)
+const AuthenticatedMindmapsIndexRoute =
+  AuthenticatedMindmapsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedMindmapsLayoutRoute,
+  } as any)
+const AuthenticatedKanbanIndexRoute =
+  AuthenticatedKanbanIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedKanbanLayoutRoute,
+  } as any)
 const AuthenticatedHelpCenterIndexRoute =
   AuthenticatedHelpCenterIndexRouteImport.update({
     id: '/help-center/',
     path: '/help-center/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
+const AuthenticatedGamificationIndexRoute =
+  AuthenticatedGamificationIndexRouteImport.update({
+    id: '/gamification/',
+    path: '/gamification/',
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any)
 const AuthenticatedClientsIndexRoute =
@@ -200,6 +238,12 @@ const AuthenticatedChatsIndexRoute = AuthenticatedChatsIndexRouteImport.update({
   path: '/chats/',
   getParentRoute: () => AuthenticatedLayoutRoute,
 } as any)
+const AuthenticatedCalendarIndexRoute =
+  AuthenticatedCalendarIndexRouteImport.update({
+    id: '/calendar/',
+    path: '/calendar/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
 const AuthenticatedAppsIndexRoute = AuthenticatedAppsIndexRouteImport.update({
   id: '/apps/',
   path: '/apps/',
@@ -241,6 +285,18 @@ const AuthenticatedProductsProductIdRoute =
     path: '/$productId',
     getParentRoute: () => AuthenticatedProductsLayoutRoute,
   } as any)
+const AuthenticatedMindmapsMindmapIdRoute =
+  AuthenticatedMindmapsMindmapIdRouteImport.update({
+    id: '/$mindmapId',
+    path: '/$mindmapId',
+    getParentRoute: () => AuthenticatedMindmapsLayoutRoute,
+  } as any)
+const AuthenticatedKanbanBoardIdRoute =
+  AuthenticatedKanbanBoardIdRouteImport.update({
+    id: '/$boardId',
+    path: '/$boardId',
+    getParentRoute: () => AuthenticatedKanbanLayoutRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -266,6 +322,8 @@ export interface FileRoutesByFullPath {
   '/plate': typeof PlateRoute
   '/test': typeof TestRoute
   '/clients': typeof AuthenticatedClientsLayoutRouteWithChildren
+  '/kanban': typeof AuthenticatedKanbanLayoutRouteWithChildren
+  '/mindmaps': typeof AuthenticatedMindmapsLayoutRouteWithChildren
   '/products': typeof AuthenticatedProductsLayoutRouteWithChildren
   '/settings': typeof AuthenticatedSettingsLayoutRouteWithChildren
   '/forgot-password': typeof authForgotPasswordRoute
@@ -284,6 +342,8 @@ export interface FileRoutesByFullPath {
   '/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/clients/new': typeof AuthenticatedClientsNewRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/kanban/$boardId': typeof AuthenticatedKanbanBoardIdRoute
+  '/mindmaps/$mindmapId': typeof AuthenticatedMindmapsMindmapIdRoute
   '/products/$productId': typeof AuthenticatedProductsProductIdRoute
   '/products/new': typeof AuthenticatedProductsNewRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
@@ -291,9 +351,13 @@ export interface FileRoutesByFullPath {
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/apps': typeof AuthenticatedAppsIndexRoute
+  '/calendar': typeof AuthenticatedCalendarIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/clients/': typeof AuthenticatedClientsIndexRoute
+  '/gamification': typeof AuthenticatedGamificationIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/kanban/': typeof AuthenticatedKanbanIndexRoute
+  '/mindmaps/': typeof AuthenticatedMindmapsIndexRoute
   '/products/': typeof AuthenticatedProductsIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
@@ -321,6 +385,8 @@ export interface FileRoutesByTo {
   '/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/clients/new': typeof AuthenticatedClientsNewRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/kanban/$boardId': typeof AuthenticatedKanbanBoardIdRoute
+  '/mindmaps/$mindmapId': typeof AuthenticatedMindmapsMindmapIdRoute
   '/products/$productId': typeof AuthenticatedProductsProductIdRoute
   '/products/new': typeof AuthenticatedProductsNewRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
@@ -328,9 +394,13 @@ export interface FileRoutesByTo {
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/apps': typeof AuthenticatedAppsIndexRoute
+  '/calendar': typeof AuthenticatedCalendarIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/clients': typeof AuthenticatedClientsIndexRoute
+  '/gamification': typeof AuthenticatedGamificationIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/kanban': typeof AuthenticatedKanbanIndexRoute
+  '/mindmaps': typeof AuthenticatedMindmapsIndexRoute
   '/products': typeof AuthenticatedProductsIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
@@ -345,6 +415,8 @@ export interface FileRoutesById {
   '/plate': typeof PlateRoute
   '/test': typeof TestRoute
   '/_authenticated/clients': typeof AuthenticatedClientsLayoutRouteWithChildren
+  '/_authenticated/kanban': typeof AuthenticatedKanbanLayoutRouteWithChildren
+  '/_authenticated/mindmaps': typeof AuthenticatedMindmapsLayoutRouteWithChildren
   '/_authenticated/products': typeof AuthenticatedProductsLayoutRouteWithChildren
   '/_authenticated/settings': typeof AuthenticatedSettingsLayoutRouteWithChildren
   '/(auth)/forgot-password': typeof authForgotPasswordRoute
@@ -363,6 +435,8 @@ export interface FileRoutesById {
   '/_authenticated/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/_authenticated/clients/new': typeof AuthenticatedClientsNewRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/kanban/$boardId': typeof AuthenticatedKanbanBoardIdRoute
+  '/_authenticated/mindmaps/$mindmapId': typeof AuthenticatedMindmapsMindmapIdRoute
   '/_authenticated/products/$productId': typeof AuthenticatedProductsProductIdRoute
   '/_authenticated/products/new': typeof AuthenticatedProductsNewRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
@@ -370,9 +444,13 @@ export interface FileRoutesById {
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/_authenticated/apps/': typeof AuthenticatedAppsIndexRoute
+  '/_authenticated/calendar/': typeof AuthenticatedCalendarIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
   '/_authenticated/clients/': typeof AuthenticatedClientsIndexRoute
+  '/_authenticated/gamification/': typeof AuthenticatedGamificationIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/_authenticated/kanban/': typeof AuthenticatedKanbanIndexRoute
+  '/_authenticated/mindmaps/': typeof AuthenticatedMindmapsIndexRoute
   '/_authenticated/products/': typeof AuthenticatedProductsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
@@ -387,6 +465,8 @@ export interface FileRouteTypes {
     | '/plate'
     | '/test'
     | '/clients'
+    | '/kanban'
+    | '/mindmaps'
     | '/products'
     | '/settings'
     | '/forgot-password'
@@ -405,6 +485,8 @@ export interface FileRouteTypes {
     | '/clients/$clientId'
     | '/clients/new'
     | '/errors/$error'
+    | '/kanban/$boardId'
+    | '/mindmaps/$mindmapId'
     | '/products/$productId'
     | '/products/new'
     | '/settings/account'
@@ -412,9 +494,13 @@ export interface FileRouteTypes {
     | '/settings/display'
     | '/settings/notifications'
     | '/apps'
+    | '/calendar'
     | '/chats'
     | '/clients/'
+    | '/gamification'
     | '/help-center'
+    | '/kanban/'
+    | '/mindmaps/'
     | '/products/'
     | '/settings/'
     | '/tasks'
@@ -442,6 +528,8 @@ export interface FileRouteTypes {
     | '/clients/$clientId'
     | '/clients/new'
     | '/errors/$error'
+    | '/kanban/$boardId'
+    | '/mindmaps/$mindmapId'
     | '/products/$productId'
     | '/products/new'
     | '/settings/account'
@@ -449,9 +537,13 @@ export interface FileRouteTypes {
     | '/settings/display'
     | '/settings/notifications'
     | '/apps'
+    | '/calendar'
     | '/chats'
     | '/clients'
+    | '/gamification'
     | '/help-center'
+    | '/kanban'
+    | '/mindmaps'
     | '/products'
     | '/settings'
     | '/tasks'
@@ -465,6 +557,8 @@ export interface FileRouteTypes {
     | '/plate'
     | '/test'
     | '/_authenticated/clients'
+    | '/_authenticated/kanban'
+    | '/_authenticated/mindmaps'
     | '/_authenticated/products'
     | '/_authenticated/settings'
     | '/(auth)/forgot-password'
@@ -483,6 +577,8 @@ export interface FileRouteTypes {
     | '/_authenticated/clients/$clientId'
     | '/_authenticated/clients/new'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/kanban/$boardId'
+    | '/_authenticated/mindmaps/$mindmapId'
     | '/_authenticated/products/$productId'
     | '/_authenticated/products/new'
     | '/_authenticated/settings/account'
@@ -490,9 +586,13 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
     | '/_authenticated/apps/'
+    | '/_authenticated/calendar/'
     | '/_authenticated/chats/'
     | '/_authenticated/clients/'
+    | '/_authenticated/gamification/'
     | '/_authenticated/help-center/'
+    | '/_authenticated/kanban/'
+    | '/_authenticated/mindmaps/'
     | '/_authenticated/products/'
     | '/_authenticated/settings/'
     | '/_authenticated/tasks/'
@@ -667,6 +767,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProductsLayoutRouteImport
       parentRoute: typeof AuthenticatedLayoutRoute
     }
+    '/_authenticated/mindmaps': {
+      id: '/_authenticated/mindmaps'
+      path: '/mindmaps'
+      fullPath: '/mindmaps'
+      preLoaderRoute: typeof AuthenticatedMindmapsLayoutRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
+    '/_authenticated/kanban': {
+      id: '/_authenticated/kanban'
+      path: '/kanban'
+      fullPath: '/kanban'
+      preLoaderRoute: typeof AuthenticatedKanbanLayoutRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
     '/_authenticated/clients': {
       id: '/_authenticated/clients'
       path: '/clients'
@@ -702,11 +816,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProductsIndexRouteImport
       parentRoute: typeof AuthenticatedProductsLayoutRoute
     }
+    '/_authenticated/mindmaps/': {
+      id: '/_authenticated/mindmaps/'
+      path: '/'
+      fullPath: '/mindmaps/'
+      preLoaderRoute: typeof AuthenticatedMindmapsIndexRouteImport
+      parentRoute: typeof AuthenticatedMindmapsLayoutRoute
+    }
+    '/_authenticated/kanban/': {
+      id: '/_authenticated/kanban/'
+      path: '/'
+      fullPath: '/kanban/'
+      preLoaderRoute: typeof AuthenticatedKanbanIndexRouteImport
+      parentRoute: typeof AuthenticatedKanbanLayoutRoute
+    }
     '/_authenticated/help-center/': {
       id: '/_authenticated/help-center/'
       path: '/help-center'
       fullPath: '/help-center'
       preLoaderRoute: typeof AuthenticatedHelpCenterIndexRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
+    '/_authenticated/gamification/': {
+      id: '/_authenticated/gamification/'
+      path: '/gamification'
+      fullPath: '/gamification'
+      preLoaderRoute: typeof AuthenticatedGamificationIndexRouteImport
       parentRoute: typeof AuthenticatedLayoutRoute
     }
     '/_authenticated/clients/': {
@@ -721,6 +856,13 @@ declare module '@tanstack/react-router' {
       path: '/chats'
       fullPath: '/chats'
       preLoaderRoute: typeof AuthenticatedChatsIndexRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
+    '/_authenticated/calendar/': {
+      id: '/_authenticated/calendar/'
+      path: '/calendar'
+      fullPath: '/calendar'
+      preLoaderRoute: typeof AuthenticatedCalendarIndexRouteImport
       parentRoute: typeof AuthenticatedLayoutRoute
     }
     '/_authenticated/apps/': {
@@ -772,6 +914,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProductsProductIdRouteImport
       parentRoute: typeof AuthenticatedProductsLayoutRoute
     }
+    '/_authenticated/mindmaps/$mindmapId': {
+      id: '/_authenticated/mindmaps/$mindmapId'
+      path: '/$mindmapId'
+      fullPath: '/mindmaps/$mindmapId'
+      preLoaderRoute: typeof AuthenticatedMindmapsMindmapIdRouteImport
+      parentRoute: typeof AuthenticatedMindmapsLayoutRoute
+    }
+    '/_authenticated/kanban/$boardId': {
+      id: '/_authenticated/kanban/$boardId'
+      path: '/$boardId'
+      fullPath: '/kanban/$boardId'
+      preLoaderRoute: typeof AuthenticatedKanbanBoardIdRouteImport
+      parentRoute: typeof AuthenticatedKanbanLayoutRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -812,6 +968,38 @@ const AuthenticatedClientsLayoutRouteChildren: AuthenticatedClientsLayoutRouteCh
 const AuthenticatedClientsLayoutRouteWithChildren =
   AuthenticatedClientsLayoutRoute._addFileChildren(
     AuthenticatedClientsLayoutRouteChildren,
+  )
+
+interface AuthenticatedKanbanLayoutRouteChildren {
+  AuthenticatedKanbanBoardIdRoute: typeof AuthenticatedKanbanBoardIdRoute
+  AuthenticatedKanbanIndexRoute: typeof AuthenticatedKanbanIndexRoute
+}
+
+const AuthenticatedKanbanLayoutRouteChildren: AuthenticatedKanbanLayoutRouteChildren =
+  {
+    AuthenticatedKanbanBoardIdRoute: AuthenticatedKanbanBoardIdRoute,
+    AuthenticatedKanbanIndexRoute: AuthenticatedKanbanIndexRoute,
+  }
+
+const AuthenticatedKanbanLayoutRouteWithChildren =
+  AuthenticatedKanbanLayoutRoute._addFileChildren(
+    AuthenticatedKanbanLayoutRouteChildren,
+  )
+
+interface AuthenticatedMindmapsLayoutRouteChildren {
+  AuthenticatedMindmapsMindmapIdRoute: typeof AuthenticatedMindmapsMindmapIdRoute
+  AuthenticatedMindmapsIndexRoute: typeof AuthenticatedMindmapsIndexRoute
+}
+
+const AuthenticatedMindmapsLayoutRouteChildren: AuthenticatedMindmapsLayoutRouteChildren =
+  {
+    AuthenticatedMindmapsMindmapIdRoute: AuthenticatedMindmapsMindmapIdRoute,
+    AuthenticatedMindmapsIndexRoute: AuthenticatedMindmapsIndexRoute,
+  }
+
+const AuthenticatedMindmapsLayoutRouteWithChildren =
+  AuthenticatedMindmapsLayoutRoute._addFileChildren(
+    AuthenticatedMindmapsLayoutRouteChildren,
   )
 
 interface AuthenticatedProductsLayoutRouteChildren {
@@ -857,12 +1045,16 @@ const AuthenticatedSettingsLayoutRouteWithChildren =
 
 interface AuthenticatedLayoutRouteChildren {
   AuthenticatedClientsLayoutRoute: typeof AuthenticatedClientsLayoutRouteWithChildren
+  AuthenticatedKanbanLayoutRoute: typeof AuthenticatedKanbanLayoutRouteWithChildren
+  AuthenticatedMindmapsLayoutRoute: typeof AuthenticatedMindmapsLayoutRouteWithChildren
   AuthenticatedProductsLayoutRoute: typeof AuthenticatedProductsLayoutRouteWithChildren
   AuthenticatedSettingsLayoutRoute: typeof AuthenticatedSettingsLayoutRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
   AuthenticatedAppsIndexRoute: typeof AuthenticatedAppsIndexRoute
+  AuthenticatedCalendarIndexRoute: typeof AuthenticatedCalendarIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
+  AuthenticatedGamificationIndexRoute: typeof AuthenticatedGamificationIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
@@ -870,6 +1062,9 @@ interface AuthenticatedLayoutRouteChildren {
 
 const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
   AuthenticatedClientsLayoutRoute: AuthenticatedClientsLayoutRouteWithChildren,
+  AuthenticatedKanbanLayoutRoute: AuthenticatedKanbanLayoutRouteWithChildren,
+  AuthenticatedMindmapsLayoutRoute:
+    AuthenticatedMindmapsLayoutRouteWithChildren,
   AuthenticatedProductsLayoutRoute:
     AuthenticatedProductsLayoutRouteWithChildren,
   AuthenticatedSettingsLayoutRoute:
@@ -877,7 +1072,9 @@ const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
   AuthenticatedAppsIndexRoute: AuthenticatedAppsIndexRoute,
+  AuthenticatedCalendarIndexRoute: AuthenticatedCalendarIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
+  AuthenticatedGamificationIndexRoute: AuthenticatedGamificationIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,

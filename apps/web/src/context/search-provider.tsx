@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+
 import { CommandMenu } from "~/components/command-menu";
 
 type SearchContextType = {
@@ -27,10 +28,10 @@ export function SearchProvider({ children }: SearchProviderProps) {
 	}, []);
 
 	return (
-		<SearchContext value={{ open, setOpen }}>
+		<SearchContext.Provider value={{ open, setOpen }}>
 			{children}
 			<CommandMenu />
-		</SearchContext>
+		</SearchContext.Provider>
 	);
 }
 

@@ -68,7 +68,7 @@ export function UserMenu({
 									alt={user.name ?? "User"}
 								/>
 								<AvatarFallback className="rounded-lg text-xs">
-									{getUserInitials()}
+									{getUserInitials()} aa
 								</AvatarFallback>
 							</Avatar>
 							<div className="grid flex-1 text-start text-sm leading-tight">

@@ -1,57 +1,56 @@
-import type { Table } from "@tanstack/react-table";
-import { MixerHorizontalIcon } from "@radix-ui/react-icons";
-
 import { Button } from "@acme/ui/button";
 import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+	DropdownMenu,
+	DropdownMenuCheckboxItem,
+	DropdownMenuContent,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuTrigger,
 } from "@acme/ui/dropdown-menu";
+import { MixerHorizontalIcon } from "@radix-ui/react-icons";
+import type { Table } from "@tanstack/react-table";
 
 type DataTableViewOptionsProps<TData> = {
-  table: Table<TData>;
+	table: Table<TData>;
 };
 
 export function DataTableViewOptions<TData>({
-  table,
+	table,
 }: DataTableViewOptionsProps<TData>) {
-  return (
-    <DropdownMenu modal={false}>
-      <DropdownMenuTrigger asChild>
-        <Button
-          variant="outline"
-          size="sm"
-          className="ms-auto hidden h-8 lg:flex"
-        >
-          <MixerHorizontalIcon className="size-4" />
-          View
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" className="w-[150px]">
-        <DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        {table
-          .getAllColumns()
-          .filter(
-            (column) =>
-              typeof column.accessorFn !== "undefined" && column.getCanHide(),
-          )
-          .map((column) => {
-            return (
-              <DropdownMenuCheckboxItem
-                key={column.id}
-                className="capitalize"
-                checked={column.getIsVisible()}
-                onCheckedChange={(value) => column.toggleVisibility(!!value)}
-              >
-                {column.id}
-              </DropdownMenuCheckboxItem>
-            );
-          })}
-      </DropdownMenuContent>
-    </DropdownMenu>
-  );
+	return (
+		<DropdownMenu modal={false}>
+			<DropdownMenuTrigger asChild>
+				<Button
+					variant="outline"
+					size="sm"
+					className="ms-auto hidden h-8 lg:flex"
+				>
+					<MixerHorizontalIcon className="size-4" />
+					View
+				</Button>
+			</DropdownMenuTrigger>
+			<DropdownMenuContent align="end" className="w-[150px]">
+				<DropdownMenuLabel>Toggle columns</DropdownMenuLabel>
+				<DropdownMenuSeparator />
+				{table
+					.getAllColumns()
+					.filter(
+						(column) =>
+							typeof column.accessorFn !== "undefined" && column.getCanHide(),
+					)
+					.map((column) => {
+						return (
+							<DropdownMenuCheckboxItem
+								key={column.id}
+								className="capitalize"
+								checked={column.getIsVisible()}
+								onCheckedChange={(value) => column.toggleVisibility(!!value)}
+							>
+								{column.id}
+							</DropdownMenuCheckboxItem>
+						);
+					})}
+			</DropdownMenuContent>
+		</DropdownMenu>
+	);
 }

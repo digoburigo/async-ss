@@ -1,31 +1,36 @@
-import { generateText } from "ai"
-import { NextResponse } from "next/server"
-import { createServerClient } from "@/lib/supabase/server"
+import { generateText } from "ai";
+import { NextResponse } from "next/server";
+import { createServerClient } from "@/lib/supabase/server";
 
 export async function POST(request: Request) {
-  try {
-    const supabase = await createServerClient()
-    const {
-      data: { user },
-    } = await supabase.auth.getUser()
+	try {
+		const supabase = await createServerClient();
+		const {
+			data: { user },
+		} = await supabase.auth.getUser();
 
-    if (!user) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+		if (!user) {
+			return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+		}
 
-    const { message } = await request.json()
+		const { message } = await request.json();
 
-    // Fetch available products
-    const { data: products, error: productsError } = await supabase.from("products").select("*").eq("active", true)
+		// Fetch available products
+		const { data: products, error: productsError } = await supabase
+			.from("products")
+			.select("*")
+			.eq("active", true);
 
-    const productsText =
-      products && products.length > 0
-        ? products.map((p) => `- ${p.name}: R$ ${p.unit_price.toFixed(2)}`).join("\n")
-        : "Nenhum produto cadastrado ainda no sistema."
+		const productsText =
+			products && products.length > 0
+				? products
+						.map((p) => `- ${p.name}: R$ ${p.unit_price.toFixed(2)}`)
+						.join("\n")
+				: "Nenhum produto cadastrado ainda no sistema.";
 
-    const { text } = await generateText({
-      model: "openai/gpt-4o-mini",
-      prompt: `Você é um assistente de vendas brasileiro. Analise o pedido do cliente e extraia os produtos, quantidades E PREÇOS mencionados.
+		const { text } = await generateText({
+			model: "openai/gpt-4o-mini",
+			prompt: `Você é um assistente de vendas brasileiro. Analise o pedido do cliente e extraia os produtos, quantidades E PREÇOS mencionados.
 
 ${products && products.length > 0 ? `Produtos disponíveis no sistema:\n${productsText}` : "Nota: Não há produtos cadastrados ainda."}
 
@@ -69,65 +74,65 @@ Retorne APENAS um JSON válido no seguinte formato, sem texto adicional:
     }
   ]
 }`,
-    })
+		});
 
-    // Parse the AI response - handle both plain JSON and markdown code blocks
-    let jsonText = text.trim()
+		// Parse the AI response - handle both plain JSON and markdown code blocks
+		let jsonText = text.trim();
 
-    // Remove markdown code blocks if present
-    if (jsonText.startsWith("```")) {
-      jsonText = jsonText
-        .replace(/```json\n?/g, "")
-        .replace(/```\n?/g, "")
-        .trim()
-    }
+		// Remove markdown code blocks if present
+		if (jsonText.startsWith("```")) {
+			jsonText = jsonText
+				.replace(/```json\n?/g, "")
+				.replace(/```\n?/g, "")
+				.trim();
+		}
 
-    // Try to find JSON object
-    const jsonMatch = jsonText.match(/\{[\s\S]*\}/)
-    if (!jsonMatch) {
-      return NextResponse.json(
-        {
-          error: "Não foi possível processar o pedido. Tente reformular.",
-          items: [],
-        },
-        { status: 400 },
-      )
-    }
+		// Try to find JSON object
+		const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
+		if (!jsonMatch) {
+			return NextResponse.json(
+				{
+					error: "Não foi possível processar o pedido. Tente reformular.",
+					items: [],
+				},
+				{ status: 400 },
+			);
+		}
 
-    const parsedOrder = JSON.parse(jsonMatch[0])
+		const parsedOrder = JSON.parse(jsonMatch[0]);
 
-    const itemsWithIds = parsedOrder.items.map((item: any) => {
-      const product = products?.find(
-        (p) =>
-          p.name.toLowerCase().includes(item.product_name.toLowerCase()) ||
-          item.product_name.toLowerCase().includes(p.name.toLowerCase()),
-      )
+		const itemsWithIds = parsedOrder.items.map((item: any) => {
+			const product = products?.find(
+				(p) =>
+					p.name.toLowerCase().includes(item.product_name.toLowerCase()) ||
+					item.product_name.toLowerCase().includes(p.name.toLowerCase()),
+			);
 
-      // Priority: 1) Price from AI (user mentioned), 2) Database price, 3) Zero
-      const userPrice = item.unit_price
-      const dbPrice = product?.unit_price || 0
+			// Priority: 1) Price from AI (user mentioned), 2) Database price, 3) Zero
+			const userPrice = item.unit_price;
+			const dbPrice = product?.unit_price || 0;
 
-      // If AI extracted a price > 0, user mentioned it - use that
-      // Otherwise fall back to database price
-      const finalPrice = userPrice > 0 ? userPrice : dbPrice
+			// If AI extracted a price > 0, user mentioned it - use that
+			// Otherwise fall back to database price
+			const finalPrice = userPrice > 0 ? userPrice : dbPrice;
 
-      return {
-        product_name: item.product_name,
-        quantity: item.quantity,
-        unit_price: finalPrice,
-        product_id: product?.id || null,
-      }
-    })
+			return {
+				product_name: item.product_name,
+				quantity: item.quantity,
+				unit_price: finalPrice,
+				product_id: product?.id || null,
+			};
+		});
 
-    return NextResponse.json({ items: itemsWithIds })
-  } catch (error) {
-    console.error("Error parsing order:", error)
-    return NextResponse.json(
-      {
-        error: "Erro ao processar pedido",
-        items: [],
-      },
-      { status: 500 },
-    )
-  }
+		return NextResponse.json({ items: itemsWithIds });
+	} catch (error) {
+		console.error("Error parsing order:", error);
+		return NextResponse.json(
+			{
+				error: "Erro ao processar pedido",
+				items: [],
+			},
+			{ status: 500 },
+		);
+	}
 }

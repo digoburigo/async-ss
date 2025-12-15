@@ -77,7 +77,7 @@ export function AIMenu() {
 		if (streaming) {
 			const anchor = api.aiChat.node({ anchor: true });
 			setTimeout(() => {
-				const anchorDom = editor.api.toDOMNode(anchor![0])!;
+				const anchorDom = editor.api.toDOMNode(anchor[0])!;
 				setAnchorElement(anchorDom);
 			}, 0);
 		}
@@ -100,7 +100,7 @@ export function AIMenu() {
 	useEditorChat({
 		chat,
 		onOpenBlockSelection: (blocks: NodeEntry[]) => {
-			show(editor.api.toDOMNode(blocks.at(-1)![0])!);
+			show(editor.api.toDOMNode(blocks.at(-1)[0])!);
 		},
 		onOpenChange: (open) => {
 			if (!open) {
@@ -120,7 +120,7 @@ export function AIMenu() {
 			show(editor.api.toDOMNode(ancestor)!);
 		},
 		onOpenSelection: () => {
-			show(editor.api.toDOMNode(editor.api.blocks().at(-1)![0])!);
+			show(editor.api.toDOMNode(editor.api.blocks().at(-1)[0])!);
 		},
 	});
 
@@ -151,7 +151,7 @@ export function AIMenu() {
 			if (!anchorNode) return;
 
 			const block = editor.api.block({ at: anchorNode[1] });
-			setAnchorElement(editor.api.toDOMNode(block![0]!)!);
+			setAnchorElement(editor.api.toDOMNode(block[0])!);
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);

@@ -3,8 +3,6 @@ import type React from "react";
 import { useEffect, useRef, useState } from "react";
 import { toast } from "sonner";
 
-// import SolarCloseCircleBroken from "~icons/solar/close-circle-broken";
-
 interface TimerToastProps {
 	content: React.ReactNode;
 	action?: { label: string; onClick: () => void };
@@ -121,7 +119,6 @@ export function TimerToast({
 					size="sm"
 					variant="ghost"
 				>
-					{/* <SolarCloseCircleBroken className="size-5" /> */}
 					<span>x</span>
 				</Button>
 			</div>

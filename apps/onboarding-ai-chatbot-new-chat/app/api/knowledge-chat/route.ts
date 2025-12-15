@@ -1,21 +1,21 @@
-import { streamText } from "ai"
-import { createServerClient } from "@/lib/supabase/server"
+import { streamText } from "ai";
+import { createServerClient } from "@/lib/supabase/server";
 
-export const maxDuration = 30
+export const maxDuration = 30;
 
 export async function POST(req: Request) {
-  try {
-    const { messages } = await req.json()
+	try {
+		const { messages } = await req.json();
 
-    const supabase = await createServerClient()
+		const supabase = await createServerClient();
 
-    // Fetch company knowledge from database
-    const { data: processes } = await supabase
-      .from("onboarding_processes")
-      .select("*")
-      .order("created_at", { ascending: false })
+		// Fetch company knowledge from database
+		const { data: processes } = await supabase
+			.from("onboarding_processes")
+			.select("*")
+			.order("created_at", { ascending: false });
 
-    let systemPrompt = `Você é um assistente de IA especializado em responder perguntas sobre a Farben, uma empresa brasileira líder no setor de tintas e revestimentos.
+		let systemPrompt = `Você é um assistente de IA especializado em responder perguntas sobre a Farben, uma empresa brasileira líder no setor de tintas e revestimentos.
 
 INFORMAÇÕES DA EMPRESA FARBEN:
 - Nome: Farben Indústria e Comércio de Tintas Ltda.
@@ -128,32 +128,35 @@ INSTRUÇÕES:
 - Use as informações dos processos cadastrados quando relevante
 - Forneça respostas claras, objetivas e bem estruturadas
 - Quando falar sobre produtos, mencione características técnicas e aplicações
-- Ajude com cálculos de rendimento e quantidade quando solicitado`
+- Ajude com cálculos de rendimento e quantidade quando solicitado`;
 
-    if (processes && processes.length > 0) {
-      systemPrompt += "\n\nPROCESSOS E INFORMAÇÕES CADASTRADAS PELA ADMINISTRAÇÃO:\n"
-      processes.forEach((process) => {
-        systemPrompt += `\n[${process.employee_type.toUpperCase()}] ${process.title}\n${process.content}\n`
-      })
-    }
+		if (processes && processes.length > 0) {
+			systemPrompt +=
+				"\n\nPROCESSOS E INFORMAÇÕES CADASTRADAS PELA ADMINISTRAÇÃO:\n";
+			processes.forEach((process) => {
+				systemPrompt += `\n[${process.employee_type.toUpperCase()}] ${process.title}\n${process.content}\n`;
+			});
+		}
 
-    const formattedMessages = messages.map((m: { role: string; content: string }) => ({
-      role: m.role as "user" | "assistant",
-      content: m.content,
-    }))
+		const formattedMessages = messages.map(
+			(m: { role: string; content: string }) => ({
+				role: m.role as "user" | "assistant",
+				content: m.content,
+			}),
+		);
 
-    const result = streamText({
-      model: "openai/gpt-4o-mini",
-      system: systemPrompt,
-      messages: formattedMessages,
-      abortSignal: req.signal,
-      temperature: 0.7,
-      maxOutputTokens: 1500,
-    })
+		const result = streamText({
+			model: "openai/gpt-4o-mini",
+			system: systemPrompt,
+			messages: formattedMessages,
+			abortSignal: req.signal,
+			temperature: 0.7,
+			maxOutputTokens: 1500,
+		});
 
-    return result.toTextStreamResponse()
-  } catch (error) {
-    console.error("[v0] Error in knowledge chat:", error)
-    return new Response("Error processing request", { status: 500 })
-  }
+		return result.toTextStreamResponse();
+	} catch (error) {
+		console.error("[v0] Error in knowledge chat:", error);
+		return new Response("Error processing request", { status: 500 });
+	}
 }
