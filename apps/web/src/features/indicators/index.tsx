@@ -33,6 +33,7 @@ import {
   TabsList,
   TabsTrigger,
 } from "@acme/ui/base-ui/tabs";
+import { getRouteApi } from "@tanstack/react-router";
 import {
   ArrowDownRight,
   ArrowUpRight,
@@ -67,23 +68,19 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-
+import { ConfigDrawer } from "~/components/config-drawer";
+import { Header } from "~/components/layout/header";
+import { Main } from "~/components/layout/main";
+import { ProfileDropdown } from "~/components/profile-dropdown";
+import { Search } from "~/components/search";
+import { ThemeSwitch } from "~/components/theme-switch";
 import type { TimePeriod } from "./hooks/use-hr-indicators-data";
 import {
   TIME_PERIOD_LABELS,
   useHRIndicatorsData,
 } from "./hooks/use-hr-indicators-data";
 
-function getGreeting(): string {
-  const hour = new Date().getHours();
-  if (hour < 12) {
-    return "Bom dia";
-  }
-  if (hour < 18) {
-    return "Boa tarde";
-  }
-  return "Boa noite";
-}
+const routeApi = getRouteApi("/_authenticated/indicators/");
 
 // Animated counter hook
 function useAnimatedCounter(end: number, duration = 1000): number {
@@ -478,7 +475,21 @@ function AIAssistant() {
 
 export function Indicators() {
   const [timePeriod, setTimePeriod] = useState<TimePeriod>("1year");
-  const [activeTab, setActiveTab] = useState("preboarding");
+  const { tab } = routeApi.useSearch();
+  const navigate = routeApi.useNavigate();
+  const activeTab = tab ?? "preboarding";
+
+  const handleTabChange = (value: string) => {
+    navigate({
+      search: (prev) => ({
+        ...prev,
+        tab:
+          value === "preboarding"
+            ? undefined
+            : (value as "onboarding" | "rotina" | "offboarding"),
+      }),
+    });
+  };
 
   const {
     kpis,
@@ -492,64 +503,55 @@ export function Indicators() {
   } = useHRIndicatorsData(timePeriod);
 
   return (
-    <div className="flex h-full flex-col">
-      {/* Header Section - In page, not topbar */}
-      <div className="border-b bg-gradient-to-r from-background via-background to-muted/20">
-        <div className="px-6 py-6">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
-            <div className="space-y-1">
-              <div className="flex items-center gap-3">
-                <div className="rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 p-2.5 shadow-indigo-500/20 shadow-lg">
-                  <TrendingUp className="size-5 text-white" />
-                </div>
-                <div>
-                  <h1 className="font-bold text-2xl tracking-tight">
-                    <span className="font-light text-muted-foreground">
-                      {getGreeting()},
-                    </span>{" "}
-                    Indicadores de RH
-                  </h1>
-                  <p className="text-muted-foreground text-sm">
-                    Acompanhe métricas de recrutamento, onboarding e ciclo do
-                    colaborador
-                  </p>
-                </div>
-              </div>
-            </div>
+    <>
+      <Header fixed>
+        <Search />
+        <div className="ms-auto flex items-center space-x-4">
+          <ThemeSwitch />
+          <ConfigDrawer />
+          <ProfileDropdown />
+        </div>
+      </Header>
 
-            <div className="flex flex-wrap items-center gap-3">
-              <Select
-                onValueChange={(value) => setTimePeriod(value as TimePeriod)}
-                value={timePeriod}
-              >
-                <SelectTrigger className="w-[140px]">
-                  <Calendar className="mr-2 size-4 text-muted-foreground" />
-                  <SelectValue />
-                </SelectTrigger>
-                <SelectContent>
-                  {Object.entries(TIME_PERIOD_LABELS).map(([value, label]) => (
-                    <SelectItem key={value} value={value}>
-                      {label}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+      <Main className="flex flex-1 flex-col gap-4 sm:gap-6">
+        <div className="flex flex-wrap items-end justify-between gap-2">
+          <div>
+            <h2 className="font-bold text-2xl tracking-tight">
+              Indicadores de RH
+            </h2>
+            <p className="text-muted-foreground">
+              Acompanhe métricas de recrutamento, onboarding e ciclo do
+              colaborador
+            </p>
+          </div>
+          <div className="flex flex-wrap items-center gap-3">
+            <Select
+              onValueChange={(value) => setTimePeriod(value as TimePeriod)}
+              value={timePeriod}
+            >
+              <SelectTrigger className="w-[140px]">
+                <Calendar className="mr-2 size-4 text-muted-foreground" />
+                <SelectValue>{TIME_PERIOD_LABELS[timePeriod]}</SelectValue>
+              </SelectTrigger>
+              <SelectContent>
+                {Object.entries(TIME_PERIOD_LABELS).map(([value, label]) => (
+                  <SelectItem key={value} value={value}>
+                    {label}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
 
-              <Badge className="gap-1.5 py-1.5" variant="outline">
-                <div className="size-2 animate-pulse rounded-full bg-emerald-500" />
-                Dados em tempo real
-              </Badge>
-            </div>
+            <Badge className="gap-1.5 py-1.5" variant="outline">
+              <div className="size-2 animate-pulse rounded-full bg-emerald-500" />
+              Dados em tempo real
+            </Badge>
           </div>
         </div>
-      </div>
-
-      {/* Main Content */}
-      <div className="flex-1 space-y-6 overflow-auto p-6">
         {/* Tabs Navigation */}
         <Tabs
           className="space-y-6"
-          onValueChange={setActiveTab}
+          onValueChange={handleTabChange}
           value={activeTab}
         >
           <TabsList className="w-full justify-start" variant="line">
@@ -1221,7 +1223,7 @@ export function Indicators() {
             </div>
           </TabsContent>
         </Tabs>
-      </div>
-    </div>
+      </Main>
+    </>
   );
 }
