@@ -3,9 +3,9 @@ import { reactConfig } from "@acme/eslint-config/react";
 import { defineConfig } from "eslint/config";
 
 export default defineConfig(
-	{
-		ignores: ["dist/**"],
-	},
-	baseConfig,
-	reactConfig,
+  {
+    ignores: ["dist/**"],
+  },
+  baseConfig,
+  reactConfig
 );

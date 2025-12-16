@@ -6,8 +6,8 @@
 /* eslint-disable */
 
 import type {
-	ModelResult as $ModelResult,
-	TypeDefResult as $TypeDefResult,
+  ModelResult as $ModelResult,
+  TypeDefResult as $TypeDefResult,
 } from "@zenstackhq/orm";
 import { type SchemaType as $Schema, schema as $schema } from "./schema";
 export type User = $ModelResult<$Schema, "User">;
@@ -27,12 +27,12 @@ export type OnboardingChat = $ModelResult<$Schema, "OnboardingChat">;
 export type KnowledgeChat = $ModelResult<$Schema, "KnowledgeChat">;
 export type GroupChatMessage = $ModelResult<$Schema, "GroupChatMessage">;
 export type OnboardingChecklistStep = $ModelResult<
-	$Schema,
-	"OnboardingChecklistStep"
+  $Schema,
+  "OnboardingChecklistStep"
 >;
 export type OnboardingChecklistProgress = $ModelResult<
-	$Schema,
-	"OnboardingChecklistProgress"
+  $Schema,
+  "OnboardingChecklistProgress"
 >;
 export type CalendarEvent = $ModelResult<$Schema, "CalendarEvent">;
 export type KanbanBoard = $ModelResult<$Schema, "KanbanBoard">;
@@ -48,42 +48,42 @@ export type TutorialSector = $ModelResult<$Schema, "TutorialSector">;
 export type TutorialSection = $ModelResult<$Schema, "TutorialSection">;
 export type TutorialStep = $ModelResult<$Schema, "TutorialStep">;
 export type TutorialStepProgress = $ModelResult<
-	$Schema,
-	"TutorialStepProgress"
+  $Schema,
+  "TutorialStepProgress"
 >;
 export type Meeting = $ModelResult<$Schema, "Meeting">;
 export type Mindmap = $ModelResult<$Schema, "Mindmap">;
 export type OffboardingChecklistStep = $ModelResult<
-	$Schema,
-	"OffboardingChecklistStep"
+  $Schema,
+  "OffboardingChecklistStep"
 >;
 export type OffboardingProcess = $ModelResult<$Schema, "OffboardingProcess">;
 export type OffboardingProgress = $ModelResult<$Schema, "OffboardingProgress">;
 export type OffboardingHandoverTask = $ModelResult<
-	$Schema,
-	"OffboardingHandoverTask"
+  $Schema,
+  "OffboardingHandoverTask"
 >;
 export type PreboardingStage = $ModelResult<$Schema, "PreboardingStage">;
 export type PreboardingJobPosition = $ModelResult<
-	$Schema,
-	"PreboardingJobPosition"
+  $Schema,
+  "PreboardingJobPosition"
 >;
 export type PreboardingCandidate = $ModelResult<
-	$Schema,
-	"PreboardingCandidate"
+  $Schema,
+  "PreboardingCandidate"
 >;
 export type PreboardingActivity = $ModelResult<$Schema, "PreboardingActivity">;
 export type PreboardingInterview = $ModelResult<
-	$Schema,
-	"PreboardingInterview"
+  $Schema,
+  "PreboardingInterview"
 >;
 export type PreboardingCandidateQuestion = $ModelResult<
-	$Schema,
-	"PreboardingCandidateQuestion"
+  $Schema,
+  "PreboardingCandidateQuestion"
 >;
 export type PreboardingCandidateDocument = $ModelResult<
-	$Schema,
-	"PreboardingCandidateDocument"
+  $Schema,
+  "PreboardingCandidateDocument"
 >;
 /**
  * Shape of the `auth()` function
@@ -105,47 +105,47 @@ export const MilestoneType = $schema.enums.MilestoneType.values;
 export type MilestoneType = (typeof MilestoneType)[keyof typeof MilestoneType];
 export const GroupChatMessageType = $schema.enums.GroupChatMessageType.values;
 export type GroupChatMessageType =
-	(typeof GroupChatMessageType)[keyof typeof GroupChatMessageType];
+  (typeof GroupChatMessageType)[keyof typeof GroupChatMessageType];
 export const OffboardingCategory = $schema.enums.OffboardingCategory.values;
 export type OffboardingCategory =
-	(typeof OffboardingCategory)[keyof typeof OffboardingCategory];
+  (typeof OffboardingCategory)[keyof typeof OffboardingCategory];
 export const OffboardingStatus = $schema.enums.OffboardingStatus.values;
 export type OffboardingStatus =
-	(typeof OffboardingStatus)[keyof typeof OffboardingStatus];
+  (typeof OffboardingStatus)[keyof typeof OffboardingStatus];
 export const OffboardingReason = $schema.enums.OffboardingReason.values;
 export type OffboardingReason =
-	(typeof OffboardingReason)[keyof typeof OffboardingReason];
+  (typeof OffboardingReason)[keyof typeof OffboardingReason];
 export const HandoverTaskStatus = $schema.enums.HandoverTaskStatus.values;
 export type HandoverTaskStatus =
-	(typeof HandoverTaskStatus)[keyof typeof HandoverTaskStatus];
+  (typeof HandoverTaskStatus)[keyof typeof HandoverTaskStatus];
 export const HandoverTaskPriority = $schema.enums.HandoverTaskPriority.values;
 export type HandoverTaskPriority =
-	(typeof HandoverTaskPriority)[keyof typeof HandoverTaskPriority];
+  (typeof HandoverTaskPriority)[keyof typeof HandoverTaskPriority];
 export const CandidateStatus = $schema.enums.CandidateStatus.values;
 export type CandidateStatus =
-	(typeof CandidateStatus)[keyof typeof CandidateStatus];
+  (typeof CandidateStatus)[keyof typeof CandidateStatus];
 export const ActivityType = $schema.enums.ActivityType.values;
 export type ActivityType = (typeof ActivityType)[keyof typeof ActivityType];
 export const InterviewType = $schema.enums.InterviewType.values;
 export type InterviewType = (typeof InterviewType)[keyof typeof InterviewType];
 export const InterviewStatus = $schema.enums.InterviewStatus.values;
 export type InterviewStatus =
-	(typeof InterviewStatus)[keyof typeof InterviewStatus];
+  (typeof InterviewStatus)[keyof typeof InterviewStatus];
 export const WorkModel = $schema.enums.WorkModel.values;
 export type WorkModel = (typeof WorkModel)[keyof typeof WorkModel];
 export const EmploymentType = $schema.enums.EmploymentType.values;
 export type EmploymentType =
-	(typeof EmploymentType)[keyof typeof EmploymentType];
+  (typeof EmploymentType)[keyof typeof EmploymentType];
 export const JobPositionPriority = $schema.enums.JobPositionPriority.values;
 export type JobPositionPriority =
-	(typeof JobPositionPriority)[keyof typeof JobPositionPriority];
+  (typeof JobPositionPriority)[keyof typeof JobPositionPriority];
 export const JobPositionStatus = $schema.enums.JobPositionStatus.values;
 export type JobPositionStatus =
-	(typeof JobPositionStatus)[keyof typeof JobPositionStatus];
+  (typeof JobPositionStatus)[keyof typeof JobPositionStatus];
 export const QuestionType = $schema.enums.QuestionType.values;
 export type QuestionType = (typeof QuestionType)[keyof typeof QuestionType];
 export const MeetingStatus = $schema.enums.MeetingStatus.values;
 export type MeetingStatus = (typeof MeetingStatus)[keyof typeof MeetingStatus];
 export const CalendarEventType = $schema.enums.CalendarEventType.values;
 export type CalendarEventType =
-	(typeof CalendarEventType)[keyof typeof CalendarEventType];
+  (typeof CalendarEventType)[keyof typeof CalendarEventType];

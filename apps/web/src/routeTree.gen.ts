@@ -39,6 +39,7 @@ import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authen
 import { Route as AuthenticatedProductsIndexRouteImport } from './routes/_authenticated/products/index'
 import { Route as AuthenticatedMindmapsIndexRouteImport } from './routes/_authenticated/mindmaps/index'
 import { Route as AuthenticatedKanbanIndexRouteImport } from './routes/_authenticated/kanban/index'
+import { Route as AuthenticatedIndicatorsIndexRouteImport } from './routes/_authenticated/indicators/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
 import { Route as AuthenticatedGamificationIndexRouteImport } from './routes/_authenticated/gamification/index'
 import { Route as AuthenticatedClientsIndexRouteImport } from './routes/_authenticated/clients/index'
@@ -215,6 +216,12 @@ const AuthenticatedKanbanIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedKanbanLayoutRoute,
   } as any)
+const AuthenticatedIndicatorsIndexRoute =
+  AuthenticatedIndicatorsIndexRouteImport.update({
+    id: '/indicators/',
+    path: '/indicators/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
 const AuthenticatedHelpCenterIndexRoute =
   AuthenticatedHelpCenterIndexRouteImport.update({
     id: '/help-center/',
@@ -356,6 +363,7 @@ export interface FileRoutesByFullPath {
   '/clients/': typeof AuthenticatedClientsIndexRoute
   '/gamification': typeof AuthenticatedGamificationIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/indicators': typeof AuthenticatedIndicatorsIndexRoute
   '/kanban/': typeof AuthenticatedKanbanIndexRoute
   '/mindmaps/': typeof AuthenticatedMindmapsIndexRoute
   '/products/': typeof AuthenticatedProductsIndexRoute
@@ -399,6 +407,7 @@ export interface FileRoutesByTo {
   '/clients': typeof AuthenticatedClientsIndexRoute
   '/gamification': typeof AuthenticatedGamificationIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
+  '/indicators': typeof AuthenticatedIndicatorsIndexRoute
   '/kanban': typeof AuthenticatedKanbanIndexRoute
   '/mindmaps': typeof AuthenticatedMindmapsIndexRoute
   '/products': typeof AuthenticatedProductsIndexRoute
@@ -449,6 +458,7 @@ export interface FileRoutesById {
   '/_authenticated/clients/': typeof AuthenticatedClientsIndexRoute
   '/_authenticated/gamification/': typeof AuthenticatedGamificationIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
+  '/_authenticated/indicators/': typeof AuthenticatedIndicatorsIndexRoute
   '/_authenticated/kanban/': typeof AuthenticatedKanbanIndexRoute
   '/_authenticated/mindmaps/': typeof AuthenticatedMindmapsIndexRoute
   '/_authenticated/products/': typeof AuthenticatedProductsIndexRoute
@@ -499,6 +509,7 @@ export interface FileRouteTypes {
     | '/clients/'
     | '/gamification'
     | '/help-center'
+    | '/indicators'
     | '/kanban/'
     | '/mindmaps/'
     | '/products/'
@@ -542,6 +553,7 @@ export interface FileRouteTypes {
     | '/clients'
     | '/gamification'
     | '/help-center'
+    | '/indicators'
     | '/kanban'
     | '/mindmaps'
     | '/products'
@@ -591,6 +603,7 @@ export interface FileRouteTypes {
     | '/_authenticated/clients/'
     | '/_authenticated/gamification/'
     | '/_authenticated/help-center/'
+    | '/_authenticated/indicators/'
     | '/_authenticated/kanban/'
     | '/_authenticated/mindmaps/'
     | '/_authenticated/products/'
@@ -830,6 +843,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedKanbanIndexRouteImport
       parentRoute: typeof AuthenticatedKanbanLayoutRoute
     }
+    '/_authenticated/indicators/': {
+      id: '/_authenticated/indicators/'
+      path: '/indicators'
+      fullPath: '/indicators'
+      preLoaderRoute: typeof AuthenticatedIndicatorsIndexRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
     '/_authenticated/help-center/': {
       id: '/_authenticated/help-center/'
       path: '/help-center'
@@ -1056,6 +1076,7 @@ interface AuthenticatedLayoutRouteChildren {
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedGamificationIndexRoute: typeof AuthenticatedGamificationIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
+  AuthenticatedIndicatorsIndexRoute: typeof AuthenticatedIndicatorsIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
 }
@@ -1076,6 +1097,7 @@ const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedGamificationIndexRoute: AuthenticatedGamificationIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
+  AuthenticatedIndicatorsIndexRoute: AuthenticatedIndicatorsIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
 }

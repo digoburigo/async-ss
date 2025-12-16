@@ -6,37 +6,37 @@ import { Suspense } from "react";
 import "./globals.css";
 
 const geistSans = Geist({
-	subsets: ["latin"],
-	variable: "--font-geist-sans",
+  subsets: ["latin"],
+  variable: "--font-geist-sans",
 });
 
 const geistMono = Geist_Mono({
-	subsets: ["latin"],
-	variable: "--font-geist-mono",
+  subsets: ["latin"],
+  variable: "--font-geist-mono",
 });
 
 export const metadata: Metadata = {
-	title: "Integração de Funcionários",
-	description: "Sistema de integração inteligente para novos colaboradores",
-	icons: {
-		icon: "/favicon.svg",
-	},
-	generator: "v0.app",
+  title: "Integração de Funcionários",
+  description: "Sistema de integração inteligente para novos colaboradores",
+  icons: {
+    icon: "/favicon.svg",
+  },
+  generator: "v0.app",
 };
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-	return (
-		<html lang="pt-BR">
-			<body
-				className={`font-sans ${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
-				<Suspense fallback={null}>{children}</Suspense>
-				<Analytics />
-			</body>
-		</html>
-	);
+  return (
+    <html lang="pt-BR">
+      <body
+        className={`font-sans ${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <Suspense fallback={null}>{children}</Suspense>
+        <Analytics />
+      </body>
+    </html>
+  );
 }

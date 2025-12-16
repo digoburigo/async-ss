@@ -1,12 +1,12 @@
 import { cn } from "@acme/ui";
 import { Button } from "@acme/ui/button";
 import {
-	Form,
-	FormControl,
-	FormField,
-	FormItem,
-	FormLabel,
-	FormMessage,
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
 } from "@acme/ui/form";
 import { Input } from "@acme/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -19,65 +19,65 @@ import { z } from "zod";
 import { sleep } from "~/lib/utils";
 
 const formSchema = z.object({
-	email: z.email({
-		error: (iss) => (iss.input === "" ? "Please enter your email" : undefined),
-	}),
+  email: z.email({
+    error: (iss) => (iss.input === "" ? "Please enter your email" : undefined),
+  }),
 });
 
 export function ForgotPasswordForm({
-	className,
-	...props
+  className,
+  ...props
 }: React.HTMLAttributes<HTMLFormElement>) {
-	const navigate = useNavigate();
-	const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
 
-	const form = useForm<z.infer<typeof formSchema>>({
-		resolver: zodResolver(formSchema),
-		defaultValues: { email: "" },
-	});
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { email: "" },
+  });
 
-	function onSubmit(data: z.infer<typeof formSchema>) {
-		setIsLoading(true);
-		// eslint-disable-next-line no-console
-		console.log(data);
+  function onSubmit(data: z.infer<typeof formSchema>) {
+    setIsLoading(true);
+    // eslint-disable-next-line no-console
+    console.log(data);
 
-		toast.promise(sleep(2000), {
-			loading: "Sending email...",
-			success: () => {
-				setIsLoading(false);
-				form.reset();
-				navigate({ to: "/otp" });
-				return `Email sent to ${data.email}`;
-			},
-			error: "Error",
-		});
-	}
+    toast.promise(sleep(2000), {
+      loading: "Sending email...",
+      success: () => {
+        setIsLoading(false);
+        form.reset();
+        navigate({ to: "/otp" });
+        return `Email sent to ${data.email}`;
+      },
+      error: "Error",
+    });
+  }
 
-	return (
-		<Form {...form}>
-			<form
-				onSubmit={form.handleSubmit(onSubmit)}
-				className={cn("grid gap-2", className)}
-				{...props}
-			>
-				<FormField
-					control={form.control}
-					name="email"
-					render={({ field }) => (
-						<FormItem>
-							<FormLabel>Email</FormLabel>
-							<FormControl>
-								<Input placeholder="name@example.com" {...field} />
-							</FormControl>
-							<FormMessage />
-						</FormItem>
-					)}
-				/>
-				<Button className="mt-2" disabled={isLoading}>
-					Continue
-					{isLoading ? <Loader2 className="animate-spin" /> : <ArrowRight />}
-				</Button>
-			</form>
-		</Form>
-	);
+  return (
+    <Form {...form}>
+      <form
+        className={cn("grid gap-2", className)}
+        onSubmit={form.handleSubmit(onSubmit)}
+        {...props}
+      >
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input placeholder="name@example.com" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button className="mt-2" disabled={isLoading}>
+          Continue
+          {isLoading ? <Loader2 className="animate-spin" /> : <ArrowRight />}
+        </Button>
+      </form>
+    </Form>
+  );
 }

@@ -5,17 +5,17 @@ import { useEditorRef } from "platejs/react";
 import { commentPlugin } from "../plugins/comment-kit";
 
 export function CommentToolbarButton() {
-	const editor = useEditorRef();
+  const editor = useEditorRef();
 
-	return (
-		<ToolbarButton
-			data-plate-prevent-overlay
-			onClick={() => {
-				editor.getTransforms(commentPlugin).comment.setDraft();
-			}}
-			tooltip="Comment"
-		>
-			<MessageSquareTextIcon />
-		</ToolbarButton>
-	);
+  return (
+    <ToolbarButton
+      data-plate-prevent-overlay
+      onClick={() => {
+        editor.getTransforms(commentPlugin).comment.setDraft();
+      }}
+      tooltip="Comment"
+    >
+      <MessageSquareTextIcon />
+    </ToolbarButton>
+  );
 }

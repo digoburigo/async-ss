@@ -2,18 +2,18 @@ import { createClient } from "@supabase/supabase-js";
 
 // Create a Supabase client with service role key to bypass RLS
 export function createServiceRoleClient() {
-	const supabaseUrl =
-		process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
-	const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseUrl =
+    process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-	if (!supabaseUrl || !supabaseServiceKey) {
-		throw new Error("Missing Supabase URL or Service Role Key");
-	}
+  if (!(supabaseUrl && supabaseServiceKey)) {
+    throw new Error("Missing Supabase URL or Service Role Key");
+  }
 
-	return createClient(supabaseUrl, supabaseServiceKey, {
-		auth: {
-			autoRefreshToken: false,
-			persistSession: false,
-		},
-	});
+  return createClient(supabaseUrl, supabaseServiceKey, {
+    auth: {
+      autoRefreshToken: false,
+      persistSession: false,
+    },
+  });
 }

@@ -6,14 +6,14 @@ import * as SecureStore from "expo-secure-store";
 import { getBaseUrl } from "./base-url";
 
 export const authClient = createAuthClient({
-	baseURL: getBaseUrl(),
-	plugins: [
-		expoClient({
-			scheme: "expo",
-			storagePrefix: "expo",
-			storage: SecureStore,
-		}),
-		adminClient(),
-		organizationClient(),
-	],
+  baseURL: getBaseUrl(),
+  plugins: [
+    expoClient({
+      scheme: "expo",
+      storagePrefix: "expo",
+      storage: SecureStore,
+    }),
+    adminClient(),
+    organizationClient(),
+  ],
 });

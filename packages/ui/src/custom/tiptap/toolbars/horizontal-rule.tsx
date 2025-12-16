@@ -10,35 +10,35 @@ import type React from "react";
 import { useToolbar } from "./toolbar-provider";
 
 function HorizontalRuleToolbar({
-	className,
-	onClick,
-	children,
-	ref,
-	...props
+  className,
+  onClick,
+  children,
+  ref,
+  ...props
 }: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
-	const { editor } = useToolbar();
-	return (
-		<Tooltip>
-			<TooltipTrigger asChild>
-				<Button
-					className={cn("h-8 w-8 p-0 sm:h-9 sm:w-9", className)}
-					onClick={(e) => {
-						editor?.chain().focus().setHorizontalRule().run();
-						onClick?.(e);
-					}}
-					ref={ref}
-					size="icon"
-					variant="ghost"
-					{...props}
-				>
-					{children ?? <SeparatorHorizontal className="h-4 w-4" />}
-				</Button>
-			</TooltipTrigger>
-			<TooltipContent>
-				<span>Horizontal Rule</span>
-			</TooltipContent>
-		</Tooltip>
-	);
+  const { editor } = useToolbar();
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          className={cn("h-8 w-8 p-0 sm:h-9 sm:w-9", className)}
+          onClick={(e) => {
+            editor?.chain().focus().setHorizontalRule().run();
+            onClick?.(e);
+          }}
+          ref={ref}
+          size="icon"
+          variant="ghost"
+          {...props}
+        >
+          {children ?? <SeparatorHorizontal className="h-4 w-4" />}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <span>Horizontal Rule</span>
+      </TooltipContent>
+    </Tooltip>
+  );
 }
 
 export { HorizontalRuleToolbar };

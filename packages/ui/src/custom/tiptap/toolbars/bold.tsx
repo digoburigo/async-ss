@@ -15,41 +15,41 @@ import { useToolbar } from "./toolbar-provider";
 // type StarterKitExtensions = Extension<StarterKitOptions>;
 
 function BoldToolbar({
-	className,
-	onClick,
-	children,
-	ref,
-	...props
+  className,
+  onClick,
+  children,
+  ref,
+  ...props
 }: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
-	const { editor } = useToolbar();
-	return (
-		<Tooltip>
-			<TooltipTrigger asChild>
-				<Button
-					className={cn(
-						"h-8 w-8 p-0 sm:h-9 sm:w-9",
-						editor?.isActive("bold") && "bg-accent",
-						className,
-					)}
-					disabled={!editor?.can().chain().focus().toggleBold().run()}
-					onClick={(e) => {
-						editor?.chain().focus().toggleBold().run();
-						onClick?.(e);
-					}}
-					ref={ref}
-					size="icon"
-					variant="ghost"
-					{...props}
-				>
-					{children ?? <BoldIcon className="h-4 w-4" />}
-				</Button>
-			</TooltipTrigger>
-			<TooltipContent>
-				<span>Bold</span>
-				<span className="text-gray-11 ml-1 text-xs">(cmd + b)</span>
-			</TooltipContent>
-		</Tooltip>
-	);
+  const { editor } = useToolbar();
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Button
+          className={cn(
+            "h-8 w-8 p-0 sm:h-9 sm:w-9",
+            editor?.isActive("bold") && "bg-accent",
+            className
+          )}
+          disabled={!editor?.can().chain().focus().toggleBold().run()}
+          onClick={(e) => {
+            editor?.chain().focus().toggleBold().run();
+            onClick?.(e);
+          }}
+          ref={ref}
+          size="icon"
+          variant="ghost"
+          {...props}
+        >
+          {children ?? <BoldIcon className="h-4 w-4" />}
+        </Button>
+      </TooltipTrigger>
+      <TooltipContent>
+        <span>Bold</span>
+        <span className="ml-1 text-gray-11 text-xs">(cmd + b)</span>
+      </TooltipContent>
+    </Tooltip>
+  );
 }
 
 export { BoldToolbar };

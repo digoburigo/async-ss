@@ -2,7 +2,7 @@
 # See https://okigu.com/ruler for documentation.
 
 # Default agents to run when --agents is not specified
-default_agents = ["copilot", "claude", "cursor", "windsurf", "opencode", "zed"]
+default_agents = ["claude", "cursor", "opencode", "zed"]
 
 # --- Global MCP Server Configuration ---
 [mcp]

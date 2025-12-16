@@ -3,41 +3,41 @@ import { NextResponse } from "next/server";
 import { createServerClient } from "@/lib/supabase/server";
 
 export async function POST(request: Request) {
-	try {
-		console.log("[v0] Generate questions API called");
-		const supabase = await createServerClient();
+  try {
+    console.log("[v0] Generate questions API called");
+    const supabase = await createServerClient();
 
-		let body;
-		try {
-			body = await request.json();
-		} catch (e) {
-			console.error("[v0] Failed to parse request body:", e);
-			return NextResponse.json(
-				{ error: "Invalid JSON in request body" },
-				{ status: 400 },
-			);
-		}
+    let body;
+    try {
+      body = await request.json();
+    } catch (e) {
+      console.error("[v0] Failed to parse request body:", e);
+      return NextResponse.json(
+        { error: "Invalid JSON in request body" },
+        { status: 400 }
+      );
+    }
 
-		const { candidate_id, position, department } = body;
+    const { candidate_id, position, department } = body;
 
-		console.log("[v0] Request body:", { candidate_id, position, department });
+    console.log("[v0] Request body:", { candidate_id, position, department });
 
-		if (!candidate_id || !position) {
-			console.log("[v0] Missing required fields");
-			return NextResponse.json(
-				{ error: "candidate_id and position are required" },
-				{ status: 400 },
-			);
-		}
+    if (!(candidate_id && position)) {
+      console.log("[v0] Missing required fields");
+      return NextResponse.json(
+        { error: "candidate_id and position are required" },
+        { status: 400 }
+      );
+    }
 
-		console.log("[v0] Starting AI generation with model: openai/gpt-4o-mini");
+    console.log("[v0] Starting AI generation with model: openai/gpt-4o-mini");
 
-		// Generate questions using AI with generateText
-		let text;
-		try {
-			const result = await generateText({
-				model: "openai/gpt-4o-mini",
-				prompt: `Você é um especialista em recrutamento e seleção. Gere 10 perguntas de entrevista para um candidato à vaga de "${position}"${department ? ` no departamento de "${department}"` : ""}.
+    // Generate questions using AI with generateText
+    let text;
+    try {
+      const result = await generateText({
+        model: "openai/gpt-4o-mini",
+        prompt: `Você é um especialista em recrutamento e seleção. Gere 10 perguntas de entrevista para um candidato à vaga de "${position}"${department ? ` no departamento de "${department}"` : ""}.
 
 Divida as perguntas em duas categorias:
 
@@ -80,120 +80,122 @@ Responda APENAS com um JSON válido no seguinte formato (sem markdown, sem expli
     ...
   ]
 }`,
-			});
-			text = result.text;
-			console.log("[v0] AI response received, length:", text.length);
-		} catch (aiError) {
-			console.error("[v0] AI generation error:", aiError);
-			return NextResponse.json(
-				{
-					error: "Failed to generate questions with AI",
-					details: aiError instanceof Error ? aiError.message : String(aiError),
-				},
-				{ status: 500 },
-			);
-		}
+      });
+      text = result.text;
+      console.log("[v0] AI response received, length:", text.length);
+    } catch (aiError) {
+      console.error("[v0] AI generation error:", aiError);
+      return NextResponse.json(
+        {
+          error: "Failed to generate questions with AI",
+          details: aiError instanceof Error ? aiError.message : String(aiError),
+        },
+        { status: 500 }
+      );
+    }
 
-		console.log("[v0] Parsing AI response...");
+    console.log("[v0] Parsing AI response...");
 
-		// Parse and validate the JSON response
-		let questions;
-		try {
-			// Try to extract JSON from the response (handle markdown code blocks)
-			let jsonText = text.trim();
+    // Parse and validate the JSON response
+    let questions;
+    try {
+      // Try to extract JSON from the response (handle markdown code blocks)
+      let jsonText = text.trim();
 
-			// Remove markdown code blocks if present
-			if (jsonText.startsWith("```")) {
-				jsonText = jsonText
-					.replace(/^```(?:json)?\n?/, "")
-					.replace(/\n?```$/, "");
-			}
+      // Remove markdown code blocks if present
+      if (jsonText.startsWith("```")) {
+        jsonText = jsonText
+          .replace(/^```(?:json)?\n?/, "")
+          .replace(/\n?```$/, "");
+      }
 
-			// Try to find JSON object in the text
-			const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
-			if (jsonMatch) {
-				jsonText = jsonMatch[0];
-			}
+      // Try to find JSON object in the text
+      const jsonMatch = jsonText.match(/\{[\s\S]*\}/);
+      if (jsonMatch) {
+        jsonText = jsonMatch[0];
+      }
 
-			questions = JSON.parse(jsonText);
-			console.log("[v0] JSON parsed successfully");
-		} catch (parseError) {
-			console.error("[v0] Error parsing AI response:", parseError);
-			console.error("[v0] AI response text:", text.substring(0, 500));
-			return NextResponse.json(
-				{
-					error: "Failed to parse AI response as JSON",
-					aiResponse: text.substring(0, 200),
-				},
-				{ status: 500 },
-			);
-		}
+      questions = JSON.parse(jsonText);
+      console.log("[v0] JSON parsed successfully");
+    } catch (parseError) {
+      console.error("[v0] Error parsing AI response:", parseError);
+      console.error("[v0] AI response text:", text.substring(0, 500));
+      return NextResponse.json(
+        {
+          error: "Failed to parse AI response as JSON",
+          aiResponse: text.substring(0, 200),
+        },
+        { status: 500 }
+      );
+    }
 
-		// Validate the structure
-		if (
-			!questions.hard_skills ||
-			!Array.isArray(questions.hard_skills) ||
-			!questions.soft_skills ||
-			!Array.isArray(questions.soft_skills)
-		) {
-			console.error("[v0] Invalid question structure:", questions);
-			return NextResponse.json(
-				{
-					error: "AI response has invalid structure",
-					received: questions,
-				},
-				{ status: 500 },
-			);
-		}
+    // Validate the structure
+    if (
+      !(
+        questions.hard_skills &&
+        Array.isArray(questions.hard_skills) &&
+        questions.soft_skills &&
+        Array.isArray(questions.soft_skills)
+      )
+    ) {
+      console.error("[v0] Invalid question structure:", questions);
+      return NextResponse.json(
+        {
+          error: "AI response has invalid structure",
+          received: questions,
+        },
+        { status: 500 }
+      );
+    }
 
-		console.log("[v0] Questions validated:", {
-			hard_skills_count: questions.hard_skills.length,
-			soft_skills_count: questions.soft_skills.length,
-		});
+    console.log("[v0] Questions validated:", {
+      hard_skills_count: questions.hard_skills.length,
+      soft_skills_count: questions.soft_skills.length,
+    });
 
-		// Save questions to database
-		const questionsToInsert = [
-			...questions.hard_skills.map((q: any, index: number) => ({
-				candidate_id,
-				question_type: "hard_skills",
-				question: q.question,
-				expected_answer: q.expected_answer || null,
-				order_index: index,
-			})),
-			...questions.soft_skills.map((q: any, index: number) => ({
-				candidate_id,
-				question_type: "soft_skills",
-				question: q.question,
-				expected_answer: q.expected_answer || null,
-				order_index: index,
-			})),
-		];
+    // Save questions to database
+    const questionsToInsert = [
+      ...questions.hard_skills.map((q: any, index: number) => ({
+        candidate_id,
+        question_type: "hard_skills",
+        question: q.question,
+        expected_answer: q.expected_answer || null,
+        order_index: index,
+      })),
+      ...questions.soft_skills.map((q: any, index: number) => ({
+        candidate_id,
+        question_type: "soft_skills",
+        question: q.question,
+        expected_answer: q.expected_answer || null,
+        order_index: index,
+      })),
+    ];
 
-		console.log(
-			"[v0] Inserting",
-			questionsToInsert.length,
-			"questions into database...",
-		);
-		const { data, error } = await supabase
-			.from("preboarding_candidate_questions")
-			.insert(questionsToInsert)
-			.select();
+    console.log(
+      "[v0] Inserting",
+      questionsToInsert.length,
+      "questions into database..."
+    );
+    const { data, error } = await supabase
+      .from("preboarding_candidate_questions")
+      .insert(questionsToInsert)
+      .select();
 
-		if (error) {
-			console.error("[v0] Database error:", error);
-			return NextResponse.json({ error: error.message }, { status: 500 });
-		}
+    if (error) {
+      console.error("[v0] Database error:", error);
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
 
-		console.log("[v0] Questions saved successfully:", data?.length);
-		return NextResponse.json({ success: true, questions: data });
-	} catch (error) {
-		console.error("[v0] Unexpected error in generate questions:", error);
-		return NextResponse.json(
-			{
-				error: "Internal server error",
-				details: error instanceof Error ? error.message : String(error),
-			},
-			{ status: 500 },
-		);
-	}
+    console.log("[v0] Questions saved successfully:", data?.length);
+    return NextResponse.json({ success: true, questions: data });
+  } catch (error) {
+    console.error("[v0] Unexpected error in generate questions:", error);
+    return NextResponse.json(
+      {
+        error: "Internal server error",
+        details: error instanceof Error ? error.message : String(error),
+      },
+      { status: 500 }
+    );
+  }
 }

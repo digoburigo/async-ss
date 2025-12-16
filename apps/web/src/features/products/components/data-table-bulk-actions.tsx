@@ -9,84 +9,84 @@ import { DataTableBulkActions as BulkActionsToolbar } from "~/components/data-ta
 import { ProductsMultiDeleteDialog } from "./products-multi-delete-dialog";
 
 type DataTableBulkActionsProps<TData> = {
-	table: Table<TData>;
+  table: Table<TData>;
 };
 
 export function DataTableBulkActions<TData>({
-	table,
+  table,
 }: DataTableBulkActionsProps<TData>) {
-	const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-	const selectedRows = table.getFilteredSelectedRowModel().rows;
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const selectedRows = table.getFilteredSelectedRowModel().rows;
 
-	const handleBulkExport = () => {
-		const selectedProducts = selectedRows.map((row) => row.original as Product);
-		toast.promise(
-			new Promise((resolve) => {
-				// Simulate export
-				setTimeout(() => {
-					console.log("Exporting products:", selectedProducts);
-					resolve(undefined);
-				}, 500);
-			}),
-			{
-				loading: "Exportando produtos...",
-				success: () => {
-					table.resetRowSelection();
-					return `Exportados ${selectedProducts.length} produto${selectedProducts.length > 1 ? "s" : ""} para CSV.`;
-				},
-				error: "Erro ao exportar",
-			},
-		);
-		table.resetRowSelection();
-	};
+  const handleBulkExport = () => {
+    const selectedProducts = selectedRows.map((row) => row.original as Product);
+    toast.promise(
+      new Promise((resolve) => {
+        // Simulate export
+        setTimeout(() => {
+          console.log("Exporting products:", selectedProducts);
+          resolve(undefined);
+        }, 500);
+      }),
+      {
+        loading: "Exportando produtos...",
+        success: () => {
+          table.resetRowSelection();
+          return `Exportados ${selectedProducts.length} produto${selectedProducts.length > 1 ? "s" : ""} para CSV.`;
+        },
+        error: "Erro ao exportar",
+      }
+    );
+    table.resetRowSelection();
+  };
 
-	return (
-		<>
-			<BulkActionsToolbar table={table} entityName="produto">
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<Button
-							variant="outline"
-							size="icon"
-							onClick={() => handleBulkExport()}
-							className="size-8"
-							aria-label="Exportar produtos"
-							title="Exportar produtos"
-						>
-							<Download />
-							<span className="sr-only">Exportar produtos</span>
-						</Button>
-					</TooltipTrigger>
-					<TooltipContent>
-						<p>Exportar produtos</p>
-					</TooltipContent>
-				</Tooltip>
+  return (
+    <>
+      <BulkActionsToolbar entityName="produto" table={table}>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              aria-label="Exportar produtos"
+              className="size-8"
+              onClick={() => handleBulkExport()}
+              size="icon"
+              title="Exportar produtos"
+              variant="outline"
+            >
+              <Download />
+              <span className="sr-only">Exportar produtos</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Exportar produtos</p>
+          </TooltipContent>
+        </Tooltip>
 
-				<Tooltip>
-					<TooltipTrigger asChild>
-						<Button
-							variant="destructive"
-							size="icon"
-							onClick={() => setShowDeleteConfirm(true)}
-							className="size-8"
-							aria-label="Excluir produtos selecionados"
-							title="Excluir produtos selecionados"
-						>
-							<Trash2 />
-							<span className="sr-only">Excluir produtos selecionados</span>
-						</Button>
-					</TooltipTrigger>
-					<TooltipContent>
-						<p>Excluir produtos selecionados</p>
-					</TooltipContent>
-				</Tooltip>
-			</BulkActionsToolbar>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <Button
+              aria-label="Excluir produtos selecionados"
+              className="size-8"
+              onClick={() => setShowDeleteConfirm(true)}
+              size="icon"
+              title="Excluir produtos selecionados"
+              variant="destructive"
+            >
+              <Trash2 />
+              <span className="sr-only">Excluir produtos selecionados</span>
+            </Button>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Excluir produtos selecionados</p>
+          </TooltipContent>
+        </Tooltip>
+      </BulkActionsToolbar>
 
-			<ProductsMultiDeleteDialog
-				open={showDeleteConfirm}
-				onOpenChange={setShowDeleteConfirm}
-				table={table}
-			/>
-		</>
-	);
+      <ProductsMultiDeleteDialog
+        onOpenChange={setShowDeleteConfirm}
+        open={showDeleteConfirm}
+        table={table}
+      />
+    </>
+  );
 }

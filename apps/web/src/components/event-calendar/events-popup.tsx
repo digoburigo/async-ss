@@ -6,135 +6,135 @@ import type { EventCalendar } from "@/zenstack/models";
 import { EventItem } from "~/components/event-calendar";
 
 interface EventsPopupProps {
-	date: Date;
-	events: EventCalendar[];
-	position: { top: number; left: number };
-	onClose: () => void;
-	onEventSelect: (event: EventCalendar) => void;
+  date: Date;
+  events: EventCalendar[];
+  position: { top: number; left: number };
+  onClose: () => void;
+  onEventSelect: (event: EventCalendar) => void;
 }
 
 export function EventsPopup({
-	date,
-	events,
-	position,
-	onClose,
-	onEventSelect,
+  date,
+  events,
+  position,
+  onClose,
+  onEventSelect,
 }: EventsPopupProps) {
-	const popupRef = useRef<HTMLDivElement>(null);
+  const popupRef = useRef<HTMLDivElement>(null);
 
-	// Handle click outside to close popup
-	useEffect(() => {
-		const handleClickOutside = (event: MouseEvent) => {
-			if (
-				popupRef.current &&
-				!popupRef.current.contains(event.target as Node)
-			) {
-				onClose();
-			}
-		};
+  // Handle click outside to close popup
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        popupRef.current &&
+        !popupRef.current.contains(event.target as Node)
+      ) {
+        onClose();
+      }
+    };
 
-		document.addEventListener("mousedown", handleClickOutside);
-		return () => {
-			document.removeEventListener("mousedown", handleClickOutside);
-		};
-	}, [onClose]);
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [onClose]);
 
-	// Handle escape key to close popup
-	useEffect(() => {
-		const handleEscKey = (event: KeyboardEvent) => {
-			if (event.key === "Escape") {
-				onClose();
-			}
-		};
+  // Handle escape key to close popup
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
 
-		document.addEventListener("keydown", handleEscKey);
-		return () => {
-			document.removeEventListener("keydown", handleEscKey);
-		};
-	}, [onClose]);
+    document.addEventListener("keydown", handleEscKey);
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+    };
+  }, [onClose]);
 
-	const handleEventClick = (event: EventCalendar) => {
-		onEventSelect(event);
-		onClose();
-	};
+  const handleEventClick = (event: EventCalendar) => {
+    onEventSelect(event);
+    onClose();
+  };
 
-	// Adjust position to ensure popup stays within viewport
-	const adjustedPosition = useMemo(() => {
-		const positionCopy = { ...position };
+  // Adjust position to ensure popup stays within viewport
+  const adjustedPosition = useMemo(() => {
+    const positionCopy = { ...position };
 
-		// Check if we need to adjust the position to fit in the viewport
-		if (popupRef.current) {
-			const rect = popupRef.current.getBoundingClientRect();
-			const viewportWidth = window.innerWidth;
-			const viewportHeight = window.innerHeight;
+    // Check if we need to adjust the position to fit in the viewport
+    if (popupRef.current) {
+      const rect = popupRef.current.getBoundingClientRect();
+      const viewportWidth = window.innerWidth;
+      const viewportHeight = window.innerHeight;
 
-			// Adjust horizontally if needed
-			if (positionCopy.left + rect.width > viewportWidth) {
-				positionCopy.left = Math.max(0, viewportWidth - rect.width);
-			}
+      // Adjust horizontally if needed
+      if (positionCopy.left + rect.width > viewportWidth) {
+        positionCopy.left = Math.max(0, viewportWidth - rect.width);
+      }
 
-			// Adjust vertically if needed
-			if (positionCopy.top + rect.height > viewportHeight) {
-				positionCopy.top = Math.max(0, viewportHeight - rect.height);
-			}
-		}
+      // Adjust vertically if needed
+      if (positionCopy.top + rect.height > viewportHeight) {
+        positionCopy.top = Math.max(0, viewportHeight - rect.height);
+      }
+    }
 
-		return positionCopy;
-	}, [position]);
+    return positionCopy;
+  }, [position]);
 
-	return (
-		<div
-			ref={popupRef}
-			className="bg-background absolute z-50 max-h-96 w-80 overflow-auto rounded-md border shadow-lg"
-			style={{
-				top: `${adjustedPosition.top}px`,
-				left: `${adjustedPosition.left}px`,
-			}}
-		>
-			<div className="bg-background sticky top-0 flex items-center justify-between border-b p-3">
-				<h3 className="font-medium">{format(date, "d MMMM yyyy")}</h3>
-				<button
-					type="button"
-					onClick={onClose}
-					className="hover:bg-muted rounded-full p-1"
-					aria-label="Close"
-				>
-					<XIcon className="h-4 w-4" />
-				</button>
-			</div>
+  return (
+    <div
+      className="absolute z-50 max-h-96 w-80 overflow-auto rounded-md border bg-background shadow-lg"
+      ref={popupRef}
+      style={{
+        top: `${adjustedPosition.top}px`,
+        left: `${adjustedPosition.left}px`,
+      }}
+    >
+      <div className="sticky top-0 flex items-center justify-between border-b bg-background p-3">
+        <h3 className="font-medium">{format(date, "d MMMM yyyy")}</h3>
+        <button
+          aria-label="Close"
+          className="rounded-full p-1 hover:bg-muted"
+          onClick={onClose}
+          type="button"
+        >
+          <XIcon className="h-4 w-4" />
+        </button>
+      </div>
 
-			<div className="space-y-2 p-3">
-				{events.length === 0 ? (
-					<div className="text-muted-foreground py-2 text-sm">No events</div>
-				) : (
-					events.map((event) => {
-						const eventStart = new Date(event.start);
-						const eventEnd = new Date(event.end);
-						const isFirstDay = isSameDay(date, eventStart);
-						const isLastDay = isSameDay(date, eventEnd);
+      <div className="space-y-2 p-3">
+        {events.length === 0 ? (
+          <div className="py-2 text-muted-foreground text-sm">No events</div>
+        ) : (
+          events.map((event) => {
+            const eventStart = new Date(event.start);
+            const eventEnd = new Date(event.end);
+            const isFirstDay = isSameDay(date, eventStart);
+            const isLastDay = isSameDay(date, eventEnd);
 
-						return (
-							<div
-								key={event.id}
-								className="cursor-pointer"
-								onClick={() => handleEventClick(event)}
-								onKeyDown={(e) => {
-									if (e.key === "Enter") {
-										handleEventClick(event);
-									}
-								}}
-							>
-								<EventItem
-									event={event}
-									view="agenda"
-									isFirstDay={isFirstDay}
-									isLastDay={isLastDay}
-								/>
-							</div>
-						);
-					})
-				)}
-			</div>
-		</div>
-	);
+            return (
+              <div
+                className="cursor-pointer"
+                key={event.id}
+                onClick={() => handleEventClick(event)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleEventClick(event);
+                  }
+                }}
+              >
+                <EventItem
+                  event={event}
+                  isFirstDay={isFirstDay}
+                  isLastDay={isLastDay}
+                  view="agenda"
+                />
+              </div>
+            );
+          })
+        )}
+      </div>
+    </div>
+  );
 }

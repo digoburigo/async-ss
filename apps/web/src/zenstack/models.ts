@@ -1,7 +1,7 @@
 // Re-export types from zen-v3 package
 export type {
-	CalendarEvent,
-	CalendarEventType,
+  CalendarEvent,
+  CalendarEventType,
 } from "@acme/zen-v3/zenstack/models";
 export { CalendarEventType } from "@acme/zen-v3/zenstack/models";
 
@@ -11,6 +11,6 @@ export type { EventCalendarType } from "@acme/zen-v3/zenstack/models";
 
 // Re-export create/update schema types from zod models
 export type {
-	EventCalendarCreateScalarSchema,
-	EventCalendarUpdateScalarSchema,
+  EventCalendarCreateScalarSchema,
+  EventCalendarUpdateScalarSchema,
 } from "@zenstackhq/runtime/zod/models";

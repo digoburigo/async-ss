@@ -4,25 +4,25 @@ import { IndentIcon, OutdentIcon } from "lucide-react";
 import type * as React from "react";
 
 export function IndentToolbarButton(
-	props: React.ComponentProps<typeof ToolbarButton>,
+  props: React.ComponentProps<typeof ToolbarButton>
 ) {
-	const { props: buttonProps } = useIndentButton();
+  const { props: buttonProps } = useIndentButton();
 
-	return (
-		<ToolbarButton {...props} {...buttonProps} tooltip="Indent">
-			<IndentIcon />
-		</ToolbarButton>
-	);
+  return (
+    <ToolbarButton {...props} {...buttonProps} tooltip="Indent">
+      <IndentIcon />
+    </ToolbarButton>
+  );
 }
 
 export function OutdentToolbarButton(
-	props: React.ComponentProps<typeof ToolbarButton>,
+  props: React.ComponentProps<typeof ToolbarButton>
 ) {
-	const { props: buttonProps } = useOutdentButton();
+  const { props: buttonProps } = useOutdentButton();
 
-	return (
-		<ToolbarButton {...props} {...buttonProps} tooltip="Outdent">
-			<OutdentIcon />
-		</ToolbarButton>
-	);
+  return (
+    <ToolbarButton {...props} {...buttonProps} tooltip="Outdent">
+      <OutdentIcon />
+    </ToolbarButton>
+  );
 }

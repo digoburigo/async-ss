@@ -11,34 +11,34 @@ import { KanbanBoardPage } from "~/features/kanban/components/kanban-board-page"
 import { KanbanProvider } from "~/features/kanban/components/kanban-provider";
 
 export const Route = createFileRoute("/_authenticated/kanban/$boardId")({
-	component: RouteComponent,
+  component: RouteComponent,
 });
 
 export default function RouteComponent() {
-	const params = Route.useParams();
+  const params = Route.useParams();
 
-	return (
-		<KanbanProvider>
-			<Header fixed>
-				<Search />
-				<div className="ms-auto flex items-center space-x-4">
-					<ThemeSwitch />
-					<ConfigDrawer />
-					<ProfileDropdown />
-				</div>
-			</Header>
+  return (
+    <KanbanProvider>
+      <Header fixed>
+        <Search />
+        <div className="ms-auto flex items-center space-x-4">
+          <ThemeSwitch />
+          <ConfigDrawer />
+          <ProfileDropdown />
+        </div>
+      </Header>
 
-			<Main className="flex flex-1 flex-col gap-4 sm:gap-6">
-				<Suspense
-					fallback={
-						<div className="flex flex-1 items-center justify-center">
-							Carregando quadro...
-						</div>
-					}
-				>
-					<KanbanBoardPage boardId={params.boardId} />
-				</Suspense>
-			</Main>
-		</KanbanProvider>
-	);
+      <Main className="flex flex-1 flex-col gap-4 sm:gap-6">
+        <Suspense
+          fallback={
+            <div className="flex flex-1 items-center justify-center">
+              Carregando quadro...
+            </div>
+          }
+        >
+          <KanbanBoardPage boardId={params.boardId} />
+        </Suspense>
+      </Main>
+    </KanbanProvider>
+  );
 }

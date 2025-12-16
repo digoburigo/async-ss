@@ -4,48 +4,48 @@ import { UsersInviteDialog } from "./users-invite-dialog";
 import { useUsers } from "./users-provider";
 
 export function UsersDialogs() {
-	const { open, setOpen, currentRow, setCurrentRow } = useUsers();
-	return (
-		<>
-			<UsersActionDialog
-				key="user-add"
-				open={open === "add"}
-				onOpenChange={() => setOpen("add")}
-			/>
+  const { open, setOpen, currentRow, setCurrentRow } = useUsers();
+  return (
+    <>
+      <UsersActionDialog
+        key="user-add"
+        onOpenChange={() => setOpen("add")}
+        open={open === "add"}
+      />
 
-			<UsersInviteDialog
-				key="user-invite"
-				open={open === "invite"}
-				onOpenChange={() => setOpen("invite")}
-			/>
+      <UsersInviteDialog
+        key="user-invite"
+        onOpenChange={() => setOpen("invite")}
+        open={open === "invite"}
+      />
 
-			{currentRow && (
-				<>
-					<UsersActionDialog
-						key={`user-edit-${currentRow.id}`}
-						open={open === "edit"}
-						onOpenChange={() => {
-							setOpen("edit");
-							setTimeout(() => {
-								setCurrentRow(null);
-							}, 500);
-						}}
-						currentRow={currentRow}
-					/>
+      {currentRow && (
+        <>
+          <UsersActionDialog
+            currentRow={currentRow}
+            key={`user-edit-${currentRow.id}`}
+            onOpenChange={() => {
+              setOpen("edit");
+              setTimeout(() => {
+                setCurrentRow(null);
+              }, 500);
+            }}
+            open={open === "edit"}
+          />
 
-					<UsersDeleteDialog
-						key={`user-delete-${currentRow.id}`}
-						open={open === "delete"}
-						onOpenChange={() => {
-							setOpen("delete");
-							setTimeout(() => {
-								setCurrentRow(null);
-							}, 500);
-						}}
-						currentRow={currentRow}
-					/>
-				</>
-			)}
-		</>
-	);
+          <UsersDeleteDialog
+            currentRow={currentRow}
+            key={`user-delete-${currentRow.id}`}
+            onOpenChange={() => {
+              setOpen("delete");
+              setTimeout(() => {
+                setCurrentRow(null);
+              }, 500);
+            }}
+            open={open === "delete"}
+          />
+        </>
+      )}
+    </>
+  );
 }

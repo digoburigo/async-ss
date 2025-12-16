@@ -23,23 +23,22 @@ import { createFileRoute } from "@tanstack/react-router";
 
 // import { AuthShowcase } from "~/component/auth-showcase";
 import { Test } from "~/component/test";
-import { useTRPC } from "~/lib/trpc";
 
 export const Route = createFileRoute("/")({
-	// loader: ({ context }) => {
-	// const { trpc, queryClient } = context;
-	// void queryClient.prefetchQuery(trpc.post.all.queryOptions());
-	// },
-	component: RouteComponent,
+  // loader: ({ context }) => {
+  // const { trpc, queryClient } = context;
+  // void queryClient.prefetchQuery(trpc.post.all.queryOptions());
+  // },
+  component: RouteComponent,
 });
 
 function RouteComponent() {
-	return (
-		<main className="container h-screen py-16">
-			<p>Hello World</p>
-			<Test />
-		</main>
-	);
+  return (
+    <main className="container h-screen py-16">
+      <p>Hello World</p>
+      <Test />
+    </main>
+  );
 }
 
 // function CreatePostForm() {

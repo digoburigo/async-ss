@@ -4,9 +4,9 @@ import { createClient } from "@/lib/supabase/server";
 export const maxDuration = 30;
 
 async function buildSystemPrompt(
-	role: "vendedor" | "gerente_estoque",
+  role: "vendedor" | "gerente_estoque"
 ): Promise<string> {
-	const baseSellerPrompt = `Você é um assistente de integração da Farben, uma indústria brasileira de tintas. Sua função é integrar novos VENDEDORES.
+  const baseSellerPrompt = `Você é um assistente de integração da Farben, uma indústria brasileira de tintas. Sua função é integrar novos VENDEDORES.
 
 SOBRE A FARBEN:
 - Empresa brasileira líder em tintas e revestimentos
@@ -39,7 +39,7 @@ INFORMAÇÕES PARA VENDEDORES:
    - Consulta de estoque em tempo real
    - Programa de fidelidade Farben+`;
 
-	const baseStockPrompt = `Você é um assistente de integração da Farben, uma indústria brasileira de tintas. Sua função é integrar novos GERENTES DE ESTOQUE.
+  const baseStockPrompt = `Você é um assistente de integração da Farben, uma indústria brasileira de tintas. Sua função é integrar novos GERENTES DE ESTOQUE.
 
 SOBRE A FARBEN:
 - Empresa brasileira líder em tintas e revestimentos
@@ -82,135 +82,135 @@ INFORMAÇÕES PARA GERENTES DE ESTOQUE:
    - Tempo de separação: meta 15min/pedido
    - Avarias: meta <1%`;
 
-	const basePrompt = role === "vendedor" ? baseSellerPrompt : baseStockPrompt;
+  const basePrompt = role === "vendedor" ? baseSellerPrompt : baseStockPrompt;
 
-	try {
-		const supabase = await createClient();
-		const { data: processes, error } = await supabase
-			.from("onboarding_processes")
-			.select("title, content")
-			.eq("employee_type", role)
-			.order("order_index", { ascending: true });
+  try {
+    const supabase = await createClient();
+    const { data: processes, error } = await supabase
+      .from("onboarding_processes")
+      .select("title, content")
+      .eq("employee_type", role)
+      .order("order_index", { ascending: true });
 
-		if (error) {
-			console.error("Error fetching processes:", error);
-			return `${basePrompt}
+    if (error) {
+      console.error("Error fetching processes:", error);
+      return `${basePrompt}
 
 Conduza a integração de forma conversacional, fazendo perguntas e explicando conceitos gradualmente. Seja amigável e profissional. Use exemplos práticos.`;
-		}
+    }
 
-		if (processes && processes.length > 0) {
-			const customData = processes
-				.map((p, index) => `${index + 1}. ${p.title}\n${p.content}`)
-				.join("\n\n");
+    if (processes && processes.length > 0) {
+      const customData = processes
+        .map((p, index) => `${index + 1}. ${p.title}\n${p.content}`)
+        .join("\n\n");
 
-			return `${basePrompt}
+      return `${basePrompt}
 
 PROCESSOS E INFORMAÇÕES ADICIONAIS CADASTRADOS PELA ADMINISTRAÇÃO:
 ${customData}
 
 Conduza a integração de forma conversacional, fazendo perguntas e explicando conceitos gradualmente. Seja amigável e profissional. Use exemplos práticos.`;
-		}
+    }
 
-		return `${basePrompt}
-
-Conduza a integração de forma conversacional, fazendo perguntas e explicando conceitos gradualmente. Seja amigável e profissional. Use exemplos práticos.`;
-	} catch (error) {
-		console.error("Error building system prompt:", error);
-		return `${basePrompt}
+    return `${basePrompt}
 
 Conduza a integração de forma conversacional, fazendo perguntas e explicando conceitos gradualmente. Seja amigável e profissional. Use exemplos práticos.`;
-	}
+  } catch (error) {
+    console.error("Error building system prompt:", error);
+    return `${basePrompt}
+
+Conduza a integração de forma conversacional, fazendo perguntas e explicando conceitos gradualmente. Seja amigável e profissional. Use exemplos práticos.`;
+  }
 }
 
 // Will need to investigate correct AI SDK format for file attachments
 async function fetchPDFsForRole(
-	role: "vendedor" | "gerente_estoque",
+  role: "vendedor" | "gerente_estoque"
 ): Promise<Array<{ name: string; url: string }>> {
-	try {
-		const supabase = await createClient();
+  try {
+    const supabase = await createClient();
 
-		const { data: documents, error } = await supabase
-			.from("onboarding_documents")
-			.select("file_url, file_name")
-			.eq("employee_type", role)
-			.order("created_at", { ascending: true });
+    const { data: documents, error } = await supabase
+      .from("onboarding_documents")
+      .select("file_url, file_name")
+      .eq("employee_type", role)
+      .order("created_at", { ascending: true });
 
-		if (error || !documents || documents.length === 0) {
-			return [];
-		}
+    if (error || !documents || documents.length === 0) {
+      return [];
+    }
 
-		return documents.map((doc) => ({
-			name: doc.file_name,
-			url: doc.file_url,
-		}));
-	} catch (error) {
-		console.error("Error fetching PDFs:", error);
-		return [];
-	}
+    return documents.map((doc) => ({
+      name: doc.file_name,
+      url: doc.file_url,
+    }));
+  } catch (error) {
+    console.error("Error fetching PDFs:", error);
+    return [];
+  }
 }
 
 export async function POST(req: Request) {
-	try {
-		const body = await req.json();
-		const {
-			messages,
-			role,
-		}: {
-			messages: Array<{ role: string; content: string }>;
-			role: "vendedor" | "gerente_estoque";
-		} = body;
+  try {
+    const body = await req.json();
+    const {
+      messages,
+      role,
+    }: {
+      messages: Array<{ role: string; content: string }>;
+      role: "vendedor" | "gerente_estoque";
+    } = body;
 
-		console.log("[v0] Chat request received for role:", role);
-		console.log("[v0] Number of messages:", messages.length);
+    console.log("[v0] Chat request received for role:", role);
+    console.log("[v0] Number of messages:", messages.length);
 
-		let systemPrompt = await buildSystemPrompt(role);
-		const pdfs = await fetchPDFsForRole(role);
+    let systemPrompt = await buildSystemPrompt(role);
+    const pdfs = await fetchPDFsForRole(role);
 
-		console.log("[v0] Number of PDFs found:", pdfs.length);
+    console.log("[v0] Number of PDFs found:", pdfs.length);
 
-		if (pdfs.length > 0) {
-			const pdfList = pdfs
-				.map((pdf, index) => `${index + 1}. ${pdf.name} (${pdf.url})`)
-				.join("\n");
-			systemPrompt += `\n\nDOCUMENTOS PDF DISPONÍVEIS PARA CONSULTA:\n${pdfList}\n\nQuando relevante, mencione que existem documentos PDF disponíveis para consulta detalhada.`;
-		}
+    if (pdfs.length > 0) {
+      const pdfList = pdfs
+        .map((pdf, index) => `${index + 1}. ${pdf.name} (${pdf.url})`)
+        .join("\n");
+      systemPrompt += `\n\nDOCUMENTOS PDF DISPONÍVEIS PARA CONSULTA:\n${pdfList}\n\nQuando relevante, mencione que existem documentos PDF disponíveis para consulta detalhada.`;
+    }
 
-		// Format messages for the AI model
-		const formattedMessages = messages.map((m) => ({
-			role: m.role as "user" | "assistant",
-			content: m.content,
-		}));
+    // Format messages for the AI model
+    const formattedMessages = messages.map((m) => ({
+      role: m.role as "user" | "assistant",
+      content: m.content,
+    }));
 
-		console.log(
-			"[v0] Calling streamText with",
-			formattedMessages.length,
-			"messages",
-		);
+    console.log(
+      "[v0] Calling streamText with",
+      formattedMessages.length,
+      "messages"
+    );
 
-		const result = streamText({
-			model: "openai/gpt-4o-mini",
-			system: systemPrompt,
-			messages: formattedMessages,
-			abortSignal: req.signal,
-			temperature: 0.7,
-			maxTokens: 1000,
-		});
+    const result = streamText({
+      model: "openai/gpt-4o-mini",
+      system: systemPrompt,
+      messages: formattedMessages,
+      abortSignal: req.signal,
+      temperature: 0.7,
+      maxTokens: 1000,
+    });
 
-		console.log("[v0] Stream created, returning response");
+    console.log("[v0] Stream created, returning response");
 
-		return result.toTextStreamResponse();
-	} catch (error) {
-		console.error("[v0] Error in chat API:", error);
-		return new Response(
-			JSON.stringify({
-				error: "Internal server error",
-				details: String(error),
-			}),
-			{
-				status: 500,
-				headers: { "Content-Type": "application/json" },
-			},
-		);
-	}
+    return result.toTextStreamResponse();
+  } catch (error) {
+    console.error("[v0] Error in chat API:", error);
+    return new Response(
+      JSON.stringify({
+        error: "Internal server error",
+        details: String(error),
+      }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
 }
