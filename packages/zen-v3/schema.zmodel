@@ -92,6 +92,10 @@ model User {
   createdActivities PreboardingActivity[] @relation("ActivityCreatedBy")
   createdDocuments PreboardingCandidateDocument[] @relation("DocumentCreatedBy")
 
+  // First Steps relations
+  firstStepsProgress FirstStepsProgress[]
+  firstStepsQuizAttempts FirstStepsQuizAttempt[]
+
   @@allow('create,read', true)
 
   // only the user can update or delete their own profile
@@ -204,6 +208,14 @@ model Organization {
   preboardingCandidateQuestions PreboardingCandidateQuestion[]
   preboardingCandidateDocuments PreboardingCandidateDocument[]
 
+  // First Steps relations
+  firstStepsJobTypes FirstStepsJobType[]
+  firstStepsItems FirstStepsItem[]
+  firstStepsProgress FirstStepsProgress[]
+  firstStepsQuizzes FirstStepsQuiz[]
+  firstStepsQuizQuestions FirstStepsQuizQuestion[]
+  firstStepsQuizAttempts FirstStepsQuizAttempt[]
+
   @@unique([slug])
 
   @@allow('create,read', true)
@@ -229,6 +241,10 @@ model Member {
   createdAt      DateTime     @default(now()) 
   updatedAt      DateTime     @updatedAt 
 
+  // Job type for first steps integration
+  jobTypeId      String?
+  jobType        FirstStepsJobType? @relation(fields: [jobTypeId], references: [id], onDelete: SetNull)
+
   // deny anonymous users
   @@deny('all', auth() == null)
 
@@ -237,6 +253,9 @@ model Member {
 
   // allow read access to members that belong to the user's active organization
   @@allow('read', auth().organizationId == organizationId)
+
+  // allow update for admins to assign job types
+  @@allow('update', auth().organizationId == organizationId)
 
   @@map("member")
 }
@@ -502,6 +521,12 @@ enum MeetingStatus {
   in_progress
   completed
   cancelled
+}
+
+enum FirstStepsLinkType {
+  internal
+  external
+  none
 }
 
 model Client {
@@ -1419,4 +1444,165 @@ model PreboardingCandidateDocument {
     @@allow('read,update,delete', auth().organizationId == organizationId)
 
     @@map("preboarding_candidate_documents")
+}
+
+// FIRST STEPS MODELS ======================================================
+
+model FirstStepsJobType {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+    
+    name           String
+    description    String?
+    icon           String?      // Lucide icon name (e.g., "ShoppingCart", "Package")
+    color          String       @default("#6366f1")
+    active         Boolean      @default(true)
+    orderIndex     Int          @default(0)
+    
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+    
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+    
+    steps          FirstStepsItem[]
+    members        Member[]
+    quizzes        FirstStepsQuiz[]
+    
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+    
+    @@map("first_steps_job_types")
+}
+
+model FirstStepsItem {
+    id               String       @id @default(dbgenerated("uuidv7()"))
+    
+    jobTypeId        String
+    jobType          FirstStepsJobType @relation(fields: [jobTypeId], references: [id], onDelete: Cascade)
+    
+    title            String
+    description      String
+    orderIndex       Int          @default(0)
+    
+    linkType         FirstStepsLinkType @default(none)
+    linkUrl          String?
+    linkLabel        String?
+    linkOpenInNewTab Boolean      @default(false)
+    
+    estimatedMinutes Int?
+    active           Boolean      @default(true)
+    
+    createdAt        DateTime     @default(now())
+    updatedAt        DateTime     @updatedAt
+    
+    organizationId   String?      @default(auth().organizationId)
+    organization     Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+    
+    progress         FirstStepsProgress[]
+    
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+    
+    @@map("first_steps_items")
+}
+
+model FirstStepsProgress {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+    
+    userId         String
+    user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    
+    stepId         String
+    step           FirstStepsItem @relation(fields: [stepId], references: [id], onDelete: Cascade)
+    
+    completed      Boolean      @default(false)
+    completedAt    DateTime?
+    
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+    
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+    
+    @@unique([userId, stepId])
+    
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+    
+    @@map("first_steps_progress")
+}
+
+model FirstStepsQuiz {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+    
+    jobTypeId      String
+    jobType        FirstStepsJobType @relation(fields: [jobTypeId], references: [id], onDelete: Cascade)
+    
+    title          String       @default("Quiz de Conhecimento")
+    description    String?
+    passingScore   Int          @default(70)
+    active         Boolean      @default(true)
+    
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+    
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+    
+    questions      FirstStepsQuizQuestion[]
+    attempts       FirstStepsQuizAttempt[]
+    
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+    
+    @@map("first_steps_quizzes")
+}
+
+model FirstStepsQuizQuestion {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+    
+    quizId         String
+    quiz           FirstStepsQuiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+    
+    question       String
+    options        String[]
+    correctAnswer  Int
+    explanation    String?
+    orderIndex     Int          @default(0)
+    active         Boolean      @default(true)
+    
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+    
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+    
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+    
+    @@map("first_steps_quiz_questions")
+}
+
+model FirstStepsQuizAttempt {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+    
+    userId         String
+    user           User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    
+    quizId         String
+    quiz           FirstStepsQuiz @relation(fields: [quizId], references: [id], onDelete: Cascade)
+    
+    score          Int
+    passed         Boolean
+    answers        Json
+    
+    completedAt    DateTime     @default(now())
+    
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+    
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+    
+    @@map("first_steps_quiz_attempts")
 }

@@ -87,6 +87,11 @@ export const sidebarData: SidebarData = {
           icon: ListChecks,
         },
         {
+          title: "Gerenciar Passos",
+          url: "/primeiro-passos/admin",
+          icon: Settings,
+        },
+        {
           title: "Integração",
           url: "/onboarding-chat",
           icon: BookOpen,

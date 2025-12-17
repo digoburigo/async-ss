@@ -7,6 +7,16 @@ async function main() {
 
   // Clear all tables in reverse dependency order
   await Promise.all([
+    // First Steps
+    db.firstStepsQuizAttempt.deleteMany(),
+    db.firstStepsQuizQuestion.deleteMany(),
+    db.firstStepsQuiz.deleteMany(),
+    db.firstStepsProgress.deleteMany(),
+    db.firstStepsItem.deleteMany(),
+  ]);
+  await db.firstStepsJobType.deleteMany();
+
+  await Promise.all([
     // Preboarding
     db.preboardingCandidateDocument.deleteMany(),
     db.preboardingCandidateQuestion.deleteMany(),
@@ -1423,6 +1433,388 @@ async function main() {
     },
   });
 
+  // ============================================
+  // 19. FIRST STEPS (PRIMEIROS PASSOS)
+  // ============================================
+  console.log("🌱 Creating first steps models...");
+
+  // Job Types for paint industry
+  const [jobTypeVendedor, jobTypeGerenteEstoque] = await Promise.all([
+    userDb.firstStepsJobType.create({
+      data: {
+        name: "Vendedor",
+        description: "Vendedor de tintas e produtos relacionados",
+        icon: "ShoppingCart",
+        color: "#3b82f6",
+        orderIndex: 0,
+      },
+    }),
+    userDb.firstStepsJobType.create({
+      data: {
+        name: "Gerente de Estoque",
+        description: "Responsável pelo controle de estoque e armazenamento",
+        icon: "Package",
+        color: "#22c55e",
+        orderIndex: 1,
+      },
+    }),
+  ]);
+
+  // Steps for Vendedor (Seller)
+  const [
+    vendedorStep1,
+    vendedorStep2,
+    vendedorStep3,
+    vendedorStep4,
+    vendedorStep5,
+  ] = await Promise.all([
+    userDb.firstStepsItem.create({
+      data: {
+        jobTypeId: jobTypeVendedor.id,
+        title: "Conhecer os produtos de tintas",
+        description:
+          "Aprenda sobre as linhas de tintas, seus usos e aplicações. Conheça as diferenças entre tintas látex, acrílica, esmalte e vernizes.",
+        orderIndex: 0,
+        linkType: "internal",
+        linkUrl: "/treinamentos/produtos",
+        linkLabel: "Acessar Catálogo",
+        estimatedMinutes: 30,
+      },
+    }),
+    userDb.firstStepsItem.create({
+      data: {
+        jobTypeId: jobTypeVendedor.id,
+        title: "Aprender o sistema de vendas",
+        description:
+          "Familiarize-se com o sistema de PDV, como criar orçamentos, finalizar vendas e emitir notas fiscais.",
+        orderIndex: 1,
+        linkType: "internal",
+        linkUrl: "/vendas",
+        linkLabel: "Ir para Vendas",
+        estimatedMinutes: 45,
+      },
+    }),
+    userDb.firstStepsItem.create({
+      data: {
+        jobTypeId: jobTypeVendedor.id,
+        title: "Técnicas de atendimento ao cliente",
+        description:
+          "Desenvolva habilidades de comunicação para ajudar clientes a escolher as tintas certas para seus projetos.",
+        orderIndex: 2,
+        linkType: "external",
+        linkUrl: "https://youtube.com/example-training",
+        linkLabel: "Assistir Vídeo",
+        linkOpenInNewTab: true,
+        estimatedMinutes: 20,
+      },
+    }),
+    userDb.firstStepsItem.create({
+      data: {
+        jobTypeId: jobTypeVendedor.id,
+        title: "Política de preços e descontos",
+        description:
+          "Entenda como funcionam as tabelas de preço, descontos por volume e promoções vigentes.",
+        orderIndex: 3,
+        linkType: "none",
+        estimatedMinutes: 15,
+      },
+    }),
+    userDb.firstStepsItem.create({
+      data: {
+        jobTypeId: jobTypeVendedor.id,
+        title: "Processo de entrega e logística",
+        description:
+          "Conheça os procedimentos de entrega, prazos e como coordenar com a equipe de logística.",
+        orderIndex: 4,
+        linkType: "internal",
+        linkUrl: "/logistica",
+        linkLabel: "Ver Entregas",
+        estimatedMinutes: 25,
+      },
+    }),
+  ]);
+
+  // Steps for Gerente de Estoque (Stock Manager)
+  const [estoqueStep1, estoqueStep2, estoqueStep3, estoqueStep4, estoqueStep5] =
+    await Promise.all([
+      userDb.firstStepsItem.create({
+        data: {
+          jobTypeId: jobTypeGerenteEstoque.id,
+          title: "Conhecer o layout do depósito",
+          description:
+            "Familiarize-se com a organização do depósito, localização dos produtos e áreas de armazenamento especial para produtos inflamáveis.",
+          orderIndex: 0,
+          linkType: "none",
+          estimatedMinutes: 60,
+        },
+      }),
+      userDb.firstStepsItem.create({
+        data: {
+          jobTypeId: jobTypeGerenteEstoque.id,
+          title: "Sistema de controle de estoque",
+          description:
+            "Aprenda a usar o sistema para registrar entradas, saídas, transferências e ajustes de estoque.",
+          orderIndex: 1,
+          linkType: "internal",
+          linkUrl: "/estoque",
+          linkLabel: "Acessar Estoque",
+          estimatedMinutes: 45,
+        },
+      }),
+      userDb.firstStepsItem.create({
+        data: {
+          jobTypeId: jobTypeGerenteEstoque.id,
+          title: "Procedimentos de recebimento",
+          description:
+            "Entenda como conferir mercadorias, verificar notas fiscais e registrar recebimentos no sistema.",
+          orderIndex: 2,
+          linkType: "none",
+          estimatedMinutes: 30,
+        },
+      }),
+      userDb.firstStepsItem.create({
+        data: {
+          jobTypeId: jobTypeGerenteEstoque.id,
+          title: "Gestão de inventário",
+          description:
+            "Aprenda a realizar contagens cíclicas, inventários gerais e como tratar divergências.",
+          orderIndex: 3,
+          linkType: "internal",
+          linkUrl: "/inventario",
+          linkLabel: "Ver Inventário",
+          estimatedMinutes: 40,
+        },
+      }),
+      userDb.firstStepsItem.create({
+        data: {
+          jobTypeId: jobTypeGerenteEstoque.id,
+          title: "Segurança e manuseio de produtos",
+          description:
+            "Conheça as normas de segurança para manuseio de tintas, solventes e produtos químicos. FISPQ e EPIs obrigatórios.",
+          orderIndex: 4,
+          linkType: "external",
+          linkUrl: "https://example.com/seguranca-quimicos",
+          linkLabel: "Manual de Segurança",
+          linkOpenInNewTab: true,
+          estimatedMinutes: 35,
+        },
+      }),
+    ]);
+
+  // Quiz for Vendedor
+  const quizVendedor = await userDb.firstStepsQuiz.create({
+    data: {
+      jobTypeId: jobTypeVendedor.id,
+      title: "Quiz do Vendedor de Tintas",
+      description:
+        "Teste seus conhecimentos sobre produtos, vendas e atendimento ao cliente.",
+      passingScore: 70,
+    },
+  });
+
+  // Quiz Questions for Vendedor
+  await Promise.all([
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizVendedor.id,
+        question:
+          "Qual tipo de tinta é mais indicada para ambientes externos expostos ao sol?",
+        options: [
+          "Tinta látex PVA",
+          "Tinta acrílica",
+          "Tinta esmalte sintético",
+          "Tinta a óleo",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "A tinta acrílica possui maior resistência aos raios UV e intempéries, sendo ideal para áreas externas.",
+        orderIndex: 0,
+      },
+    }),
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizVendedor.id,
+        question: "Quantas demãos geralmente são necessárias para repintura?",
+        options: ["1 demão", "2 demãos", "3 demãos", "4 demãos"],
+        correctAnswer: 1,
+        explanation:
+          "Para repintura sobre superfície em bom estado, geralmente 2 demãos são suficientes para boa cobertura.",
+        orderIndex: 1,
+      },
+    }),
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizVendedor.id,
+        question:
+          "Qual o rendimento médio de uma lata de 18L de tinta látex por demão?",
+        options: ["50-80 m²", "100-120 m²", "150-200 m²", "250-300 m²"],
+        correctAnswer: 1,
+        explanation:
+          "Uma lata de 18L de tinta látex rende aproximadamente 100-120 m² por demão em superfícies lisas.",
+        orderIndex: 2,
+      },
+    }),
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizVendedor.id,
+        question:
+          "Qual produto deve ser aplicado antes da tinta em paredes novas?",
+        options: ["Massa corrida", "Selador", "Textura", "Verniz"],
+        correctAnswer: 1,
+        explanation:
+          "O selador é essencial em paredes novas para uniformizar a absorção e garantir melhor aderência da tinta.",
+        orderIndex: 3,
+      },
+    }),
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizVendedor.id,
+        question:
+          "Qual a diluição recomendada para primeira demão de tinta látex?",
+        options: [
+          "Sem diluição",
+          "5-10% de água",
+          "20-30% de água",
+          "50% de água",
+        ],
+        correctAnswer: 2,
+        explanation:
+          "A primeira demão geralmente é diluída em 20-30% de água para melhor penetração na superfície.",
+        orderIndex: 4,
+      },
+    }),
+  ]);
+
+  // Quiz for Gerente de Estoque
+  const quizEstoque = await userDb.firstStepsQuiz.create({
+    data: {
+      jobTypeId: jobTypeGerenteEstoque.id,
+      title: "Quiz do Gerente de Estoque",
+      description:
+        "Avalie seus conhecimentos sobre gestão de estoque, segurança e procedimentos.",
+      passingScore: 75,
+    },
+  });
+
+  // Quiz Questions for Gerente de Estoque
+  await Promise.all([
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizEstoque.id,
+        question: "Qual a temperatura ideal para armazenamento de tintas?",
+        options: [
+          "Abaixo de 5°C",
+          "Entre 5°C e 35°C",
+          "Acima de 40°C",
+          "Não há restrição",
+        ],
+        correctAnswer: 1,
+        explanation:
+          "Tintas devem ser armazenadas entre 5°C e 35°C para preservar suas propriedades. Temperaturas extremas podem danificar o produto.",
+        orderIndex: 0,
+      },
+    }),
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizEstoque.id,
+        question:
+          "Qual documento contém informações de segurança de produtos químicos?",
+        options: ["Nota Fiscal", "FISPQ", "Ordem de Compra", "Romaneio"],
+        correctAnswer: 1,
+        explanation:
+          "A FISPQ (Ficha de Informações de Segurança de Produtos Químicos) contém todas as informações de segurança necessárias.",
+        orderIndex: 1,
+      },
+    }),
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizEstoque.id,
+        question: "O que significa FIFO na gestão de estoque?",
+        options: [
+          "First In, First Out",
+          "Fast Inventory, Fast Output",
+          "Final Inspection For Orders",
+          "Fixed Inventory Flow Operation",
+        ],
+        correctAnswer: 0,
+        explanation:
+          "FIFO (First In, First Out) significa que os produtos mais antigos devem ser vendidos/utilizados primeiro.",
+        orderIndex: 2,
+      },
+    }),
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizEstoque.id,
+        question: "Qual EPI é obrigatório para manuseio de solventes?",
+        options: [
+          "Apenas luvas",
+          "Luvas e óculos de proteção",
+          "Luvas, óculos e máscara com filtro",
+          "Nenhum EPI necessário",
+        ],
+        correctAnswer: 2,
+        explanation:
+          "Para manuseio de solventes são necessários luvas, óculos de proteção e máscara com filtro apropriado devido aos vapores tóxicos.",
+        orderIndex: 3,
+      },
+    }),
+    userDb.firstStepsQuizQuestion.create({
+      data: {
+        quizId: quizEstoque.id,
+        question:
+          "Com que frequência deve ser realizado inventário cíclico de tintas?",
+        options: [
+          "Anualmente",
+          "Semestralmente",
+          "Mensalmente",
+          "Semanalmente",
+        ],
+        correctAnswer: 2,
+        explanation:
+          "Inventários cíclicos mensais são recomendados para tintas devido ao prazo de validade e alto giro de estoque.",
+        orderIndex: 4,
+      },
+    }),
+  ]);
+
+  // Progress for memberUser (partial completion on Vendedor steps)
+  await Promise.all([
+    userDb.firstStepsProgress.create({
+      data: {
+        userId: memberUser.user.id,
+        stepId: vendedorStep1.id,
+        completed: true,
+        completedAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000),
+      },
+    }),
+    userDb.firstStepsProgress.create({
+      data: {
+        userId: memberUser.user.id,
+        stepId: vendedorStep2.id,
+        completed: true,
+        completedAt: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000),
+      },
+    }),
+    userDb.firstStepsProgress.create({
+      data: {
+        userId: memberUser.user.id,
+        stepId: vendedorStep3.id,
+        completed: false,
+      },
+    }),
+  ]);
+
+  // Update member to have jobTypeId (assign Vendedor to memberUser)
+  await db.member.updateMany({
+    where: {
+      userId: memberUser.user.id,
+      organizationId: orgMain?.id ?? "",
+    },
+    data: {
+      jobTypeId: jobTypeVendedor.id,
+    },
+  });
+
   console.log("🌱 Database seeded successfully!");
   console.log("\n📋 Summary:");
   console.log("  - 3 Users (admin, manager, member)");
@@ -1457,6 +1849,10 @@ async function main() {
   console.log("  - 3 Candidate Questions");
   console.log("  - 3 Candidate Documents");
   console.log("  - 1 Invitation");
+  console.log("  - 2 First Steps Job Types (Vendedor, Gerente de Estoque)");
+  console.log("  - 10 First Steps Items (5 per job type)");
+  console.log("  - 2 First Steps Quizzes with 10 Questions");
+  console.log("  - 3 First Steps Progress records");
 }
 
 main();

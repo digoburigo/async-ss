@@ -37,6 +37,7 @@ import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedProductsIndexRouteImport } from './routes/_authenticated/products/index'
+import { Route as AuthenticatedPrimeiroPassosIndexRouteImport } from './routes/_authenticated/primeiro-passos/index'
 import { Route as AuthenticatedMindmapsIndexRouteImport } from './routes/_authenticated/mindmaps/index'
 import { Route as AuthenticatedKanbanIndexRouteImport } from './routes/_authenticated/kanban/index'
 import { Route as AuthenticatedIndicatorsIndexRouteImport } from './routes/_authenticated/indicators/index'
@@ -57,6 +58,7 @@ import { Route as AuthenticatedKanbanBoardIdRouteImport } from './routes/_authen
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 import { Route as AuthenticatedClientsNewRouteImport } from './routes/_authenticated/clients/new'
 import { Route as AuthenticatedClientsClientIdRouteImport } from './routes/_authenticated/clients/$clientId'
+import { Route as AuthenticatedPrimeiroPassosAdminIndexRouteImport } from './routes/_authenticated/primeiro-passos/admin/index'
 
 const TestRoute = TestRouteImport.update({
   id: '/test',
@@ -204,6 +206,12 @@ const AuthenticatedProductsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedProductsLayoutRoute,
   } as any)
+const AuthenticatedPrimeiroPassosIndexRoute =
+  AuthenticatedPrimeiroPassosIndexRouteImport.update({
+    id: '/primeiro-passos/',
+    path: '/primeiro-passos/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
 const AuthenticatedMindmapsIndexRoute =
   AuthenticatedMindmapsIndexRouteImport.update({
     id: '/',
@@ -321,6 +329,12 @@ const AuthenticatedClientsClientIdRoute =
     path: '/$clientId',
     getParentRoute: () => AuthenticatedClientsLayoutRoute,
   } as any)
+const AuthenticatedPrimeiroPassosAdminIndexRoute =
+  AuthenticatedPrimeiroPassosAdminIndexRouteImport.update({
+    id: '/primeiro-passos/admin/',
+    path: '/primeiro-passos/admin/',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/auth': typeof AuthLayoutRouteWithChildren
@@ -366,10 +380,12 @@ export interface FileRoutesByFullPath {
   '/indicators': typeof AuthenticatedIndicatorsIndexRoute
   '/kanban/': typeof AuthenticatedKanbanIndexRoute
   '/mindmaps/': typeof AuthenticatedMindmapsIndexRoute
+  '/primeiro-passos': typeof AuthenticatedPrimeiroPassosIndexRoute
   '/products/': typeof AuthenticatedProductsIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
+  '/primeiro-passos/admin': typeof AuthenticatedPrimeiroPassosAdminIndexRoute
 }
 export interface FileRoutesByTo {
   '/auth': typeof AuthLayoutRouteWithChildren
@@ -410,10 +426,12 @@ export interface FileRoutesByTo {
   '/indicators': typeof AuthenticatedIndicatorsIndexRoute
   '/kanban': typeof AuthenticatedKanbanIndexRoute
   '/mindmaps': typeof AuthenticatedMindmapsIndexRoute
+  '/primeiro-passos': typeof AuthenticatedPrimeiroPassosIndexRoute
   '/products': typeof AuthenticatedProductsIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
   '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
+  '/primeiro-passos/admin': typeof AuthenticatedPrimeiroPassosAdminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -461,10 +479,12 @@ export interface FileRoutesById {
   '/_authenticated/indicators/': typeof AuthenticatedIndicatorsIndexRoute
   '/_authenticated/kanban/': typeof AuthenticatedKanbanIndexRoute
   '/_authenticated/mindmaps/': typeof AuthenticatedMindmapsIndexRoute
+  '/_authenticated/primeiro-passos/': typeof AuthenticatedPrimeiroPassosIndexRoute
   '/_authenticated/products/': typeof AuthenticatedProductsIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
   '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
+  '/_authenticated/primeiro-passos/admin/': typeof AuthenticatedPrimeiroPassosAdminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -512,10 +532,12 @@ export interface FileRouteTypes {
     | '/indicators'
     | '/kanban/'
     | '/mindmaps/'
+    | '/primeiro-passos'
     | '/products/'
     | '/settings/'
     | '/tasks'
     | '/users'
+    | '/primeiro-passos/admin'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/auth'
@@ -556,10 +578,12 @@ export interface FileRouteTypes {
     | '/indicators'
     | '/kanban'
     | '/mindmaps'
+    | '/primeiro-passos'
     | '/products'
     | '/settings'
     | '/tasks'
     | '/users'
+    | '/primeiro-passos/admin'
   id:
     | '__root__'
     | '/_authenticated'
@@ -606,10 +630,12 @@ export interface FileRouteTypes {
     | '/_authenticated/indicators/'
     | '/_authenticated/kanban/'
     | '/_authenticated/mindmaps/'
+    | '/_authenticated/primeiro-passos/'
     | '/_authenticated/products/'
     | '/_authenticated/settings/'
     | '/_authenticated/tasks/'
     | '/_authenticated/users/'
+    | '/_authenticated/primeiro-passos/admin/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -829,6 +855,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedProductsIndexRouteImport
       parentRoute: typeof AuthenticatedProductsLayoutRoute
     }
+    '/_authenticated/primeiro-passos/': {
+      id: '/_authenticated/primeiro-passos/'
+      path: '/primeiro-passos'
+      fullPath: '/primeiro-passos'
+      preLoaderRoute: typeof AuthenticatedPrimeiroPassosIndexRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
     '/_authenticated/mindmaps/': {
       id: '/_authenticated/mindmaps/'
       path: '/'
@@ -969,6 +1002,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedClientsClientIdRouteImport
       parentRoute: typeof AuthenticatedClientsLayoutRoute
     }
+    '/_authenticated/primeiro-passos/admin/': {
+      id: '/_authenticated/primeiro-passos/admin/'
+      path: '/primeiro-passos/admin'
+      fullPath: '/primeiro-passos/admin'
+      preLoaderRoute: typeof AuthenticatedPrimeiroPassosAdminIndexRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
   }
 }
 
@@ -1077,8 +1117,10 @@ interface AuthenticatedLayoutRouteChildren {
   AuthenticatedGamificationIndexRoute: typeof AuthenticatedGamificationIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
   AuthenticatedIndicatorsIndexRoute: typeof AuthenticatedIndicatorsIndexRoute
+  AuthenticatedPrimeiroPassosIndexRoute: typeof AuthenticatedPrimeiroPassosIndexRoute
   AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
+  AuthenticatedPrimeiroPassosAdminIndexRoute: typeof AuthenticatedPrimeiroPassosAdminIndexRoute
 }
 
 const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
@@ -1098,8 +1140,11 @@ const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
   AuthenticatedGamificationIndexRoute: AuthenticatedGamificationIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
   AuthenticatedIndicatorsIndexRoute: AuthenticatedIndicatorsIndexRoute,
+  AuthenticatedPrimeiroPassosIndexRoute: AuthenticatedPrimeiroPassosIndexRoute,
   AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
+  AuthenticatedPrimeiroPassosAdminIndexRoute:
+    AuthenticatedPrimeiroPassosAdminIndexRoute,
 }
 
 const AuthenticatedLayoutRouteWithChildren =
