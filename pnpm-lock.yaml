@@ -772,11 +772,11 @@ importers:
         specifier: workspace:*
         version: link:../ui
       '@react-email/components':
-        specifier: ^1.0.1
-        version: 1.0.1(react-dom@19.1.4(react@19.1.4))(react@19.1.4)
+        specifier: ^1.0.2
+        version: 1.0.2(react-dom@19.1.4(react@19.1.4))(react@19.1.4)
       '@react-email/tailwind':
-        specifier: ^2.0.1
-        version: 2.0.1(@react-email/body@0.2.0(react@19.1.4))(@react-email/button@0.2.0(react@19.1.4))(@react-email/code-block@0.2.0(react@19.1.4))(@react-email/code-inline@0.0.5(react@19.1.4))(@react-email/container@0.0.15(react@19.1.4))(@react-email/heading@0.0.15(react@19.1.4))(@react-email/hr@0.0.11(react@19.1.4))(@react-email/img@0.0.11(react@19.1.4))(@react-email/link@0.0.12(react@19.1.4))(@react-email/preview@0.0.13(react@19.1.4))(@react-email/text@0.1.5(react@19.1.4))(react@19.1.4)
+        specifier: ^2.0.2
+        version: 2.0.2(@react-email/body@0.2.0(react@19.1.4))(@react-email/button@0.2.0(react@19.1.4))(@react-email/code-block@0.2.0(react@19.1.4))(@react-email/code-inline@0.0.5(react@19.1.4))(@react-email/container@0.0.15(react@19.1.4))(@react-email/heading@0.0.15(react@19.1.4))(@react-email/hr@0.0.11(react@19.1.4))(@react-email/img@0.0.11(react@19.1.4))(@react-email/link@0.0.12(react@19.1.4))(@react-email/preview@0.0.13(react@19.1.4))(@react-email/text@0.1.5(react@19.1.4))(react@19.1.4)
       nodemailer:
         specifier: ^7.0.11
         version: 7.0.11
@@ -794,8 +794,8 @@ importers:
         specifier: workspace:*
         version: link:../../tooling/typescript
       '@react-email/preview-server':
-        specifier: 5.0.8
-        version: 5.0.8(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0)
+        specifier: 5.1.0
+        version: 5.1.0(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0)
       '@types/node':
         specifier: 'catalog:'
         version: 24.10.4
@@ -809,8 +809,8 @@ importers:
         specifier: catalog:react19
         version: 19.1.11(@types/react@19.1.17)
       react-email:
-        specifier: ^5.0.8
-        version: 5.0.8(bufferutil@4.0.9)
+        specifier: ^5.1.0
+        version: 5.1.0(bufferutil@4.0.9)
       typescript:
         specifier: 'catalog:'
         version: 5.9.3
@@ -3653,20 +3653,11 @@ packages:
   '@next/env@16.0.10':
     resolution: {integrity: sha512-8tuaQkyDVgeONQ1MeT9Mkk8pQmZapMKFh5B+OrFUlG3rVmYTXcXlBetBgTurKXGaIZvkoqRT9JL5K3phXcgang==}
 
-  '@next/env@16.0.9':
-    resolution: {integrity: sha512-6284pl8c8n9PQidN63qjPVEu1uXXKjnmbmaLebOzIfTrSXdGiAPsIMRi4pk/+v/ezqweE1/B8bFqiAAfC6lMXg==}
-
   '@next/eslint-plugin-next@16.0.10':
     resolution: {integrity: sha512-b2NlWN70bbPLmfyoLvvidPKWENBYYIe017ZGUpElvQjDytCWgxPJx7L9juxHt0xHvNVA08ZHJdOyhGzon/KJuw==}
 
   '@next/swc-darwin-arm64@16.0.10':
     resolution: {integrity: sha512-4XgdKtdVsaflErz+B5XeG0T5PeXKDdruDf3CRpnhN+8UebNa5N2H58+3GDgpn/9GBurrQ1uWW768FfscwYkJRg==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [darwin]
-
-  '@next/swc-darwin-arm64@16.0.9':
-    resolution: {integrity: sha512-j06fWg/gPqiWjK+sEpCDsh5gX+Bdy9gnPYjFqMBvBEOIcCFy1/ecF6pY6XAce7WyCJAbBPVb+6GvpmUZKNq0oQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [darwin]
@@ -3677,20 +3668,8 @@ packages:
     cpu: [x64]
     os: [darwin]
 
-  '@next/swc-darwin-x64@16.0.9':
-    resolution: {integrity: sha512-FRYYz5GSKUkfvDSjd5hgHME2LgYjfOLBmhRVltbs3oRNQQf9n5UTQMmIu/u5vpkjJFV4L2tqo8duGqDxdQOFwg==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [darwin]
-
   '@next/swc-linux-arm64-gnu@16.0.10':
     resolution: {integrity: sha512-uQtWE3X0iGB8apTIskOMi2w/MKONrPOUCi5yLO+v3O8Mb5c7K4Q5KD1jvTpTF5gJKa3VH/ijKjKUq9O9UhwOYw==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [linux]
-
-  '@next/swc-linux-arm64-gnu@16.0.9':
-    resolution: {integrity: sha512-EI2klFVL8tOyEIX5J1gXXpm1YuChmDy4R+tHoNjkCHUmBJqXioYErX/O2go4pEhjxkAxHp2i8y5aJcRz2m5NqQ==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [linux]
@@ -3701,20 +3680,8 @@ packages:
     cpu: [arm64]
     os: [linux]
 
-  '@next/swc-linux-arm64-musl@16.0.9':
-    resolution: {integrity: sha512-vq/5HeGvowhDPMrpp/KP4GjPVhIXnwNeDPF5D6XK6ta96UIt+C0HwJwuHYlwmn0SWyNANqx1Mp6qSVDXwbFKsw==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [linux]
-
   '@next/swc-linux-x64-gnu@16.0.10':
     resolution: {integrity: sha512-AK2q5H0+a9nsXbeZ3FZdMtbtu9jxW4R/NgzZ6+lrTm3d6Zb7jYrWcgjcpM1k8uuqlSy4xIyPR2YiuUr+wXsavA==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [linux]
-
-  '@next/swc-linux-x64-gnu@16.0.9':
-    resolution: {integrity: sha512-GlUdJwy2leA/HnyRYxJ1ZJLCJH+BxZfqV4E0iYLrJipDKxWejWpPtZUdccPmCfIEY9gNBO7bPfbG6IIgkt0qXg==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [linux]
@@ -3725,32 +3692,14 @@ packages:
     cpu: [x64]
     os: [linux]
 
-  '@next/swc-linux-x64-musl@16.0.9':
-    resolution: {integrity: sha512-UCtOVx4N8AHF434VPwg4L0KkFLAd7pgJShzlX/hhv9+FDrT7/xCuVdlBsCXH7l9yCA/wHl3OqhMbIkgUluriWA==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [linux]
-
   '@next/swc-win32-arm64-msvc@16.0.10':
     resolution: {integrity: sha512-aEZIS4Hh32xdJQbHz121pyuVZniSNoqDVx1yIr2hy+ZwJGipeqnMZBJHyMxv2tiuAXGx6/xpTcQJ6btIiBjgmg==}
     engines: {node: '>= 10'}
     cpu: [arm64]
     os: [win32]
 
-  '@next/swc-win32-arm64-msvc@16.0.9':
-    resolution: {integrity: sha512-tQjtDGtv63mV3n/cZ4TH8BgUvKTSFlrF06yT5DyRmgQuj5WEjBUDy0W3myIW5kTRYMPrLn42H3VfCNwBH6YYiA==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [win32]
-
   '@next/swc-win32-x64-msvc@16.0.10':
     resolution: {integrity: sha512-E+njfCoFLb01RAFEnGZn6ERoOqhK1Gl3Lfz1Kjnj0Ulfu7oJbuMyvBKNj/bw8XZnenHDASlygTjZICQW+rYW1Q==}
-    engines: {node: '>= 10'}
-    cpu: [x64]
-    os: [win32]
-
-  '@next/swc-win32-x64-msvc@16.0.9':
-    resolution: {integrity: sha512-y9AGACHTBwnWFLq5B5Fiv3FEbXBusdPb60pgoerB04CV/pwjY1xQNdoTNxAv7eUhU2k1CKnkN4XWVuiK07uOqA==}
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
@@ -5440,9 +5389,9 @@ packages:
     peerDependencies:
       react: ^18.0 || ^19.0 || ^19.0.0-rc
 
-  '@react-email/components@1.0.1':
-    resolution: {integrity: sha512-HnL0Y/up61sOBQT2cQg9N/kCoW0bP727gDs2MkFWQYELg6+iIHidMDvENXFC0f1ZE6hTB+4t7sszptvTcJWsDA==}
-    engines: {node: '>=22.0.0'}
+  '@react-email/components@1.0.2':
+    resolution: {integrity: sha512-VKQR/motrySQMvy+ZUwPjdeD9iI9mCt8cfXuJAX8cK16rtzkEe12yq6/pXyW7c6qEMj7d+PNsoAcO+3AbJSfPg==}
+    engines: {node: '>=20.0.0'}
     peerDependencies:
       react: ^18.0 || ^19.0 || ^19.0.0-rc
 
@@ -5499,8 +5448,8 @@ packages:
     peerDependencies:
       react: ^18.0 || ^19.0 || ^19.0.0-rc
 
-  '@react-email/preview-server@5.0.8':
-    resolution: {integrity: sha512-TyAxXLFSgMDRwUEkCVvazkRYST9LZmYZMkJVv/K1221cMXa7r00R+S0R65lb4EULx397PRULXVWqJAwxyp/wcA==}
+  '@react-email/preview-server@5.1.0':
+    resolution: {integrity: sha512-mNqeCjXkU9NdVCtgQnj4l7w426G8xyFH4hejgrWa7wVaIUyVUwh9h9TqlPw9j4aisoBwnOYghbV987ejXd0i4w==}
 
   '@react-email/preview@0.0.13':
     resolution: {integrity: sha512-F7j9FJ0JN/A4d7yr+aw28p4uX7VLWs7hTHtLo7WRyw4G+Lit6Zucq4UWKRxJC8lpsUdzVmG7aBJnKOT+urqs/w==}
@@ -5527,9 +5476,9 @@ packages:
     peerDependencies:
       react: ^18.0 || ^19.0 || ^19.0.0-rc
 
-  '@react-email/tailwind@2.0.1':
-    resolution: {integrity: sha512-/xq0IDYVY7863xPY7cdI45Xoz7M6CnIQBJcQvbqN7MNVpopfH9f+mhjayV1JGfKaxlGWuxfLKhgi9T2shsnEFg==}
-    engines: {node: '>=22.0.0'}
+  '@react-email/tailwind@2.0.2':
+    resolution: {integrity: sha512-ooi1H77+w+MN3a3Yps66GYTMoo9PvLtzJ1bTEI+Ta58MUUEQOcdxxXPwbnox+xj2kSwv0g/B63qquNTabKI8Bw==}
+    engines: {node: '>=20.0.0'}
     peerDependencies:
       '@react-email/body': 0.2.0
       '@react-email/button': 0.2.0
@@ -11658,28 +11607,6 @@ packages:
       sass:
         optional: true
 
-  next@16.0.9:
-    resolution: {integrity: sha512-Xk5x/wEk6ADIAtQECLo1uyE5OagbQCiZ+gW4XEv24FjQ3O2PdSkvgsn22aaseSXC7xg84oONvQjFbSTX5YsMhQ==}
-    engines: {node: '>=20.9.0'}
-    deprecated: This version has a security vulnerability. Please upgrade to a patched version. See https://nextjs.org/blog/security-update-2025-12-11 for more details.
-    hasBin: true
-    peerDependencies:
-      '@opentelemetry/api': ^1.1.0
-      '@playwright/test': ^1.51.1
-      babel-plugin-react-compiler: '*'
-      react: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
-      react-dom: ^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0
-      sass: ^1.3.0
-    peerDependenciesMeta:
-      '@opentelemetry/api':
-        optional: true
-      '@playwright/test':
-        optional: true
-      babel-plugin-react-compiler:
-        optional: true
-      sass:
-        optional: true
-
   nice-try@1.0.5:
     resolution: {integrity: sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==}
 
@@ -12322,11 +12249,6 @@ packages:
       prettier-plugin-svelte:
         optional: true
 
-  prettier@3.7.3:
-    resolution: {integrity: sha512-QgODejq9K3OzoBbuyobZlUhznP5SKwPqp+6Q6xw6o8gnhr4O85L2U915iM2IDcfF2NPXVaM9zlo9tdwipnYwzg==}
-    engines: {node: '>=14'}
-    hasBin: true
-
   prettier@3.7.4:
     resolution: {integrity: sha512-v6UNi1+3hSlVvv8fSaoUbggEM5VErKmmpGA7Pl3HF8V6uKY7rvClBOJlH6yNwQtfTueNkGVpOv/mtWL9L4bgRA==}
     engines: {node: '>=14'}
@@ -12577,8 +12499,8 @@ packages:
     peerDependencies:
       react: '>= 16.8 || 18.0.0'
 
-  react-email@5.0.8:
-    resolution: {integrity: sha512-JyhnOiFRfO1q1olkZ1lXawPUF01BSsi9Zg7SNpnxUnnlZHVxwVl7WV2U6QP/NPbIJx/VOSjGfNOeQWyqQIZJGA==}
+  react-email@5.1.0:
+    resolution: {integrity: sha512-uVvtKcea0kd+QRwH5/Cw/znnijIge+Jog0IFagi0JiZgQ/GrDQ/qD98AwGVV1vM3hGbSugOvmcMayamFc4Zz1g==}
     engines: {node: '>=20.0.0'}
     hasBin: true
 
@@ -17878,10 +17800,7 @@ snapshots:
       '@types/pg': 8.11.6
     optional: true
 
-  '@next/env@16.0.10':
-    optional: true
-
-  '@next/env@16.0.9': {}
+  '@next/env@16.0.10': {}
 
   '@next/eslint-plugin-next@16.0.10':
     dependencies:
@@ -17890,49 +17809,25 @@ snapshots:
   '@next/swc-darwin-arm64@16.0.10':
     optional: true
 
-  '@next/swc-darwin-arm64@16.0.9':
-    optional: true
-
   '@next/swc-darwin-x64@16.0.10':
-    optional: true
-
-  '@next/swc-darwin-x64@16.0.9':
     optional: true
 
   '@next/swc-linux-arm64-gnu@16.0.10':
     optional: true
 
-  '@next/swc-linux-arm64-gnu@16.0.9':
-    optional: true
-
   '@next/swc-linux-arm64-musl@16.0.10':
-    optional: true
-
-  '@next/swc-linux-arm64-musl@16.0.9':
     optional: true
 
   '@next/swc-linux-x64-gnu@16.0.10':
     optional: true
 
-  '@next/swc-linux-x64-gnu@16.0.9':
-    optional: true
-
   '@next/swc-linux-x64-musl@16.0.10':
-    optional: true
-
-  '@next/swc-linux-x64-musl@16.0.9':
     optional: true
 
   '@next/swc-win32-arm64-msvc@16.0.10':
     optional: true
 
-  '@next/swc-win32-arm64-msvc@16.0.9':
-    optional: true
-
   '@next/swc-win32-x64-msvc@16.0.10':
-    optional: true
-
-  '@next/swc-win32-x64-msvc@16.0.9':
     optional: true
 
   '@noble/ciphers@2.0.1': {}
@@ -20086,7 +19981,7 @@ snapshots:
     dependencies:
       react: 19.1.4
 
-  '@react-email/components@1.0.1(react-dom@19.1.4(react@19.1.4))(react@19.1.4)':
+  '@react-email/components@1.0.2(react-dom@19.1.4(react@19.1.4))(react@19.1.4)':
     dependencies:
       '@react-email/body': 0.2.0(react@19.1.4)
       '@react-email/button': 0.2.0(react@19.1.4)
@@ -20106,7 +20001,7 @@ snapshots:
       '@react-email/render': 2.0.0(react-dom@19.1.4(react@19.1.4))(react@19.1.4)
       '@react-email/row': 0.0.12(react@19.1.4)
       '@react-email/section': 0.0.16(react@19.1.4)
-      '@react-email/tailwind': 2.0.1(@react-email/body@0.2.0(react@19.1.4))(@react-email/button@0.2.0(react@19.1.4))(@react-email/code-block@0.2.0(react@19.1.4))(@react-email/code-inline@0.0.5(react@19.1.4))(@react-email/container@0.0.15(react@19.1.4))(@react-email/heading@0.0.15(react@19.1.4))(@react-email/hr@0.0.11(react@19.1.4))(@react-email/img@0.0.11(react@19.1.4))(@react-email/link@0.0.12(react@19.1.4))(@react-email/preview@0.0.13(react@19.1.4))(@react-email/text@0.1.5(react@19.1.4))(react@19.1.4)
+      '@react-email/tailwind': 2.0.2(@react-email/body@0.2.0(react@19.1.4))(@react-email/button@0.2.0(react@19.1.4))(@react-email/code-block@0.2.0(react@19.1.4))(@react-email/code-inline@0.0.5(react@19.1.4))(@react-email/container@0.0.15(react@19.1.4))(@react-email/heading@0.0.15(react@19.1.4))(@react-email/hr@0.0.11(react@19.1.4))(@react-email/img@0.0.11(react@19.1.4))(@react-email/link@0.0.12(react@19.1.4))(@react-email/preview@0.0.13(react@19.1.4))(@react-email/text@0.1.5(react@19.1.4))(react@19.1.4)
       '@react-email/text': 0.1.5(react@19.1.4)
       react: 19.1.4
     transitivePeerDependencies:
@@ -20149,9 +20044,9 @@ snapshots:
       marked: 15.0.12
       react: 19.1.4
 
-  '@react-email/preview-server@5.0.8(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0)':
+  '@react-email/preview-server@5.1.0(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0)':
     dependencies:
-      next: 16.0.9(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0)
+      next: 16.0.10(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0)
     transitivePeerDependencies:
       - '@babel/core'
       - '@opentelemetry/api'
@@ -20169,7 +20064,7 @@ snapshots:
   '@react-email/render@2.0.0(react-dom@19.1.4(react@19.1.4))(react@19.1.4)':
     dependencies:
       html-to-text: 9.0.5
-      prettier: 3.7.3
+      prettier: 3.7.4
       react: 19.1.4
       react-dom: 19.1.4(react@19.1.4)
 
@@ -20181,7 +20076,7 @@ snapshots:
     dependencies:
       react: 19.1.4
 
-  '@react-email/tailwind@2.0.1(@react-email/body@0.2.0(react@19.1.4))(@react-email/button@0.2.0(react@19.1.4))(@react-email/code-block@0.2.0(react@19.1.4))(@react-email/code-inline@0.0.5(react@19.1.4))(@react-email/container@0.0.15(react@19.1.4))(@react-email/heading@0.0.15(react@19.1.4))(@react-email/hr@0.0.11(react@19.1.4))(@react-email/img@0.0.11(react@19.1.4))(@react-email/link@0.0.12(react@19.1.4))(@react-email/preview@0.0.13(react@19.1.4))(@react-email/text@0.1.5(react@19.1.4))(react@19.1.4)':
+  '@react-email/tailwind@2.0.2(@react-email/body@0.2.0(react@19.1.4))(@react-email/button@0.2.0(react@19.1.4))(@react-email/code-block@0.2.0(react@19.1.4))(@react-email/code-inline@0.0.5(react@19.1.4))(@react-email/container@0.0.15(react@19.1.4))(@react-email/heading@0.0.15(react@19.1.4))(@react-email/hr@0.0.11(react@19.1.4))(@react-email/img@0.0.11(react@19.1.4))(@react-email/link@0.0.12(react@19.1.4))(@react-email/preview@0.0.13(react@19.1.4))(@react-email/text@0.1.5(react@19.1.4))(react@19.1.4)':
     dependencies:
       '@react-email/text': 0.1.5(react@19.1.4)
       react: 19.1.4
@@ -22208,7 +22103,7 @@ snapshots:
 
   '@types/cors@2.8.19':
     dependencies:
-      '@types/node': 22.19.0
+      '@types/node': 24.10.4
 
   '@types/d3-array@3.2.2': {}
 
@@ -22278,11 +22173,11 @@ snapshots:
   '@types/glob@7.2.0':
     dependencies:
       '@types/minimatch': 6.0.0
-      '@types/node': 22.19.0
+      '@types/node': 24.10.4
 
   '@types/graceful-fs@4.1.9':
     dependencies:
-      '@types/node': 22.19.0
+      '@types/node': 24.10.4
 
   '@types/hammerjs@2.0.46': {}
 
@@ -22398,7 +22293,7 @@ snapshots:
 
   '@types/through@0.0.33':
     dependencies:
-      '@types/node': 22.19.0
+      '@types/node': 24.10.4
 
   '@types/tinycolor2@1.4.6': {}
 
@@ -24583,7 +24478,7 @@ snapshots:
   engine.io@6.6.4(bufferutil@4.0.9):
     dependencies:
       '@types/cors': 2.8.19
-      '@types/node': 22.19.0
+      '@types/node': 24.10.4
       accepts: 1.3.8
       base64id: 2.0.0
       cookie: 0.7.2
@@ -26361,7 +26256,7 @@ snapshots:
     dependencies:
       '@jest/types': 29.6.3
       '@types/graceful-fs': 4.1.9
-      '@types/node': 22.19.0
+      '@types/node': 24.10.4
       anymatch: 3.1.3
       fb-watchman: 2.0.2
       graceful-fs: 4.2.11
@@ -27884,33 +27779,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
-    optional: true
-
-  next@16.0.9(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0):
-    dependencies:
-      '@next/env': 16.0.9
-      '@swc/helpers': 0.5.15
-      caniuse-lite: 1.0.30001754
-      postcss: 8.4.31
-      react: 19.1.4
-      react-dom: 19.1.4(react@19.1.4)
-      styled-jsx: 5.1.6(@babel/core@7.28.5)(react@19.1.4)
-    optionalDependencies:
-      '@next/swc-darwin-arm64': 16.0.9
-      '@next/swc-darwin-x64': 16.0.9
-      '@next/swc-linux-arm64-gnu': 16.0.9
-      '@next/swc-linux-arm64-musl': 16.0.9
-      '@next/swc-linux-x64-gnu': 16.0.9
-      '@next/swc-linux-x64-musl': 16.0.9
-      '@next/swc-win32-arm64-msvc': 16.0.9
-      '@next/swc-win32-x64-msvc': 16.0.9
-      '@opentelemetry/api': 1.9.0
-      babel-plugin-react-compiler: 1.0.0
-      sass: 1.51.0
-      sharp: 0.34.5
-    transitivePeerDependencies:
-      - '@babel/core'
-      - babel-plugin-macros
 
   nice-try@1.0.5: {}
 
@@ -28636,8 +28504,6 @@ snapshots:
     optionalDependencies:
       '@ianvs/prettier-plugin-sort-imports': 4.7.0(prettier@3.7.4)
 
-  prettier@3.7.3: {}
-
   prettier@3.7.4: {}
 
   pretty-bytes@5.6.0: {}
@@ -29011,7 +28877,7 @@ snapshots:
       prop-types: 15.8.1
       react: 19.1.4
 
-  react-email@5.0.8(bufferutil@4.0.9):
+  react-email@5.1.0(bufferutil@4.0.9):
     dependencies:
       '@babel/parser': 7.28.5
       '@babel/traverse': 7.28.5
