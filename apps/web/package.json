@@ -41,7 +41,7 @@
     "@tanstack/react-router": "^1.141.6",
     "@tanstack/react-table": "^8.21.3",
     "@xyflow/react": "^12.10.0",
-    "@zenstackhq/tanstack-query": "^3.0.0-beta.32",
+    "@zenstackhq/tanstack-query": "^3.0.0-beta.33",
     "better-auth": "catalog:",
     "date-fns": "^4.1.0",
     "dotenv-cli": "^11.0.0",
