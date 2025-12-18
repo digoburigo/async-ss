@@ -39,7 +39,7 @@
     "prettier": "catalog:",
     "turbo": "^2.6.3",
     "typescript": "catalog:",
-    "ultracite": "6.4.1"
+    "ultracite": "6.4.2"
   },
   "packageManager": "pnpm@10.26.0",
   "engines": {
