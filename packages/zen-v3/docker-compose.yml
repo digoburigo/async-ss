@@ -1,17 +1,17 @@
-name: ss-altos
+name: asyn-ss
 
 services:
   postgres:
     image: postgres
-    container_name: ss-altos-postgres
+    container_name: asynss-postgres
     environment:
-      POSTGRES_DB: ssaltos
+      POSTGRES_DB: asynss
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
     volumes:
-      - ssaltos_postgres_data:/var/lib/postgresql/data
+      - asynss_postgres_data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -20,4 +20,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  ssaltos_postgres_data:
+  asynss_postgres_data:
