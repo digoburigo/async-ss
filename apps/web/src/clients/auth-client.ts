@@ -1,4 +1,8 @@
-import { adminClient, organizationClient } from "better-auth/client/plugins";
+import {
+  adminClient,
+  anonymousClient,
+  organizationClient,
+} from "better-auth/client/plugins";
 import { createAuthClient } from "better-auth/react";
 
 if (!import.meta.env.PUBLIC_SERVER_URL) {
@@ -7,7 +11,7 @@ if (!import.meta.env.PUBLIC_SERVER_URL) {
 
 export const authClient = createAuthClient({
   baseURL: import.meta.env.PUBLIC_SERVER_URL,
-  plugins: [adminClient(), organizationClient()],
+  plugins: [adminClient(), anonymousClient(), organizationClient()],
 });
 
 export type AuthSession =

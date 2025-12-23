@@ -5,8 +5,11 @@
 
 /* eslint-disable */
 
-import { schema as $schema, type SchemaType as $Schema } from "./schema";
-import { type ModelResult as $ModelResult, type TypeDefResult as $TypeDefResult } from "@zenstackhq/orm";
+import type {
+  ModelResult as $ModelResult,
+  TypeDefResult as $TypeDefResult,
+} from "@zenstackhq/orm";
+import { type SchemaType as $Schema, schema as $schema } from "./schema";
 export type User = $ModelResult<$Schema, "User">;
 export type Session = $ModelResult<$Schema, "Session">;
 export type Account = $ModelResult<$Schema, "Account">;
@@ -23,8 +26,14 @@ export type OnboardingDocument = $ModelResult<$Schema, "OnboardingDocument">;
 export type OnboardingChat = $ModelResult<$Schema, "OnboardingChat">;
 export type KnowledgeChat = $ModelResult<$Schema, "KnowledgeChat">;
 export type GroupChatMessage = $ModelResult<$Schema, "GroupChatMessage">;
-export type OnboardingChecklistStep = $ModelResult<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistProgress = $ModelResult<$Schema, "OnboardingChecklistProgress">;
+export type OnboardingChecklistStep = $ModelResult<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistProgress = $ModelResult<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
 export type CalendarEvent = $ModelResult<$Schema, "CalendarEvent">;
 export type KanbanBoard = $ModelResult<$Schema, "KanbanBoard">;
 export type KanbanColumn = $ModelResult<$Schema, "KanbanColumn">;
@@ -38,26 +47,66 @@ export type UserActionCount = $ModelResult<$Schema, "UserActionCount">;
 export type TutorialSector = $ModelResult<$Schema, "TutorialSector">;
 export type TutorialSection = $ModelResult<$Schema, "TutorialSection">;
 export type TutorialStep = $ModelResult<$Schema, "TutorialStep">;
-export type TutorialStepProgress = $ModelResult<$Schema, "TutorialStepProgress">;
+export type TutorialStepProgress = $ModelResult<
+  $Schema,
+  "TutorialStepProgress"
+>;
 export type Meeting = $ModelResult<$Schema, "Meeting">;
 export type Mindmap = $ModelResult<$Schema, "Mindmap">;
-export type OffboardingChecklistStep = $ModelResult<$Schema, "OffboardingChecklistStep">;
+export type OffboardingChecklistStep = $ModelResult<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
 export type OffboardingProcess = $ModelResult<$Schema, "OffboardingProcess">;
 export type OffboardingProgress = $ModelResult<$Schema, "OffboardingProgress">;
-export type OffboardingHandoverTask = $ModelResult<$Schema, "OffboardingHandoverTask">;
+export type OffboardingHandoverTask = $ModelResult<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
 export type PreboardingStage = $ModelResult<$Schema, "PreboardingStage">;
-export type PreboardingJobPosition = $ModelResult<$Schema, "PreboardingJobPosition">;
-export type PreboardingCandidate = $ModelResult<$Schema, "PreboardingCandidate">;
+export type PreboardingJobPosition = $ModelResult<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingCandidate = $ModelResult<
+  $Schema,
+  "PreboardingCandidate"
+>;
 export type PreboardingActivity = $ModelResult<$Schema, "PreboardingActivity">;
-export type PreboardingInterview = $ModelResult<$Schema, "PreboardingInterview">;
-export type PreboardingCandidateQuestion = $ModelResult<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateDocument = $ModelResult<$Schema, "PreboardingCandidateDocument">;
+export type PreboardingInterview = $ModelResult<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingCandidateQuestion = $ModelResult<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateDocument = $ModelResult<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
 export type FirstStepsJobType = $ModelResult<$Schema, "FirstStepsJobType">;
 export type FirstStepsItem = $ModelResult<$Schema, "FirstStepsItem">;
 export type FirstStepsProgress = $ModelResult<$Schema, "FirstStepsProgress">;
 export type FirstStepsQuiz = $ModelResult<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizQuestion = $ModelResult<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizAttempt = $ModelResult<$Schema, "FirstStepsQuizAttempt">;
+export type FirstStepsQuizQuestion = $ModelResult<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizAttempt = $ModelResult<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FeedbackDepartment = $ModelResult<$Schema, "FeedbackDepartment">;
+export type FeedbackCategory = $ModelResult<$Schema, "FeedbackCategory">;
+export type FeedbackSubcategory = $ModelResult<$Schema, "FeedbackSubcategory">;
+export type CitizenFeedback = $ModelResult<$Schema, "CitizenFeedback">;
+export type FeedbackAttachment = $ModelResult<$Schema, "FeedbackAttachment">;
+export type FeedbackComment = $ModelResult<$Schema, "FeedbackComment">;
+export type FeedbackStatusHistory = $ModelResult<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
 /**
  * Shape of the `auth()` function
  */
@@ -77,38 +126,60 @@ export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus];
 export const MilestoneType = $schema.enums.MilestoneType.values;
 export type MilestoneType = (typeof MilestoneType)[keyof typeof MilestoneType];
 export const GroupChatMessageType = $schema.enums.GroupChatMessageType.values;
-export type GroupChatMessageType = (typeof GroupChatMessageType)[keyof typeof GroupChatMessageType];
+export type GroupChatMessageType =
+  (typeof GroupChatMessageType)[keyof typeof GroupChatMessageType];
 export const OffboardingCategory = $schema.enums.OffboardingCategory.values;
-export type OffboardingCategory = (typeof OffboardingCategory)[keyof typeof OffboardingCategory];
+export type OffboardingCategory =
+  (typeof OffboardingCategory)[keyof typeof OffboardingCategory];
 export const OffboardingStatus = $schema.enums.OffboardingStatus.values;
-export type OffboardingStatus = (typeof OffboardingStatus)[keyof typeof OffboardingStatus];
+export type OffboardingStatus =
+  (typeof OffboardingStatus)[keyof typeof OffboardingStatus];
 export const OffboardingReason = $schema.enums.OffboardingReason.values;
-export type OffboardingReason = (typeof OffboardingReason)[keyof typeof OffboardingReason];
+export type OffboardingReason =
+  (typeof OffboardingReason)[keyof typeof OffboardingReason];
 export const HandoverTaskStatus = $schema.enums.HandoverTaskStatus.values;
-export type HandoverTaskStatus = (typeof HandoverTaskStatus)[keyof typeof HandoverTaskStatus];
+export type HandoverTaskStatus =
+  (typeof HandoverTaskStatus)[keyof typeof HandoverTaskStatus];
 export const HandoverTaskPriority = $schema.enums.HandoverTaskPriority.values;
-export type HandoverTaskPriority = (typeof HandoverTaskPriority)[keyof typeof HandoverTaskPriority];
+export type HandoverTaskPriority =
+  (typeof HandoverTaskPriority)[keyof typeof HandoverTaskPriority];
 export const CandidateStatus = $schema.enums.CandidateStatus.values;
-export type CandidateStatus = (typeof CandidateStatus)[keyof typeof CandidateStatus];
+export type CandidateStatus =
+  (typeof CandidateStatus)[keyof typeof CandidateStatus];
 export const ActivityType = $schema.enums.ActivityType.values;
 export type ActivityType = (typeof ActivityType)[keyof typeof ActivityType];
 export const InterviewType = $schema.enums.InterviewType.values;
 export type InterviewType = (typeof InterviewType)[keyof typeof InterviewType];
 export const InterviewStatus = $schema.enums.InterviewStatus.values;
-export type InterviewStatus = (typeof InterviewStatus)[keyof typeof InterviewStatus];
+export type InterviewStatus =
+  (typeof InterviewStatus)[keyof typeof InterviewStatus];
 export const WorkModel = $schema.enums.WorkModel.values;
 export type WorkModel = (typeof WorkModel)[keyof typeof WorkModel];
 export const EmploymentType = $schema.enums.EmploymentType.values;
-export type EmploymentType = (typeof EmploymentType)[keyof typeof EmploymentType];
+export type EmploymentType =
+  (typeof EmploymentType)[keyof typeof EmploymentType];
 export const JobPositionPriority = $schema.enums.JobPositionPriority.values;
-export type JobPositionPriority = (typeof JobPositionPriority)[keyof typeof JobPositionPriority];
+export type JobPositionPriority =
+  (typeof JobPositionPriority)[keyof typeof JobPositionPriority];
 export const JobPositionStatus = $schema.enums.JobPositionStatus.values;
-export type JobPositionStatus = (typeof JobPositionStatus)[keyof typeof JobPositionStatus];
+export type JobPositionStatus =
+  (typeof JobPositionStatus)[keyof typeof JobPositionStatus];
 export const QuestionType = $schema.enums.QuestionType.values;
 export type QuestionType = (typeof QuestionType)[keyof typeof QuestionType];
 export const MeetingStatus = $schema.enums.MeetingStatus.values;
 export type MeetingStatus = (typeof MeetingStatus)[keyof typeof MeetingStatus];
 export const FirstStepsLinkType = $schema.enums.FirstStepsLinkType.values;
-export type FirstStepsLinkType = (typeof FirstStepsLinkType)[keyof typeof FirstStepsLinkType];
+export type FirstStepsLinkType =
+  (typeof FirstStepsLinkType)[keyof typeof FirstStepsLinkType];
 export const CalendarEventType = $schema.enums.CalendarEventType.values;
-export type CalendarEventType = (typeof CalendarEventType)[keyof typeof CalendarEventType];
+export type CalendarEventType =
+  (typeof CalendarEventType)[keyof typeof CalendarEventType];
+export const FeedbackStatus = $schema.enums.FeedbackStatus.values;
+export type FeedbackStatus =
+  (typeof FeedbackStatus)[keyof typeof FeedbackStatus];
+export const FeedbackPriority = $schema.enums.FeedbackPriority.values;
+export type FeedbackPriority =
+  (typeof FeedbackPriority)[keyof typeof FeedbackPriority];
+export const FeedbackSource = $schema.enums.FeedbackSource.values;
+export type FeedbackSource =
+  (typeof FeedbackSource)[keyof typeof FeedbackSource];

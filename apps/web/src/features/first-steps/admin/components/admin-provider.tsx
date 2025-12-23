@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 import type {
   FirstStepsItem,
   FirstStepsJobType,
@@ -7,6 +5,7 @@ import type {
   FirstStepsQuizQuestion,
   Member,
 } from "@acme/zen-v3/zenstack/models";
+import React, { useState } from "react";
 
 import useDialogState from "~/hooks/use-dialog-state";
 

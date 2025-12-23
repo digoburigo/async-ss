@@ -2,7 +2,7 @@ import { Skeleton } from "@acme/ui/base-ui/skeleton";
 
 function StepCardSkeleton() {
   return (
-    <div className="bg-card flex items-start gap-4 rounded-lg border p-4">
+    <div className="flex items-start gap-4 rounded-lg border bg-card p-4">
       {/* Checkbox skeleton */}
       <Skeleton className="mt-0.5 size-4 shrink-0 rounded" />
 

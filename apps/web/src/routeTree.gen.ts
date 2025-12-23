@@ -16,6 +16,7 @@ import { Route as LandRouteImport } from './routes/land'
 import { Route as AuthLayoutRouteImport } from './routes/auth/layout'
 import { Route as AuthenticatedLayoutRouteImport } from './routes/_authenticated/layout'
 import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
+import { Route as FeedbackTrackRouteImport } from './routes/feedback/track'
 import { Route as AuthRegisterRouteImport } from './routes/auth/register'
 import { Route as AuthLoginRouteImport } from './routes/auth/login'
 import { Route as errors503RouteImport } from './routes/(errors)/503'
@@ -32,6 +33,7 @@ import { Route as AuthenticatedSettingsLayoutRouteImport } from './routes/_authe
 import { Route as AuthenticatedProductsLayoutRouteImport } from './routes/_authenticated/products/layout'
 import { Route as AuthenticatedMindmapsLayoutRouteImport } from './routes/_authenticated/mindmaps/layout'
 import { Route as AuthenticatedKanbanLayoutRouteImport } from './routes/_authenticated/kanban/layout'
+import { Route as AuthenticatedFeedbackLayoutRouteImport } from './routes/_authenticated/feedback/layout'
 import { Route as AuthenticatedClientsLayoutRouteImport } from './routes/_authenticated/clients/layout'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
 import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
@@ -43,10 +45,13 @@ import { Route as AuthenticatedKanbanIndexRouteImport } from './routes/_authenti
 import { Route as AuthenticatedIndicatorsIndexRouteImport } from './routes/_authenticated/indicators/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
 import { Route as AuthenticatedGamificationIndexRouteImport } from './routes/_authenticated/gamification/index'
+import { Route as AuthenticatedFeedbackIndexRouteImport } from './routes/_authenticated/feedback/index'
 import { Route as AuthenticatedClientsIndexRouteImport } from './routes/_authenticated/clients/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
 import { Route as AuthenticatedCalendarIndexRouteImport } from './routes/_authenticated/calendar/index'
 import { Route as AuthenticatedAppsIndexRouteImport } from './routes/_authenticated/apps/index'
+import { Route as FeedbackTrackReferenceNumberRouteImport } from './routes/feedback/track.$referenceNumber'
+import { Route as FeedbackSubmitOrganizationSlugRouteImport } from './routes/feedback/submit.$organizationSlug'
 import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes/_authenticated/settings/notifications'
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
@@ -55,6 +60,9 @@ import { Route as AuthenticatedProductsNewRouteImport } from './routes/_authenti
 import { Route as AuthenticatedProductsProductIdRouteImport } from './routes/_authenticated/products/$productId'
 import { Route as AuthenticatedMindmapsMindmapIdRouteImport } from './routes/_authenticated/mindmaps/$mindmapId'
 import { Route as AuthenticatedKanbanBoardIdRouteImport } from './routes/_authenticated/kanban/$boardId'
+import { Route as AuthenticatedFeedbackDepartmentsRouteImport } from './routes/_authenticated/feedback/departments'
+import { Route as AuthenticatedFeedbackDashboardRouteImport } from './routes/_authenticated/feedback/dashboard'
+import { Route as AuthenticatedFeedbackCategoriesRouteImport } from './routes/_authenticated/feedback/categories'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 import { Route as AuthenticatedClientsNewRouteImport } from './routes/_authenticated/clients/new'
 import { Route as AuthenticatedClientsClientIdRouteImport } from './routes/_authenticated/clients/$clientId'
@@ -93,6 +101,11 @@ const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => AuthenticatedLayoutRoute,
+} as any)
+const FeedbackTrackRoute = FeedbackTrackRouteImport.update({
+  id: '/feedback/track',
+  path: '/feedback/track',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRegisterRoute = AuthRegisterRouteImport.update({
   id: '/register',
@@ -178,6 +191,12 @@ const AuthenticatedKanbanLayoutRoute =
     path: '/kanban',
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any)
+const AuthenticatedFeedbackLayoutRoute =
+  AuthenticatedFeedbackLayoutRouteImport.update({
+    id: '/feedback',
+    path: '/feedback',
+    getParentRoute: () => AuthenticatedLayoutRoute,
+  } as any)
 const AuthenticatedClientsLayoutRoute =
   AuthenticatedClientsLayoutRouteImport.update({
     id: '/clients',
@@ -242,6 +261,12 @@ const AuthenticatedGamificationIndexRoute =
     path: '/gamification/',
     getParentRoute: () => AuthenticatedLayoutRoute,
   } as any)
+const AuthenticatedFeedbackIndexRoute =
+  AuthenticatedFeedbackIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedFeedbackLayoutRoute,
+  } as any)
 const AuthenticatedClientsIndexRoute =
   AuthenticatedClientsIndexRouteImport.update({
     id: '/',
@@ -264,6 +289,18 @@ const AuthenticatedAppsIndexRoute = AuthenticatedAppsIndexRouteImport.update({
   path: '/apps/',
   getParentRoute: () => AuthenticatedLayoutRoute,
 } as any)
+const FeedbackTrackReferenceNumberRoute =
+  FeedbackTrackReferenceNumberRouteImport.update({
+    id: '/$referenceNumber',
+    path: '/$referenceNumber',
+    getParentRoute: () => FeedbackTrackRoute,
+  } as any)
+const FeedbackSubmitOrganizationSlugRoute =
+  FeedbackSubmitOrganizationSlugRouteImport.update({
+    id: '/feedback/submit/$organizationSlug',
+    path: '/feedback/submit/$organizationSlug',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const AuthenticatedSettingsNotificationsRoute =
   AuthenticatedSettingsNotificationsRouteImport.update({
     id: '/notifications',
@@ -312,6 +349,24 @@ const AuthenticatedKanbanBoardIdRoute =
     path: '/$boardId',
     getParentRoute: () => AuthenticatedKanbanLayoutRoute,
   } as any)
+const AuthenticatedFeedbackDepartmentsRoute =
+  AuthenticatedFeedbackDepartmentsRouteImport.update({
+    id: '/departments',
+    path: '/departments',
+    getParentRoute: () => AuthenticatedFeedbackLayoutRoute,
+  } as any)
+const AuthenticatedFeedbackDashboardRoute =
+  AuthenticatedFeedbackDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedFeedbackLayoutRoute,
+  } as any)
+const AuthenticatedFeedbackCategoriesRoute =
+  AuthenticatedFeedbackCategoriesRouteImport.update({
+    id: '/categories',
+    path: '/categories',
+    getParentRoute: () => AuthenticatedFeedbackLayoutRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -343,6 +398,7 @@ export interface FileRoutesByFullPath {
   '/plate': typeof PlateRoute
   '/test': typeof TestRoute
   '/clients': typeof AuthenticatedClientsLayoutRouteWithChildren
+  '/feedback': typeof AuthenticatedFeedbackLayoutRouteWithChildren
   '/kanban': typeof AuthenticatedKanbanLayoutRouteWithChildren
   '/mindmaps': typeof AuthenticatedMindmapsLayoutRouteWithChildren
   '/products': typeof AuthenticatedProductsLayoutRouteWithChildren
@@ -359,10 +415,14 @@ export interface FileRoutesByFullPath {
   '/503': typeof errors503Route
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/feedback/track': typeof FeedbackTrackRouteWithChildren
   '/': typeof AuthenticatedIndexRoute
   '/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/clients/new': typeof AuthenticatedClientsNewRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/feedback/categories': typeof AuthenticatedFeedbackCategoriesRoute
+  '/feedback/dashboard': typeof AuthenticatedFeedbackDashboardRoute
+  '/feedback/departments': typeof AuthenticatedFeedbackDepartmentsRoute
   '/kanban/$boardId': typeof AuthenticatedKanbanBoardIdRoute
   '/mindmaps/$mindmapId': typeof AuthenticatedMindmapsMindmapIdRoute
   '/products/$productId': typeof AuthenticatedProductsProductIdRoute
@@ -371,10 +431,13 @@ export interface FileRoutesByFullPath {
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/feedback/submit/$organizationSlug': typeof FeedbackSubmitOrganizationSlugRoute
+  '/feedback/track/$referenceNumber': typeof FeedbackTrackReferenceNumberRoute
   '/apps': typeof AuthenticatedAppsIndexRoute
   '/calendar': typeof AuthenticatedCalendarIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/clients/': typeof AuthenticatedClientsIndexRoute
+  '/feedback/': typeof AuthenticatedFeedbackIndexRoute
   '/gamification': typeof AuthenticatedGamificationIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/indicators': typeof AuthenticatedIndicatorsIndexRoute
@@ -405,10 +468,14 @@ export interface FileRoutesByTo {
   '/503': typeof errors503Route
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/feedback/track': typeof FeedbackTrackRouteWithChildren
   '/': typeof AuthenticatedIndexRoute
   '/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/clients/new': typeof AuthenticatedClientsNewRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/feedback/categories': typeof AuthenticatedFeedbackCategoriesRoute
+  '/feedback/dashboard': typeof AuthenticatedFeedbackDashboardRoute
+  '/feedback/departments': typeof AuthenticatedFeedbackDepartmentsRoute
   '/kanban/$boardId': typeof AuthenticatedKanbanBoardIdRoute
   '/mindmaps/$mindmapId': typeof AuthenticatedMindmapsMindmapIdRoute
   '/products/$productId': typeof AuthenticatedProductsProductIdRoute
@@ -417,10 +484,13 @@ export interface FileRoutesByTo {
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/feedback/submit/$organizationSlug': typeof FeedbackSubmitOrganizationSlugRoute
+  '/feedback/track/$referenceNumber': typeof FeedbackTrackReferenceNumberRoute
   '/apps': typeof AuthenticatedAppsIndexRoute
   '/calendar': typeof AuthenticatedCalendarIndexRoute
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/clients': typeof AuthenticatedClientsIndexRoute
+  '/feedback': typeof AuthenticatedFeedbackIndexRoute
   '/gamification': typeof AuthenticatedGamificationIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/indicators': typeof AuthenticatedIndicatorsIndexRoute
@@ -442,6 +512,7 @@ export interface FileRoutesById {
   '/plate': typeof PlateRoute
   '/test': typeof TestRoute
   '/_authenticated/clients': typeof AuthenticatedClientsLayoutRouteWithChildren
+  '/_authenticated/feedback': typeof AuthenticatedFeedbackLayoutRouteWithChildren
   '/_authenticated/kanban': typeof AuthenticatedKanbanLayoutRouteWithChildren
   '/_authenticated/mindmaps': typeof AuthenticatedMindmapsLayoutRouteWithChildren
   '/_authenticated/products': typeof AuthenticatedProductsLayoutRouteWithChildren
@@ -458,10 +529,14 @@ export interface FileRoutesById {
   '/(errors)/503': typeof errors503Route
   '/auth/login': typeof AuthLoginRoute
   '/auth/register': typeof AuthRegisterRoute
+  '/feedback/track': typeof FeedbackTrackRouteWithChildren
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/clients/$clientId': typeof AuthenticatedClientsClientIdRoute
   '/_authenticated/clients/new': typeof AuthenticatedClientsNewRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/feedback/categories': typeof AuthenticatedFeedbackCategoriesRoute
+  '/_authenticated/feedback/dashboard': typeof AuthenticatedFeedbackDashboardRoute
+  '/_authenticated/feedback/departments': typeof AuthenticatedFeedbackDepartmentsRoute
   '/_authenticated/kanban/$boardId': typeof AuthenticatedKanbanBoardIdRoute
   '/_authenticated/mindmaps/$mindmapId': typeof AuthenticatedMindmapsMindmapIdRoute
   '/_authenticated/products/$productId': typeof AuthenticatedProductsProductIdRoute
@@ -470,10 +545,13 @@ export interface FileRoutesById {
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
+  '/feedback/submit/$organizationSlug': typeof FeedbackSubmitOrganizationSlugRoute
+  '/feedback/track/$referenceNumber': typeof FeedbackTrackReferenceNumberRoute
   '/_authenticated/apps/': typeof AuthenticatedAppsIndexRoute
   '/_authenticated/calendar/': typeof AuthenticatedCalendarIndexRoute
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
   '/_authenticated/clients/': typeof AuthenticatedClientsIndexRoute
+  '/_authenticated/feedback/': typeof AuthenticatedFeedbackIndexRoute
   '/_authenticated/gamification/': typeof AuthenticatedGamificationIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/_authenticated/indicators/': typeof AuthenticatedIndicatorsIndexRoute
@@ -495,6 +573,7 @@ export interface FileRouteTypes {
     | '/plate'
     | '/test'
     | '/clients'
+    | '/feedback'
     | '/kanban'
     | '/mindmaps'
     | '/products'
@@ -511,10 +590,14 @@ export interface FileRouteTypes {
     | '/503'
     | '/auth/login'
     | '/auth/register'
+    | '/feedback/track'
     | '/'
     | '/clients/$clientId'
     | '/clients/new'
     | '/errors/$error'
+    | '/feedback/categories'
+    | '/feedback/dashboard'
+    | '/feedback/departments'
     | '/kanban/$boardId'
     | '/mindmaps/$mindmapId'
     | '/products/$productId'
@@ -523,10 +606,13 @@ export interface FileRouteTypes {
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
+    | '/feedback/submit/$organizationSlug'
+    | '/feedback/track/$referenceNumber'
     | '/apps'
     | '/calendar'
     | '/chats'
     | '/clients/'
+    | '/feedback/'
     | '/gamification'
     | '/help-center'
     | '/indicators'
@@ -557,10 +643,14 @@ export interface FileRouteTypes {
     | '/503'
     | '/auth/login'
     | '/auth/register'
+    | '/feedback/track'
     | '/'
     | '/clients/$clientId'
     | '/clients/new'
     | '/errors/$error'
+    | '/feedback/categories'
+    | '/feedback/dashboard'
+    | '/feedback/departments'
     | '/kanban/$boardId'
     | '/mindmaps/$mindmapId'
     | '/products/$productId'
@@ -569,10 +659,13 @@ export interface FileRouteTypes {
     | '/settings/appearance'
     | '/settings/display'
     | '/settings/notifications'
+    | '/feedback/submit/$organizationSlug'
+    | '/feedback/track/$referenceNumber'
     | '/apps'
     | '/calendar'
     | '/chats'
     | '/clients'
+    | '/feedback'
     | '/gamification'
     | '/help-center'
     | '/indicators'
@@ -593,6 +686,7 @@ export interface FileRouteTypes {
     | '/plate'
     | '/test'
     | '/_authenticated/clients'
+    | '/_authenticated/feedback'
     | '/_authenticated/kanban'
     | '/_authenticated/mindmaps'
     | '/_authenticated/products'
@@ -609,10 +703,14 @@ export interface FileRouteTypes {
     | '/(errors)/503'
     | '/auth/login'
     | '/auth/register'
+    | '/feedback/track'
     | '/_authenticated/'
     | '/_authenticated/clients/$clientId'
     | '/_authenticated/clients/new'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/feedback/categories'
+    | '/_authenticated/feedback/dashboard'
+    | '/_authenticated/feedback/departments'
     | '/_authenticated/kanban/$boardId'
     | '/_authenticated/mindmaps/$mindmapId'
     | '/_authenticated/products/$productId'
@@ -621,10 +719,13 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
+    | '/feedback/submit/$organizationSlug'
+    | '/feedback/track/$referenceNumber'
     | '/_authenticated/apps/'
     | '/_authenticated/calendar/'
     | '/_authenticated/chats/'
     | '/_authenticated/clients/'
+    | '/_authenticated/feedback/'
     | '/_authenticated/gamification/'
     | '/_authenticated/help-center/'
     | '/_authenticated/indicators/'
@@ -655,6 +756,8 @@ export interface RootRouteChildren {
   errors404Route: typeof errors404Route
   errors500Route: typeof errors500Route
   errors503Route: typeof errors503Route
+  FeedbackTrackRoute: typeof FeedbackTrackRouteWithChildren
+  FeedbackSubmitOrganizationSlugRoute: typeof FeedbackSubmitOrganizationSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -707,6 +810,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedIndexRouteImport
       parentRoute: typeof AuthenticatedLayoutRoute
+    }
+    '/feedback/track': {
+      id: '/feedback/track'
+      path: '/feedback/track'
+      fullPath: '/feedback/track'
+      preLoaderRoute: typeof FeedbackTrackRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/auth/register': {
       id: '/auth/register'
@@ -820,6 +930,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedKanbanLayoutRouteImport
       parentRoute: typeof AuthenticatedLayoutRoute
     }
+    '/_authenticated/feedback': {
+      id: '/_authenticated/feedback'
+      path: '/feedback'
+      fullPath: '/feedback'
+      preLoaderRoute: typeof AuthenticatedFeedbackLayoutRouteImport
+      parentRoute: typeof AuthenticatedLayoutRoute
+    }
     '/_authenticated/clients': {
       id: '/_authenticated/clients'
       path: '/clients'
@@ -897,6 +1014,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedGamificationIndexRouteImport
       parentRoute: typeof AuthenticatedLayoutRoute
     }
+    '/_authenticated/feedback/': {
+      id: '/_authenticated/feedback/'
+      path: '/'
+      fullPath: '/feedback/'
+      preLoaderRoute: typeof AuthenticatedFeedbackIndexRouteImport
+      parentRoute: typeof AuthenticatedFeedbackLayoutRoute
+    }
     '/_authenticated/clients/': {
       id: '/_authenticated/clients/'
       path: '/'
@@ -924,6 +1048,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/apps'
       preLoaderRoute: typeof AuthenticatedAppsIndexRouteImport
       parentRoute: typeof AuthenticatedLayoutRoute
+    }
+    '/feedback/track/$referenceNumber': {
+      id: '/feedback/track/$referenceNumber'
+      path: '/$referenceNumber'
+      fullPath: '/feedback/track/$referenceNumber'
+      preLoaderRoute: typeof FeedbackTrackReferenceNumberRouteImport
+      parentRoute: typeof FeedbackTrackRoute
+    }
+    '/feedback/submit/$organizationSlug': {
+      id: '/feedback/submit/$organizationSlug'
+      path: '/feedback/submit/$organizationSlug'
+      fullPath: '/feedback/submit/$organizationSlug'
+      preLoaderRoute: typeof FeedbackSubmitOrganizationSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/_authenticated/settings/notifications': {
       id: '/_authenticated/settings/notifications'
@@ -981,6 +1119,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedKanbanBoardIdRouteImport
       parentRoute: typeof AuthenticatedKanbanLayoutRoute
     }
+    '/_authenticated/feedback/departments': {
+      id: '/_authenticated/feedback/departments'
+      path: '/departments'
+      fullPath: '/feedback/departments'
+      preLoaderRoute: typeof AuthenticatedFeedbackDepartmentsRouteImport
+      parentRoute: typeof AuthenticatedFeedbackLayoutRoute
+    }
+    '/_authenticated/feedback/dashboard': {
+      id: '/_authenticated/feedback/dashboard'
+      path: '/dashboard'
+      fullPath: '/feedback/dashboard'
+      preLoaderRoute: typeof AuthenticatedFeedbackDashboardRouteImport
+      parentRoute: typeof AuthenticatedFeedbackLayoutRoute
+    }
+    '/_authenticated/feedback/categories': {
+      id: '/_authenticated/feedback/categories'
+      path: '/categories'
+      fullPath: '/feedback/categories'
+      preLoaderRoute: typeof AuthenticatedFeedbackCategoriesRouteImport
+      parentRoute: typeof AuthenticatedFeedbackLayoutRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -1028,6 +1187,27 @@ const AuthenticatedClientsLayoutRouteChildren: AuthenticatedClientsLayoutRouteCh
 const AuthenticatedClientsLayoutRouteWithChildren =
   AuthenticatedClientsLayoutRoute._addFileChildren(
     AuthenticatedClientsLayoutRouteChildren,
+  )
+
+interface AuthenticatedFeedbackLayoutRouteChildren {
+  AuthenticatedFeedbackCategoriesRoute: typeof AuthenticatedFeedbackCategoriesRoute
+  AuthenticatedFeedbackDashboardRoute: typeof AuthenticatedFeedbackDashboardRoute
+  AuthenticatedFeedbackDepartmentsRoute: typeof AuthenticatedFeedbackDepartmentsRoute
+  AuthenticatedFeedbackIndexRoute: typeof AuthenticatedFeedbackIndexRoute
+}
+
+const AuthenticatedFeedbackLayoutRouteChildren: AuthenticatedFeedbackLayoutRouteChildren =
+  {
+    AuthenticatedFeedbackCategoriesRoute: AuthenticatedFeedbackCategoriesRoute,
+    AuthenticatedFeedbackDashboardRoute: AuthenticatedFeedbackDashboardRoute,
+    AuthenticatedFeedbackDepartmentsRoute:
+      AuthenticatedFeedbackDepartmentsRoute,
+    AuthenticatedFeedbackIndexRoute: AuthenticatedFeedbackIndexRoute,
+  }
+
+const AuthenticatedFeedbackLayoutRouteWithChildren =
+  AuthenticatedFeedbackLayoutRoute._addFileChildren(
+    AuthenticatedFeedbackLayoutRouteChildren,
   )
 
 interface AuthenticatedKanbanLayoutRouteChildren {
@@ -1105,6 +1285,7 @@ const AuthenticatedSettingsLayoutRouteWithChildren =
 
 interface AuthenticatedLayoutRouteChildren {
   AuthenticatedClientsLayoutRoute: typeof AuthenticatedClientsLayoutRouteWithChildren
+  AuthenticatedFeedbackLayoutRoute: typeof AuthenticatedFeedbackLayoutRouteWithChildren
   AuthenticatedKanbanLayoutRoute: typeof AuthenticatedKanbanLayoutRouteWithChildren
   AuthenticatedMindmapsLayoutRoute: typeof AuthenticatedMindmapsLayoutRouteWithChildren
   AuthenticatedProductsLayoutRoute: typeof AuthenticatedProductsLayoutRouteWithChildren
@@ -1125,6 +1306,8 @@ interface AuthenticatedLayoutRouteChildren {
 
 const AuthenticatedLayoutRouteChildren: AuthenticatedLayoutRouteChildren = {
   AuthenticatedClientsLayoutRoute: AuthenticatedClientsLayoutRouteWithChildren,
+  AuthenticatedFeedbackLayoutRoute:
+    AuthenticatedFeedbackLayoutRouteWithChildren,
   AuthenticatedKanbanLayoutRoute: AuthenticatedKanbanLayoutRouteWithChildren,
   AuthenticatedMindmapsLayoutRoute:
     AuthenticatedMindmapsLayoutRouteWithChildren,
@@ -1164,6 +1347,18 @@ const AuthLayoutRouteWithChildren = AuthLayoutRoute._addFileChildren(
   AuthLayoutRouteChildren,
 )
 
+interface FeedbackTrackRouteChildren {
+  FeedbackTrackReferenceNumberRoute: typeof FeedbackTrackReferenceNumberRoute
+}
+
+const FeedbackTrackRouteChildren: FeedbackTrackRouteChildren = {
+  FeedbackTrackReferenceNumberRoute: FeedbackTrackReferenceNumberRoute,
+}
+
+const FeedbackTrackRouteWithChildren = FeedbackTrackRoute._addFileChildren(
+  FeedbackTrackRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedLayoutRoute: AuthenticatedLayoutRouteWithChildren,
   AuthLayoutRoute: AuthLayoutRouteWithChildren,
@@ -1181,6 +1376,8 @@ const rootRouteChildren: RootRouteChildren = {
   errors404Route: errors404Route,
   errors500Route: errors500Route,
   errors503Route: errors503Route,
+  FeedbackTrackRoute: FeedbackTrackRouteWithChildren,
+  FeedbackSubmitOrganizationSlugRoute: FeedbackSubmitOrganizationSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

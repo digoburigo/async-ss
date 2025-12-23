@@ -1,11 +1,10 @@
-import { BookOpenIcon, ListChecksIcon } from "lucide-react";
-
 import {
   Tabs,
   TabsContent,
   TabsList,
   TabsTrigger,
 } from "@acme/ui/base-ui/tabs";
+import { BookOpenIcon, ListChecksIcon } from "lucide-react";
 
 import { QuizTab } from "./quiz-tab";
 import { StepsList } from "./steps-list";

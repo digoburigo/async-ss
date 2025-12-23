@@ -1,11 +1,10 @@
-import { useForm } from "@tanstack/react-form";
-import { Plus, Trash2 } from "lucide-react";
-
 import { Switch } from "@acme/ui/base-ui/switch";
 import { Button } from "@acme/ui/button";
 import { Input } from "@acme/ui/input";
 import { Label } from "@acme/ui/label";
 import { Textarea } from "@acme/ui/textarea";
+import { useForm } from "@tanstack/react-form";
+import { Plus, Trash2 } from "lucide-react";
 
 import type { QuestionFormData } from "../data/schema";
 import { questionFormSchema } from "../data/schema";
@@ -92,7 +91,7 @@ export function QuestionForm({
                       <form.Field name="correctAnswer">
                         {(correctField) => (
                           <button
-                            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 text-sm font-medium transition-colors ${
+                            className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 font-medium text-sm transition-colors ${
                               correctField.state.value === index
                                 ? "border-primary bg-primary text-primary-foreground"
                                 : "border-muted-foreground/30 text-muted-foreground hover:border-primary"
@@ -122,7 +121,7 @@ export function QuestionForm({
                           type="button"
                           variant="ghost"
                         >
-                          <Trash2 className="text-destructive h-4 w-4" />
+                          <Trash2 className="h-4 w-4 text-destructive" />
                         </Button>
                       ) : null}
                     </div>

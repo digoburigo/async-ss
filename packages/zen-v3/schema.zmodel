@@ -41,7 +41,8 @@ model User {
   banReason       String? 
   banExpires      DateTime? 
 
-  changePassword  Boolean? @default(false) 
+  changePassword  Boolean? @default(false)
+  isAnonymous     Boolean? @default(false)
 
   createdTodos Todo[] @relation("createdTodos") 
   updatedTodos Todo[] @relation("updatedTodos") 
@@ -95,6 +96,15 @@ model User {
   // First Steps relations
   firstStepsProgress FirstStepsProgress[]
   firstStepsQuizAttempts FirstStepsQuizAttempt[]
+
+  // City Hall Feedback relations
+  assignedFeedbacks CitizenFeedback[] @relation("FeedbackAssignee")
+  createdFeedbacks CitizenFeedback[] @relation("FeedbackCreator")
+  updatedFeedbacks CitizenFeedback[] @relation("FeedbackUpdater")
+  closedFeedbacks CitizenFeedback[] @relation("FeedbackCloser")
+  feedbackAttachments FeedbackAttachment[] @relation("FeedbackAttachmentCreator")
+  feedbackComments FeedbackComment[] @relation("FeedbackCommentCreator")
+  feedbackStatusHistory FeedbackStatusHistory[] @relation("FeedbackStatusHistoryCreator")
 
   @@allow('create,read', true)
 
@@ -215,6 +225,15 @@ model Organization {
   firstStepsQuizzes FirstStepsQuiz[]
   firstStepsQuizQuestions FirstStepsQuizQuestion[]
   firstStepsQuizAttempts FirstStepsQuizAttempt[]
+
+  // City Hall Feedback relations
+  feedbackDepartments FeedbackDepartment[]
+  feedbackCategories FeedbackCategory[]
+  feedbackSubcategories FeedbackSubcategory[]
+  citizenFeedbacks CitizenFeedback[]
+  feedbackAttachments FeedbackAttachment[]
+  feedbackComments FeedbackComment[]
+  feedbackStatusHistory FeedbackStatusHistory[]
 
   @@unique([slug])
 
@@ -1603,6 +1622,280 @@ model FirstStepsQuizAttempt {
     
     @@allow('create', auth() != null)
     @@allow('read,update,delete', auth().organizationId == organizationId)
-    
+
     @@map("first_steps_quiz_attempts")
+}
+
+// CITY HALL FEEDBACK SYSTEM ======================================================
+
+enum FeedbackStatus {
+    open
+    in_progress
+    under_review
+    resolved
+    closed
+    rejected
+}
+
+enum FeedbackPriority {
+    low
+    medium
+    high
+    urgent
+    critical
+}
+
+enum FeedbackSource {
+    web
+    mobile
+    phone
+    email
+    in_person
+    social_media
+}
+
+model FeedbackDepartment {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+
+    name           String
+    description    String?
+    email          String?
+    phone          String?
+    color          String       @default("#6366f1")
+    icon           String?
+    active         Boolean      @default(true)
+    orderIndex     Int          @default(0)
+
+    // SLA settings (in hours)
+    defaultSlaHours Int         @default(72)
+
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    categories     FeedbackCategory[]
+    feedbacks      CitizenFeedback[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("feedback_departments")
+}
+
+model FeedbackCategory {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+
+    name           String
+    description    String?
+    icon           String?
+    color          String       @default("#3b82f6")
+    active         Boolean      @default(true)
+    orderIndex     Int          @default(0)
+
+    departmentId   String?
+    department     FeedbackDepartment? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    subcategories  FeedbackSubcategory[]
+    feedbacks      CitizenFeedback[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("feedback_categories")
+}
+
+model FeedbackSubcategory {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+
+    name           String
+    description    String?
+    icon           String?
+    active         Boolean      @default(true)
+    orderIndex     Int          @default(0)
+
+    // Default priority for this type of issue
+    defaultPriority FeedbackPriority @default(medium)
+
+    categoryId     String
+    category       FeedbackCategory @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+
+    createdAt      DateTime     @default(now())
+    updatedAt      DateTime     @updatedAt
+
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    feedbacks      CitizenFeedback[]
+
+    @@allow('create', auth() != null)
+    @@allow('read,update,delete', auth().organizationId == organizationId)
+
+    @@map("feedback_subcategories")
+}
+
+model CitizenFeedback {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+
+    // Reference number for citizens to track (generated by application)
+    referenceNumber String?     @unique
+
+    // Basic info
+    title          String
+    description    String
+
+    // Classification
+    categoryId     String?
+    category       FeedbackCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+    subcategoryId  String?
+    subcategory    FeedbackSubcategory? @relation(fields: [subcategoryId], references: [id], onDelete: SetNull)
+
+    // Assignment
+    departmentId   String?
+    department     FeedbackDepartment? @relation(fields: [departmentId], references: [id], onDelete: SetNull)
+    assignedToId   String?
+    assignedTo     User? @relation("FeedbackAssignee", fields: [assignedToId], references: [id], onDelete: SetNull)
+
+    // Status & Priority
+    status         FeedbackStatus @default(open)
+    priority       FeedbackPriority @default(medium)
+    source         FeedbackSource @default(web)
+
+    // Location
+    address        String?
+    neighborhood   String?
+    city           String?
+    state          String?
+    zipCode        String?
+    latitude       Float?
+    longitude      Float?
+    locationDescription String?
+
+    // Citizen contact (for anonymous submissions)
+    citizenName    String?
+    citizenEmail   String?
+    citizenPhone   String?
+    isAnonymous    Boolean      @default(false)
+
+    // SLA tracking
+    dueDate        DateTime?
+    slaHours       Int?
+    slaBreached    Boolean      @default(false)
+
+    // Resolution
+    resolvedAt     DateTime?
+    resolutionNotes String?
+    satisfactionRating Int?     // 1-5 rating from citizen
+    satisfactionComment String?
+
+    // Metadata
+    internalNotes  String?
+    tags           String[]
+
+    // Audit
+    createdAt      DateTime     @default(now())
+    createdById    String?      @default(auth().userId)
+    createdByUser  User?        @relation("FeedbackCreator", fields: [createdById], references: [id], onDelete: SetNull)
+
+    updatedAt      DateTime     @updatedAt
+    updatedById    String?      @default(auth().userId)
+    updatedByUser  User?        @relation("FeedbackUpdater", fields: [updatedById], references: [id], onDelete: SetNull)
+
+    closedAt       DateTime?
+    closedById     String?
+    closedByUser   User?        @relation("FeedbackCloser", fields: [closedById], references: [id], onDelete: SetNull)
+
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    attachments    FeedbackAttachment[]
+    comments       FeedbackComment[]
+    statusHistory  FeedbackStatusHistory[]
+
+    @@allow('create', true) // Allow anonymous submissions
+    @@allow('read', auth().organizationId == organizationId)
+    @@allow('update,delete', auth().organizationId == organizationId)
+
+    @@map("citizen_feedbacks")
+}
+
+model FeedbackAttachment {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+
+    feedbackId     String
+    feedback       CitizenFeedback @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+
+    fileName       String
+    fileUrl        String
+    fileSize       Int?
+    mimeType       String?
+    description    String?
+
+    createdAt      DateTime     @default(now())
+    createdById    String?      @default(auth().userId)
+    createdByUser  User?        @relation("FeedbackAttachmentCreator", fields: [createdById], references: [id], onDelete: SetNull)
+
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', true)
+    @@allow('read', auth().organizationId == organizationId)
+    @@allow('update,delete', auth().organizationId == organizationId)
+
+    @@map("feedback_attachments")
+}
+
+model FeedbackComment {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+
+    feedbackId     String
+    feedback       CitizenFeedback @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+
+    content        String
+    isInternal     Boolean      @default(false) // Internal notes vs public responses
+    isFromCitizen  Boolean      @default(false)
+
+    createdAt      DateTime     @default(now())
+    createdById    String?      @default(auth().userId)
+    createdByUser  User?        @relation("FeedbackCommentCreator", fields: [createdById], references: [id], onDelete: SetNull)
+
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', true)
+    @@allow('read', auth().organizationId == organizationId || (isInternal == false && isFromCitizen == true))
+    @@allow('update,delete', auth().organizationId == organizationId)
+
+    @@map("feedback_comments")
+}
+
+model FeedbackStatusHistory {
+    id             String       @id @default(dbgenerated("uuidv7()"))
+
+    feedbackId     String
+    feedback       CitizenFeedback @relation(fields: [feedbackId], references: [id], onDelete: Cascade)
+
+    fromStatus     FeedbackStatus?
+    toStatus       FeedbackStatus
+    notes          String?
+
+    createdAt      DateTime     @default(now())
+    createdById    String?      @default(auth().userId)
+    createdByUser  User?        @relation("FeedbackStatusHistoryCreator", fields: [createdById], references: [id], onDelete: SetNull)
+
+    organizationId String?      @default(auth().organizationId)
+    organization   Organization? @relation(fields: [organizationId], references: [id], onDelete: Cascade)
+
+    @@allow('create', auth() != null)
+    @@allow('read', auth().organizationId == organizationId)
+    @@allow('update,delete', auth().organizationId == organizationId)
+
+    @@map("feedback_status_history")
 }

@@ -1,10 +1,9 @@
-import { useForm } from "@tanstack/react-form";
-
 import { Switch } from "@acme/ui/base-ui/switch";
 import { Button } from "@acme/ui/button";
 import { Input } from "@acme/ui/input";
 import { Label } from "@acme/ui/label";
 import { Textarea } from "@acme/ui/textarea";
+import { useForm } from "@tanstack/react-form";
 
 import type { JobTypeFormData } from "../data/schema";
 import { jobTypeFormSchema } from "../data/schema";
@@ -139,7 +138,7 @@ export function JobTypeForm({
                   aria-label={color.label}
                   className={`h-8 w-8 rounded-full border-2 transition-all ${
                     field.state.value === color.value
-                      ? "border-foreground scale-110"
+                      ? "scale-110 border-foreground"
                       : "border-transparent"
                   }`}
                   key={color.value}

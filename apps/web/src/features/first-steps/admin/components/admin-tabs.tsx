@@ -1,6 +1,5 @@
-import { Briefcase, FileText, HelpCircle, Users } from "lucide-react";
-
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@acme/ui/tabs";
+import { Briefcase, FileText, HelpCircle, Users } from "lucide-react";
 
 import { JobTypesTab } from "./job-types-tab";
 import { MembersTab } from "./members-tab";

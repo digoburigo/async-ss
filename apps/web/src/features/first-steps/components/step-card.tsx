@@ -1,13 +1,12 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
-import { useClientQueries } from "@zenstackhq/tanstack-query/react";
-import { ClockIcon, ExternalLinkIcon } from "lucide-react";
-import { toast } from "sonner";
-
 import { cn } from "@acme/ui";
 import { Button } from "@acme/ui/base-ui/button";
 import { Checkbox } from "@acme/ui/base-ui/checkbox";
 import { schema } from "@acme/zen-v3/zenstack/schema";
+import { useNavigate } from "@tanstack/react-router";
+import { useClientQueries } from "@zenstackhq/tanstack-query/react";
+import { ClockIcon, ExternalLinkIcon } from "lucide-react";
+import { useEffect, useState } from "react";
+import { toast } from "sonner";
 
 type StepCardProps = {
   step: {
@@ -120,7 +119,7 @@ export function StepCard({ step, userId }: StepCardProps) {
   return (
     <div
       className={cn(
-        "group bg-card flex items-start gap-4 rounded-lg border p-4 transition-colors",
+        "group flex items-start gap-4 rounded-lg border bg-card p-4 transition-colors",
         isCompleted && "bg-muted/50"
       )}
     >
@@ -135,7 +134,7 @@ export function StepCard({ step, userId }: StepCardProps) {
         <div className="flex items-start justify-between gap-2">
           <button
             className={cn(
-              "cursor-pointer text-left text-sm leading-tight font-medium select-none",
+              "cursor-pointer select-none text-left font-medium text-sm leading-tight",
               isCompleted && "text-muted-foreground line-through",
               isPending && "pointer-events-none opacity-50"
             )}
@@ -146,7 +145,7 @@ export function StepCard({ step, userId }: StepCardProps) {
             {step.title}
           </button>
           {step.estimatedMinutes ? (
-            <div className="text-muted-foreground flex shrink-0 items-center gap-1 text-xs">
+            <div className="flex shrink-0 items-center gap-1 text-muted-foreground text-xs">
               <ClockIcon className="size-3" />
               <span>{step.estimatedMinutes} min</span>
             </div>

@@ -5,6 +5,7 @@ import { fromTypes, openapi } from "@elysiajs/openapi";
 import { Elysia, t } from "elysia";
 import { sql } from "kysely";
 
+import { feedbackController } from "./modules/feedback";
 import { zenstackController } from "./modules/zenstack";
 import { betterAuth } from "./plugins/better-auth";
 import { betterUpload } from "./plugins/better-upload";
@@ -42,6 +43,7 @@ export const app = new Elysia({
   .use(betterAuth)
   .use(betterUpload)
   .use(zenstackController)
+  .use(feedbackController)
   .get("/", () => ({ message: "Hello Elysia!" }))
   .get("/healthcheck", () => ({ qualquercoisa: "OK 1" }), {
     response: {

@@ -1,8 +1,3 @@
-import { useState } from "react";
-import { useClientQueries } from "@zenstackhq/tanstack-query/react";
-import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, XIcon } from "lucide-react";
-import { toast } from "sonner";
-
 import { cn } from "@acme/ui";
 import { Button } from "@acme/ui/base-ui/button";
 import {
@@ -14,6 +9,10 @@ import {
 } from "@acme/ui/base-ui/card";
 import { Progress } from "@acme/ui/base-ui/progress";
 import { schema } from "@acme/zen-v3/zenstack/schema";
+import { useClientQueries } from "@zenstackhq/tanstack-query/react";
+import { ArrowLeftIcon, ArrowRightIcon, CheckIcon, XIcon } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 type Question = {
   id: string;
@@ -122,7 +121,7 @@ export function QuizPlayer({ quiz, userId, onComplete }: QuizPlayerProps) {
           <div className="flex flex-col items-center gap-4">
             <div
               className={cn(
-                "flex size-24 items-center justify-center rounded-full text-3xl font-bold",
+                "flex size-24 items-center justify-center rounded-full font-bold text-3xl",
                 attemptResult.passed
                   ? "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400"
                   : "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400"
@@ -131,7 +130,7 @@ export function QuizPlayer({ quiz, userId, onComplete }: QuizPlayerProps) {
               {attemptResult.score}%
             </div>
             <div className="text-center">
-              <h3 className="text-xl font-semibold">
+              <h3 className="font-semibold text-xl">
                 {attemptResult.passed
                   ? "Parabéns! Você foi aprovado!"
                   : "Que pena! Você não passou."}
@@ -182,7 +181,7 @@ export function QuizPlayer({ quiz, userId, onComplete }: QuizPlayerProps) {
                           {question.options[userAnswer] || "Não respondida"}
                         </span>
                       </div>
-                      {!isCorrect ? (
+                      {isCorrect ? null : (
                         <div className="mt-1 text-sm">
                           <span className="text-muted-foreground">
                             Resposta correta:{" "}
@@ -191,9 +190,9 @@ export function QuizPlayer({ quiz, userId, onComplete }: QuizPlayerProps) {
                             {question.options[question.correctAnswer]}
                           </span>
                         </div>
-                      ) : null}
+                      )}
                       {question.explanation ? (
-                        <div className="text-muted-foreground mt-2 text-sm">
+                        <div className="mt-2 text-muted-foreground text-sm">
                           <strong>Explicação:</strong> {question.explanation}
                         </div>
                       ) : null}
@@ -234,13 +233,13 @@ export function QuizPlayer({ quiz, userId, onComplete }: QuizPlayerProps) {
         <Progress value={progress} />
       </CardHeader>
       <CardContent className="space-y-6">
-        <div className="text-lg font-medium">{currentQuestion.question}</div>
+        <div className="font-medium text-lg">{currentQuestion.question}</div>
 
         <div className="space-y-2">
           {currentQuestion.options.map((option, index) => (
             <button
               className={cn(
-                "hover:bg-muted/50 w-full rounded-lg border p-4 text-left transition-colors",
+                "w-full rounded-lg border p-4 text-left transition-colors hover:bg-muted/50",
                 selectedAnswer === index && "border-primary bg-primary/5"
               )}
               key={index}
@@ -250,7 +249,7 @@ export function QuizPlayer({ quiz, userId, onComplete }: QuizPlayerProps) {
               <div className="flex items-center gap-3">
                 <div
                   className={cn(
-                    "flex size-6 items-center justify-center rounded-full border text-sm font-medium",
+                    "flex size-6 items-center justify-center rounded-full border font-medium text-sm",
                     selectedAnswer === index
                       ? "border-primary bg-primary text-primary-foreground"
                       : "border-muted-foreground/30"

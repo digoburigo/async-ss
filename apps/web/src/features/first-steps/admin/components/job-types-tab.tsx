@@ -1,10 +1,9 @@
-import { useClientQueries } from "@zenstackhq/tanstack-query/react";
-import { Edit2, Plus, Trash2, Users } from "lucide-react";
-
 import { Badge } from "@acme/ui/badge";
 import { Button } from "@acme/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@acme/ui/card";
 import { schema } from "@acme/zen-v3/zenstack/schema";
+import { useClientQueries } from "@zenstackhq/tanstack-query/react";
+import { Edit2, Plus, Trash2, Users } from "lucide-react";
 
 import { authClient } from "~/clients/auth-client";
 import { useAdmin } from "./admin-provider";
@@ -59,7 +58,7 @@ export function JobTypesTab() {
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold">Cargos / Funções</h3>
+          <h3 className="font-semibold text-lg">Cargos / Funções</h3>
           <p className="text-muted-foreground text-sm">
             Gerencie os tipos de cargo e suas configurações
           </p>
@@ -73,9 +72,9 @@ export function JobTypesTab() {
       {jobTypes.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <Users className="text-muted-foreground mb-4 h-12 w-12" />
+            <Users className="mb-4 h-12 w-12 text-muted-foreground" />
             <h4 className="font-medium">Nenhum cargo cadastrado</h4>
-            <p className="text-muted-foreground mt-1 text-center text-sm">
+            <p className="mt-1 text-center text-muted-foreground text-sm">
               Crie o primeiro cargo para começar a configurar os primeiros
               passos.
             </p>
@@ -98,18 +97,18 @@ export function JobTypesTab() {
                     />
                     <CardTitle className="text-base">{jobType.name}</CardTitle>
                   </div>
-                  {!jobType.active ? (
+                  {jobType.active ? null : (
                     <Badge variant="secondary">Inativo</Badge>
-                  ) : null}
+                  )}
                 </div>
               </CardHeader>
               <CardContent>
                 {jobType.description ? (
-                  <p className="text-muted-foreground mb-3 line-clamp-2 text-sm">
+                  <p className="mb-3 line-clamp-2 text-muted-foreground text-sm">
                     {jobType.description}
                   </p>
                 ) : null}
-                <div className="text-muted-foreground mb-3 flex gap-4 text-sm">
+                <div className="mb-3 flex gap-4 text-muted-foreground text-sm">
                   <span>{jobType._count?.steps ?? 0} passos</span>
                   <span>{jobType._count?.members ?? 0} membros</span>
                 </div>
@@ -127,7 +126,7 @@ export function JobTypesTab() {
                     size="sm"
                     variant="ghost"
                   >
-                    <Trash2 className="text-destructive mr-1 h-3 w-3" />
+                    <Trash2 className="mr-1 h-3 w-3 text-destructive" />
                     Excluir
                   </Button>
                 </div>

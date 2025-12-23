@@ -1,11 +1,5 @@
-import { useState } from "react";
-import { useClientQueries } from "@zenstackhq/tanstack-query/react";
-import { Search, User, Users } from "lucide-react";
-import { toast } from "sonner";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@acme/ui/avatar";
 import { Badge } from "@acme/ui/badge";
-import { Button } from "@acme/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@acme/ui/card";
 import { Input } from "@acme/ui/input";
 import {
@@ -16,6 +10,10 @@ import {
   SelectValue,
 } from "@acme/ui/select";
 import { schema } from "@acme/zen-v3/zenstack/schema";
+import { useClientQueries } from "@zenstackhq/tanstack-query/react";
+import { Search, User, Users } from "lucide-react";
+import { useState } from "react";
+import { toast } from "sonner";
 
 import { authClient } from "~/clients/auth-client";
 
@@ -108,7 +106,7 @@ export function MembersTab() {
     <div className="space-y-4">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <h3 className="text-lg font-semibold">Membros</h3>
+          <h3 className="font-semibold text-lg">Membros</h3>
           <p className="text-muted-foreground text-sm">
             Atribua cargos aos membros da organização
           </p>
@@ -118,7 +116,7 @@ export function MembersTab() {
       {/* Filters */}
       <div className="flex flex-wrap gap-4">
         <div className="relative flex-1">
-          <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+          <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
           <Input
             className="pl-10"
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -160,9 +158,9 @@ export function MembersTab() {
       ) : filteredMembers.length === 0 ? (
         <Card>
           <CardContent className="flex flex-col items-center justify-center py-12">
-            <Users className="text-muted-foreground mb-4 h-12 w-12" />
+            <Users className="mb-4 h-12 w-12 text-muted-foreground" />
             <h4 className="font-medium">Nenhum membro encontrado</h4>
-            <p className="text-muted-foreground mt-1 text-center text-sm">
+            <p className="mt-1 text-center text-muted-foreground text-sm">
               {searchQuery || filterJobTypeId
                 ? "Tente ajustar os filtros de busca."
                 : "Não há membros na organização."}
@@ -201,7 +199,7 @@ export function MembersTab() {
               </CardHeader>
               <CardContent className="pt-4">
                 <div className="flex items-center gap-4">
-                  <div className="text-muted-foreground flex items-center gap-2 text-sm">
+                  <div className="flex items-center gap-2 text-muted-foreground text-sm">
                     <User className="h-4 w-4" />
                     <span>Cargo:</span>
                   </div>

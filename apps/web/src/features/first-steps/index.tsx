@@ -1,7 +1,6 @@
-import { useEffect } from "react";
-import { useClientQueries } from "@zenstackhq/tanstack-query/react";
-
 import { schema } from "@acme/zen-v3/zenstack/schema";
+import { useClientQueries } from "@zenstackhq/tanstack-query/react";
+import { useEffect } from "react";
 
 import { authClient } from "~/clients/auth-client";
 import { ConfigDrawer } from "~/components/config-drawer";
@@ -119,7 +118,7 @@ function FirstStepsContent() {
   }
 
   // Show message if no job type assigned and not admin
-  if (!effectiveJobTypeId && !isOrgAdmin) {
+  if (!(effectiveJobTypeId || isOrgAdmin)) {
     return <NoJobTypeMessage isOrgAdmin={false} />;
   }
 
@@ -162,7 +161,7 @@ export function FirstSteps() {
       <Main className="flex flex-1 flex-col gap-4 sm:gap-6">
         <div className="flex flex-wrap items-end justify-between gap-2">
           <div>
-            <h2 className="text-2xl font-bold tracking-tight">
+            <h2 className="font-bold text-2xl tracking-tight">
               Primeiros Passos
             </h2>
             <p className="text-muted-foreground">

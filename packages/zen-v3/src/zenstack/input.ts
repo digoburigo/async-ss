@@ -5,18 +5,46 @@
 
 /* eslint-disable */
 
-import { type SchemaType as $Schema } from "./schema";
-import type { FindManyArgs as $FindManyArgs, FindUniqueArgs as $FindUniqueArgs, FindFirstArgs as $FindFirstArgs, CreateArgs as $CreateArgs, CreateManyArgs as $CreateManyArgs, CreateManyAndReturnArgs as $CreateManyAndReturnArgs, UpdateArgs as $UpdateArgs, UpdateManyArgs as $UpdateManyArgs, UpdateManyAndReturnArgs as $UpdateManyAndReturnArgs, UpsertArgs as $UpsertArgs, DeleteArgs as $DeleteArgs, DeleteManyArgs as $DeleteManyArgs, CountArgs as $CountArgs, AggregateArgs as $AggregateArgs, GroupByArgs as $GroupByArgs, WhereInput as $WhereInput, SelectInput as $SelectInput, IncludeInput as $IncludeInput, OmitInput as $OmitInput, QueryOptions as $QueryOptions } from "@zenstackhq/orm";
-import type { SimplifiedPlainResult as $Result, SelectIncludeOmit as $SelectIncludeOmit } from "@zenstackhq/orm";
+import type {
+  AggregateArgs as $AggregateArgs,
+  CountArgs as $CountArgs,
+  CreateArgs as $CreateArgs,
+  CreateManyAndReturnArgs as $CreateManyAndReturnArgs,
+  CreateManyArgs as $CreateManyArgs,
+  DeleteArgs as $DeleteArgs,
+  DeleteManyArgs as $DeleteManyArgs,
+  FindFirstArgs as $FindFirstArgs,
+  FindManyArgs as $FindManyArgs,
+  FindUniqueArgs as $FindUniqueArgs,
+  GroupByArgs as $GroupByArgs,
+  IncludeInput as $IncludeInput,
+  OmitInput as $OmitInput,
+  QueryOptions as $QueryOptions,
+  SimplifiedPlainResult as $Result,
+  SelectIncludeOmit as $SelectIncludeOmit,
+  SelectInput as $SelectInput,
+  UpdateArgs as $UpdateArgs,
+  UpdateManyAndReturnArgs as $UpdateManyAndReturnArgs,
+  UpdateManyArgs as $UpdateManyArgs,
+  UpsertArgs as $UpsertArgs,
+  WhereInput as $WhereInput,
+} from "@zenstackhq/orm";
+import type { SchemaType as $Schema } from "./schema";
 export type UserFindManyArgs = $FindManyArgs<$Schema, "User">;
 export type UserFindUniqueArgs = $FindUniqueArgs<$Schema, "User">;
 export type UserFindFirstArgs = $FindFirstArgs<$Schema, "User">;
 export type UserCreateArgs = $CreateArgs<$Schema, "User">;
 export type UserCreateManyArgs = $CreateManyArgs<$Schema, "User">;
-export type UserCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "User">;
+export type UserCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "User"
+>;
 export type UserUpdateArgs = $UpdateArgs<$Schema, "User">;
 export type UserUpdateManyArgs = $UpdateManyArgs<$Schema, "User">;
-export type UserUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "User">;
+export type UserUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "User"
+>;
 export type UserUpsertArgs = $UpsertArgs<$Schema, "User">;
 export type UserDeleteArgs = $DeleteArgs<$Schema, "User">;
 export type UserDeleteManyArgs = $DeleteManyArgs<$Schema, "User">;
@@ -27,16 +55,25 @@ export type UserWhereInput = $WhereInput<$Schema, "User">;
 export type UserSelect = $SelectInput<$Schema, "User">;
 export type UserInclude = $IncludeInput<$Schema, "User">;
 export type UserOmit = $OmitInput<$Schema, "User">;
-export type UserGetPayload<Args extends $SelectIncludeOmit<$Schema, "User", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "User", Args, Options>;
+export type UserGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "User", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "User", Args, Options>;
 export type SessionFindManyArgs = $FindManyArgs<$Schema, "Session">;
 export type SessionFindUniqueArgs = $FindUniqueArgs<$Schema, "Session">;
 export type SessionFindFirstArgs = $FindFirstArgs<$Schema, "Session">;
 export type SessionCreateArgs = $CreateArgs<$Schema, "Session">;
 export type SessionCreateManyArgs = $CreateManyArgs<$Schema, "Session">;
-export type SessionCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Session">;
+export type SessionCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Session"
+>;
 export type SessionUpdateArgs = $UpdateArgs<$Schema, "Session">;
 export type SessionUpdateManyArgs = $UpdateManyArgs<$Schema, "Session">;
-export type SessionUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Session">;
+export type SessionUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Session"
+>;
 export type SessionUpsertArgs = $UpsertArgs<$Schema, "Session">;
 export type SessionDeleteArgs = $DeleteArgs<$Schema, "Session">;
 export type SessionDeleteManyArgs = $DeleteManyArgs<$Schema, "Session">;
@@ -47,16 +84,25 @@ export type SessionWhereInput = $WhereInput<$Schema, "Session">;
 export type SessionSelect = $SelectInput<$Schema, "Session">;
 export type SessionInclude = $IncludeInput<$Schema, "Session">;
 export type SessionOmit = $OmitInput<$Schema, "Session">;
-export type SessionGetPayload<Args extends $SelectIncludeOmit<$Schema, "Session", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Session", Args, Options>;
+export type SessionGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Session", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Session", Args, Options>;
 export type AccountFindManyArgs = $FindManyArgs<$Schema, "Account">;
 export type AccountFindUniqueArgs = $FindUniqueArgs<$Schema, "Account">;
 export type AccountFindFirstArgs = $FindFirstArgs<$Schema, "Account">;
 export type AccountCreateArgs = $CreateArgs<$Schema, "Account">;
 export type AccountCreateManyArgs = $CreateManyArgs<$Schema, "Account">;
-export type AccountCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Account">;
+export type AccountCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Account"
+>;
 export type AccountUpdateArgs = $UpdateArgs<$Schema, "Account">;
 export type AccountUpdateManyArgs = $UpdateManyArgs<$Schema, "Account">;
-export type AccountUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Account">;
+export type AccountUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Account"
+>;
 export type AccountUpsertArgs = $UpsertArgs<$Schema, "Account">;
 export type AccountDeleteArgs = $DeleteArgs<$Schema, "Account">;
 export type AccountDeleteManyArgs = $DeleteManyArgs<$Schema, "Account">;
@@ -67,19 +113,40 @@ export type AccountWhereInput = $WhereInput<$Schema, "Account">;
 export type AccountSelect = $SelectInput<$Schema, "Account">;
 export type AccountInclude = $IncludeInput<$Schema, "Account">;
 export type AccountOmit = $OmitInput<$Schema, "Account">;
-export type AccountGetPayload<Args extends $SelectIncludeOmit<$Schema, "Account", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Account", Args, Options>;
+export type AccountGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Account", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Account", Args, Options>;
 export type VerificationFindManyArgs = $FindManyArgs<$Schema, "Verification">;
-export type VerificationFindUniqueArgs = $FindUniqueArgs<$Schema, "Verification">;
+export type VerificationFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "Verification"
+>;
 export type VerificationFindFirstArgs = $FindFirstArgs<$Schema, "Verification">;
 export type VerificationCreateArgs = $CreateArgs<$Schema, "Verification">;
-export type VerificationCreateManyArgs = $CreateManyArgs<$Schema, "Verification">;
-export type VerificationCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Verification">;
+export type VerificationCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "Verification"
+>;
+export type VerificationCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Verification"
+>;
 export type VerificationUpdateArgs = $UpdateArgs<$Schema, "Verification">;
-export type VerificationUpdateManyArgs = $UpdateManyArgs<$Schema, "Verification">;
-export type VerificationUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Verification">;
+export type VerificationUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "Verification"
+>;
+export type VerificationUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Verification"
+>;
 export type VerificationUpsertArgs = $UpsertArgs<$Schema, "Verification">;
 export type VerificationDeleteArgs = $DeleteArgs<$Schema, "Verification">;
-export type VerificationDeleteManyArgs = $DeleteManyArgs<$Schema, "Verification">;
+export type VerificationDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "Verification"
+>;
 export type VerificationCountArgs = $CountArgs<$Schema, "Verification">;
 export type VerificationAggregateArgs = $AggregateArgs<$Schema, "Verification">;
 export type VerificationGroupByArgs = $GroupByArgs<$Schema, "Verification">;
@@ -87,19 +154,40 @@ export type VerificationWhereInput = $WhereInput<$Schema, "Verification">;
 export type VerificationSelect = $SelectInput<$Schema, "Verification">;
 export type VerificationInclude = $IncludeInput<$Schema, "Verification">;
 export type VerificationOmit = $OmitInput<$Schema, "Verification">;
-export type VerificationGetPayload<Args extends $SelectIncludeOmit<$Schema, "Verification", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Verification", Args, Options>;
+export type VerificationGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Verification", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Verification", Args, Options>;
 export type OrganizationFindManyArgs = $FindManyArgs<$Schema, "Organization">;
-export type OrganizationFindUniqueArgs = $FindUniqueArgs<$Schema, "Organization">;
+export type OrganizationFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "Organization"
+>;
 export type OrganizationFindFirstArgs = $FindFirstArgs<$Schema, "Organization">;
 export type OrganizationCreateArgs = $CreateArgs<$Schema, "Organization">;
-export type OrganizationCreateManyArgs = $CreateManyArgs<$Schema, "Organization">;
-export type OrganizationCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Organization">;
+export type OrganizationCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "Organization"
+>;
+export type OrganizationCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Organization"
+>;
 export type OrganizationUpdateArgs = $UpdateArgs<$Schema, "Organization">;
-export type OrganizationUpdateManyArgs = $UpdateManyArgs<$Schema, "Organization">;
-export type OrganizationUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Organization">;
+export type OrganizationUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "Organization"
+>;
+export type OrganizationUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Organization"
+>;
 export type OrganizationUpsertArgs = $UpsertArgs<$Schema, "Organization">;
 export type OrganizationDeleteArgs = $DeleteArgs<$Schema, "Organization">;
-export type OrganizationDeleteManyArgs = $DeleteManyArgs<$Schema, "Organization">;
+export type OrganizationDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "Organization"
+>;
 export type OrganizationCountArgs = $CountArgs<$Schema, "Organization">;
 export type OrganizationAggregateArgs = $AggregateArgs<$Schema, "Organization">;
 export type OrganizationGroupByArgs = $GroupByArgs<$Schema, "Organization">;
@@ -107,16 +195,25 @@ export type OrganizationWhereInput = $WhereInput<$Schema, "Organization">;
 export type OrganizationSelect = $SelectInput<$Schema, "Organization">;
 export type OrganizationInclude = $IncludeInput<$Schema, "Organization">;
 export type OrganizationOmit = $OmitInput<$Schema, "Organization">;
-export type OrganizationGetPayload<Args extends $SelectIncludeOmit<$Schema, "Organization", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Organization", Args, Options>;
+export type OrganizationGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Organization", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Organization", Args, Options>;
 export type MemberFindManyArgs = $FindManyArgs<$Schema, "Member">;
 export type MemberFindUniqueArgs = $FindUniqueArgs<$Schema, "Member">;
 export type MemberFindFirstArgs = $FindFirstArgs<$Schema, "Member">;
 export type MemberCreateArgs = $CreateArgs<$Schema, "Member">;
 export type MemberCreateManyArgs = $CreateManyArgs<$Schema, "Member">;
-export type MemberCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Member">;
+export type MemberCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Member"
+>;
 export type MemberUpdateArgs = $UpdateArgs<$Schema, "Member">;
 export type MemberUpdateManyArgs = $UpdateManyArgs<$Schema, "Member">;
-export type MemberUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Member">;
+export type MemberUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Member"
+>;
 export type MemberUpsertArgs = $UpsertArgs<$Schema, "Member">;
 export type MemberDeleteArgs = $DeleteArgs<$Schema, "Member">;
 export type MemberDeleteManyArgs = $DeleteManyArgs<$Schema, "Member">;
@@ -127,16 +224,25 @@ export type MemberWhereInput = $WhereInput<$Schema, "Member">;
 export type MemberSelect = $SelectInput<$Schema, "Member">;
 export type MemberInclude = $IncludeInput<$Schema, "Member">;
 export type MemberOmit = $OmitInput<$Schema, "Member">;
-export type MemberGetPayload<Args extends $SelectIncludeOmit<$Schema, "Member", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Member", Args, Options>;
+export type MemberGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Member", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Member", Args, Options>;
 export type InvitationFindManyArgs = $FindManyArgs<$Schema, "Invitation">;
 export type InvitationFindUniqueArgs = $FindUniqueArgs<$Schema, "Invitation">;
 export type InvitationFindFirstArgs = $FindFirstArgs<$Schema, "Invitation">;
 export type InvitationCreateArgs = $CreateArgs<$Schema, "Invitation">;
 export type InvitationCreateManyArgs = $CreateManyArgs<$Schema, "Invitation">;
-export type InvitationCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Invitation">;
+export type InvitationCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Invitation"
+>;
 export type InvitationUpdateArgs = $UpdateArgs<$Schema, "Invitation">;
 export type InvitationUpdateManyArgs = $UpdateManyArgs<$Schema, "Invitation">;
-export type InvitationUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Invitation">;
+export type InvitationUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Invitation"
+>;
 export type InvitationUpsertArgs = $UpsertArgs<$Schema, "Invitation">;
 export type InvitationDeleteArgs = $DeleteArgs<$Schema, "Invitation">;
 export type InvitationDeleteManyArgs = $DeleteManyArgs<$Schema, "Invitation">;
@@ -147,16 +253,25 @@ export type InvitationWhereInput = $WhereInput<$Schema, "Invitation">;
 export type InvitationSelect = $SelectInput<$Schema, "Invitation">;
 export type InvitationInclude = $IncludeInput<$Schema, "Invitation">;
 export type InvitationOmit = $OmitInput<$Schema, "Invitation">;
-export type InvitationGetPayload<Args extends $SelectIncludeOmit<$Schema, "Invitation", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Invitation", Args, Options>;
+export type InvitationGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Invitation", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Invitation", Args, Options>;
 export type TodoFindManyArgs = $FindManyArgs<$Schema, "Todo">;
 export type TodoFindUniqueArgs = $FindUniqueArgs<$Schema, "Todo">;
 export type TodoFindFirstArgs = $FindFirstArgs<$Schema, "Todo">;
 export type TodoCreateArgs = $CreateArgs<$Schema, "Todo">;
 export type TodoCreateManyArgs = $CreateManyArgs<$Schema, "Todo">;
-export type TodoCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Todo">;
+export type TodoCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Todo"
+>;
 export type TodoUpdateArgs = $UpdateArgs<$Schema, "Todo">;
 export type TodoUpdateManyArgs = $UpdateManyArgs<$Schema, "Todo">;
-export type TodoUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Todo">;
+export type TodoUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Todo"
+>;
 export type TodoUpsertArgs = $UpsertArgs<$Schema, "Todo">;
 export type TodoDeleteArgs = $DeleteArgs<$Schema, "Todo">;
 export type TodoDeleteManyArgs = $DeleteManyArgs<$Schema, "Todo">;
@@ -167,16 +282,25 @@ export type TodoWhereInput = $WhereInput<$Schema, "Todo">;
 export type TodoSelect = $SelectInput<$Schema, "Todo">;
 export type TodoInclude = $IncludeInput<$Schema, "Todo">;
 export type TodoOmit = $OmitInput<$Schema, "Todo">;
-export type TodoGetPayload<Args extends $SelectIncludeOmit<$Schema, "Todo", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Todo", Args, Options>;
+export type TodoGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Todo", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Todo", Args, Options>;
 export type TestFindManyArgs = $FindManyArgs<$Schema, "Test">;
 export type TestFindUniqueArgs = $FindUniqueArgs<$Schema, "Test">;
 export type TestFindFirstArgs = $FindFirstArgs<$Schema, "Test">;
 export type TestCreateArgs = $CreateArgs<$Schema, "Test">;
 export type TestCreateManyArgs = $CreateManyArgs<$Schema, "Test">;
-export type TestCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Test">;
+export type TestCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Test"
+>;
 export type TestUpdateArgs = $UpdateArgs<$Schema, "Test">;
 export type TestUpdateManyArgs = $UpdateManyArgs<$Schema, "Test">;
-export type TestUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Test">;
+export type TestUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Test"
+>;
 export type TestUpsertArgs = $UpsertArgs<$Schema, "Test">;
 export type TestDeleteArgs = $DeleteArgs<$Schema, "Test">;
 export type TestDeleteManyArgs = $DeleteManyArgs<$Schema, "Test">;
@@ -187,16 +311,25 @@ export type TestWhereInput = $WhereInput<$Schema, "Test">;
 export type TestSelect = $SelectInput<$Schema, "Test">;
 export type TestInclude = $IncludeInput<$Schema, "Test">;
 export type TestOmit = $OmitInput<$Schema, "Test">;
-export type TestGetPayload<Args extends $SelectIncludeOmit<$Schema, "Test", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Test", Args, Options>;
+export type TestGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Test", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Test", Args, Options>;
 export type ProductFindManyArgs = $FindManyArgs<$Schema, "Product">;
 export type ProductFindUniqueArgs = $FindUniqueArgs<$Schema, "Product">;
 export type ProductFindFirstArgs = $FindFirstArgs<$Schema, "Product">;
 export type ProductCreateArgs = $CreateArgs<$Schema, "Product">;
 export type ProductCreateManyArgs = $CreateManyArgs<$Schema, "Product">;
-export type ProductCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Product">;
+export type ProductCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Product"
+>;
 export type ProductUpdateArgs = $UpdateArgs<$Schema, "Product">;
 export type ProductUpdateManyArgs = $UpdateManyArgs<$Schema, "Product">;
-export type ProductUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Product">;
+export type ProductUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Product"
+>;
 export type ProductUpsertArgs = $UpsertArgs<$Schema, "Product">;
 export type ProductDeleteArgs = $DeleteArgs<$Schema, "Product">;
 export type ProductDeleteManyArgs = $DeleteManyArgs<$Schema, "Product">;
@@ -207,16 +340,25 @@ export type ProductWhereInput = $WhereInput<$Schema, "Product">;
 export type ProductSelect = $SelectInput<$Schema, "Product">;
 export type ProductInclude = $IncludeInput<$Schema, "Product">;
 export type ProductOmit = $OmitInput<$Schema, "Product">;
-export type ProductGetPayload<Args extends $SelectIncludeOmit<$Schema, "Product", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Product", Args, Options>;
+export type ProductGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Product", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Product", Args, Options>;
 export type ClientFindManyArgs = $FindManyArgs<$Schema, "Client">;
 export type ClientFindUniqueArgs = $FindUniqueArgs<$Schema, "Client">;
 export type ClientFindFirstArgs = $FindFirstArgs<$Schema, "Client">;
 export type ClientCreateArgs = $CreateArgs<$Schema, "Client">;
 export type ClientCreateManyArgs = $CreateManyArgs<$Schema, "Client">;
-export type ClientCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Client">;
+export type ClientCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Client"
+>;
 export type ClientUpdateArgs = $UpdateArgs<$Schema, "Client">;
 export type ClientUpdateManyArgs = $UpdateManyArgs<$Schema, "Client">;
-export type ClientUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Client">;
+export type ClientUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Client"
+>;
 export type ClientUpsertArgs = $UpsertArgs<$Schema, "Client">;
 export type ClientDeleteArgs = $DeleteArgs<$Schema, "Client">;
 export type ClientDeleteManyArgs = $DeleteManyArgs<$Schema, "Client">;
@@ -227,176 +369,542 @@ export type ClientWhereInput = $WhereInput<$Schema, "Client">;
 export type ClientSelect = $SelectInput<$Schema, "Client">;
 export type ClientInclude = $IncludeInput<$Schema, "Client">;
 export type ClientOmit = $OmitInput<$Schema, "Client">;
-export type ClientGetPayload<Args extends $SelectIncludeOmit<$Schema, "Client", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Client", Args, Options>;
-export type OnboardingProcessFindManyArgs = $FindManyArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessFindUniqueArgs = $FindUniqueArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessFindFirstArgs = $FindFirstArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessCreateArgs = $CreateArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessCreateManyArgs = $CreateManyArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessUpdateArgs = $UpdateArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessUpdateManyArgs = $UpdateManyArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessUpsertArgs = $UpsertArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessDeleteArgs = $DeleteArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessDeleteManyArgs = $DeleteManyArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessCountArgs = $CountArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessAggregateArgs = $AggregateArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessGroupByArgs = $GroupByArgs<$Schema, "OnboardingProcess">;
-export type OnboardingProcessWhereInput = $WhereInput<$Schema, "OnboardingProcess">;
-export type OnboardingProcessSelect = $SelectInput<$Schema, "OnboardingProcess">;
-export type OnboardingProcessInclude = $IncludeInput<$Schema, "OnboardingProcess">;
+export type ClientGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Client", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Client", Args, Options>;
+export type OnboardingProcessFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessCreateArgs = $CreateArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessUpdateArgs = $UpdateArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessUpsertArgs = $UpsertArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessDeleteArgs = $DeleteArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessCountArgs = $CountArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessGroupByArgs = $GroupByArgs<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessWhereInput = $WhereInput<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessSelect = $SelectInput<
+  $Schema,
+  "OnboardingProcess"
+>;
+export type OnboardingProcessInclude = $IncludeInput<
+  $Schema,
+  "OnboardingProcess"
+>;
 export type OnboardingProcessOmit = $OmitInput<$Schema, "OnboardingProcess">;
-export type OnboardingProcessGetPayload<Args extends $SelectIncludeOmit<$Schema, "OnboardingProcess", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OnboardingProcess", Args, Options>;
-export type OnboardingDocumentFindManyArgs = $FindManyArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentFindUniqueArgs = $FindUniqueArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentFindFirstArgs = $FindFirstArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentCreateArgs = $CreateArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentCreateManyArgs = $CreateManyArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentUpdateArgs = $UpdateArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentUpdateManyArgs = $UpdateManyArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentUpsertArgs = $UpsertArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentDeleteArgs = $DeleteArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentDeleteManyArgs = $DeleteManyArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentCountArgs = $CountArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentAggregateArgs = $AggregateArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentGroupByArgs = $GroupByArgs<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentWhereInput = $WhereInput<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentSelect = $SelectInput<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentInclude = $IncludeInput<$Schema, "OnboardingDocument">;
+export type OnboardingProcessGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OnboardingProcess", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OnboardingProcess", Args, Options>;
+export type OnboardingDocumentFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentCreateArgs = $CreateArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "OnboardingDocument">;
+export type OnboardingDocumentUpdateArgs = $UpdateArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "OnboardingDocument">;
+export type OnboardingDocumentUpsertArgs = $UpsertArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentDeleteArgs = $DeleteArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentCountArgs = $CountArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentGroupByArgs = $GroupByArgs<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentWhereInput = $WhereInput<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentSelect = $SelectInput<
+  $Schema,
+  "OnboardingDocument"
+>;
+export type OnboardingDocumentInclude = $IncludeInput<
+  $Schema,
+  "OnboardingDocument"
+>;
 export type OnboardingDocumentOmit = $OmitInput<$Schema, "OnboardingDocument">;
-export type OnboardingDocumentGetPayload<Args extends $SelectIncludeOmit<$Schema, "OnboardingDocument", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OnboardingDocument", Args, Options>;
-export type OnboardingChatFindManyArgs = $FindManyArgs<$Schema, "OnboardingChat">;
-export type OnboardingChatFindUniqueArgs = $FindUniqueArgs<$Schema, "OnboardingChat">;
-export type OnboardingChatFindFirstArgs = $FindFirstArgs<$Schema, "OnboardingChat">;
+export type OnboardingDocumentGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OnboardingDocument", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OnboardingDocument", Args, Options>;
+export type OnboardingChatFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OnboardingChat"
+>;
+export type OnboardingChatFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OnboardingChat"
+>;
+export type OnboardingChatFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OnboardingChat"
+>;
 export type OnboardingChatCreateArgs = $CreateArgs<$Schema, "OnboardingChat">;
-export type OnboardingChatCreateManyArgs = $CreateManyArgs<$Schema, "OnboardingChat">;
-export type OnboardingChatCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OnboardingChat">;
+export type OnboardingChatCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OnboardingChat"
+>;
+export type OnboardingChatCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "OnboardingChat"
+>;
 export type OnboardingChatUpdateArgs = $UpdateArgs<$Schema, "OnboardingChat">;
-export type OnboardingChatUpdateManyArgs = $UpdateManyArgs<$Schema, "OnboardingChat">;
-export type OnboardingChatUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OnboardingChat">;
+export type OnboardingChatUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OnboardingChat"
+>;
+export type OnboardingChatUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "OnboardingChat"
+>;
 export type OnboardingChatUpsertArgs = $UpsertArgs<$Schema, "OnboardingChat">;
 export type OnboardingChatDeleteArgs = $DeleteArgs<$Schema, "OnboardingChat">;
-export type OnboardingChatDeleteManyArgs = $DeleteManyArgs<$Schema, "OnboardingChat">;
+export type OnboardingChatDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OnboardingChat"
+>;
 export type OnboardingChatCountArgs = $CountArgs<$Schema, "OnboardingChat">;
-export type OnboardingChatAggregateArgs = $AggregateArgs<$Schema, "OnboardingChat">;
+export type OnboardingChatAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OnboardingChat"
+>;
 export type OnboardingChatGroupByArgs = $GroupByArgs<$Schema, "OnboardingChat">;
 export type OnboardingChatWhereInput = $WhereInput<$Schema, "OnboardingChat">;
 export type OnboardingChatSelect = $SelectInput<$Schema, "OnboardingChat">;
 export type OnboardingChatInclude = $IncludeInput<$Schema, "OnboardingChat">;
 export type OnboardingChatOmit = $OmitInput<$Schema, "OnboardingChat">;
-export type OnboardingChatGetPayload<Args extends $SelectIncludeOmit<$Schema, "OnboardingChat", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OnboardingChat", Args, Options>;
+export type OnboardingChatGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OnboardingChat", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OnboardingChat", Args, Options>;
 export type KnowledgeChatFindManyArgs = $FindManyArgs<$Schema, "KnowledgeChat">;
-export type KnowledgeChatFindUniqueArgs = $FindUniqueArgs<$Schema, "KnowledgeChat">;
-export type KnowledgeChatFindFirstArgs = $FindFirstArgs<$Schema, "KnowledgeChat">;
+export type KnowledgeChatFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "KnowledgeChat"
+>;
+export type KnowledgeChatFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "KnowledgeChat"
+>;
 export type KnowledgeChatCreateArgs = $CreateArgs<$Schema, "KnowledgeChat">;
-export type KnowledgeChatCreateManyArgs = $CreateManyArgs<$Schema, "KnowledgeChat">;
-export type KnowledgeChatCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "KnowledgeChat">;
+export type KnowledgeChatCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "KnowledgeChat"
+>;
+export type KnowledgeChatCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "KnowledgeChat"
+>;
 export type KnowledgeChatUpdateArgs = $UpdateArgs<$Schema, "KnowledgeChat">;
-export type KnowledgeChatUpdateManyArgs = $UpdateManyArgs<$Schema, "KnowledgeChat">;
-export type KnowledgeChatUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "KnowledgeChat">;
+export type KnowledgeChatUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "KnowledgeChat"
+>;
+export type KnowledgeChatUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "KnowledgeChat"
+>;
 export type KnowledgeChatUpsertArgs = $UpsertArgs<$Schema, "KnowledgeChat">;
 export type KnowledgeChatDeleteArgs = $DeleteArgs<$Schema, "KnowledgeChat">;
-export type KnowledgeChatDeleteManyArgs = $DeleteManyArgs<$Schema, "KnowledgeChat">;
+export type KnowledgeChatDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "KnowledgeChat"
+>;
 export type KnowledgeChatCountArgs = $CountArgs<$Schema, "KnowledgeChat">;
-export type KnowledgeChatAggregateArgs = $AggregateArgs<$Schema, "KnowledgeChat">;
+export type KnowledgeChatAggregateArgs = $AggregateArgs<
+  $Schema,
+  "KnowledgeChat"
+>;
 export type KnowledgeChatGroupByArgs = $GroupByArgs<$Schema, "KnowledgeChat">;
 export type KnowledgeChatWhereInput = $WhereInput<$Schema, "KnowledgeChat">;
 export type KnowledgeChatSelect = $SelectInput<$Schema, "KnowledgeChat">;
 export type KnowledgeChatInclude = $IncludeInput<$Schema, "KnowledgeChat">;
 export type KnowledgeChatOmit = $OmitInput<$Schema, "KnowledgeChat">;
-export type KnowledgeChatGetPayload<Args extends $SelectIncludeOmit<$Schema, "KnowledgeChat", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "KnowledgeChat", Args, Options>;
-export type GroupChatMessageFindManyArgs = $FindManyArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageFindUniqueArgs = $FindUniqueArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageFindFirstArgs = $FindFirstArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageCreateArgs = $CreateArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageCreateManyArgs = $CreateManyArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageUpdateArgs = $UpdateArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageUpdateManyArgs = $UpdateManyArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageUpsertArgs = $UpsertArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageDeleteArgs = $DeleteArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageDeleteManyArgs = $DeleteManyArgs<$Schema, "GroupChatMessage">;
+export type KnowledgeChatGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "KnowledgeChat", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "KnowledgeChat", Args, Options>;
+export type GroupChatMessageFindManyArgs = $FindManyArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageCreateArgs = $CreateArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageUpdateArgs = $UpdateArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageUpsertArgs = $UpsertArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageDeleteArgs = $DeleteArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
 export type GroupChatMessageCountArgs = $CountArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageAggregateArgs = $AggregateArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageGroupByArgs = $GroupByArgs<$Schema, "GroupChatMessage">;
-export type GroupChatMessageWhereInput = $WhereInput<$Schema, "GroupChatMessage">;
+export type GroupChatMessageAggregateArgs = $AggregateArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageGroupByArgs = $GroupByArgs<
+  $Schema,
+  "GroupChatMessage"
+>;
+export type GroupChatMessageWhereInput = $WhereInput<
+  $Schema,
+  "GroupChatMessage"
+>;
 export type GroupChatMessageSelect = $SelectInput<$Schema, "GroupChatMessage">;
-export type GroupChatMessageInclude = $IncludeInput<$Schema, "GroupChatMessage">;
+export type GroupChatMessageInclude = $IncludeInput<
+  $Schema,
+  "GroupChatMessage"
+>;
 export type GroupChatMessageOmit = $OmitInput<$Schema, "GroupChatMessage">;
-export type GroupChatMessageGetPayload<Args extends $SelectIncludeOmit<$Schema, "GroupChatMessage", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "GroupChatMessage", Args, Options>;
-export type OnboardingChecklistStepFindManyArgs = $FindManyArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepFindUniqueArgs = $FindUniqueArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepFindFirstArgs = $FindFirstArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepCreateArgs = $CreateArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepCreateManyArgs = $CreateManyArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepUpdateArgs = $UpdateArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepUpdateManyArgs = $UpdateManyArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepUpsertArgs = $UpsertArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepDeleteArgs = $DeleteArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepDeleteManyArgs = $DeleteManyArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepCountArgs = $CountArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepAggregateArgs = $AggregateArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepGroupByArgs = $GroupByArgs<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepWhereInput = $WhereInput<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepSelect = $SelectInput<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepInclude = $IncludeInput<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepOmit = $OmitInput<$Schema, "OnboardingChecklistStep">;
-export type OnboardingChecklistStepGetPayload<Args extends $SelectIncludeOmit<$Schema, "OnboardingChecklistStep", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OnboardingChecklistStep", Args, Options>;
-export type OnboardingChecklistProgressFindManyArgs = $FindManyArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressFindUniqueArgs = $FindUniqueArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressFindFirstArgs = $FindFirstArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressCreateArgs = $CreateArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressCreateManyArgs = $CreateManyArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressUpdateArgs = $UpdateArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressUpdateManyArgs = $UpdateManyArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressUpsertArgs = $UpsertArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressDeleteArgs = $DeleteArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressDeleteManyArgs = $DeleteManyArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressCountArgs = $CountArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressAggregateArgs = $AggregateArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressGroupByArgs = $GroupByArgs<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressWhereInput = $WhereInput<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressSelect = $SelectInput<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressInclude = $IncludeInput<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressOmit = $OmitInput<$Schema, "OnboardingChecklistProgress">;
-export type OnboardingChecklistProgressGetPayload<Args extends $SelectIncludeOmit<$Schema, "OnboardingChecklistProgress", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OnboardingChecklistProgress", Args, Options>;
+export type GroupChatMessageGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "GroupChatMessage", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "GroupChatMessage", Args, Options>;
+export type OnboardingChecklistStepFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepCreateArgs = $CreateArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "OnboardingChecklistStep">;
+export type OnboardingChecklistStepUpdateArgs = $UpdateArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "OnboardingChecklistStep">;
+export type OnboardingChecklistStepUpsertArgs = $UpsertArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepDeleteArgs = $DeleteArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepCountArgs = $CountArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepGroupByArgs = $GroupByArgs<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepWhereInput = $WhereInput<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepSelect = $SelectInput<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepInclude = $IncludeInput<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepOmit = $OmitInput<
+  $Schema,
+  "OnboardingChecklistStep"
+>;
+export type OnboardingChecklistStepGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OnboardingChecklistStep", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OnboardingChecklistStep", Args, Options>;
+export type OnboardingChecklistProgressFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressCreateArgs = $CreateArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "OnboardingChecklistProgress">;
+export type OnboardingChecklistProgressUpdateArgs = $UpdateArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "OnboardingChecklistProgress">;
+export type OnboardingChecklistProgressUpsertArgs = $UpsertArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressDeleteArgs = $DeleteArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressCountArgs = $CountArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressGroupByArgs = $GroupByArgs<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressWhereInput = $WhereInput<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressSelect = $SelectInput<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressInclude = $IncludeInput<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressOmit = $OmitInput<
+  $Schema,
+  "OnboardingChecklistProgress"
+>;
+export type OnboardingChecklistProgressGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OnboardingChecklistProgress", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OnboardingChecklistProgress", Args, Options>;
 export type CalendarEventFindManyArgs = $FindManyArgs<$Schema, "CalendarEvent">;
-export type CalendarEventFindUniqueArgs = $FindUniqueArgs<$Schema, "CalendarEvent">;
-export type CalendarEventFindFirstArgs = $FindFirstArgs<$Schema, "CalendarEvent">;
+export type CalendarEventFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "CalendarEvent"
+>;
+export type CalendarEventFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "CalendarEvent"
+>;
 export type CalendarEventCreateArgs = $CreateArgs<$Schema, "CalendarEvent">;
-export type CalendarEventCreateManyArgs = $CreateManyArgs<$Schema, "CalendarEvent">;
-export type CalendarEventCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "CalendarEvent">;
+export type CalendarEventCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "CalendarEvent"
+>;
+export type CalendarEventCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "CalendarEvent"
+>;
 export type CalendarEventUpdateArgs = $UpdateArgs<$Schema, "CalendarEvent">;
-export type CalendarEventUpdateManyArgs = $UpdateManyArgs<$Schema, "CalendarEvent">;
-export type CalendarEventUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "CalendarEvent">;
+export type CalendarEventUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "CalendarEvent"
+>;
+export type CalendarEventUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "CalendarEvent"
+>;
 export type CalendarEventUpsertArgs = $UpsertArgs<$Schema, "CalendarEvent">;
 export type CalendarEventDeleteArgs = $DeleteArgs<$Schema, "CalendarEvent">;
-export type CalendarEventDeleteManyArgs = $DeleteManyArgs<$Schema, "CalendarEvent">;
+export type CalendarEventDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "CalendarEvent"
+>;
 export type CalendarEventCountArgs = $CountArgs<$Schema, "CalendarEvent">;
-export type CalendarEventAggregateArgs = $AggregateArgs<$Schema, "CalendarEvent">;
+export type CalendarEventAggregateArgs = $AggregateArgs<
+  $Schema,
+  "CalendarEvent"
+>;
 export type CalendarEventGroupByArgs = $GroupByArgs<$Schema, "CalendarEvent">;
 export type CalendarEventWhereInput = $WhereInput<$Schema, "CalendarEvent">;
 export type CalendarEventSelect = $SelectInput<$Schema, "CalendarEvent">;
 export type CalendarEventInclude = $IncludeInput<$Schema, "CalendarEvent">;
 export type CalendarEventOmit = $OmitInput<$Schema, "CalendarEvent">;
-export type CalendarEventGetPayload<Args extends $SelectIncludeOmit<$Schema, "CalendarEvent", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "CalendarEvent", Args, Options>;
+export type CalendarEventGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "CalendarEvent", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "CalendarEvent", Args, Options>;
 export type KanbanBoardFindManyArgs = $FindManyArgs<$Schema, "KanbanBoard">;
 export type KanbanBoardFindUniqueArgs = $FindUniqueArgs<$Schema, "KanbanBoard">;
 export type KanbanBoardFindFirstArgs = $FindFirstArgs<$Schema, "KanbanBoard">;
 export type KanbanBoardCreateArgs = $CreateArgs<$Schema, "KanbanBoard">;
 export type KanbanBoardCreateManyArgs = $CreateManyArgs<$Schema, "KanbanBoard">;
-export type KanbanBoardCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "KanbanBoard">;
+export type KanbanBoardCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "KanbanBoard"
+>;
 export type KanbanBoardUpdateArgs = $UpdateArgs<$Schema, "KanbanBoard">;
 export type KanbanBoardUpdateManyArgs = $UpdateManyArgs<$Schema, "KanbanBoard">;
-export type KanbanBoardUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "KanbanBoard">;
+export type KanbanBoardUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "KanbanBoard"
+>;
 export type KanbanBoardUpsertArgs = $UpsertArgs<$Schema, "KanbanBoard">;
 export type KanbanBoardDeleteArgs = $DeleteArgs<$Schema, "KanbanBoard">;
 export type KanbanBoardDeleteManyArgs = $DeleteManyArgs<$Schema, "KanbanBoard">;
@@ -407,19 +915,40 @@ export type KanbanBoardWhereInput = $WhereInput<$Schema, "KanbanBoard">;
 export type KanbanBoardSelect = $SelectInput<$Schema, "KanbanBoard">;
 export type KanbanBoardInclude = $IncludeInput<$Schema, "KanbanBoard">;
 export type KanbanBoardOmit = $OmitInput<$Schema, "KanbanBoard">;
-export type KanbanBoardGetPayload<Args extends $SelectIncludeOmit<$Schema, "KanbanBoard", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "KanbanBoard", Args, Options>;
+export type KanbanBoardGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "KanbanBoard", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "KanbanBoard", Args, Options>;
 export type KanbanColumnFindManyArgs = $FindManyArgs<$Schema, "KanbanColumn">;
-export type KanbanColumnFindUniqueArgs = $FindUniqueArgs<$Schema, "KanbanColumn">;
+export type KanbanColumnFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "KanbanColumn"
+>;
 export type KanbanColumnFindFirstArgs = $FindFirstArgs<$Schema, "KanbanColumn">;
 export type KanbanColumnCreateArgs = $CreateArgs<$Schema, "KanbanColumn">;
-export type KanbanColumnCreateManyArgs = $CreateManyArgs<$Schema, "KanbanColumn">;
-export type KanbanColumnCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "KanbanColumn">;
+export type KanbanColumnCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "KanbanColumn"
+>;
+export type KanbanColumnCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "KanbanColumn"
+>;
 export type KanbanColumnUpdateArgs = $UpdateArgs<$Schema, "KanbanColumn">;
-export type KanbanColumnUpdateManyArgs = $UpdateManyArgs<$Schema, "KanbanColumn">;
-export type KanbanColumnUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "KanbanColumn">;
+export type KanbanColumnUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "KanbanColumn"
+>;
+export type KanbanColumnUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "KanbanColumn"
+>;
 export type KanbanColumnUpsertArgs = $UpsertArgs<$Schema, "KanbanColumn">;
 export type KanbanColumnDeleteArgs = $DeleteArgs<$Schema, "KanbanColumn">;
-export type KanbanColumnDeleteManyArgs = $DeleteManyArgs<$Schema, "KanbanColumn">;
+export type KanbanColumnDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "KanbanColumn"
+>;
 export type KanbanColumnCountArgs = $CountArgs<$Schema, "KanbanColumn">;
 export type KanbanColumnAggregateArgs = $AggregateArgs<$Schema, "KanbanColumn">;
 export type KanbanColumnGroupByArgs = $GroupByArgs<$Schema, "KanbanColumn">;
@@ -427,16 +956,25 @@ export type KanbanColumnWhereInput = $WhereInput<$Schema, "KanbanColumn">;
 export type KanbanColumnSelect = $SelectInput<$Schema, "KanbanColumn">;
 export type KanbanColumnInclude = $IncludeInput<$Schema, "KanbanColumn">;
 export type KanbanColumnOmit = $OmitInput<$Schema, "KanbanColumn">;
-export type KanbanColumnGetPayload<Args extends $SelectIncludeOmit<$Schema, "KanbanColumn", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "KanbanColumn", Args, Options>;
+export type KanbanColumnGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "KanbanColumn", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "KanbanColumn", Args, Options>;
 export type KanbanCardFindManyArgs = $FindManyArgs<$Schema, "KanbanCard">;
 export type KanbanCardFindUniqueArgs = $FindUniqueArgs<$Schema, "KanbanCard">;
 export type KanbanCardFindFirstArgs = $FindFirstArgs<$Schema, "KanbanCard">;
 export type KanbanCardCreateArgs = $CreateArgs<$Schema, "KanbanCard">;
 export type KanbanCardCreateManyArgs = $CreateManyArgs<$Schema, "KanbanCard">;
-export type KanbanCardCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "KanbanCard">;
+export type KanbanCardCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "KanbanCard"
+>;
 export type KanbanCardUpdateArgs = $UpdateArgs<$Schema, "KanbanCard">;
 export type KanbanCardUpdateManyArgs = $UpdateManyArgs<$Schema, "KanbanCard">;
-export type KanbanCardUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "KanbanCard">;
+export type KanbanCardUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "KanbanCard"
+>;
 export type KanbanCardUpsertArgs = $UpsertArgs<$Schema, "KanbanCard">;
 export type KanbanCardDeleteArgs = $DeleteArgs<$Schema, "KanbanCard">;
 export type KanbanCardDeleteManyArgs = $DeleteManyArgs<$Schema, "KanbanCard">;
@@ -447,16 +985,25 @@ export type KanbanCardWhereInput = $WhereInput<$Schema, "KanbanCard">;
 export type KanbanCardSelect = $SelectInput<$Schema, "KanbanCard">;
 export type KanbanCardInclude = $IncludeInput<$Schema, "KanbanCard">;
 export type KanbanCardOmit = $OmitInput<$Schema, "KanbanCard">;
-export type KanbanCardGetPayload<Args extends $SelectIncludeOmit<$Schema, "KanbanCard", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "KanbanCard", Args, Options>;
+export type KanbanCardGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "KanbanCard", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "KanbanCard", Args, Options>;
 export type SalesOrderFindManyArgs = $FindManyArgs<$Schema, "SalesOrder">;
 export type SalesOrderFindUniqueArgs = $FindUniqueArgs<$Schema, "SalesOrder">;
 export type SalesOrderFindFirstArgs = $FindFirstArgs<$Schema, "SalesOrder">;
 export type SalesOrderCreateArgs = $CreateArgs<$Schema, "SalesOrder">;
 export type SalesOrderCreateManyArgs = $CreateManyArgs<$Schema, "SalesOrder">;
-export type SalesOrderCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "SalesOrder">;
+export type SalesOrderCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "SalesOrder"
+>;
 export type SalesOrderUpdateArgs = $UpdateArgs<$Schema, "SalesOrder">;
 export type SalesOrderUpdateManyArgs = $UpdateManyArgs<$Schema, "SalesOrder">;
-export type SalesOrderUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "SalesOrder">;
+export type SalesOrderUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "SalesOrder"
+>;
 export type SalesOrderUpsertArgs = $UpsertArgs<$Schema, "SalesOrder">;
 export type SalesOrderDeleteArgs = $DeleteArgs<$Schema, "SalesOrder">;
 export type SalesOrderDeleteManyArgs = $DeleteManyArgs<$Schema, "SalesOrder">;
@@ -467,16 +1014,25 @@ export type SalesOrderWhereInput = $WhereInput<$Schema, "SalesOrder">;
 export type SalesOrderSelect = $SelectInput<$Schema, "SalesOrder">;
 export type SalesOrderInclude = $IncludeInput<$Schema, "SalesOrder">;
 export type SalesOrderOmit = $OmitInput<$Schema, "SalesOrder">;
-export type SalesOrderGetPayload<Args extends $SelectIncludeOmit<$Schema, "SalesOrder", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "SalesOrder", Args, Options>;
+export type SalesOrderGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "SalesOrder", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "SalesOrder", Args, Options>;
 export type OrderItemFindManyArgs = $FindManyArgs<$Schema, "OrderItem">;
 export type OrderItemFindUniqueArgs = $FindUniqueArgs<$Schema, "OrderItem">;
 export type OrderItemFindFirstArgs = $FindFirstArgs<$Schema, "OrderItem">;
 export type OrderItemCreateArgs = $CreateArgs<$Schema, "OrderItem">;
 export type OrderItemCreateManyArgs = $CreateManyArgs<$Schema, "OrderItem">;
-export type OrderItemCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OrderItem">;
+export type OrderItemCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "OrderItem"
+>;
 export type OrderItemUpdateArgs = $UpdateArgs<$Schema, "OrderItem">;
 export type OrderItemUpdateManyArgs = $UpdateManyArgs<$Schema, "OrderItem">;
-export type OrderItemUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OrderItem">;
+export type OrderItemUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "OrderItem"
+>;
 export type OrderItemUpsertArgs = $UpsertArgs<$Schema, "OrderItem">;
 export type OrderItemDeleteArgs = $DeleteArgs<$Schema, "OrderItem">;
 export type OrderItemDeleteManyArgs = $DeleteManyArgs<$Schema, "OrderItem">;
@@ -487,16 +1043,25 @@ export type OrderItemWhereInput = $WhereInput<$Schema, "OrderItem">;
 export type OrderItemSelect = $SelectInput<$Schema, "OrderItem">;
 export type OrderItemInclude = $IncludeInput<$Schema, "OrderItem">;
 export type OrderItemOmit = $OmitInput<$Schema, "OrderItem">;
-export type OrderItemGetPayload<Args extends $SelectIncludeOmit<$Schema, "OrderItem", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OrderItem", Args, Options>;
+export type OrderItemGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OrderItem", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OrderItem", Args, Options>;
 export type UserScoreFindManyArgs = $FindManyArgs<$Schema, "UserScore">;
 export type UserScoreFindUniqueArgs = $FindUniqueArgs<$Schema, "UserScore">;
 export type UserScoreFindFirstArgs = $FindFirstArgs<$Schema, "UserScore">;
 export type UserScoreCreateArgs = $CreateArgs<$Schema, "UserScore">;
 export type UserScoreCreateManyArgs = $CreateManyArgs<$Schema, "UserScore">;
-export type UserScoreCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "UserScore">;
+export type UserScoreCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "UserScore"
+>;
 export type UserScoreUpdateArgs = $UpdateArgs<$Schema, "UserScore">;
 export type UserScoreUpdateManyArgs = $UpdateManyArgs<$Schema, "UserScore">;
-export type UserScoreUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "UserScore">;
+export type UserScoreUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "UserScore"
+>;
 export type UserScoreUpsertArgs = $UpsertArgs<$Schema, "UserScore">;
 export type UserScoreDeleteArgs = $DeleteArgs<$Schema, "UserScore">;
 export type UserScoreDeleteManyArgs = $DeleteManyArgs<$Schema, "UserScore">;
@@ -507,16 +1072,25 @@ export type UserScoreWhereInput = $WhereInput<$Schema, "UserScore">;
 export type UserScoreSelect = $SelectInput<$Schema, "UserScore">;
 export type UserScoreInclude = $IncludeInput<$Schema, "UserScore">;
 export type UserScoreOmit = $OmitInput<$Schema, "UserScore">;
-export type UserScoreGetPayload<Args extends $SelectIncludeOmit<$Schema, "UserScore", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "UserScore", Args, Options>;
+export type UserScoreGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "UserScore", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "UserScore", Args, Options>;
 export type AchievementFindManyArgs = $FindManyArgs<$Schema, "Achievement">;
 export type AchievementFindUniqueArgs = $FindUniqueArgs<$Schema, "Achievement">;
 export type AchievementFindFirstArgs = $FindFirstArgs<$Schema, "Achievement">;
 export type AchievementCreateArgs = $CreateArgs<$Schema, "Achievement">;
 export type AchievementCreateManyArgs = $CreateManyArgs<$Schema, "Achievement">;
-export type AchievementCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Achievement">;
+export type AchievementCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Achievement"
+>;
 export type AchievementUpdateArgs = $UpdateArgs<$Schema, "Achievement">;
 export type AchievementUpdateManyArgs = $UpdateManyArgs<$Schema, "Achievement">;
-export type AchievementUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Achievement">;
+export type AchievementUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Achievement"
+>;
 export type AchievementUpsertArgs = $UpsertArgs<$Schema, "Achievement">;
 export type AchievementDeleteArgs = $DeleteArgs<$Schema, "Achievement">;
 export type AchievementDeleteManyArgs = $DeleteManyArgs<$Schema, "Achievement">;
@@ -527,99 +1101,249 @@ export type AchievementWhereInput = $WhereInput<$Schema, "Achievement">;
 export type AchievementSelect = $SelectInput<$Schema, "Achievement">;
 export type AchievementInclude = $IncludeInput<$Schema, "Achievement">;
 export type AchievementOmit = $OmitInput<$Schema, "Achievement">;
-export type AchievementGetPayload<Args extends $SelectIncludeOmit<$Schema, "Achievement", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Achievement", Args, Options>;
-export type UserAchievementFindManyArgs = $FindManyArgs<$Schema, "UserAchievement">;
-export type UserAchievementFindUniqueArgs = $FindUniqueArgs<$Schema, "UserAchievement">;
-export type UserAchievementFindFirstArgs = $FindFirstArgs<$Schema, "UserAchievement">;
+export type AchievementGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Achievement", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Achievement", Args, Options>;
+export type UserAchievementFindManyArgs = $FindManyArgs<
+  $Schema,
+  "UserAchievement"
+>;
+export type UserAchievementFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "UserAchievement"
+>;
+export type UserAchievementFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "UserAchievement"
+>;
 export type UserAchievementCreateArgs = $CreateArgs<$Schema, "UserAchievement">;
-export type UserAchievementCreateManyArgs = $CreateManyArgs<$Schema, "UserAchievement">;
-export type UserAchievementCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "UserAchievement">;
+export type UserAchievementCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "UserAchievement"
+>;
+export type UserAchievementCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "UserAchievement"
+>;
 export type UserAchievementUpdateArgs = $UpdateArgs<$Schema, "UserAchievement">;
-export type UserAchievementUpdateManyArgs = $UpdateManyArgs<$Schema, "UserAchievement">;
-export type UserAchievementUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "UserAchievement">;
+export type UserAchievementUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "UserAchievement"
+>;
+export type UserAchievementUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "UserAchievement"
+>;
 export type UserAchievementUpsertArgs = $UpsertArgs<$Schema, "UserAchievement">;
 export type UserAchievementDeleteArgs = $DeleteArgs<$Schema, "UserAchievement">;
-export type UserAchievementDeleteManyArgs = $DeleteManyArgs<$Schema, "UserAchievement">;
+export type UserAchievementDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "UserAchievement"
+>;
 export type UserAchievementCountArgs = $CountArgs<$Schema, "UserAchievement">;
-export type UserAchievementAggregateArgs = $AggregateArgs<$Schema, "UserAchievement">;
-export type UserAchievementGroupByArgs = $GroupByArgs<$Schema, "UserAchievement">;
+export type UserAchievementAggregateArgs = $AggregateArgs<
+  $Schema,
+  "UserAchievement"
+>;
+export type UserAchievementGroupByArgs = $GroupByArgs<
+  $Schema,
+  "UserAchievement"
+>;
 export type UserAchievementWhereInput = $WhereInput<$Schema, "UserAchievement">;
 export type UserAchievementSelect = $SelectInput<$Schema, "UserAchievement">;
 export type UserAchievementInclude = $IncludeInput<$Schema, "UserAchievement">;
 export type UserAchievementOmit = $OmitInput<$Schema, "UserAchievement">;
-export type UserAchievementGetPayload<Args extends $SelectIncludeOmit<$Schema, "UserAchievement", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "UserAchievement", Args, Options>;
-export type UserActionCountFindManyArgs = $FindManyArgs<$Schema, "UserActionCount">;
-export type UserActionCountFindUniqueArgs = $FindUniqueArgs<$Schema, "UserActionCount">;
-export type UserActionCountFindFirstArgs = $FindFirstArgs<$Schema, "UserActionCount">;
+export type UserAchievementGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "UserAchievement", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "UserAchievement", Args, Options>;
+export type UserActionCountFindManyArgs = $FindManyArgs<
+  $Schema,
+  "UserActionCount"
+>;
+export type UserActionCountFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "UserActionCount"
+>;
+export type UserActionCountFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "UserActionCount"
+>;
 export type UserActionCountCreateArgs = $CreateArgs<$Schema, "UserActionCount">;
-export type UserActionCountCreateManyArgs = $CreateManyArgs<$Schema, "UserActionCount">;
-export type UserActionCountCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "UserActionCount">;
+export type UserActionCountCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "UserActionCount"
+>;
+export type UserActionCountCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "UserActionCount"
+>;
 export type UserActionCountUpdateArgs = $UpdateArgs<$Schema, "UserActionCount">;
-export type UserActionCountUpdateManyArgs = $UpdateManyArgs<$Schema, "UserActionCount">;
-export type UserActionCountUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "UserActionCount">;
+export type UserActionCountUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "UserActionCount"
+>;
+export type UserActionCountUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "UserActionCount"
+>;
 export type UserActionCountUpsertArgs = $UpsertArgs<$Schema, "UserActionCount">;
 export type UserActionCountDeleteArgs = $DeleteArgs<$Schema, "UserActionCount">;
-export type UserActionCountDeleteManyArgs = $DeleteManyArgs<$Schema, "UserActionCount">;
+export type UserActionCountDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "UserActionCount"
+>;
 export type UserActionCountCountArgs = $CountArgs<$Schema, "UserActionCount">;
-export type UserActionCountAggregateArgs = $AggregateArgs<$Schema, "UserActionCount">;
-export type UserActionCountGroupByArgs = $GroupByArgs<$Schema, "UserActionCount">;
+export type UserActionCountAggregateArgs = $AggregateArgs<
+  $Schema,
+  "UserActionCount"
+>;
+export type UserActionCountGroupByArgs = $GroupByArgs<
+  $Schema,
+  "UserActionCount"
+>;
 export type UserActionCountWhereInput = $WhereInput<$Schema, "UserActionCount">;
 export type UserActionCountSelect = $SelectInput<$Schema, "UserActionCount">;
 export type UserActionCountInclude = $IncludeInput<$Schema, "UserActionCount">;
 export type UserActionCountOmit = $OmitInput<$Schema, "UserActionCount">;
-export type UserActionCountGetPayload<Args extends $SelectIncludeOmit<$Schema, "UserActionCount", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "UserActionCount", Args, Options>;
-export type TutorialSectorFindManyArgs = $FindManyArgs<$Schema, "TutorialSector">;
-export type TutorialSectorFindUniqueArgs = $FindUniqueArgs<$Schema, "TutorialSector">;
-export type TutorialSectorFindFirstArgs = $FindFirstArgs<$Schema, "TutorialSector">;
+export type UserActionCountGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "UserActionCount", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "UserActionCount", Args, Options>;
+export type TutorialSectorFindManyArgs = $FindManyArgs<
+  $Schema,
+  "TutorialSector"
+>;
+export type TutorialSectorFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "TutorialSector"
+>;
+export type TutorialSectorFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "TutorialSector"
+>;
 export type TutorialSectorCreateArgs = $CreateArgs<$Schema, "TutorialSector">;
-export type TutorialSectorCreateManyArgs = $CreateManyArgs<$Schema, "TutorialSector">;
-export type TutorialSectorCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "TutorialSector">;
+export type TutorialSectorCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "TutorialSector"
+>;
+export type TutorialSectorCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "TutorialSector"
+>;
 export type TutorialSectorUpdateArgs = $UpdateArgs<$Schema, "TutorialSector">;
-export type TutorialSectorUpdateManyArgs = $UpdateManyArgs<$Schema, "TutorialSector">;
-export type TutorialSectorUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "TutorialSector">;
+export type TutorialSectorUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "TutorialSector"
+>;
+export type TutorialSectorUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "TutorialSector"
+>;
 export type TutorialSectorUpsertArgs = $UpsertArgs<$Schema, "TutorialSector">;
 export type TutorialSectorDeleteArgs = $DeleteArgs<$Schema, "TutorialSector">;
-export type TutorialSectorDeleteManyArgs = $DeleteManyArgs<$Schema, "TutorialSector">;
+export type TutorialSectorDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "TutorialSector"
+>;
 export type TutorialSectorCountArgs = $CountArgs<$Schema, "TutorialSector">;
-export type TutorialSectorAggregateArgs = $AggregateArgs<$Schema, "TutorialSector">;
+export type TutorialSectorAggregateArgs = $AggregateArgs<
+  $Schema,
+  "TutorialSector"
+>;
 export type TutorialSectorGroupByArgs = $GroupByArgs<$Schema, "TutorialSector">;
 export type TutorialSectorWhereInput = $WhereInput<$Schema, "TutorialSector">;
 export type TutorialSectorSelect = $SelectInput<$Schema, "TutorialSector">;
 export type TutorialSectorInclude = $IncludeInput<$Schema, "TutorialSector">;
 export type TutorialSectorOmit = $OmitInput<$Schema, "TutorialSector">;
-export type TutorialSectorGetPayload<Args extends $SelectIncludeOmit<$Schema, "TutorialSector", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "TutorialSector", Args, Options>;
-export type TutorialSectionFindManyArgs = $FindManyArgs<$Schema, "TutorialSection">;
-export type TutorialSectionFindUniqueArgs = $FindUniqueArgs<$Schema, "TutorialSection">;
-export type TutorialSectionFindFirstArgs = $FindFirstArgs<$Schema, "TutorialSection">;
+export type TutorialSectorGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "TutorialSector", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "TutorialSector", Args, Options>;
+export type TutorialSectionFindManyArgs = $FindManyArgs<
+  $Schema,
+  "TutorialSection"
+>;
+export type TutorialSectionFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "TutorialSection"
+>;
+export type TutorialSectionFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "TutorialSection"
+>;
 export type TutorialSectionCreateArgs = $CreateArgs<$Schema, "TutorialSection">;
-export type TutorialSectionCreateManyArgs = $CreateManyArgs<$Schema, "TutorialSection">;
-export type TutorialSectionCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "TutorialSection">;
+export type TutorialSectionCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "TutorialSection"
+>;
+export type TutorialSectionCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "TutorialSection"
+>;
 export type TutorialSectionUpdateArgs = $UpdateArgs<$Schema, "TutorialSection">;
-export type TutorialSectionUpdateManyArgs = $UpdateManyArgs<$Schema, "TutorialSection">;
-export type TutorialSectionUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "TutorialSection">;
+export type TutorialSectionUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "TutorialSection"
+>;
+export type TutorialSectionUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "TutorialSection"
+>;
 export type TutorialSectionUpsertArgs = $UpsertArgs<$Schema, "TutorialSection">;
 export type TutorialSectionDeleteArgs = $DeleteArgs<$Schema, "TutorialSection">;
-export type TutorialSectionDeleteManyArgs = $DeleteManyArgs<$Schema, "TutorialSection">;
+export type TutorialSectionDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "TutorialSection"
+>;
 export type TutorialSectionCountArgs = $CountArgs<$Schema, "TutorialSection">;
-export type TutorialSectionAggregateArgs = $AggregateArgs<$Schema, "TutorialSection">;
-export type TutorialSectionGroupByArgs = $GroupByArgs<$Schema, "TutorialSection">;
+export type TutorialSectionAggregateArgs = $AggregateArgs<
+  $Schema,
+  "TutorialSection"
+>;
+export type TutorialSectionGroupByArgs = $GroupByArgs<
+  $Schema,
+  "TutorialSection"
+>;
 export type TutorialSectionWhereInput = $WhereInput<$Schema, "TutorialSection">;
 export type TutorialSectionSelect = $SelectInput<$Schema, "TutorialSection">;
 export type TutorialSectionInclude = $IncludeInput<$Schema, "TutorialSection">;
 export type TutorialSectionOmit = $OmitInput<$Schema, "TutorialSection">;
-export type TutorialSectionGetPayload<Args extends $SelectIncludeOmit<$Schema, "TutorialSection", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "TutorialSection", Args, Options>;
+export type TutorialSectionGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "TutorialSection", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "TutorialSection", Args, Options>;
 export type TutorialStepFindManyArgs = $FindManyArgs<$Schema, "TutorialStep">;
-export type TutorialStepFindUniqueArgs = $FindUniqueArgs<$Schema, "TutorialStep">;
+export type TutorialStepFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "TutorialStep"
+>;
 export type TutorialStepFindFirstArgs = $FindFirstArgs<$Schema, "TutorialStep">;
 export type TutorialStepCreateArgs = $CreateArgs<$Schema, "TutorialStep">;
-export type TutorialStepCreateManyArgs = $CreateManyArgs<$Schema, "TutorialStep">;
-export type TutorialStepCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "TutorialStep">;
+export type TutorialStepCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "TutorialStep"
+>;
+export type TutorialStepCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "TutorialStep"
+>;
 export type TutorialStepUpdateArgs = $UpdateArgs<$Schema, "TutorialStep">;
-export type TutorialStepUpdateManyArgs = $UpdateManyArgs<$Schema, "TutorialStep">;
-export type TutorialStepUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "TutorialStep">;
+export type TutorialStepUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "TutorialStep"
+>;
+export type TutorialStepUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "TutorialStep"
+>;
 export type TutorialStepUpsertArgs = $UpsertArgs<$Schema, "TutorialStep">;
 export type TutorialStepDeleteArgs = $DeleteArgs<$Schema, "TutorialStep">;
-export type TutorialStepDeleteManyArgs = $DeleteManyArgs<$Schema, "TutorialStep">;
+export type TutorialStepDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "TutorialStep"
+>;
 export type TutorialStepCountArgs = $CountArgs<$Schema, "TutorialStep">;
 export type TutorialStepAggregateArgs = $AggregateArgs<$Schema, "TutorialStep">;
 export type TutorialStepGroupByArgs = $GroupByArgs<$Schema, "TutorialStep">;
@@ -627,36 +1351,101 @@ export type TutorialStepWhereInput = $WhereInput<$Schema, "TutorialStep">;
 export type TutorialStepSelect = $SelectInput<$Schema, "TutorialStep">;
 export type TutorialStepInclude = $IncludeInput<$Schema, "TutorialStep">;
 export type TutorialStepOmit = $OmitInput<$Schema, "TutorialStep">;
-export type TutorialStepGetPayload<Args extends $SelectIncludeOmit<$Schema, "TutorialStep", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "TutorialStep", Args, Options>;
-export type TutorialStepProgressFindManyArgs = $FindManyArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressFindUniqueArgs = $FindUniqueArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressFindFirstArgs = $FindFirstArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressCreateArgs = $CreateArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressCreateManyArgs = $CreateManyArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressUpdateArgs = $UpdateArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressUpdateManyArgs = $UpdateManyArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressUpsertArgs = $UpsertArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressDeleteArgs = $DeleteArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressDeleteManyArgs = $DeleteManyArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressCountArgs = $CountArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressAggregateArgs = $AggregateArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressGroupByArgs = $GroupByArgs<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressWhereInput = $WhereInput<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressSelect = $SelectInput<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressInclude = $IncludeInput<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressOmit = $OmitInput<$Schema, "TutorialStepProgress">;
-export type TutorialStepProgressGetPayload<Args extends $SelectIncludeOmit<$Schema, "TutorialStepProgress", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "TutorialStepProgress", Args, Options>;
+export type TutorialStepGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "TutorialStep", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "TutorialStep", Args, Options>;
+export type TutorialStepProgressFindManyArgs = $FindManyArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressCreateArgs = $CreateArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "TutorialStepProgress">;
+export type TutorialStepProgressUpdateArgs = $UpdateArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "TutorialStepProgress">;
+export type TutorialStepProgressUpsertArgs = $UpsertArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressDeleteArgs = $DeleteArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressCountArgs = $CountArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressAggregateArgs = $AggregateArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressGroupByArgs = $GroupByArgs<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressWhereInput = $WhereInput<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressSelect = $SelectInput<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressInclude = $IncludeInput<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressOmit = $OmitInput<
+  $Schema,
+  "TutorialStepProgress"
+>;
+export type TutorialStepProgressGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "TutorialStepProgress", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "TutorialStepProgress", Args, Options>;
 export type MeetingFindManyArgs = $FindManyArgs<$Schema, "Meeting">;
 export type MeetingFindUniqueArgs = $FindUniqueArgs<$Schema, "Meeting">;
 export type MeetingFindFirstArgs = $FindFirstArgs<$Schema, "Meeting">;
 export type MeetingCreateArgs = $CreateArgs<$Schema, "Meeting">;
 export type MeetingCreateManyArgs = $CreateManyArgs<$Schema, "Meeting">;
-export type MeetingCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Meeting">;
+export type MeetingCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Meeting"
+>;
 export type MeetingUpdateArgs = $UpdateArgs<$Schema, "Meeting">;
 export type MeetingUpdateManyArgs = $UpdateManyArgs<$Schema, "Meeting">;
-export type MeetingUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Meeting">;
+export type MeetingUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Meeting"
+>;
 export type MeetingUpsertArgs = $UpsertArgs<$Schema, "Meeting">;
 export type MeetingDeleteArgs = $DeleteArgs<$Schema, "Meeting">;
 export type MeetingDeleteManyArgs = $DeleteManyArgs<$Schema, "Meeting">;
@@ -667,16 +1456,25 @@ export type MeetingWhereInput = $WhereInput<$Schema, "Meeting">;
 export type MeetingSelect = $SelectInput<$Schema, "Meeting">;
 export type MeetingInclude = $IncludeInput<$Schema, "Meeting">;
 export type MeetingOmit = $OmitInput<$Schema, "Meeting">;
-export type MeetingGetPayload<Args extends $SelectIncludeOmit<$Schema, "Meeting", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Meeting", Args, Options>;
+export type MeetingGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Meeting", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Meeting", Args, Options>;
 export type MindmapFindManyArgs = $FindManyArgs<$Schema, "Mindmap">;
 export type MindmapFindUniqueArgs = $FindUniqueArgs<$Schema, "Mindmap">;
 export type MindmapFindFirstArgs = $FindFirstArgs<$Schema, "Mindmap">;
 export type MindmapCreateArgs = $CreateArgs<$Schema, "Mindmap">;
 export type MindmapCreateManyArgs = $CreateManyArgs<$Schema, "Mindmap">;
-export type MindmapCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "Mindmap">;
+export type MindmapCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "Mindmap"
+>;
 export type MindmapUpdateArgs = $UpdateArgs<$Schema, "Mindmap">;
 export type MindmapUpdateManyArgs = $UpdateManyArgs<$Schema, "Mindmap">;
-export type MindmapUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "Mindmap">;
+export type MindmapUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "Mindmap"
+>;
 export type MindmapUpsertArgs = $UpsertArgs<$Schema, "Mindmap">;
 export type MindmapDeleteArgs = $DeleteArgs<$Schema, "Mindmap">;
 export type MindmapDeleteManyArgs = $DeleteManyArgs<$Schema, "Mindmap">;
@@ -687,344 +1485,1720 @@ export type MindmapWhereInput = $WhereInput<$Schema, "Mindmap">;
 export type MindmapSelect = $SelectInput<$Schema, "Mindmap">;
 export type MindmapInclude = $IncludeInput<$Schema, "Mindmap">;
 export type MindmapOmit = $OmitInput<$Schema, "Mindmap">;
-export type MindmapGetPayload<Args extends $SelectIncludeOmit<$Schema, "Mindmap", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "Mindmap", Args, Options>;
-export type OffboardingChecklistStepFindManyArgs = $FindManyArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepFindUniqueArgs = $FindUniqueArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepFindFirstArgs = $FindFirstArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepCreateArgs = $CreateArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepCreateManyArgs = $CreateManyArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepUpdateArgs = $UpdateArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepUpdateManyArgs = $UpdateManyArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepUpsertArgs = $UpsertArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepDeleteArgs = $DeleteArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepDeleteManyArgs = $DeleteManyArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepCountArgs = $CountArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepAggregateArgs = $AggregateArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepGroupByArgs = $GroupByArgs<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepWhereInput = $WhereInput<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepSelect = $SelectInput<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepInclude = $IncludeInput<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepOmit = $OmitInput<$Schema, "OffboardingChecklistStep">;
-export type OffboardingChecklistStepGetPayload<Args extends $SelectIncludeOmit<$Schema, "OffboardingChecklistStep", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OffboardingChecklistStep", Args, Options>;
-export type OffboardingProcessFindManyArgs = $FindManyArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessFindUniqueArgs = $FindUniqueArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessFindFirstArgs = $FindFirstArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessCreateArgs = $CreateArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessCreateManyArgs = $CreateManyArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessUpdateArgs = $UpdateArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessUpdateManyArgs = $UpdateManyArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessUpsertArgs = $UpsertArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessDeleteArgs = $DeleteArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessDeleteManyArgs = $DeleteManyArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessCountArgs = $CountArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessAggregateArgs = $AggregateArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessGroupByArgs = $GroupByArgs<$Schema, "OffboardingProcess">;
-export type OffboardingProcessWhereInput = $WhereInput<$Schema, "OffboardingProcess">;
-export type OffboardingProcessSelect = $SelectInput<$Schema, "OffboardingProcess">;
-export type OffboardingProcessInclude = $IncludeInput<$Schema, "OffboardingProcess">;
+export type MindmapGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "Mindmap", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "Mindmap", Args, Options>;
+export type OffboardingChecklistStepFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepCreateArgs = $CreateArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "OffboardingChecklistStep">;
+export type OffboardingChecklistStepUpdateArgs = $UpdateArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "OffboardingChecklistStep">;
+export type OffboardingChecklistStepUpsertArgs = $UpsertArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepDeleteArgs = $DeleteArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepCountArgs = $CountArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepGroupByArgs = $GroupByArgs<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepWhereInput = $WhereInput<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepSelect = $SelectInput<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepInclude = $IncludeInput<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepOmit = $OmitInput<
+  $Schema,
+  "OffboardingChecklistStep"
+>;
+export type OffboardingChecklistStepGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OffboardingChecklistStep", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OffboardingChecklistStep", Args, Options>;
+export type OffboardingProcessFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessCreateArgs = $CreateArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "OffboardingProcess">;
+export type OffboardingProcessUpdateArgs = $UpdateArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "OffboardingProcess">;
+export type OffboardingProcessUpsertArgs = $UpsertArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessDeleteArgs = $DeleteArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessCountArgs = $CountArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessGroupByArgs = $GroupByArgs<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessWhereInput = $WhereInput<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessSelect = $SelectInput<
+  $Schema,
+  "OffboardingProcess"
+>;
+export type OffboardingProcessInclude = $IncludeInput<
+  $Schema,
+  "OffboardingProcess"
+>;
 export type OffboardingProcessOmit = $OmitInput<$Schema, "OffboardingProcess">;
-export type OffboardingProcessGetPayload<Args extends $SelectIncludeOmit<$Schema, "OffboardingProcess", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OffboardingProcess", Args, Options>;
-export type OffboardingProgressFindManyArgs = $FindManyArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressFindUniqueArgs = $FindUniqueArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressFindFirstArgs = $FindFirstArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressCreateArgs = $CreateArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressCreateManyArgs = $CreateManyArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressUpdateArgs = $UpdateArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressUpdateManyArgs = $UpdateManyArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressUpsertArgs = $UpsertArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressDeleteArgs = $DeleteArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressDeleteManyArgs = $DeleteManyArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressCountArgs = $CountArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressAggregateArgs = $AggregateArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressGroupByArgs = $GroupByArgs<$Schema, "OffboardingProgress">;
-export type OffboardingProgressWhereInput = $WhereInput<$Schema, "OffboardingProgress">;
-export type OffboardingProgressSelect = $SelectInput<$Schema, "OffboardingProgress">;
-export type OffboardingProgressInclude = $IncludeInput<$Schema, "OffboardingProgress">;
-export type OffboardingProgressOmit = $OmitInput<$Schema, "OffboardingProgress">;
-export type OffboardingProgressGetPayload<Args extends $SelectIncludeOmit<$Schema, "OffboardingProgress", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OffboardingProgress", Args, Options>;
-export type OffboardingHandoverTaskFindManyArgs = $FindManyArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskFindUniqueArgs = $FindUniqueArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskFindFirstArgs = $FindFirstArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskCreateArgs = $CreateArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskCreateManyArgs = $CreateManyArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskUpdateArgs = $UpdateArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskUpdateManyArgs = $UpdateManyArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskUpsertArgs = $UpsertArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskDeleteArgs = $DeleteArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskDeleteManyArgs = $DeleteManyArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskCountArgs = $CountArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskAggregateArgs = $AggregateArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskGroupByArgs = $GroupByArgs<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskWhereInput = $WhereInput<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskSelect = $SelectInput<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskInclude = $IncludeInput<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskOmit = $OmitInput<$Schema, "OffboardingHandoverTask">;
-export type OffboardingHandoverTaskGetPayload<Args extends $SelectIncludeOmit<$Schema, "OffboardingHandoverTask", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "OffboardingHandoverTask", Args, Options>;
-export type PreboardingStageFindManyArgs = $FindManyArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageFindUniqueArgs = $FindUniqueArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageFindFirstArgs = $FindFirstArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageCreateArgs = $CreateArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageCreateManyArgs = $CreateManyArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageUpdateArgs = $UpdateArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageUpdateManyArgs = $UpdateManyArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageUpsertArgs = $UpsertArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageDeleteArgs = $DeleteArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageDeleteManyArgs = $DeleteManyArgs<$Schema, "PreboardingStage">;
+export type OffboardingProcessGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OffboardingProcess", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OffboardingProcess", Args, Options>;
+export type OffboardingProgressFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressCreateArgs = $CreateArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "OffboardingProgress">;
+export type OffboardingProgressUpdateArgs = $UpdateArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "OffboardingProgress">;
+export type OffboardingProgressUpsertArgs = $UpsertArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressDeleteArgs = $DeleteArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressCountArgs = $CountArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressGroupByArgs = $GroupByArgs<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressWhereInput = $WhereInput<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressSelect = $SelectInput<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressInclude = $IncludeInput<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressOmit = $OmitInput<
+  $Schema,
+  "OffboardingProgress"
+>;
+export type OffboardingProgressGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OffboardingProgress", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OffboardingProgress", Args, Options>;
+export type OffboardingHandoverTaskFindManyArgs = $FindManyArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskCreateArgs = $CreateArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "OffboardingHandoverTask">;
+export type OffboardingHandoverTaskUpdateArgs = $UpdateArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "OffboardingHandoverTask">;
+export type OffboardingHandoverTaskUpsertArgs = $UpsertArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskDeleteArgs = $DeleteArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskCountArgs = $CountArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskAggregateArgs = $AggregateArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskGroupByArgs = $GroupByArgs<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskWhereInput = $WhereInput<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskSelect = $SelectInput<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskInclude = $IncludeInput<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskOmit = $OmitInput<
+  $Schema,
+  "OffboardingHandoverTask"
+>;
+export type OffboardingHandoverTaskGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "OffboardingHandoverTask", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "OffboardingHandoverTask", Args, Options>;
+export type PreboardingStageFindManyArgs = $FindManyArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageCreateArgs = $CreateArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageUpdateArgs = $UpdateArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageUpsertArgs = $UpsertArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageDeleteArgs = $DeleteArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "PreboardingStage"
+>;
 export type PreboardingStageCountArgs = $CountArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageAggregateArgs = $AggregateArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageGroupByArgs = $GroupByArgs<$Schema, "PreboardingStage">;
-export type PreboardingStageWhereInput = $WhereInput<$Schema, "PreboardingStage">;
+export type PreboardingStageAggregateArgs = $AggregateArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageGroupByArgs = $GroupByArgs<
+  $Schema,
+  "PreboardingStage"
+>;
+export type PreboardingStageWhereInput = $WhereInput<
+  $Schema,
+  "PreboardingStage"
+>;
 export type PreboardingStageSelect = $SelectInput<$Schema, "PreboardingStage">;
-export type PreboardingStageInclude = $IncludeInput<$Schema, "PreboardingStage">;
+export type PreboardingStageInclude = $IncludeInput<
+  $Schema,
+  "PreboardingStage"
+>;
 export type PreboardingStageOmit = $OmitInput<$Schema, "PreboardingStage">;
-export type PreboardingStageGetPayload<Args extends $SelectIncludeOmit<$Schema, "PreboardingStage", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "PreboardingStage", Args, Options>;
-export type PreboardingJobPositionFindManyArgs = $FindManyArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionFindUniqueArgs = $FindUniqueArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionFindFirstArgs = $FindFirstArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionCreateArgs = $CreateArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionCreateManyArgs = $CreateManyArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionUpdateArgs = $UpdateArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionUpdateManyArgs = $UpdateManyArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionUpsertArgs = $UpsertArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionDeleteArgs = $DeleteArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionDeleteManyArgs = $DeleteManyArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionCountArgs = $CountArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionAggregateArgs = $AggregateArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionGroupByArgs = $GroupByArgs<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionWhereInput = $WhereInput<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionSelect = $SelectInput<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionInclude = $IncludeInput<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionOmit = $OmitInput<$Schema, "PreboardingJobPosition">;
-export type PreboardingJobPositionGetPayload<Args extends $SelectIncludeOmit<$Schema, "PreboardingJobPosition", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "PreboardingJobPosition", Args, Options>;
-export type PreboardingCandidateFindManyArgs = $FindManyArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateFindUniqueArgs = $FindUniqueArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateFindFirstArgs = $FindFirstArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateCreateArgs = $CreateArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateCreateManyArgs = $CreateManyArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateUpdateArgs = $UpdateArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateUpdateManyArgs = $UpdateManyArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateUpsertArgs = $UpsertArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateDeleteArgs = $DeleteArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateDeleteManyArgs = $DeleteManyArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateCountArgs = $CountArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateAggregateArgs = $AggregateArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateGroupByArgs = $GroupByArgs<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateWhereInput = $WhereInput<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateSelect = $SelectInput<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateInclude = $IncludeInput<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateOmit = $OmitInput<$Schema, "PreboardingCandidate">;
-export type PreboardingCandidateGetPayload<Args extends $SelectIncludeOmit<$Schema, "PreboardingCandidate", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "PreboardingCandidate", Args, Options>;
-export type PreboardingActivityFindManyArgs = $FindManyArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityFindUniqueArgs = $FindUniqueArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityFindFirstArgs = $FindFirstArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityCreateArgs = $CreateArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityCreateManyArgs = $CreateManyArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityUpdateArgs = $UpdateArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityUpdateManyArgs = $UpdateManyArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityUpsertArgs = $UpsertArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityDeleteArgs = $DeleteArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityDeleteManyArgs = $DeleteManyArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityCountArgs = $CountArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityAggregateArgs = $AggregateArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityGroupByArgs = $GroupByArgs<$Schema, "PreboardingActivity">;
-export type PreboardingActivityWhereInput = $WhereInput<$Schema, "PreboardingActivity">;
-export type PreboardingActivitySelect = $SelectInput<$Schema, "PreboardingActivity">;
-export type PreboardingActivityInclude = $IncludeInput<$Schema, "PreboardingActivity">;
-export type PreboardingActivityOmit = $OmitInput<$Schema, "PreboardingActivity">;
-export type PreboardingActivityGetPayload<Args extends $SelectIncludeOmit<$Schema, "PreboardingActivity", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "PreboardingActivity", Args, Options>;
-export type PreboardingInterviewFindManyArgs = $FindManyArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewFindUniqueArgs = $FindUniqueArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewFindFirstArgs = $FindFirstArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewCreateArgs = $CreateArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewCreateManyArgs = $CreateManyArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewUpdateArgs = $UpdateArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewUpdateManyArgs = $UpdateManyArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewUpsertArgs = $UpsertArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewDeleteArgs = $DeleteArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewDeleteManyArgs = $DeleteManyArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewCountArgs = $CountArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewAggregateArgs = $AggregateArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewGroupByArgs = $GroupByArgs<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewWhereInput = $WhereInput<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewSelect = $SelectInput<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewInclude = $IncludeInput<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewOmit = $OmitInput<$Schema, "PreboardingInterview">;
-export type PreboardingInterviewGetPayload<Args extends $SelectIncludeOmit<$Schema, "PreboardingInterview", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "PreboardingInterview", Args, Options>;
-export type PreboardingCandidateQuestionFindManyArgs = $FindManyArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionFindUniqueArgs = $FindUniqueArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionFindFirstArgs = $FindFirstArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionCreateArgs = $CreateArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionCreateManyArgs = $CreateManyArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionUpdateArgs = $UpdateArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionUpdateManyArgs = $UpdateManyArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionUpsertArgs = $UpsertArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionDeleteArgs = $DeleteArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionDeleteManyArgs = $DeleteManyArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionCountArgs = $CountArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionAggregateArgs = $AggregateArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionGroupByArgs = $GroupByArgs<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionWhereInput = $WhereInput<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionSelect = $SelectInput<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionInclude = $IncludeInput<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionOmit = $OmitInput<$Schema, "PreboardingCandidateQuestion">;
-export type PreboardingCandidateQuestionGetPayload<Args extends $SelectIncludeOmit<$Schema, "PreboardingCandidateQuestion", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "PreboardingCandidateQuestion", Args, Options>;
-export type PreboardingCandidateDocumentFindManyArgs = $FindManyArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentFindUniqueArgs = $FindUniqueArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentFindFirstArgs = $FindFirstArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentCreateArgs = $CreateArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentCreateManyArgs = $CreateManyArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentUpdateArgs = $UpdateArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentUpdateManyArgs = $UpdateManyArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentUpsertArgs = $UpsertArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentDeleteArgs = $DeleteArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentDeleteManyArgs = $DeleteManyArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentCountArgs = $CountArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentAggregateArgs = $AggregateArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentGroupByArgs = $GroupByArgs<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentWhereInput = $WhereInput<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentSelect = $SelectInput<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentInclude = $IncludeInput<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentOmit = $OmitInput<$Schema, "PreboardingCandidateDocument">;
-export type PreboardingCandidateDocumentGetPayload<Args extends $SelectIncludeOmit<$Schema, "PreboardingCandidateDocument", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "PreboardingCandidateDocument", Args, Options>;
-export type FirstStepsJobTypeFindManyArgs = $FindManyArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeFindUniqueArgs = $FindUniqueArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeFindFirstArgs = $FindFirstArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeCreateArgs = $CreateArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeCreateManyArgs = $CreateManyArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeUpdateArgs = $UpdateArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeUpdateManyArgs = $UpdateManyArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeUpsertArgs = $UpsertArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeDeleteArgs = $DeleteArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeDeleteManyArgs = $DeleteManyArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeCountArgs = $CountArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeAggregateArgs = $AggregateArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeGroupByArgs = $GroupByArgs<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeWhereInput = $WhereInput<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeSelect = $SelectInput<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeInclude = $IncludeInput<$Schema, "FirstStepsJobType">;
+export type PreboardingStageGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "PreboardingStage", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "PreboardingStage", Args, Options>;
+export type PreboardingJobPositionFindManyArgs = $FindManyArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionCreateArgs = $CreateArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "PreboardingJobPosition">;
+export type PreboardingJobPositionUpdateArgs = $UpdateArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "PreboardingJobPosition">;
+export type PreboardingJobPositionUpsertArgs = $UpsertArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionDeleteArgs = $DeleteArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionCountArgs = $CountArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionAggregateArgs = $AggregateArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionGroupByArgs = $GroupByArgs<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionWhereInput = $WhereInput<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionSelect = $SelectInput<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionInclude = $IncludeInput<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionOmit = $OmitInput<
+  $Schema,
+  "PreboardingJobPosition"
+>;
+export type PreboardingJobPositionGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "PreboardingJobPosition", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "PreboardingJobPosition", Args, Options>;
+export type PreboardingCandidateFindManyArgs = $FindManyArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateCreateArgs = $CreateArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "PreboardingCandidate">;
+export type PreboardingCandidateUpdateArgs = $UpdateArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "PreboardingCandidate">;
+export type PreboardingCandidateUpsertArgs = $UpsertArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateDeleteArgs = $DeleteArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateCountArgs = $CountArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateAggregateArgs = $AggregateArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateGroupByArgs = $GroupByArgs<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateWhereInput = $WhereInput<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateSelect = $SelectInput<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateInclude = $IncludeInput<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateOmit = $OmitInput<
+  $Schema,
+  "PreboardingCandidate"
+>;
+export type PreboardingCandidateGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "PreboardingCandidate", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "PreboardingCandidate", Args, Options>;
+export type PreboardingActivityFindManyArgs = $FindManyArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityCreateArgs = $CreateArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "PreboardingActivity">;
+export type PreboardingActivityUpdateArgs = $UpdateArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "PreboardingActivity">;
+export type PreboardingActivityUpsertArgs = $UpsertArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityDeleteArgs = $DeleteArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityCountArgs = $CountArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityAggregateArgs = $AggregateArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityGroupByArgs = $GroupByArgs<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityWhereInput = $WhereInput<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivitySelect = $SelectInput<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityInclude = $IncludeInput<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityOmit = $OmitInput<
+  $Schema,
+  "PreboardingActivity"
+>;
+export type PreboardingActivityGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "PreboardingActivity", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "PreboardingActivity", Args, Options>;
+export type PreboardingInterviewFindManyArgs = $FindManyArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewCreateArgs = $CreateArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "PreboardingInterview">;
+export type PreboardingInterviewUpdateArgs = $UpdateArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "PreboardingInterview">;
+export type PreboardingInterviewUpsertArgs = $UpsertArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewDeleteArgs = $DeleteArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewCountArgs = $CountArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewAggregateArgs = $AggregateArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewGroupByArgs = $GroupByArgs<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewWhereInput = $WhereInput<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewSelect = $SelectInput<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewInclude = $IncludeInput<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewOmit = $OmitInput<
+  $Schema,
+  "PreboardingInterview"
+>;
+export type PreboardingInterviewGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "PreboardingInterview", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "PreboardingInterview", Args, Options>;
+export type PreboardingCandidateQuestionFindManyArgs = $FindManyArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionCreateArgs = $CreateArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "PreboardingCandidateQuestion">;
+export type PreboardingCandidateQuestionUpdateArgs = $UpdateArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "PreboardingCandidateQuestion">;
+export type PreboardingCandidateQuestionUpsertArgs = $UpsertArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionDeleteArgs = $DeleteArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionCountArgs = $CountArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionAggregateArgs = $AggregateArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionGroupByArgs = $GroupByArgs<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionWhereInput = $WhereInput<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionSelect = $SelectInput<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionInclude = $IncludeInput<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionOmit = $OmitInput<
+  $Schema,
+  "PreboardingCandidateQuestion"
+>;
+export type PreboardingCandidateQuestionGetPayload<
+  Args extends $SelectIncludeOmit<
+    $Schema,
+    "PreboardingCandidateQuestion",
+    true
+  >,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "PreboardingCandidateQuestion", Args, Options>;
+export type PreboardingCandidateDocumentFindManyArgs = $FindManyArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentCreateArgs = $CreateArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "PreboardingCandidateDocument">;
+export type PreboardingCandidateDocumentUpdateArgs = $UpdateArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "PreboardingCandidateDocument">;
+export type PreboardingCandidateDocumentUpsertArgs = $UpsertArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentDeleteArgs = $DeleteArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentCountArgs = $CountArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentAggregateArgs = $AggregateArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentGroupByArgs = $GroupByArgs<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentWhereInput = $WhereInput<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentSelect = $SelectInput<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentInclude = $IncludeInput<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentOmit = $OmitInput<
+  $Schema,
+  "PreboardingCandidateDocument"
+>;
+export type PreboardingCandidateDocumentGetPayload<
+  Args extends $SelectIncludeOmit<
+    $Schema,
+    "PreboardingCandidateDocument",
+    true
+  >,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "PreboardingCandidateDocument", Args, Options>;
+export type FirstStepsJobTypeFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeCreateArgs = $CreateArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeCountArgs = $CountArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeWhereInput = $WhereInput<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeSelect = $SelectInput<
+  $Schema,
+  "FirstStepsJobType"
+>;
+export type FirstStepsJobTypeInclude = $IncludeInput<
+  $Schema,
+  "FirstStepsJobType"
+>;
 export type FirstStepsJobTypeOmit = $OmitInput<$Schema, "FirstStepsJobType">;
-export type FirstStepsJobTypeGetPayload<Args extends $SelectIncludeOmit<$Schema, "FirstStepsJobType", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "FirstStepsJobType", Args, Options>;
-export type FirstStepsItemFindManyArgs = $FindManyArgs<$Schema, "FirstStepsItem">;
-export type FirstStepsItemFindUniqueArgs = $FindUniqueArgs<$Schema, "FirstStepsItem">;
-export type FirstStepsItemFindFirstArgs = $FindFirstArgs<$Schema, "FirstStepsItem">;
+export type FirstStepsJobTypeGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FirstStepsJobType", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FirstStepsJobType", Args, Options>;
+export type FirstStepsItemFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
+export type FirstStepsItemFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
+export type FirstStepsItemFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
 export type FirstStepsItemCreateArgs = $CreateArgs<$Schema, "FirstStepsItem">;
-export type FirstStepsItemCreateManyArgs = $CreateManyArgs<$Schema, "FirstStepsItem">;
-export type FirstStepsItemCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "FirstStepsItem">;
+export type FirstStepsItemCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
+export type FirstStepsItemCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
 export type FirstStepsItemUpdateArgs = $UpdateArgs<$Schema, "FirstStepsItem">;
-export type FirstStepsItemUpdateManyArgs = $UpdateManyArgs<$Schema, "FirstStepsItem">;
-export type FirstStepsItemUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "FirstStepsItem">;
+export type FirstStepsItemUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
+export type FirstStepsItemUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
 export type FirstStepsItemUpsertArgs = $UpsertArgs<$Schema, "FirstStepsItem">;
 export type FirstStepsItemDeleteArgs = $DeleteArgs<$Schema, "FirstStepsItem">;
-export type FirstStepsItemDeleteManyArgs = $DeleteManyArgs<$Schema, "FirstStepsItem">;
+export type FirstStepsItemDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
 export type FirstStepsItemCountArgs = $CountArgs<$Schema, "FirstStepsItem">;
-export type FirstStepsItemAggregateArgs = $AggregateArgs<$Schema, "FirstStepsItem">;
+export type FirstStepsItemAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FirstStepsItem"
+>;
 export type FirstStepsItemGroupByArgs = $GroupByArgs<$Schema, "FirstStepsItem">;
 export type FirstStepsItemWhereInput = $WhereInput<$Schema, "FirstStepsItem">;
 export type FirstStepsItemSelect = $SelectInput<$Schema, "FirstStepsItem">;
 export type FirstStepsItemInclude = $IncludeInput<$Schema, "FirstStepsItem">;
 export type FirstStepsItemOmit = $OmitInput<$Schema, "FirstStepsItem">;
-export type FirstStepsItemGetPayload<Args extends $SelectIncludeOmit<$Schema, "FirstStepsItem", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "FirstStepsItem", Args, Options>;
-export type FirstStepsProgressFindManyArgs = $FindManyArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressFindUniqueArgs = $FindUniqueArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressFindFirstArgs = $FindFirstArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressCreateArgs = $CreateArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressCreateManyArgs = $CreateManyArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressUpdateArgs = $UpdateArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressUpdateManyArgs = $UpdateManyArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressUpsertArgs = $UpsertArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressDeleteArgs = $DeleteArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressDeleteManyArgs = $DeleteManyArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressCountArgs = $CountArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressAggregateArgs = $AggregateArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressGroupByArgs = $GroupByArgs<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressWhereInput = $WhereInput<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressSelect = $SelectInput<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressInclude = $IncludeInput<$Schema, "FirstStepsProgress">;
+export type FirstStepsItemGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FirstStepsItem", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FirstStepsItem", Args, Options>;
+export type FirstStepsProgressFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressCreateArgs = $CreateArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "FirstStepsProgress">;
+export type FirstStepsProgressUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "FirstStepsProgress">;
+export type FirstStepsProgressUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressCountArgs = $CountArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressWhereInput = $WhereInput<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressSelect = $SelectInput<
+  $Schema,
+  "FirstStepsProgress"
+>;
+export type FirstStepsProgressInclude = $IncludeInput<
+  $Schema,
+  "FirstStepsProgress"
+>;
 export type FirstStepsProgressOmit = $OmitInput<$Schema, "FirstStepsProgress">;
-export type FirstStepsProgressGetPayload<Args extends $SelectIncludeOmit<$Schema, "FirstStepsProgress", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "FirstStepsProgress", Args, Options>;
-export type FirstStepsQuizFindManyArgs = $FindManyArgs<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizFindUniqueArgs = $FindUniqueArgs<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizFindFirstArgs = $FindFirstArgs<$Schema, "FirstStepsQuiz">;
+export type FirstStepsProgressGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FirstStepsProgress", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FirstStepsProgress", Args, Options>;
+export type FirstStepsQuizFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
+export type FirstStepsQuizFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
+export type FirstStepsQuizFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
 export type FirstStepsQuizCreateArgs = $CreateArgs<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizCreateManyArgs = $CreateManyArgs<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "FirstStepsQuiz">;
+export type FirstStepsQuizCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
+export type FirstStepsQuizCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
 export type FirstStepsQuizUpdateArgs = $UpdateArgs<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizUpdateManyArgs = $UpdateManyArgs<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "FirstStepsQuiz">;
+export type FirstStepsQuizUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
+export type FirstStepsQuizUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
 export type FirstStepsQuizUpsertArgs = $UpsertArgs<$Schema, "FirstStepsQuiz">;
 export type FirstStepsQuizDeleteArgs = $DeleteArgs<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizDeleteManyArgs = $DeleteManyArgs<$Schema, "FirstStepsQuiz">;
+export type FirstStepsQuizDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
 export type FirstStepsQuizCountArgs = $CountArgs<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizAggregateArgs = $AggregateArgs<$Schema, "FirstStepsQuiz">;
+export type FirstStepsQuizAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FirstStepsQuiz"
+>;
 export type FirstStepsQuizGroupByArgs = $GroupByArgs<$Schema, "FirstStepsQuiz">;
 export type FirstStepsQuizWhereInput = $WhereInput<$Schema, "FirstStepsQuiz">;
 export type FirstStepsQuizSelect = $SelectInput<$Schema, "FirstStepsQuiz">;
 export type FirstStepsQuizInclude = $IncludeInput<$Schema, "FirstStepsQuiz">;
 export type FirstStepsQuizOmit = $OmitInput<$Schema, "FirstStepsQuiz">;
-export type FirstStepsQuizGetPayload<Args extends $SelectIncludeOmit<$Schema, "FirstStepsQuiz", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "FirstStepsQuiz", Args, Options>;
-export type FirstStepsQuizQuestionFindManyArgs = $FindManyArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionFindUniqueArgs = $FindUniqueArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionFindFirstArgs = $FindFirstArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionCreateArgs = $CreateArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionCreateManyArgs = $CreateManyArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionUpdateArgs = $UpdateArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionUpdateManyArgs = $UpdateManyArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionUpsertArgs = $UpsertArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionDeleteArgs = $DeleteArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionDeleteManyArgs = $DeleteManyArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionCountArgs = $CountArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionAggregateArgs = $AggregateArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionGroupByArgs = $GroupByArgs<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionWhereInput = $WhereInput<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionSelect = $SelectInput<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionInclude = $IncludeInput<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionOmit = $OmitInput<$Schema, "FirstStepsQuizQuestion">;
-export type FirstStepsQuizQuestionGetPayload<Args extends $SelectIncludeOmit<$Schema, "FirstStepsQuizQuestion", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "FirstStepsQuizQuestion", Args, Options>;
-export type FirstStepsQuizAttemptFindManyArgs = $FindManyArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptFindUniqueArgs = $FindUniqueArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptFindFirstArgs = $FindFirstArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptCreateArgs = $CreateArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptCreateManyArgs = $CreateManyArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptCreateManyAndReturnArgs = $CreateManyAndReturnArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptUpdateArgs = $UpdateArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptUpdateManyArgs = $UpdateManyArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptUpsertArgs = $UpsertArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptDeleteArgs = $DeleteArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptDeleteManyArgs = $DeleteManyArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptCountArgs = $CountArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptAggregateArgs = $AggregateArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptGroupByArgs = $GroupByArgs<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptWhereInput = $WhereInput<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptSelect = $SelectInput<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptInclude = $IncludeInput<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptOmit = $OmitInput<$Schema, "FirstStepsQuizAttempt">;
-export type FirstStepsQuizAttemptGetPayload<Args extends $SelectIncludeOmit<$Schema, "FirstStepsQuizAttempt", true>, Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>> = $Result<$Schema, "FirstStepsQuizAttempt", Args, Options>;
+export type FirstStepsQuizGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FirstStepsQuiz", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FirstStepsQuiz", Args, Options>;
+export type FirstStepsQuizQuestionFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionCreateArgs = $CreateArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "FirstStepsQuizQuestion">;
+export type FirstStepsQuizQuestionUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "FirstStepsQuizQuestion">;
+export type FirstStepsQuizQuestionUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionCountArgs = $CountArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionWhereInput = $WhereInput<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionSelect = $SelectInput<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionInclude = $IncludeInput<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionOmit = $OmitInput<
+  $Schema,
+  "FirstStepsQuizQuestion"
+>;
+export type FirstStepsQuizQuestionGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FirstStepsQuizQuestion", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FirstStepsQuizQuestion", Args, Options>;
+export type FirstStepsQuizAttemptFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptCreateArgs = $CreateArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "FirstStepsQuizAttempt">;
+export type FirstStepsQuizAttemptUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "FirstStepsQuizAttempt">;
+export type FirstStepsQuizAttemptUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptCountArgs = $CountArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptWhereInput = $WhereInput<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptSelect = $SelectInput<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptInclude = $IncludeInput<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptOmit = $OmitInput<
+  $Schema,
+  "FirstStepsQuizAttempt"
+>;
+export type FirstStepsQuizAttemptGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FirstStepsQuizAttempt", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FirstStepsQuizAttempt", Args, Options>;
+export type FeedbackDepartmentFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentCreateArgs = $CreateArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "FeedbackDepartment">;
+export type FeedbackDepartmentUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "FeedbackDepartment">;
+export type FeedbackDepartmentUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentCountArgs = $CountArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentWhereInput = $WhereInput<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentSelect = $SelectInput<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentInclude = $IncludeInput<
+  $Schema,
+  "FeedbackDepartment"
+>;
+export type FeedbackDepartmentOmit = $OmitInput<$Schema, "FeedbackDepartment">;
+export type FeedbackDepartmentGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FeedbackDepartment", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FeedbackDepartment", Args, Options>;
+export type FeedbackCategoryFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryCreateArgs = $CreateArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryCountArgs = $CountArgs<$Schema, "FeedbackCategory">;
+export type FeedbackCategoryAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryWhereInput = $WhereInput<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategorySelect = $SelectInput<$Schema, "FeedbackCategory">;
+export type FeedbackCategoryInclude = $IncludeInput<
+  $Schema,
+  "FeedbackCategory"
+>;
+export type FeedbackCategoryOmit = $OmitInput<$Schema, "FeedbackCategory">;
+export type FeedbackCategoryGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FeedbackCategory", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FeedbackCategory", Args, Options>;
+export type FeedbackSubcategoryFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryCreateArgs = $CreateArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "FeedbackSubcategory">;
+export type FeedbackSubcategoryUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "FeedbackSubcategory">;
+export type FeedbackSubcategoryUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryCountArgs = $CountArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryWhereInput = $WhereInput<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategorySelect = $SelectInput<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryInclude = $IncludeInput<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryOmit = $OmitInput<
+  $Schema,
+  "FeedbackSubcategory"
+>;
+export type FeedbackSubcategoryGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FeedbackSubcategory", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FeedbackSubcategory", Args, Options>;
+export type CitizenFeedbackFindManyArgs = $FindManyArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackCreateArgs = $CreateArgs<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackUpdateArgs = $UpdateArgs<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackUpsertArgs = $UpsertArgs<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackDeleteArgs = $DeleteArgs<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackCountArgs = $CountArgs<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackAggregateArgs = $AggregateArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackGroupByArgs = $GroupByArgs<
+  $Schema,
+  "CitizenFeedback"
+>;
+export type CitizenFeedbackWhereInput = $WhereInput<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackSelect = $SelectInput<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackInclude = $IncludeInput<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackOmit = $OmitInput<$Schema, "CitizenFeedback">;
+export type CitizenFeedbackGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "CitizenFeedback", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "CitizenFeedback", Args, Options>;
+export type FeedbackAttachmentFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentCreateArgs = $CreateArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "FeedbackAttachment">;
+export type FeedbackAttachmentUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "FeedbackAttachment">;
+export type FeedbackAttachmentUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentCountArgs = $CountArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentWhereInput = $WhereInput<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentSelect = $SelectInput<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentInclude = $IncludeInput<
+  $Schema,
+  "FeedbackAttachment"
+>;
+export type FeedbackAttachmentOmit = $OmitInput<$Schema, "FeedbackAttachment">;
+export type FeedbackAttachmentGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FeedbackAttachment", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FeedbackAttachment", Args, Options>;
+export type FeedbackCommentFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentCreateArgs = $CreateArgs<$Schema, "FeedbackComment">;
+export type FeedbackCommentCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentCreateManyAndReturnArgs = $CreateManyAndReturnArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentUpdateArgs = $UpdateArgs<$Schema, "FeedbackComment">;
+export type FeedbackCommentUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentUpdateManyAndReturnArgs = $UpdateManyAndReturnArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentUpsertArgs = $UpsertArgs<$Schema, "FeedbackComment">;
+export type FeedbackCommentDeleteArgs = $DeleteArgs<$Schema, "FeedbackComment">;
+export type FeedbackCommentDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentCountArgs = $CountArgs<$Schema, "FeedbackComment">;
+export type FeedbackCommentAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FeedbackComment"
+>;
+export type FeedbackCommentWhereInput = $WhereInput<$Schema, "FeedbackComment">;
+export type FeedbackCommentSelect = $SelectInput<$Schema, "FeedbackComment">;
+export type FeedbackCommentInclude = $IncludeInput<$Schema, "FeedbackComment">;
+export type FeedbackCommentOmit = $OmitInput<$Schema, "FeedbackComment">;
+export type FeedbackCommentGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FeedbackComment", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FeedbackComment", Args, Options>;
+export type FeedbackStatusHistoryFindManyArgs = $FindManyArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryFindUniqueArgs = $FindUniqueArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryFindFirstArgs = $FindFirstArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryCreateArgs = $CreateArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryCreateManyArgs = $CreateManyArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryCreateManyAndReturnArgs =
+  $CreateManyAndReturnArgs<$Schema, "FeedbackStatusHistory">;
+export type FeedbackStatusHistoryUpdateArgs = $UpdateArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryUpdateManyArgs = $UpdateManyArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryUpdateManyAndReturnArgs =
+  $UpdateManyAndReturnArgs<$Schema, "FeedbackStatusHistory">;
+export type FeedbackStatusHistoryUpsertArgs = $UpsertArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryDeleteArgs = $DeleteArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryDeleteManyArgs = $DeleteManyArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryCountArgs = $CountArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryAggregateArgs = $AggregateArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryGroupByArgs = $GroupByArgs<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryWhereInput = $WhereInput<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistorySelect = $SelectInput<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryInclude = $IncludeInput<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryOmit = $OmitInput<
+  $Schema,
+  "FeedbackStatusHistory"
+>;
+export type FeedbackStatusHistoryGetPayload<
+  Args extends $SelectIncludeOmit<$Schema, "FeedbackStatusHistory", true>,
+  Options extends $QueryOptions<$Schema> = $QueryOptions<$Schema>,
+> = $Result<$Schema, "FeedbackStatusHistory", Args, Options>;

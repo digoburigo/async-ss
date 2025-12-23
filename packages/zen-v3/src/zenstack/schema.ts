@@ -5,5630 +5,14683 @@
 
 /* eslint-disable */
 
-import { type SchemaDef, ExpressionUtils } from "@zenstackhq/orm/schema";
+import { ExpressionUtils, type SchemaDef } from "@zenstackhq/orm/schema";
 export class SchemaType implements SchemaDef {
-    provider = {
-        type: "postgresql"
-    } as const;
-    models = {
-        User: {
-            name: "User",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+  provider = {
+    type: "postgresql",
+  } as const;
+  models = {
+    User: {
+      name: "User",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
                 },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                email: {
-                    name: "email",
-                    type: "String"
-                },
-                emailVerified: {
-                    name: "emailVerified",
-                    type: "Boolean"
-                },
-                image: {
-                    name: "image",
-                    type: "String",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                sessions: {
-                    name: "sessions",
-                    type: "Session",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                accounts: {
-                    name: "accounts",
-                    type: "Account",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                members: {
-                    name: "members",
-                    type: "Member",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                invitations: {
-                    name: "invitations",
-                    type: "Invitation",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                username: {
-                    name: "username",
-                    type: "String",
-                    optional: true
-                },
-                displayUsername: {
-                    name: "displayUsername",
-                    type: "String",
-                    optional: true
-                },
-                role: {
-                    name: "role",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("user") }] }],
-                    default: "user"
-                },
-                banned: {
-                    name: "banned",
-                    type: "Boolean",
-                    optional: true
-                },
-                banReason: {
-                    name: "banReason",
-                    type: "String",
-                    optional: true
-                },
-                banExpires: {
-                    name: "banExpires",
-                    type: "DateTime",
-                    optional: true
-                },
-                changePassword: {
-                    name: "changePassword",
-                    type: "Boolean",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                createdTodos: {
-                    name: "createdTodos",
-                    type: "Todo",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdTodos") }] }],
-                    relation: { opposite: "createdByUser", name: "createdTodos" }
-                },
-                updatedTodos: {
-                    name: "updatedTodos",
-                    type: "Todo",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedTodos") }] }],
-                    relation: { opposite: "updatedByUser", name: "updatedTodos" }
-                },
-                deletedTodos: {
-                    name: "deletedTodos",
-                    type: "Todo",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedTodos") }] }],
-                    relation: { opposite: "deletedByUser", name: "deletedTodos" }
-                },
-                createdTests: {
-                    name: "createdTests",
-                    type: "Test",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdTests") }] }],
-                    relation: { opposite: "createdByUser", name: "createdTests" }
-                },
-                updatedTests: {
-                    name: "updatedTests",
-                    type: "Test",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedTests") }] }],
-                    relation: { opposite: "updatedByUser", name: "updatedTests" }
-                },
-                deletedTests: {
-                    name: "deletedTests",
-                    type: "Test",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedTests") }] }],
-                    relation: { opposite: "deletedByUser", name: "deletedTests" }
-                },
-                createdProducts: {
-                    name: "createdProducts",
-                    type: "Product",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdProducts") }] }],
-                    relation: { opposite: "createdByUser", name: "createdProducts" }
-                },
-                updatedProducts: {
-                    name: "updatedProducts",
-                    type: "Product",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedProducts") }] }],
-                    relation: { opposite: "updatedByUser", name: "updatedProducts" }
-                },
-                deletedProducts: {
-                    name: "deletedProducts",
-                    type: "Product",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedProducts") }] }],
-                    relation: { opposite: "deletedByUser", name: "deletedProducts" }
-                },
-                createdKanbanCards: {
-                    name: "createdKanbanCards",
-                    type: "KanbanCard",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdKanbanCards") }] }],
-                    relation: { opposite: "createdByUser", name: "createdKanbanCards" }
-                },
-                updatedKanbanCards: {
-                    name: "updatedKanbanCards",
-                    type: "KanbanCard",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedKanbanCards") }] }],
-                    relation: { opposite: "updatedByUser", name: "updatedKanbanCards" }
-                },
-                deletedKanbanCards: {
-                    name: "deletedKanbanCards",
-                    type: "KanbanCard",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedKanbanCards") }] }],
-                    relation: { opposite: "deletedByUser", name: "deletedKanbanCards" }
-                },
-                createdClients: {
-                    name: "createdClients",
-                    type: "Client",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdClients") }] }],
-                    relation: { opposite: "createdByUser", name: "createdClients" }
-                },
-                updatedClients: {
-                    name: "updatedClients",
-                    type: "Client",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedClients") }] }],
-                    relation: { opposite: "updatedByUser", name: "updatedClients" }
-                },
-                deletedClients: {
-                    name: "deletedClients",
-                    type: "Client",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedClients") }] }],
-                    relation: { opposite: "deletedByUser", name: "deletedClients" }
-                },
-                onboardingChats: {
-                    name: "onboardingChats",
-                    type: "OnboardingChat",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                knowledgeChats: {
-                    name: "knowledgeChats",
-                    type: "KnowledgeChat",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                groupChatMessages: {
-                    name: "groupChatMessages",
-                    type: "GroupChatMessage",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                onboardingChecklistProgress: {
-                    name: "onboardingChecklistProgress",
-                    type: "OnboardingChecklistProgress",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                calendarEvents: {
-                    name: "calendarEvents",
-                    type: "CalendarEvent",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                kanbanBoards: {
-                    name: "kanbanBoards",
-                    type: "KanbanBoard",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                salesOrders: {
-                    name: "salesOrders",
-                    type: "SalesOrder",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                userScore: {
-                    name: "userScore",
-                    type: "UserScore",
-                    optional: true,
-                    relation: { opposite: "user" }
-                },
-                userAchievements: {
-                    name: "userAchievements",
-                    type: "UserAchievement",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                userActionCounts: {
-                    name: "userActionCounts",
-                    type: "UserActionCount",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                tutorialStepProgress: {
-                    name: "tutorialStepProgress",
-                    type: "TutorialStepProgress",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                meetings: {
-                    name: "meetings",
-                    type: "Meeting",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                mindmaps: {
-                    name: "mindmaps",
-                    type: "Mindmap",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                offboardingProcessesAsUser: {
-                    name: "offboardingProcessesAsUser",
-                    type: "OffboardingProcess",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingProcessUser") }] }],
-                    relation: { opposite: "user", name: "OffboardingProcessUser" }
-                },
-                offboardingProcessesAsInitiator: {
-                    name: "offboardingProcessesAsInitiator",
-                    type: "OffboardingProcess",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingProcessInitiator") }] }],
-                    relation: { opposite: "initiatedBy", name: "OffboardingProcessInitiator" }
-                },
-                offboardingProgressCompletedBy: {
-                    name: "offboardingProgressCompletedBy",
-                    type: "OffboardingProgress",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingProgressCompletedBy") }] }],
-                    relation: { opposite: "completedBy", name: "OffboardingProgressCompletedBy" }
-                },
-                offboardingProgressApprovedBy: {
-                    name: "offboardingProgressApprovedBy",
-                    type: "OffboardingProgress",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingProgressApprovedBy") }] }],
-                    relation: { opposite: "adminApprovedBy", name: "OffboardingProgressApprovedBy" }
-                },
-                offboardingHandoverAssignments: {
-                    name: "offboardingHandoverAssignments",
-                    type: "OffboardingHandoverTask",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingHandoverAssignee") }] }],
-                    relation: { opposite: "assignedTo", name: "OffboardingHandoverAssignee" }
-                },
-                createdJobPositions: {
-                    name: "createdJobPositions",
-                    type: "PreboardingJobPosition",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("JobPositionCreatedBy") }] }],
-                    relation: { opposite: "createdBy", name: "JobPositionCreatedBy" }
-                },
-                createdCandidates: {
-                    name: "createdCandidates",
-                    type: "PreboardingCandidate",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("CandidateCreatedBy") }] }],
-                    relation: { opposite: "createdBy", name: "CandidateCreatedBy" }
-                },
-                createdActivities: {
-                    name: "createdActivities",
-                    type: "PreboardingActivity",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("ActivityCreatedBy") }] }],
-                    relation: { opposite: "createdBy", name: "ActivityCreatedBy" }
-                },
-                createdDocuments: {
-                    name: "createdDocuments",
-                    type: "PreboardingCandidateDocument",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("DocumentCreatedBy") }] }],
-                    relation: { opposite: "createdBy", name: "DocumentCreatedBy" }
-                },
-                firstStepsProgress: {
-                    name: "firstStepsProgress",
-                    type: "FirstStepsProgress",
-                    array: true,
-                    relation: { opposite: "user" }
-                },
-                firstStepsQuizAttempts: {
-                    name: "firstStepsQuizAttempts",
-                    type: "FirstStepsQuizAttempt",
-                    array: true,
-                    relation: { opposite: "user" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create,read") }, { name: "condition", value: ExpressionUtils.literal(true) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]), "==", ExpressionUtils.field("id")) }] },
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("email")]) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("user") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                email: { type: "String" }
-            }
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
         },
-        Session: {
-            name: "Session",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                expiresAt: {
-                    name: "expiresAt",
-                    type: "DateTime"
-                },
-                token: {
-                    name: "token",
-                    type: "String"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                ipAddress: {
-                    name: "ipAddress",
-                    type: "String",
-                    optional: true
-                },
-                userAgent: {
-                    name: "userAgent",
-                    type: "String",
-                    optional: true
-                },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "sessions", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                impersonatedBy: {
-                    name: "impersonatedBy",
-                    type: "String",
-                    optional: true
-                },
-                activeOrganizationId: {
-                    name: "activeOrganizationId",
-                    type: "String",
-                    optional: true
-                }
+        name: {
+          name: "name",
+          type: "String",
+        },
+        email: {
+          name: "email",
+          type: "String",
+        },
+        emailVerified: {
+          name: "emailVerified",
+          type: "Boolean",
+        },
+        image: {
+          name: "image",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
             },
-            attributes: [
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("token")]) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("session") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                token: { type: "String" }
-            }
+          ],
+          default: ExpressionUtils.call("now"),
         },
-        Account: {
-            name: "Account",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                accountId: {
-                    name: "accountId",
-                    type: "String"
-                },
-                providerId: {
-                    name: "providerId",
-                    type: "String"
-                },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "accounts", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                accessToken: {
-                    name: "accessToken",
-                    type: "String",
-                    optional: true
-                },
-                refreshToken: {
-                    name: "refreshToken",
-                    type: "String",
-                    optional: true
-                },
-                idToken: {
-                    name: "idToken",
-                    type: "String",
-                    optional: true
-                },
-                accessTokenExpiresAt: {
-                    name: "accessTokenExpiresAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                refreshTokenExpiresAt: {
-                    name: "refreshTokenExpiresAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                scope: {
-                    name: "scope",
-                    type: "String",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                }
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        sessions: {
+          name: "sessions",
+          type: "Session",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        accounts: {
+          name: "accounts",
+          type: "Account",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        members: {
+          name: "members",
+          type: "Member",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        invitations: {
+          name: "invitations",
+          type: "Invitation",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        username: {
+          name: "username",
+          type: "String",
+          optional: true,
+        },
+        displayUsername: {
+          name: "displayUsername",
+          type: "String",
+          optional: true,
+        },
+        role: {
+          name: "role",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal("user") }],
             },
-            attributes: [
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("account") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          default: "user",
         },
-        Verification: {
-            name: "Verification",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                identifier: {
-                    name: "identifier",
-                    type: "String"
-                },
-                value: {
-                    name: "value",
-                    type: "String"
-                },
-                expiresAt: {
-                    name: "expiresAt",
-                    type: "DateTime"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                }
+        banned: {
+          name: "banned",
+          type: "Boolean",
+          optional: true,
+        },
+        banReason: {
+          name: "banReason",
+          type: "String",
+          optional: true,
+        },
+        banExpires: {
+          name: "banExpires",
+          type: "DateTime",
+          optional: true,
+        },
+        changePassword: {
+          name: "changePassword",
+          type: "Boolean",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
             },
-            attributes: [
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("verification") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          default: false,
         },
-        Organization: {
-            name: "Organization",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                slug: {
-                    name: "slug",
-                    type: "String",
-                    optional: true
-                },
-                logo: {
-                    name: "logo",
-                    type: "String",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                metadata: {
-                    name: "metadata",
-                    type: "String",
-                    optional: true
-                },
-                members: {
-                    name: "members",
-                    type: "Member",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                invitations: {
-                    name: "invitations",
-                    type: "Invitation",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                todos: {
-                    name: "todos",
-                    type: "Todo",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                tests: {
-                    name: "tests",
-                    type: "Test",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                products: {
-                    name: "products",
-                    type: "Product",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                clients: {
-                    name: "clients",
-                    type: "Client",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                onboardingProcesses: {
-                    name: "onboardingProcesses",
-                    type: "OnboardingProcess",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                onboardingDocuments: {
-                    name: "onboardingDocuments",
-                    type: "OnboardingDocument",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                onboardingChats: {
-                    name: "onboardingChats",
-                    type: "OnboardingChat",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                knowledgeChats: {
-                    name: "knowledgeChats",
-                    type: "KnowledgeChat",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                groupChatMessages: {
-                    name: "groupChatMessages",
-                    type: "GroupChatMessage",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                onboardingChecklistSteps: {
-                    name: "onboardingChecklistSteps",
-                    type: "OnboardingChecklistStep",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                onboardingChecklistProgress: {
-                    name: "onboardingChecklistProgress",
-                    type: "OnboardingChecklistProgress",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                calendarEvents: {
-                    name: "calendarEvents",
-                    type: "CalendarEvent",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                kanbanBoards: {
-                    name: "kanbanBoards",
-                    type: "KanbanBoard",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                salesOrders: {
-                    name: "salesOrders",
-                    type: "SalesOrder",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                userScores: {
-                    name: "userScores",
-                    type: "UserScore",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                achievements: {
-                    name: "achievements",
-                    type: "Achievement",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                userAchievements: {
-                    name: "userAchievements",
-                    type: "UserAchievement",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                userActionCounts: {
-                    name: "userActionCounts",
-                    type: "UserActionCount",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                tutorialSectors: {
-                    name: "tutorialSectors",
-                    type: "TutorialSector",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                tutorialStepProgress: {
-                    name: "tutorialStepProgress",
-                    type: "TutorialStepProgress",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                meetings: {
-                    name: "meetings",
-                    type: "Meeting",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                mindmaps: {
-                    name: "mindmaps",
-                    type: "Mindmap",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                offboardingChecklistSteps: {
-                    name: "offboardingChecklistSteps",
-                    type: "OffboardingChecklistStep",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                offboardingProcesses: {
-                    name: "offboardingProcesses",
-                    type: "OffboardingProcess",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                offboardingProgress: {
-                    name: "offboardingProgress",
-                    type: "OffboardingProgress",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                offboardingHandoverTasks: {
-                    name: "offboardingHandoverTasks",
-                    type: "OffboardingHandoverTask",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                preboardingStages: {
-                    name: "preboardingStages",
-                    type: "PreboardingStage",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                preboardingJobPositions: {
-                    name: "preboardingJobPositions",
-                    type: "PreboardingJobPosition",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                preboardingCandidates: {
-                    name: "preboardingCandidates",
-                    type: "PreboardingCandidate",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                preboardingActivities: {
-                    name: "preboardingActivities",
-                    type: "PreboardingActivity",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                preboardingInterviews: {
-                    name: "preboardingInterviews",
-                    type: "PreboardingInterview",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                preboardingCandidateQuestions: {
-                    name: "preboardingCandidateQuestions",
-                    type: "PreboardingCandidateQuestion",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                preboardingCandidateDocuments: {
-                    name: "preboardingCandidateDocuments",
-                    type: "PreboardingCandidateDocument",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                firstStepsJobTypes: {
-                    name: "firstStepsJobTypes",
-                    type: "FirstStepsJobType",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                firstStepsItems: {
-                    name: "firstStepsItems",
-                    type: "FirstStepsItem",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                firstStepsProgress: {
-                    name: "firstStepsProgress",
-                    type: "FirstStepsProgress",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                firstStepsQuizzes: {
-                    name: "firstStepsQuizzes",
-                    type: "FirstStepsQuiz",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                firstStepsQuizQuestions: {
-                    name: "firstStepsQuizQuestions",
-                    type: "FirstStepsQuizQuestion",
-                    array: true,
-                    relation: { opposite: "organization" }
-                },
-                firstStepsQuizAttempts: {
-                    name: "firstStepsQuizAttempts",
-                    type: "FirstStepsQuizAttempt",
-                    array: true,
-                    relation: { opposite: "organization" }
-                }
+        isAnonymous: {
+          name: "isAnonymous",
+          type: "Boolean",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
             },
-            attributes: [
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("slug")]) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create,read") }, { name: "condition", value: ExpressionUtils.literal(true) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("organization") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                slug: { type: "String" }
-            }
+          ],
+          default: false,
         },
-        Member: {
-            name: "Member",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdTodos: {
+          name: "createdTodos",
+          type: "Todo",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdTodos"),
                 },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "members", fields: ["organizationId"], references: ["id"], onDelete: "Cascade" }
-                },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "members", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                role: {
-                    name: "role",
-                    type: "String"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                jobTypeId: {
-                    name: "jobTypeId",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "jobType"
-                    ]
-                },
-                jobType: {
-                    name: "jobType",
-                    type: "FirstStepsJobType",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("jobTypeId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "members", fields: ["jobTypeId"], references: ["id"], onDelete: "SetNull" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@deny", args: [{ name: "operation", value: ExpressionUtils.literal("all") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "==", ExpressionUtils._null()) }] },
-                { name: "@@deny", args: [{ name: "operation", value: ExpressionUtils.literal("all") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "!=", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("update") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("member") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "createdByUser", name: "createdTodos" },
         },
-        Invitation: {
-            name: "Invitation",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedTodos: {
+          name: "updatedTodos",
+          type: "Todo",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedTodos"),
                 },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "invitations", fields: ["organizationId"], references: ["id"], onDelete: "Cascade" }
-                },
-                email: {
-                    name: "email",
-                    type: "String"
-                },
-                role: {
-                    name: "role",
-                    type: "String",
-                    optional: true
-                },
-                status: {
-                    name: "status",
-                    type: "String"
-                },
-                expiresAt: {
-                    name: "expiresAt",
-                    type: "DateTime"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    optional: true,
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                inviterId: {
-                    name: "inviterId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("inviterId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "invitations", fields: ["inviterId"], references: ["id"], onDelete: "Cascade" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]), "==", ExpressionUtils.field("inviterId")), "&&", ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId"))) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("invitation") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "updatedByUser", name: "updatedTodos" },
         },
-        Todo: {
-            name: "Todo",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        deletedTodos: {
+          name: "deletedTodos",
+          type: "Todo",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedTodos"),
                 },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                completed: {
-                    name: "completed",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                dueDate: {
-                    name: "dueDate",
-                    type: "DateTime",
-                    optional: true
-                },
-                priority: {
-                    name: "priority",
-                    type: "String",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "createdByUser"
-                    ]
-                },
-                createdByUser: {
-                    name: "createdByUser",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdTodos") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "createdTodos", name: "createdTodos", fields: ["createdById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                updatedById: {
-                    name: "updatedById",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "updatedByUser"
-                    ]
-                },
-                updatedByUser: {
-                    name: "updatedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedTodos") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("updatedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "updatedTodos", name: "updatedTodos", fields: ["updatedById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                deletedById: {
-                    name: "deletedById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "deletedByUser"
-                    ]
-                },
-                deletedByUser: {
-                    name: "deletedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedTodos") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("deletedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "deletedTodos", name: "deletedTodos", fields: ["deletedById"], references: ["id"], onDelete: "Cascade" }
-                },
-                deletedAt: {
-                    name: "deletedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                deletedReason: {
-                    name: "deletedReason",
-                    type: "String",
-                    optional: true
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "todos", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@deny", args: [{ name: "operation", value: ExpressionUtils.literal("read") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.field("deletedAt"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("todo") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "deletedByUser", name: "deletedTodos" },
         },
-        Test: {
-            name: "Test",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdTests: {
+          name: "createdTests",
+          type: "Test",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdTests"),
                 },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "createdByUser"
-                    ]
-                },
-                createdByUser: {
-                    name: "createdByUser",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdTests") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "createdTests", name: "createdTests", fields: ["createdById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                updatedById: {
-                    name: "updatedById",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "updatedByUser"
-                    ]
-                },
-                updatedByUser: {
-                    name: "updatedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedTests") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("updatedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "updatedTests", name: "updatedTests", fields: ["updatedById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                deletedById: {
-                    name: "deletedById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "deletedByUser"
-                    ]
-                },
-                deletedByUser: {
-                    name: "deletedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedTests") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("deletedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "deletedTests", name: "deletedTests", fields: ["deletedById"], references: ["id"], onDelete: "Cascade" }
-                },
-                deletedAt: {
-                    name: "deletedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                deletedReason: {
-                    name: "deletedReason",
-                    type: "String",
-                    optional: true
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "tests", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@deny", args: [{ name: "operation", value: ExpressionUtils.literal("read") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.field("deletedAt"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("test") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "createdByUser", name: "createdTests" },
         },
-        Product: {
-            name: "Product",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedTests: {
+          name: "updatedTests",
+          type: "Test",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedTests"),
                 },
-                code: {
-                    name: "code",
-                    type: "String"
-                },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                category: {
-                    name: "category",
-                    type: "String",
-                    optional: true
-                },
-                unit: {
-                    name: "unit",
-                    type: "String",
-                    optional: true
-                },
-                costPrice: {
-                    name: "costPrice",
-                    type: "Float",
-                    optional: true
-                },
-                salePrice: {
-                    name: "salePrice",
-                    type: "Float",
-                    optional: true
-                },
-                minimumStock: {
-                    name: "minimumStock",
-                    type: "Int",
-                    optional: true
-                },
-                storageLocation: {
-                    name: "storageLocation",
-                    type: "String",
-                    optional: true
-                },
-                active: {
-                    name: "active",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "createdByUser"
-                    ]
-                },
-                createdByUser: {
-                    name: "createdByUser",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdProducts") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "createdProducts", name: "createdProducts", fields: ["createdById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                updatedById: {
-                    name: "updatedById",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "updatedByUser"
-                    ]
-                },
-                updatedByUser: {
-                    name: "updatedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedProducts") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("updatedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "updatedProducts", name: "updatedProducts", fields: ["updatedById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                deletedById: {
-                    name: "deletedById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "deletedByUser"
-                    ]
-                },
-                deletedByUser: {
-                    name: "deletedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedProducts") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("deletedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "deletedProducts", name: "deletedProducts", fields: ["deletedById"], references: ["id"], onDelete: "Cascade" }
-                },
-                deletedAt: {
-                    name: "deletedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                deletedReason: {
-                    name: "deletedReason",
-                    type: "String",
-                    optional: true
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "products", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                orderItems: {
-                    name: "orderItems",
-                    type: "OrderItem",
-                    array: true,
-                    relation: { opposite: "product" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@deny", args: [{ name: "operation", value: ExpressionUtils.literal("read") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.field("deletedAt"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("product") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "updatedByUser", name: "updatedTests" },
         },
-        Client: {
-            name: "Client",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        deletedTests: {
+          name: "deletedTests",
+          type: "Test",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedTests"),
                 },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                email: {
-                    name: "email",
-                    type: "String"
-                },
-                phone: {
-                    name: "phone",
-                    type: "String"
-                },
-                status: {
-                    name: "status",
-                    type: "ClientStatus",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("active") }] }],
-                    default: "active"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "createdByUser"
-                    ]
-                },
-                createdByUser: {
-                    name: "createdByUser",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdClients") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "createdClients", name: "createdClients", fields: ["createdById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                updatedById: {
-                    name: "updatedById",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "updatedByUser"
-                    ]
-                },
-                updatedByUser: {
-                    name: "updatedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedClients") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("updatedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "updatedClients", name: "updatedClients", fields: ["updatedById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                deletedById: {
-                    name: "deletedById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "deletedByUser"
-                    ]
-                },
-                deletedByUser: {
-                    name: "deletedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedClients") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("deletedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "deletedClients", name: "deletedClients", fields: ["deletedById"], references: ["id"], onDelete: "Cascade" }
-                },
-                deletedAt: {
-                    name: "deletedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                deletedReason: {
-                    name: "deletedReason",
-                    type: "String",
-                    optional: true
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "clients", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@deny", args: [{ name: "operation", value: ExpressionUtils.literal("read") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.field("deletedAt"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("client") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "deletedByUser", name: "deletedTests" },
         },
-        OnboardingProcess: {
-            name: "OnboardingProcess",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdProducts: {
+          name: "createdProducts",
+          type: "Product",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdProducts"),
                 },
-                employeeType: {
-                    name: "employeeType",
-                    type: "EmployeeType"
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                content: {
-                    name: "content",
-                    type: "String"
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "onboardingProcesses", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("onboarding_processes") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "createdByUser", name: "createdProducts" },
         },
-        OnboardingDocument: {
-            name: "OnboardingDocument",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedProducts: {
+          name: "updatedProducts",
+          type: "Product",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedProducts"),
                 },
-                employeeType: {
-                    name: "employeeType",
-                    type: "EmployeeType"
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                fileUrl: {
-                    name: "fileUrl",
-                    type: "String"
-                },
-                fileName: {
-                    name: "fileName",
-                    type: "String"
-                },
-                fileSize: {
-                    name: "fileSize",
-                    type: "Int",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "onboardingDocuments", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("onboarding_documents") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "updatedByUser", name: "updatedProducts" },
         },
-        OnboardingChat: {
-            name: "OnboardingChat",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        deletedProducts: {
+          name: "deletedProducts",
+          type: "Product",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedProducts"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "onboardingChats", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                employeeType: {
-                    name: "employeeType",
-                    type: "EmployeeType"
-                },
-                role: {
-                    name: "role",
-                    type: "ChatRole"
-                },
-                content: {
-                    name: "content",
-                    type: "String"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "onboardingChats", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("onboarding_chats") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "deletedByUser", name: "deletedProducts" },
         },
-        KnowledgeChat: {
-            name: "KnowledgeChat",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdKanbanCards: {
+          name: "createdKanbanCards",
+          type: "KanbanCard",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdKanbanCards"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "knowledgeChats", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                role: {
-                    name: "role",
-                    type: "ChatRole"
-                },
-                content: {
-                    name: "content",
-                    type: "String"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "knowledgeChats", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("knowledge_chats") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "createdByUser", name: "createdKanbanCards" },
         },
-        GroupChatMessage: {
-            name: "GroupChatMessage",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedKanbanCards: {
+          name: "updatedKanbanCards",
+          type: "KanbanCard",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedKanbanCards"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "groupChatMessages", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                userName: {
-                    name: "userName",
-                    type: "String"
-                },
-                message: {
-                    name: "message",
-                    type: "String"
-                },
-                messageType: {
-                    name: "messageType",
-                    type: "GroupChatMessageType",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("user") }] }],
-                    default: "user"
-                },
-                parentMessageId: {
-                    name: "parentMessageId",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "parentMessage"
-                    ]
-                },
-                parentMessage: {
-                    name: "parentMessage",
-                    type: "GroupChatMessage",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("GroupChatReplies") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("parentMessageId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "replies", name: "GroupChatReplies", fields: ["parentMessageId"], references: ["id"], onDelete: "SetNull" }
-                },
-                replies: {
-                    name: "replies",
-                    type: "GroupChatMessage",
-                    array: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("GroupChatReplies") }] }],
-                    relation: { opposite: "parentMessage", name: "GroupChatReplies" }
-                },
-                metadata: {
-                    name: "metadata",
-                    type: "Json",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "groupChatMessages", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("group_chat_messages") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "updatedByUser", name: "updatedKanbanCards" },
         },
-        OnboardingChecklistStep: {
-            name: "OnboardingChecklistStep",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        deletedKanbanCards: {
+          name: "deletedKanbanCards",
+          type: "KanbanCard",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedKanbanCards"),
                 },
-                employeeType: {
-                    name: "employeeType",
-                    type: "EmployeeType"
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String"
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "onboardingChecklistSteps", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                progress: {
-                    name: "progress",
-                    type: "OnboardingChecklistProgress",
-                    array: true,
-                    relation: { opposite: "step" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("onboarding_checklist_steps") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "deletedByUser", name: "deletedKanbanCards" },
         },
-        OnboardingChecklistProgress: {
-            name: "OnboardingChecklistProgress",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdClients: {
+          name: "createdClients",
+          type: "Client",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdClients"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "onboardingChecklistProgress", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                stepId: {
-                    name: "stepId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "step"
-                    ]
-                },
-                step: {
-                    name: "step",
-                    type: "OnboardingChecklistStep",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("stepId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "progress", fields: ["stepId"], references: ["id"], onDelete: "Cascade" }
-                },
-                completed: {
-                    name: "completed",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                completedAt: {
-                    name: "completedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "onboardingChecklistProgress", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId"), ExpressionUtils.field("stepId")]) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("onboarding_checklist_progress") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                userId_stepId: { userId: { type: "String" }, stepId: { type: "String" } }
-            }
+          ],
+          relation: { opposite: "createdByUser", name: "createdClients" },
         },
-        CalendarEvent: {
-            name: "CalendarEvent",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedClients: {
+          name: "updatedClients",
+          type: "Client",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedClients"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "calendarEvents", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                start: {
-                    name: "start",
-                    type: "DateTime"
-                },
-                end: {
-                    name: "end",
-                    type: "DateTime"
-                },
-                allDay: {
-                    name: "allDay",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                color: {
-                    name: "color",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("#3b82f6") }] }],
-                    default: "#3b82f6"
-                },
-                eventType: {
-                    name: "eventType",
-                    type: "CalendarEventType",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("OTHER") }] }],
-                    default: "OTHER"
-                },
-                rrule: {
-                    name: "rrule",
-                    type: "String",
-                    optional: true
-                },
-                meetingId: {
-                    name: "meetingId",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "meeting"
-                    ]
-                },
-                meeting: {
-                    name: "meeting",
-                    type: "Meeting",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("meetingId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "calendarEvents", fields: ["meetingId"], references: ["id"], onDelete: "Cascade" }
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "calendarEvents", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("calendar_events") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "updatedByUser", name: "updatedClients" },
         },
-        KanbanBoard: {
-            name: "KanbanBoard",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        deletedClients: {
+          name: "deletedClients",
+          type: "Client",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedClients"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "kanbanBoards", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "kanbanBoards", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                columns: {
-                    name: "columns",
-                    type: "KanbanColumn",
-                    array: true,
-                    relation: { opposite: "board" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("kanban_boards") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "deletedByUser", name: "deletedClients" },
         },
-        KanbanColumn: {
-            name: "KanbanColumn",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        onboardingChats: {
+          name: "onboardingChats",
+          type: "OnboardingChat",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        knowledgeChats: {
+          name: "knowledgeChats",
+          type: "KnowledgeChat",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        groupChatMessages: {
+          name: "groupChatMessages",
+          type: "GroupChatMessage",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        onboardingChecklistProgress: {
+          name: "onboardingChecklistProgress",
+          type: "OnboardingChecklistProgress",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        calendarEvents: {
+          name: "calendarEvents",
+          type: "CalendarEvent",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        kanbanBoards: {
+          name: "kanbanBoards",
+          type: "KanbanBoard",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        salesOrders: {
+          name: "salesOrders",
+          type: "SalesOrder",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        userScore: {
+          name: "userScore",
+          type: "UserScore",
+          optional: true,
+          relation: { opposite: "user" },
+        },
+        userAchievements: {
+          name: "userAchievements",
+          type: "UserAchievement",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        userActionCounts: {
+          name: "userActionCounts",
+          type: "UserActionCount",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        tutorialStepProgress: {
+          name: "tutorialStepProgress",
+          type: "TutorialStepProgress",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        meetings: {
+          name: "meetings",
+          type: "Meeting",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        mindmaps: {
+          name: "mindmaps",
+          type: "Mindmap",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        offboardingProcessesAsUser: {
+          name: "offboardingProcessesAsUser",
+          type: "OffboardingProcess",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("OffboardingProcessUser"),
                 },
-                boardId: {
-                    name: "boardId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "board"
-                    ]
-                },
-                board: {
-                    name: "board",
-                    type: "KanbanBoard",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("boardId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "columns", fields: ["boardId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                position: {
-                    name: "position",
-                    type: "Int"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                cards: {
-                    name: "cards",
-                    type: "KanbanCard",
-                    array: true,
-                    relation: { opposite: "column" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("kanban_columns") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "user", name: "OffboardingProcessUser" },
         },
-        KanbanCard: {
-            name: "KanbanCard",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        offboardingProcessesAsInitiator: {
+          name: "offboardingProcessesAsInitiator",
+          type: "OffboardingProcess",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("OffboardingProcessInitiator"),
                 },
-                columnId: {
-                    name: "columnId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "column"
-                    ]
-                },
-                column: {
-                    name: "column",
-                    type: "KanbanColumn",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("columnId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "cards", fields: ["columnId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                position: {
-                    name: "position",
-                    type: "Int"
-                },
-                color: {
-                    name: "color",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("#3b82f6") }] }],
-                    default: "#3b82f6"
-                },
-                dueDate: {
-                    name: "dueDate",
-                    type: "DateTime",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "createdByUser"
-                    ]
-                },
-                createdByUser: {
-                    name: "createdByUser",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("createdKanbanCards") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "createdKanbanCards", name: "createdKanbanCards", fields: ["createdById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                updatedById: {
-                    name: "updatedById",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["userId"]),
-                    foreignKeyFor: [
-                        "updatedByUser"
-                    ]
-                },
-                updatedByUser: {
-                    name: "updatedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("updatedKanbanCards") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("updatedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "updatedKanbanCards", name: "updatedKanbanCards", fields: ["updatedById"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                deletedAt: {
-                    name: "deletedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                deletedById: {
-                    name: "deletedById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "deletedByUser"
-                    ]
-                },
-                deletedByUser: {
-                    name: "deletedByUser",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("deletedKanbanCards") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("deletedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "deletedKanbanCards", name: "deletedKanbanCards", fields: ["deletedById"], references: ["id"], onDelete: "Cascade" }
-                },
-                deletedReason: {
-                    name: "deletedReason",
-                    type: "String",
-                    optional: true
-                }
+              ],
             },
-            attributes: [
-                { name: "@@deny", args: [{ name: "operation", value: ExpressionUtils.literal("read") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.field("deletedAt"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("kanban_cards") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "initiatedBy",
+            name: "OffboardingProcessInitiator",
+          },
         },
-        SalesOrder: {
-            name: "SalesOrder",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        offboardingProgressCompletedBy: {
+          name: "offboardingProgressCompletedBy",
+          type: "OffboardingProgress",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal(
+                    "OffboardingProgressCompletedBy"
+                  ),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "salesOrders", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                orderNumber: {
-                    name: "orderNumber",
-                    type: "String",
-                    unique: true,
-                    attributes: [{ name: "@unique" }]
-                },
-                customerName: {
-                    name: "customerName",
-                    type: "String",
-                    optional: true
-                },
-                customerPhone: {
-                    name: "customerPhone",
-                    type: "String",
-                    optional: true
-                },
-                customerAddress: {
-                    name: "customerAddress",
-                    type: "String",
-                    optional: true
-                },
-                customerNeighborhood: {
-                    name: "customerNeighborhood",
-                    type: "String",
-                    optional: true
-                },
-                customerCity: {
-                    name: "customerCity",
-                    type: "String",
-                    optional: true
-                },
-                customerState: {
-                    name: "customerState",
-                    type: "String",
-                    optional: true
-                },
-                customerZipcode: {
-                    name: "customerZipcode",
-                    type: "String",
-                    optional: true
-                },
-                customerTaxId: {
-                    name: "customerTaxId",
-                    type: "String",
-                    optional: true
-                },
-                customerStateRegistration: {
-                    name: "customerStateRegistration",
-                    type: "String",
-                    optional: true
-                },
-                orderDate: {
-                    name: "orderDate",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                paymentTerm: {
-                    name: "paymentTerm",
-                    type: "String",
-                    optional: true
-                },
-                checkValue: {
-                    name: "checkValue",
-                    type: "Float",
-                    optional: true
-                },
-                downPayment: {
-                    name: "downPayment",
-                    type: "Float",
-                    optional: true
-                },
-                totalAmount: {
-                    name: "totalAmount",
-                    type: "Float",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                status: {
-                    name: "status",
-                    type: "OrderStatus",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("draft") }] }],
-                    default: "draft"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "salesOrders", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                items: {
-                    name: "items",
-                    type: "OrderItem",
-                    array: true,
-                    relation: { opposite: "order" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("sales_orders") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                orderNumber: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "completedBy",
+            name: "OffboardingProgressCompletedBy",
+          },
         },
-        OrderItem: {
-            name: "OrderItem",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        offboardingProgressApprovedBy: {
+          name: "offboardingProgressApprovedBy",
+          type: "OffboardingProgress",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal(
+                    "OffboardingProgressApprovedBy"
+                  ),
                 },
-                orderId: {
-                    name: "orderId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "order"
-                    ]
-                },
-                order: {
-                    name: "order",
-                    type: "SalesOrder",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("orderId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "items", fields: ["orderId"], references: ["id"], onDelete: "Cascade" }
-                },
-                productId: {
-                    name: "productId",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "product"
-                    ]
-                },
-                product: {
-                    name: "product",
-                    type: "Product",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("productId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "orderItems", fields: ["productId"], references: ["id"], onDelete: "SetNull" }
-                },
-                productName: {
-                    name: "productName",
-                    type: "String"
-                },
-                quantity: {
-                    name: "quantity",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(1) }] }],
-                    default: 1
-                },
-                unitPrice: {
-                    name: "unitPrice",
-                    type: "Float",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                totalPrice: {
-                    name: "totalPrice",
-                    type: "Float",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                position: {
-                    name: "position",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("order_items") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "adminApprovedBy",
+            name: "OffboardingProgressApprovedBy",
+          },
         },
-        UserScore: {
-            name: "UserScore",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        offboardingHandoverAssignments: {
+          name: "offboardingHandoverAssignments",
+          type: "OffboardingHandoverTask",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("OffboardingHandoverAssignee"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    unique: true,
-                    attributes: [{ name: "@unique" }],
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "userScore", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                totalPoints: {
-                    name: "totalPoints",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "userScores", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("user_scores") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                userId: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "assignedTo",
+            name: "OffboardingHandoverAssignee",
+          },
         },
-        Achievement: {
-            name: "Achievement",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdJobPositions: {
+          name: "createdJobPositions",
+          type: "PreboardingJobPosition",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("JobPositionCreatedBy"),
                 },
-                name: {
-                    name: "name",
-                    type: "String",
-                    unique: true,
-                    attributes: [{ name: "@unique" }]
-                },
-                description: {
-                    name: "description",
-                    type: "String"
-                },
-                points: {
-                    name: "points",
-                    type: "Int"
-                },
-                milestoneType: {
-                    name: "milestoneType",
-                    type: "MilestoneType"
-                },
-                milestoneCount: {
-                    name: "milestoneCount",
-                    type: "Int"
-                },
-                icon: {
-                    name: "icon",
-                    type: "String",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "achievements", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                userAchievements: {
-                    name: "userAchievements",
-                    type: "UserAchievement",
-                    array: true,
-                    relation: { opposite: "achievement" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("achievements") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                name: { type: "String" }
-            }
+          ],
+          relation: { opposite: "createdBy", name: "JobPositionCreatedBy" },
         },
-        UserAchievement: {
-            name: "UserAchievement",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdCandidates: {
+          name: "createdCandidates",
+          type: "PreboardingCandidate",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("CandidateCreatedBy"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "userAchievements", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                achievementId: {
-                    name: "achievementId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "achievement"
-                    ]
-                },
-                achievement: {
-                    name: "achievement",
-                    type: "Achievement",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("achievementId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "userAchievements", fields: ["achievementId"], references: ["id"], onDelete: "Cascade" }
-                },
-                earnedAt: {
-                    name: "earnedAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "userAchievements", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId"), ExpressionUtils.field("achievementId")]) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("user_achievements") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                userId_achievementId: { userId: { type: "String" }, achievementId: { type: "String" } }
-            }
+          ],
+          relation: { opposite: "createdBy", name: "CandidateCreatedBy" },
         },
-        UserActionCount: {
-            name: "UserActionCount",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdActivities: {
+          name: "createdActivities",
+          type: "PreboardingActivity",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("ActivityCreatedBy"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "userActionCounts", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                actionType: {
-                    name: "actionType",
-                    type: "MilestoneType"
-                },
-                count: {
-                    name: "count",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                lastActionAt: {
-                    name: "lastActionAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "userActionCounts", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId"), ExpressionUtils.field("actionType")]) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("user_action_counts") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                userId_actionType: { userId: { type: "String" }, actionType: { type: "MilestoneType" } }
-            }
+          ],
+          relation: { opposite: "createdBy", name: "ActivityCreatedBy" },
         },
-        TutorialSector: {
-            name: "TutorialSector",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdDocuments: {
+          name: "createdDocuments",
+          type: "PreboardingCandidateDocument",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("DocumentCreatedBy"),
                 },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                icon: {
-                    name: "icon",
-                    type: "String",
-                    optional: true
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                active: {
-                    name: "active",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "tutorialSectors", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                sections: {
-                    name: "sections",
-                    type: "TutorialSection",
-                    array: true,
-                    relation: { opposite: "sector" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("tutorial_sectors") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "createdBy", name: "DocumentCreatedBy" },
         },
-        TutorialSection: {
-            name: "TutorialSection",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        firstStepsProgress: {
+          name: "firstStepsProgress",
+          type: "FirstStepsProgress",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        firstStepsQuizAttempts: {
+          name: "firstStepsQuizAttempts",
+          type: "FirstStepsQuizAttempt",
+          array: true,
+          relation: { opposite: "user" },
+        },
+        assignedFeedbacks: {
+          name: "assignedFeedbacks",
+          type: "CitizenFeedback",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackAssignee"),
                 },
-                sectorId: {
-                    name: "sectorId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "sector"
-                    ]
-                },
-                sector: {
-                    name: "sector",
-                    type: "TutorialSector",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("sectorId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "sections", fields: ["sectorId"], references: ["id"], onDelete: "Cascade" }
-                },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                active: {
-                    name: "active",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                steps: {
-                    name: "steps",
-                    type: "TutorialStep",
-                    array: true,
-                    relation: { opposite: "section" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("tutorial_sections") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "assignedTo", name: "FeedbackAssignee" },
         },
-        TutorialStep: {
-            name: "TutorialStep",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        createdFeedbacks: {
+          name: "createdFeedbacks",
+          type: "CitizenFeedback",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackCreator"),
                 },
-                sectionId: {
-                    name: "sectionId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "section"
-                    ]
-                },
-                section: {
-                    name: "section",
-                    type: "TutorialSection",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("sectionId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "steps", fields: ["sectionId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                youtubeVideoUrl: {
-                    name: "youtubeVideoUrl",
-                    type: "String"
-                },
-                durationMinutes: {
-                    name: "durationMinutes",
-                    type: "Int",
-                    optional: true
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                active: {
-                    name: "active",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                progress: {
-                    name: "progress",
-                    type: "TutorialStepProgress",
-                    array: true,
-                    relation: { opposite: "step" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("tutorial_steps") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "createdByUser", name: "FeedbackCreator" },
         },
-        TutorialStepProgress: {
-            name: "TutorialStepProgress",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedFeedbacks: {
+          name: "updatedFeedbacks",
+          type: "CitizenFeedback",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackUpdater"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "tutorialStepProgress", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                stepId: {
-                    name: "stepId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "step"
-                    ]
-                },
-                step: {
-                    name: "step",
-                    type: "TutorialStep",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("stepId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "progress", fields: ["stepId"], references: ["id"], onDelete: "Cascade" }
-                },
-                completed: {
-                    name: "completed",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                completedAt: {
-                    name: "completedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "tutorialStepProgress", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId"), ExpressionUtils.field("stepId")]) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("tutorial_step_progress") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                userId_stepId: { userId: { type: "String" }, stepId: { type: "String" } }
-            }
+          ],
+          relation: { opposite: "updatedByUser", name: "FeedbackUpdater" },
         },
-        Meeting: {
-            name: "Meeting",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        closedFeedbacks: {
+          name: "closedFeedbacks",
+          type: "CitizenFeedback",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackCloser"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "meetings", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                meetingDate: {
-                    name: "meetingDate",
-                    type: "DateTime"
-                },
-                durationMinutes: {
-                    name: "durationMinutes",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(60) }] }],
-                    default: 60
-                },
-                location: {
-                    name: "location",
-                    type: "String",
-                    optional: true
-                },
-                participants: {
-                    name: "participants",
-                    type: "String",
-                    array: true
-                },
-                notes: {
-                    name: "notes",
-                    type: "String",
-                    optional: true
-                },
-                transcript: {
-                    name: "transcript",
-                    type: "String",
-                    optional: true
-                },
-                rrule: {
-                    name: "rrule",
-                    type: "String",
-                    optional: true
-                },
-                status: {
-                    name: "status",
-                    type: "MeetingStatus",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("scheduled") }] }],
-                    default: "scheduled"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "meetings", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                calendarEvents: {
-                    name: "calendarEvents",
-                    type: "CalendarEvent",
-                    array: true,
-                    relation: { opposite: "meeting" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("meetings") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: { opposite: "closedByUser", name: "FeedbackCloser" },
         },
-        Mindmap: {
-            name: "Mindmap",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        feedbackAttachments: {
+          name: "feedbackAttachments",
+          type: "FeedbackAttachment",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackAttachmentCreator"),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "mindmaps", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                nodes: {
-                    name: "nodes",
-                    type: "Json",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("[]") }] }],
-                    default: "[]"
-                },
-                edges: {
-                    name: "edges",
-                    type: "Json",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("[]") }] }],
-                    default: "[]"
-                },
-                viewport: {
-                    name: "viewport",
-                    type: "Json",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("{\"x\": 0, \"y\": 0, \"zoom\": 1}") }] }],
-                    default: "{\"x\": 0, \"y\": 0, \"zoom\": 1}"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "mindmaps", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("mindmaps") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "createdByUser",
+            name: "FeedbackAttachmentCreator",
+          },
         },
-        OffboardingChecklistStep: {
-            name: "OffboardingChecklistStep",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        feedbackComments: {
+          name: "feedbackComments",
+          type: "FeedbackComment",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackCommentCreator"),
                 },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                category: {
-                    name: "category",
-                    type: "OffboardingCategory",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("handover") }] }],
-                    default: "handover"
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                requiresAdminApproval: {
-                    name: "requiresAdminApproval",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "offboardingChecklistSteps", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                progress: {
-                    name: "progress",
-                    type: "OffboardingProgress",
-                    array: true,
-                    relation: { opposite: "step" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("offboarding_checklist_steps") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "createdByUser",
+            name: "FeedbackCommentCreator",
+          },
         },
-        OffboardingProcess: {
-            name: "OffboardingProcess",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        feedbackStatusHistory: {
+          name: "feedbackStatusHistory",
+          type: "FeedbackStatusHistory",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal(
+                    "FeedbackStatusHistoryCreator"
+                  ),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingProcessUser") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "offboardingProcessesAsUser", name: "OffboardingProcessUser", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                initiatedById: {
-                    name: "initiatedById",
-                    type: "String",
-                    foreignKeyFor: [
-                        "initiatedBy"
-                    ]
-                },
-                initiatedBy: {
-                    name: "initiatedBy",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingProcessInitiator") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("initiatedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "offboardingProcessesAsInitiator", name: "OffboardingProcessInitiator", fields: ["initiatedById"], references: ["id"], onDelete: "Cascade" }
-                },
-                employeeName: {
-                    name: "employeeName",
-                    type: "String"
-                },
-                employeeEmail: {
-                    name: "employeeEmail",
-                    type: "String"
-                },
-                department: {
-                    name: "department",
-                    type: "String",
-                    optional: true
-                },
-                lastWorkingDay: {
-                    name: "lastWorkingDay",
-                    type: "DateTime",
-                    optional: true
-                },
-                reason: {
-                    name: "reason",
-                    type: "OffboardingReason",
-                    optional: true
-                },
-                status: {
-                    name: "status",
-                    type: "OffboardingStatus",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("in_progress") }] }],
-                    default: "in_progress"
-                },
-                notes: {
-                    name: "notes",
-                    type: "String",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                completedAt: {
-                    name: "completedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "offboardingProcesses", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                progress: {
-                    name: "progress",
-                    type: "OffboardingProgress",
-                    array: true,
-                    relation: { opposite: "process" }
-                },
-                handoverTasks: {
-                    name: "handoverTasks",
-                    type: "OffboardingHandoverTask",
-                    array: true,
-                    relation: { opposite: "process" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("offboarding_processes") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "createdByUser",
+            name: "FeedbackStatusHistoryCreator",
+          },
         },
-        OffboardingProgress: {
-            name: "OffboardingProgress",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                processId: {
-                    name: "processId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "process"
-                    ]
-                },
-                process: {
-                    name: "process",
-                    type: "OffboardingProcess",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("processId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "progress", fields: ["processId"], references: ["id"], onDelete: "Cascade" }
-                },
-                stepId: {
-                    name: "stepId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "step"
-                    ]
-                },
-                step: {
-                    name: "step",
-                    type: "OffboardingChecklistStep",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("stepId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "progress", fields: ["stepId"], references: ["id"], onDelete: "Cascade" }
-                },
-                completed: {
-                    name: "completed",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                completedAt: {
-                    name: "completedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                completedById: {
-                    name: "completedById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "completedBy"
-                    ]
-                },
-                completedBy: {
-                    name: "completedBy",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingProgressCompletedBy") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("completedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "offboardingProgressCompletedBy", name: "OffboardingProgressCompletedBy", fields: ["completedById"], references: ["id"], onDelete: "SetNull" }
-                },
-                adminApproved: {
-                    name: "adminApproved",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                adminApprovedAt: {
-                    name: "adminApprovedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                adminApprovedById: {
-                    name: "adminApprovedById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "adminApprovedBy"
-                    ]
-                },
-                adminApprovedBy: {
-                    name: "adminApprovedBy",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingProgressApprovedBy") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("adminApprovedById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "offboardingProgressApprovedBy", name: "OffboardingProgressApprovedBy", fields: ["adminApprovedById"], references: ["id"], onDelete: "SetNull" }
-                },
-                notes: {
-                    name: "notes",
-                    type: "String",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "offboardingProgress", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("create,read"),
             },
-            attributes: [
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("processId"), ExpressionUtils.field("stepId")]) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("offboarding_progress") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                processId_stepId: { processId: { type: "String" }, stepId: { type: "String" } }
-            }
+            { name: "condition", value: ExpressionUtils.literal(true) },
+          ],
         },
-        OffboardingHandoverTask: {
-            name: "OffboardingHandoverTask",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                processId: {
-                    name: "processId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "process"
-                    ]
-                },
-                process: {
-                    name: "process",
-                    type: "OffboardingProcess",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("processId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "handoverTasks", fields: ["processId"], references: ["id"], onDelete: "Cascade" }
-                },
-                taskTitle: {
-                    name: "taskTitle",
-                    type: "String"
-                },
-                taskDescription: {
-                    name: "taskDescription",
-                    type: "String",
-                    optional: true
-                },
-                assignedToId: {
-                    name: "assignedToId",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "assignedTo"
-                    ]
-                },
-                assignedTo: {
-                    name: "assignedTo",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("OffboardingHandoverAssignee") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("assignedToId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "offboardingHandoverAssignments", name: "OffboardingHandoverAssignee", fields: ["assignedToId"], references: ["id"], onDelete: "SetNull" }
-                },
-                assignedToName: {
-                    name: "assignedToName",
-                    type: "String",
-                    optional: true
-                },
-                status: {
-                    name: "status",
-                    type: "HandoverTaskStatus",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("pending") }] }],
-                    default: "pending"
-                },
-                priority: {
-                    name: "priority",
-                    type: "HandoverTaskPriority",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("medium") }] }],
-                    default: "medium"
-                },
-                dueDate: {
-                    name: "dueDate",
-                    type: "DateTime",
-                    optional: true
-                },
-                completedAt: {
-                    name: "completedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "offboardingHandoverTasks", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("update,delete"),
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("offboarding_handover_tasks") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
-        },
-        PreboardingStage: {
-            name: "PreboardingStage",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                color: {
-                    name: "color",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("#6366f1") }] }],
-                    default: "#6366f1"
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "preboardingStages", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                candidates: {
-                    name: "candidates",
-                    type: "PreboardingCandidate",
-                    array: true,
-                    relation: { opposite: "stage" }
-                }
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "userId",
+                ]),
+                "==",
+                ExpressionUtils.field("id")
+              ),
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("preboarding_stages") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
         },
-        PreboardingJobPosition: {
-            name: "PreboardingJobPosition",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                department: {
-                    name: "department",
-                    type: "String",
-                    optional: true
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                requirements: {
-                    name: "requirements",
-                    type: "String",
-                    optional: true
-                },
-                responsibilities: {
-                    name: "responsibilities",
-                    type: "String",
-                    optional: true
-                },
-                location: {
-                    name: "location",
-                    type: "String",
-                    optional: true
-                },
-                workModel: {
-                    name: "workModel",
-                    type: "WorkModel",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("presencial") }] }],
-                    default: "presencial"
-                },
-                employmentType: {
-                    name: "employmentType",
-                    type: "EmploymentType",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("clt") }] }],
-                    default: "clt"
-                },
-                salaryMin: {
-                    name: "salaryMin",
-                    type: "Float",
-                    optional: true
-                },
-                salaryMax: {
-                    name: "salaryMax",
-                    type: "Float",
-                    optional: true
-                },
-                vacancies: {
-                    name: "vacancies",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(1) }] }],
-                    default: 1
-                },
-                filledVacancies: {
-                    name: "filledVacancies",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                priority: {
-                    name: "priority",
-                    type: "JobPositionPriority",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("normal") }] }],
-                    default: "normal"
-                },
-                status: {
-                    name: "status",
-                    type: "JobPositionStatus",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("aberta") }] }],
-                    default: "aberta"
-                },
-                hiringManager: {
-                    name: "hiringManager",
-                    type: "String",
-                    optional: true
-                },
-                hiringManagerEmail: {
-                    name: "hiringManagerEmail",
-                    type: "String",
-                    optional: true
-                },
-                deadline: {
-                    name: "deadline",
-                    type: "DateTime",
-                    optional: true
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "createdBy"
-                    ]
-                },
-                createdBy: {
-                    name: "createdBy",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("JobPositionCreatedBy") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "createdJobPositions", name: "JobPositionCreatedBy", fields: ["createdById"], references: ["id"], onDelete: "SetNull" }
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "preboardingJobPositions", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                candidates: {
-                    name: "candidates",
-                    type: "PreboardingCandidate",
-                    array: true,
-                    relation: { opposite: "jobPosition" }
-                }
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([ExpressionUtils.field("email")]),
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("preboarding_job_positions") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
         },
-        PreboardingCandidate: {
-            name: "PreboardingCandidate",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("user") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        email: { type: "String" },
+      },
+    },
+    Session: {
+      name: "Session",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
                 },
-                name: {
-                    name: "name",
-                    type: "String"
-                },
-                email: {
-                    name: "email",
-                    type: "String",
-                    optional: true
-                },
-                phone: {
-                    name: "phone",
-                    type: "String",
-                    optional: true
-                },
-                position: {
-                    name: "position",
-                    type: "String"
-                },
-                department: {
-                    name: "department",
-                    type: "String",
-                    optional: true
-                },
-                stageId: {
-                    name: "stageId",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "stage"
-                    ]
-                },
-                stage: {
-                    name: "stage",
-                    type: "PreboardingStage",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("stageId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "candidates", fields: ["stageId"], references: ["id"], onDelete: "SetNull" }
-                },
-                jobPositionId: {
-                    name: "jobPositionId",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "jobPosition"
-                    ]
-                },
-                jobPosition: {
-                    name: "jobPosition",
-                    type: "PreboardingJobPosition",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("jobPositionId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "candidates", fields: ["jobPositionId"], references: ["id"], onDelete: "SetNull" }
-                },
-                source: {
-                    name: "source",
-                    type: "String",
-                    optional: true
-                },
-                resumeUrl: {
-                    name: "resumeUrl",
-                    type: "String",
-                    optional: true
-                },
-                expectedSalary: {
-                    name: "expectedSalary",
-                    type: "Float",
-                    optional: true
-                },
-                expectedStartDate: {
-                    name: "expectedStartDate",
-                    type: "DateTime",
-                    optional: true
-                },
-                notes: {
-                    name: "notes",
-                    type: "String",
-                    optional: true
-                },
-                rating: {
-                    name: "rating",
-                    type: "Int",
-                    optional: true
-                },
-                status: {
-                    name: "status",
-                    type: "CandidateStatus",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("active") }] }],
-                    default: "active"
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "createdBy"
-                    ]
-                },
-                createdBy: {
-                    name: "createdBy",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("CandidateCreatedBy") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "createdCandidates", name: "CandidateCreatedBy", fields: ["createdById"], references: ["id"], onDelete: "SetNull" }
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "preboardingCandidates", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                activities: {
-                    name: "activities",
-                    type: "PreboardingActivity",
-                    array: true,
-                    relation: { opposite: "candidate" }
-                },
-                interviews: {
-                    name: "interviews",
-                    type: "PreboardingInterview",
-                    array: true,
-                    relation: { opposite: "candidate" }
-                },
-                questions: {
-                    name: "questions",
-                    type: "PreboardingCandidateQuestion",
-                    array: true,
-                    relation: { opposite: "candidate" }
-                },
-                documents: {
-                    name: "documents",
-                    type: "PreboardingCandidateDocument",
-                    array: true,
-                    relation: { opposite: "candidate" }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("preboarding_candidates") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
         },
-        PreboardingActivity: {
-            name: "PreboardingActivity",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                candidateId: {
-                    name: "candidateId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "candidate"
-                    ]
-                },
-                candidate: {
-                    name: "candidate",
-                    type: "PreboardingCandidate",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("candidateId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "activities", fields: ["candidateId"], references: ["id"], onDelete: "Cascade" }
-                },
-                activityType: {
-                    name: "activityType",
-                    type: "ActivityType"
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "createdBy"
-                    ]
-                },
-                createdBy: {
-                    name: "createdBy",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("ActivityCreatedBy") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "createdActivities", name: "ActivityCreatedBy", fields: ["createdById"], references: ["id"], onDelete: "SetNull" }
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "preboardingActivities", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+        expiresAt: {
+          name: "expiresAt",
+          type: "DateTime",
+        },
+        token: {
+          name: "token",
+          type: "String",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("preboarding_activities") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          default: ExpressionUtils.call("now"),
         },
-        PreboardingInterview: {
-            name: "PreboardingInterview",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        ipAddress: {
+          name: "ipAddress",
+          type: "String",
+          optional: true,
+        },
+        userAgent: {
+          name: "userAgent",
+          type: "String",
+          optional: true,
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
                 },
-                candidateId: {
-                    name: "candidateId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "candidate"
-                    ]
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
                 },
-                candidate: {
-                    name: "candidate",
-                    type: "PreboardingCandidate",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("candidateId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "interviews", fields: ["candidateId"], references: ["id"], onDelete: "Cascade" }
-                },
-                interviewerName: {
-                    name: "interviewerName",
-                    type: "String"
-                },
-                interviewerEmail: {
-                    name: "interviewerEmail",
-                    type: "String",
-                    optional: true
-                },
-                interviewType: {
-                    name: "interviewType",
-                    type: "InterviewType"
-                },
-                scheduledAt: {
-                    name: "scheduledAt",
-                    type: "DateTime"
-                },
-                durationMinutes: {
-                    name: "durationMinutes",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(60) }] }],
-                    default: 60
-                },
-                location: {
-                    name: "location",
-                    type: "String",
-                    optional: true
-                },
-                meetingLink: {
-                    name: "meetingLink",
-                    type: "String",
-                    optional: true
-                },
-                notes: {
-                    name: "notes",
-                    type: "String",
-                    optional: true
-                },
-                feedback: {
-                    name: "feedback",
-                    type: "String",
-                    optional: true
-                },
-                rating: {
-                    name: "rating",
-                    type: "Int",
-                    optional: true
-                },
-                status: {
-                    name: "status",
-                    type: "InterviewStatus",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("scheduled") }] }],
-                    default: "scheduled"
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "preboardingInterviews", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("preboarding_interviews") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "sessions",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
         },
-        PreboardingCandidateQuestion: {
-            name: "PreboardingCandidateQuestion",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                candidateId: {
-                    name: "candidateId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "candidate"
-                    ]
-                },
-                candidate: {
-                    name: "candidate",
-                    type: "PreboardingCandidate",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("candidateId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "questions", fields: ["candidateId"], references: ["id"], onDelete: "Cascade" }
-                },
-                questionType: {
-                    name: "questionType",
-                    type: "QuestionType"
-                },
-                question: {
-                    name: "question",
-                    type: "String"
-                },
-                expectedAnswer: {
-                    name: "expectedAnswer",
-                    type: "String",
-                    optional: true
-                },
-                answer: {
-                    name: "answer",
-                    type: "String",
-                    optional: true
-                },
-                rating: {
-                    name: "rating",
-                    type: "Int",
-                    optional: true
-                },
-                notes: {
-                    name: "notes",
-                    type: "String",
-                    optional: true
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                isAiGenerated: {
-                    name: "isAiGenerated",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "preboardingCandidateQuestions", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+        impersonatedBy: {
+          name: "impersonatedBy",
+          type: "String",
+          optional: true,
+        },
+        activeOrganizationId: {
+          name: "activeOrganizationId",
+          type: "String",
+          optional: true,
+        },
+      },
+      attributes: [
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([ExpressionUtils.field("token")]),
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("preboarding_candidate_questions") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
         },
-        PreboardingCandidateDocument: {
-            name: "PreboardingCandidateDocument",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("session") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        token: { type: "String" },
+      },
+    },
+    Account: {
+      name: "Account",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
                 },
-                candidateId: {
-                    name: "candidateId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "candidate"
-                    ]
-                },
-                candidate: {
-                    name: "candidate",
-                    type: "PreboardingCandidate",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("candidateId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "documents", fields: ["candidateId"], references: ["id"], onDelete: "Cascade" }
-                },
-                documentType: {
-                    name: "documentType",
-                    type: "String"
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                fileName: {
-                    name: "fileName",
-                    type: "String"
-                },
-                fileUrl: {
-                    name: "fileUrl",
-                    type: "String"
-                },
-                fileSize: {
-                    name: "fileSize",
-                    type: "Int",
-                    optional: true
-                },
-                mimeType: {
-                    name: "mimeType",
-                    type: "String",
-                    optional: true
-                },
-                aiAnalysis: {
-                    name: "aiAnalysis",
-                    type: "String",
-                    optional: true
-                },
-                adherenceScore: {
-                    name: "adherenceScore",
-                    type: "Float",
-                    optional: true
-                },
-                analyzedAt: {
-                    name: "analyzedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                createdById: {
-                    name: "createdById",
-                    type: "String",
-                    optional: true,
-                    foreignKeyFor: [
-                        "createdBy"
-                    ]
-                },
-                createdBy: {
-                    name: "createdBy",
-                    type: "User",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "name", value: ExpressionUtils.literal("DocumentCreatedBy") }, { name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("createdById")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("SetNull") }] }],
-                    relation: { opposite: "createdDocuments", name: "DocumentCreatedBy", fields: ["createdById"], references: ["id"], onDelete: "SetNull" }
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "preboardingCandidateDocuments", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("preboarding_candidate_documents") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
         },
-        FirstStepsJobType: {
-            name: "FirstStepsJobType",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        accountId: {
+          name: "accountId",
+          type: "String",
+        },
+        providerId: {
+          name: "providerId",
+          type: "String",
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
                 },
-                name: {
-                    name: "name",
-                    type: "String"
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
                 },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                icon: {
-                    name: "icon",
-                    type: "String",
-                    optional: true
-                },
-                color: {
-                    name: "color",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("#6366f1") }] }],
-                    default: "#6366f1"
-                },
-                active: {
-                    name: "active",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "firstStepsJobTypes", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                steps: {
-                    name: "steps",
-                    type: "FirstStepsItem",
-                    array: true,
-                    relation: { opposite: "jobType" }
-                },
-                members: {
-                    name: "members",
-                    type: "Member",
-                    array: true,
-                    relation: { opposite: "jobType" }
-                },
-                quizzes: {
-                    name: "quizzes",
-                    type: "FirstStepsQuiz",
-                    array: true,
-                    relation: { opposite: "jobType" }
-                }
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("first_steps_job_types") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          relation: {
+            opposite: "accounts",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
         },
-        FirstStepsItem: {
-            name: "FirstStepsItem",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                jobTypeId: {
-                    name: "jobTypeId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "jobType"
-                    ]
-                },
-                jobType: {
-                    name: "jobType",
-                    type: "FirstStepsJobType",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("jobTypeId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "steps", fields: ["jobTypeId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String"
-                },
-                description: {
-                    name: "description",
-                    type: "String"
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                linkType: {
-                    name: "linkType",
-                    type: "FirstStepsLinkType",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("none") }] }],
-                    default: "none"
-                },
-                linkUrl: {
-                    name: "linkUrl",
-                    type: "String",
-                    optional: true
-                },
-                linkLabel: {
-                    name: "linkLabel",
-                    type: "String",
-                    optional: true
-                },
-                linkOpenInNewTab: {
-                    name: "linkOpenInNewTab",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                estimatedMinutes: {
-                    name: "estimatedMinutes",
-                    type: "Int",
-                    optional: true
-                },
-                active: {
-                    name: "active",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "firstStepsItems", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                progress: {
-                    name: "progress",
-                    type: "FirstStepsProgress",
-                    array: true,
-                    relation: { opposite: "step" }
-                }
+        accessToken: {
+          name: "accessToken",
+          type: "String",
+          optional: true,
+        },
+        refreshToken: {
+          name: "refreshToken",
+          type: "String",
+          optional: true,
+        },
+        idToken: {
+          name: "idToken",
+          type: "String",
+          optional: true,
+        },
+        accessTokenExpiresAt: {
+          name: "accessTokenExpiresAt",
+          type: "DateTime",
+          optional: true,
+        },
+        refreshTokenExpiresAt: {
+          name: "refreshTokenExpiresAt",
+          type: "DateTime",
+          optional: true,
+        },
+        scope: {
+          name: "scope",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("first_steps_items") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          default: ExpressionUtils.call("now"),
         },
-        FirstStepsProgress: {
-            name: "FirstStepsProgress",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+      },
+      attributes: [
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("account") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    Verification: {
+      name: "Verification",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
                 },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "firstStepsProgress", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                stepId: {
-                    name: "stepId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "step"
-                    ]
-                },
-                step: {
-                    name: "step",
-                    type: "FirstStepsItem",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("stepId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "progress", fields: ["stepId"], references: ["id"], onDelete: "Cascade" }
-                },
-                completed: {
-                    name: "completed",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(false) }] }],
-                    default: false
-                },
-                completedAt: {
-                    name: "completedAt",
-                    type: "DateTime",
-                    optional: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "firstStepsProgress", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@unique", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId"), ExpressionUtils.field("stepId")]) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("first_steps_progress") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" },
-                userId_stepId: { userId: { type: "String" }, stepId: { type: "String" } }
-            }
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
         },
-        FirstStepsQuiz: {
-            name: "FirstStepsQuiz",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                jobTypeId: {
-                    name: "jobTypeId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "jobType"
-                    ]
-                },
-                jobType: {
-                    name: "jobType",
-                    type: "FirstStepsJobType",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("jobTypeId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "quizzes", fields: ["jobTypeId"], references: ["id"], onDelete: "Cascade" }
-                },
-                title: {
-                    name: "title",
-                    type: "String",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal("Quiz de Conhecimento") }] }],
-                    default: "Quiz de Conhecimento"
-                },
-                description: {
-                    name: "description",
-                    type: "String",
-                    optional: true
-                },
-                passingScore: {
-                    name: "passingScore",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(70) }] }],
-                    default: 70
-                },
-                active: {
-                    name: "active",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "firstStepsQuizzes", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                },
-                questions: {
-                    name: "questions",
-                    type: "FirstStepsQuizQuestion",
-                    array: true,
-                    relation: { opposite: "quiz" }
-                },
-                attempts: {
-                    name: "attempts",
-                    type: "FirstStepsQuizAttempt",
-                    array: true,
-                    relation: { opposite: "quiz" }
-                }
+        identifier: {
+          name: "identifier",
+          type: "String",
+        },
+        value: {
+          name: "value",
+          type: "String",
+        },
+        expiresAt: {
+          name: "expiresAt",
+          type: "DateTime",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("first_steps_quizzes") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          default: ExpressionUtils.call("now"),
         },
-        FirstStepsQuizQuestion: {
-            name: "FirstStepsQuizQuestion",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+      },
+      attributes: [
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("verification") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    Organization: {
+      name: "Organization",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
                 },
-                quizId: {
-                    name: "quizId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "quiz"
-                    ]
-                },
-                quiz: {
-                    name: "quiz",
-                    type: "FirstStepsQuiz",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("quizId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "questions", fields: ["quizId"], references: ["id"], onDelete: "Cascade" }
-                },
-                question: {
-                    name: "question",
-                    type: "String"
-                },
-                options: {
-                    name: "options",
-                    type: "String",
-                    array: true
-                },
-                correctAnswer: {
-                    name: "correctAnswer",
-                    type: "Int"
-                },
-                explanation: {
-                    name: "explanation",
-                    type: "String",
-                    optional: true
-                },
-                orderIndex: {
-                    name: "orderIndex",
-                    type: "Int",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(0) }] }],
-                    default: 0
-                },
-                active: {
-                    name: "active",
-                    type: "Boolean",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.literal(true) }] }],
-                    default: true
-                },
-                createdAt: {
-                    name: "createdAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                updatedAt: {
-                    name: "updatedAt",
-                    type: "DateTime",
-                    updatedAt: true,
-                    attributes: [{ name: "@updatedAt" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "firstStepsQuizQuestions", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+              ],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("first_steps_quiz_questions") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
         },
-        FirstStepsQuizAttempt: {
-            name: "FirstStepsQuizAttempt",
-            fields: {
-                id: {
-                    name: "id",
-                    type: "String",
-                    id: true,
-                    attributes: [{ name: "@id" }, { name: "@default", args: [{ name: "value", value: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")]) }] }],
-                    default: ExpressionUtils.call("dbgenerated", [ExpressionUtils.literal("uuidv7()")])
-                },
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "user"
-                    ]
-                },
-                user: {
-                    name: "user",
-                    type: "User",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("userId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "firstStepsQuizAttempts", fields: ["userId"], references: ["id"], onDelete: "Cascade" }
-                },
-                quizId: {
-                    name: "quizId",
-                    type: "String",
-                    foreignKeyFor: [
-                        "quiz"
-                    ]
-                },
-                quiz: {
-                    name: "quiz",
-                    type: "FirstStepsQuiz",
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("quizId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "attempts", fields: ["quizId"], references: ["id"], onDelete: "Cascade" }
-                },
-                score: {
-                    name: "score",
-                    type: "Int"
-                },
-                passed: {
-                    name: "passed",
-                    type: "Boolean"
-                },
-                answers: {
-                    name: "answers",
-                    type: "Json"
-                },
-                completedAt: {
-                    name: "completedAt",
-                    type: "DateTime",
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.call("now") }] }],
-                    default: ExpressionUtils.call("now")
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true,
-                    attributes: [{ name: "@default", args: [{ name: "value", value: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]) }] }],
-                    default: ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]),
-                    foreignKeyFor: [
-                        "organization"
-                    ]
-                },
-                organization: {
-                    name: "organization",
-                    type: "Organization",
-                    optional: true,
-                    attributes: [{ name: "@relation", args: [{ name: "fields", value: ExpressionUtils.array([ExpressionUtils.field("organizationId")]) }, { name: "references", value: ExpressionUtils.array([ExpressionUtils.field("id")]) }, { name: "onDelete", value: ExpressionUtils.literal("Cascade") }] }],
-                    relation: { opposite: "firstStepsQuizAttempts", fields: ["organizationId"], references: ["id"], onDelete: "Cascade", hasDefault: true }
-                }
+        name: {
+          name: "name",
+          type: "String",
+        },
+        slug: {
+          name: "slug",
+          type: "String",
+          optional: true,
+        },
+        logo: {
+          name: "logo",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
             },
-            attributes: [
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("create") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.call("auth"), "!=", ExpressionUtils._null()) }] },
-                { name: "@@allow", args: [{ name: "operation", value: ExpressionUtils.literal("read,update,delete") }, { name: "condition", value: ExpressionUtils.binary(ExpressionUtils.member(ExpressionUtils.call("auth"), ["organizationId"]), "==", ExpressionUtils.field("organizationId")) }] },
-                { name: "@@map", args: [{ name: "name", value: ExpressionUtils.literal("first_steps_quiz_attempts") }] }
-            ],
-            idFields: ["id"],
-            uniqueFields: {
-                id: { type: "String" }
-            }
-        }
-    } as const;
-    typeDefs = {
-        Auth: {
-            name: "Auth",
-            fields: {
-                userId: {
-                    name: "userId",
-                    type: "String",
-                    attributes: [{ name: "@id" }]
-                },
-                organizationId: {
-                    name: "organizationId",
-                    type: "String",
-                    optional: true
-                },
-                organizationRole: {
-                    name: "organizationRole",
-                    type: "String",
-                    optional: true
-                }
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        metadata: {
+          name: "metadata",
+          type: "String",
+          optional: true,
+        },
+        members: {
+          name: "members",
+          type: "Member",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        invitations: {
+          name: "invitations",
+          type: "Invitation",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        todos: {
+          name: "todos",
+          type: "Todo",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        tests: {
+          name: "tests",
+          type: "Test",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        products: {
+          name: "products",
+          type: "Product",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        clients: {
+          name: "clients",
+          type: "Client",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        onboardingProcesses: {
+          name: "onboardingProcesses",
+          type: "OnboardingProcess",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        onboardingDocuments: {
+          name: "onboardingDocuments",
+          type: "OnboardingDocument",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        onboardingChats: {
+          name: "onboardingChats",
+          type: "OnboardingChat",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        knowledgeChats: {
+          name: "knowledgeChats",
+          type: "KnowledgeChat",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        groupChatMessages: {
+          name: "groupChatMessages",
+          type: "GroupChatMessage",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        onboardingChecklistSteps: {
+          name: "onboardingChecklistSteps",
+          type: "OnboardingChecklistStep",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        onboardingChecklistProgress: {
+          name: "onboardingChecklistProgress",
+          type: "OnboardingChecklistProgress",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        calendarEvents: {
+          name: "calendarEvents",
+          type: "CalendarEvent",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        kanbanBoards: {
+          name: "kanbanBoards",
+          type: "KanbanBoard",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        salesOrders: {
+          name: "salesOrders",
+          type: "SalesOrder",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        userScores: {
+          name: "userScores",
+          type: "UserScore",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        achievements: {
+          name: "achievements",
+          type: "Achievement",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        userAchievements: {
+          name: "userAchievements",
+          type: "UserAchievement",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        userActionCounts: {
+          name: "userActionCounts",
+          type: "UserActionCount",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        tutorialSectors: {
+          name: "tutorialSectors",
+          type: "TutorialSector",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        tutorialStepProgress: {
+          name: "tutorialStepProgress",
+          type: "TutorialStepProgress",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        meetings: {
+          name: "meetings",
+          type: "Meeting",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        mindmaps: {
+          name: "mindmaps",
+          type: "Mindmap",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        offboardingChecklistSteps: {
+          name: "offboardingChecklistSteps",
+          type: "OffboardingChecklistStep",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        offboardingProcesses: {
+          name: "offboardingProcesses",
+          type: "OffboardingProcess",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        offboardingProgress: {
+          name: "offboardingProgress",
+          type: "OffboardingProgress",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        offboardingHandoverTasks: {
+          name: "offboardingHandoverTasks",
+          type: "OffboardingHandoverTask",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        preboardingStages: {
+          name: "preboardingStages",
+          type: "PreboardingStage",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        preboardingJobPositions: {
+          name: "preboardingJobPositions",
+          type: "PreboardingJobPosition",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        preboardingCandidates: {
+          name: "preboardingCandidates",
+          type: "PreboardingCandidate",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        preboardingActivities: {
+          name: "preboardingActivities",
+          type: "PreboardingActivity",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        preboardingInterviews: {
+          name: "preboardingInterviews",
+          type: "PreboardingInterview",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        preboardingCandidateQuestions: {
+          name: "preboardingCandidateQuestions",
+          type: "PreboardingCandidateQuestion",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        preboardingCandidateDocuments: {
+          name: "preboardingCandidateDocuments",
+          type: "PreboardingCandidateDocument",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        firstStepsJobTypes: {
+          name: "firstStepsJobTypes",
+          type: "FirstStepsJobType",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        firstStepsItems: {
+          name: "firstStepsItems",
+          type: "FirstStepsItem",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        firstStepsProgress: {
+          name: "firstStepsProgress",
+          type: "FirstStepsProgress",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        firstStepsQuizzes: {
+          name: "firstStepsQuizzes",
+          type: "FirstStepsQuiz",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        firstStepsQuizQuestions: {
+          name: "firstStepsQuizQuestions",
+          type: "FirstStepsQuizQuestion",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        firstStepsQuizAttempts: {
+          name: "firstStepsQuizAttempts",
+          type: "FirstStepsQuizAttempt",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        feedbackDepartments: {
+          name: "feedbackDepartments",
+          type: "FeedbackDepartment",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        feedbackCategories: {
+          name: "feedbackCategories",
+          type: "FeedbackCategory",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        feedbackSubcategories: {
+          name: "feedbackSubcategories",
+          type: "FeedbackSubcategory",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        citizenFeedbacks: {
+          name: "citizenFeedbacks",
+          type: "CitizenFeedback",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        feedbackAttachments: {
+          name: "feedbackAttachments",
+          type: "FeedbackAttachment",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        feedbackComments: {
+          name: "feedbackComments",
+          type: "FeedbackComment",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+        feedbackStatusHistory: {
+          name: "feedbackStatusHistory",
+          type: "FeedbackStatusHistory",
+          array: true,
+          relation: { opposite: "organization" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([ExpressionUtils.field("slug")]),
             },
-            attributes: [
-                { name: "@@auth" }
-            ]
-        }
-    } as const;
-    enums = {
-        UserRole: {
-            values: {
-                admin: "admin",
-                user: "user"
-            }
+          ],
         },
-        MemberRole: {
-            values: {
-                owner: "owner",
-                admin: "admin",
-                secretary: "secretary",
-                patient: "patient",
-                member: "member"
-            }
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("create,read"),
+            },
+            { name: "condition", value: ExpressionUtils.literal(true) },
+          ],
         },
-        ClientStatus: {
-            values: {
-                active: "active",
-                inactive: "inactive"
-            }
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("organization") },
+          ],
         },
-        EmployeeType: {
-            values: {
-                vendedor: "vendedor",
-                gerente_estoque: "gerente_estoque"
-            }
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        slug: { type: "String" },
+      },
+    },
+    Member: {
+      name: "Member",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
         },
-        ChatRole: {
-            values: {
-                user: "user",
-                assistant: "assistant",
-                system: "system"
-            }
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          foreignKeyFor: ["organization"],
         },
-        OrderStatus: {
-            values: {
-                draft: "draft",
-                pending: "pending",
-                completed: "completed",
-                cancelled: "cancelled"
-            }
+        organization: {
+          name: "organization",
+          type: "Organization",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "members",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
         },
-        MilestoneType: {
-            values: {
-                sales: "sales",
-                events: "events",
-                kanban_tasks: "kanban_tasks",
-                onboarding: "onboarding"
-            }
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
         },
-        GroupChatMessageType: {
-            values: {
-                user: "user",
-                ai: "ai",
-                system: "system"
-            }
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "members",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
         },
-        OffboardingCategory: {
-            values: {
-                handover: "handover",
-                documentation: "documentation",
-                administrative: "administrative",
-                equipment: "equipment",
-                access: "access"
-            }
+        role: {
+          name: "role",
+          type: "String",
         },
-        OffboardingStatus: {
-            values: {
-                in_progress: "in_progress",
-                pending_approval: "pending_approval",
-                completed: "completed",
-                cancelled: "cancelled"
-            }
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
         },
-        OffboardingReason: {
-            values: {
-                resignation: "resignation",
-                termination: "termination",
-                retirement: "retirement",
-                transfer: "transfer"
-            }
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
         },
-        HandoverTaskStatus: {
-            values: {
-                pending: "pending",
-                in_progress: "in_progress",
-                completed: "completed"
-            }
+        jobTypeId: {
+          name: "jobTypeId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["jobType"],
         },
-        HandoverTaskPriority: {
-            values: {
-                low: "low",
-                medium: "medium",
-                high: "high",
-                critical: "critical"
-            }
+        jobType: {
+          name: "jobType",
+          type: "FirstStepsJobType",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("jobTypeId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "members",
+            fields: ["jobTypeId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
         },
-        CandidateStatus: {
-            values: {
-                active: "active",
-                hired: "hired",
-                rejected: "rejected",
-                withdrawn: "withdrawn"
-            }
+      },
+      attributes: [
+        {
+          name: "@@deny",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("all") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "==",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
         },
-        ActivityType: {
-            values: {
-                note: "note",
-                stage_change: "stage_change",
-                interview: "interview",
-                email: "email",
-                call: "call",
-                document: "document",
-                other: "other"
-            }
+        {
+          name: "@@deny",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("all") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "!=",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
         },
-        InterviewType: {
-            values: {
-                phone: "phone",
-                video: "video",
-                in_person: "in_person",
-                technical: "technical",
-                behavioral: "behavioral"
-            }
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
         },
-        InterviewStatus: {
-            values: {
-                scheduled: "scheduled",
-                completed: "completed",
-                cancelled: "cancelled",
-                no_show: "no_show"
-            }
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("update") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
         },
-        WorkModel: {
-            values: {
-                presencial: "presencial",
-                remoto: "remoto",
-                hibrido: "hibrido"
-            }
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("member") }],
         },
-        EmploymentType: {
-            values: {
-                clt: "clt",
-                pj: "pj",
-                estagio: "estagio",
-                temporario: "temporario"
-            }
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    Invitation: {
+      name: "Invitation",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
         },
-        JobPositionPriority: {
-            values: {
-                baixa: "baixa",
-                normal: "normal",
-                alta: "alta",
-                urgente: "urgente"
-            }
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          foreignKeyFor: ["organization"],
         },
-        JobPositionStatus: {
-            values: {
-                aberta: "aberta",
-                pausada: "pausada",
-                fechada: "fechada",
-                cancelada: "cancelada"
-            }
+        organization: {
+          name: "organization",
+          type: "Organization",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "invitations",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
         },
-        QuestionType: {
-            values: {
-                hard_skills: "hard_skills",
-                soft_skills: "soft_skills"
-            }
+        email: {
+          name: "email",
+          type: "String",
         },
-        MeetingStatus: {
-            values: {
-                scheduled: "scheduled",
-                in_progress: "in_progress",
-                completed: "completed",
-                cancelled: "cancelled"
-            }
+        role: {
+          name: "role",
+          type: "String",
+          optional: true,
         },
-        FirstStepsLinkType: {
-            values: {
-                internal: "internal",
-                external: "external",
-                none: "none"
-            }
+        status: {
+          name: "status",
+          type: "String",
         },
-        CalendarEventType: {
-            values: {
-                MEETING: "MEETING",
-                ONBOARDING: "ONBOARDING",
-                TRAINING: "TRAINING",
-                INTERVIEW: "INTERVIEW",
-                TASK: "TASK",
-                OTHER: "OTHER"
-            }
-        }
-    } as const;
-    authType = "Auth" as const;
-    plugins = {};
+        expiresAt: {
+          name: "expiresAt",
+          type: "DateTime",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          optional: true,
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        inviterId: {
+          name: "inviterId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("inviterId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "invitations",
+            fields: ["inviterId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.binary(
+                  ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                  "==",
+                  ExpressionUtils.field("inviterId")
+                ),
+                "&&",
+                ExpressionUtils.binary(
+                  ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                  "==",
+                  ExpressionUtils.field("organizationId")
+                )
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("invitation") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    Todo: {
+      name: "Todo",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        completed: {
+          name: "completed",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        dueDate: {
+          name: "dueDate",
+          type: "DateTime",
+          optional: true,
+        },
+        priority: {
+          name: "priority",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdTodos"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdTodos",
+            name: "createdTodos",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        updatedById: {
+          name: "updatedById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["updatedByUser"],
+        },
+        updatedByUser: {
+          name: "updatedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedTodos"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("updatedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "updatedTodos",
+            name: "updatedTodos",
+            fields: ["updatedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        deletedById: {
+          name: "deletedById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["deletedByUser"],
+        },
+        deletedByUser: {
+          name: "deletedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedTodos"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("deletedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "deletedTodos",
+            name: "deletedTodos",
+            fields: ["deletedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        deletedAt: {
+          name: "deletedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        deletedReason: {
+          name: "deletedReason",
+          type: "String",
+          optional: true,
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "todos",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@deny",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.field("deletedAt"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("todo") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    Test: {
+      name: "Test",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdTests"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdTests",
+            name: "createdTests",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        updatedById: {
+          name: "updatedById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["updatedByUser"],
+        },
+        updatedByUser: {
+          name: "updatedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedTests"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("updatedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "updatedTests",
+            name: "updatedTests",
+            fields: ["updatedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        deletedById: {
+          name: "deletedById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["deletedByUser"],
+        },
+        deletedByUser: {
+          name: "deletedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedTests"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("deletedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "deletedTests",
+            name: "deletedTests",
+            fields: ["deletedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        deletedAt: {
+          name: "deletedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        deletedReason: {
+          name: "deletedReason",
+          type: "String",
+          optional: true,
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "tests",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@deny",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.field("deletedAt"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("test") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    Product: {
+      name: "Product",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        code: {
+          name: "code",
+          type: "String",
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        category: {
+          name: "category",
+          type: "String",
+          optional: true,
+        },
+        unit: {
+          name: "unit",
+          type: "String",
+          optional: true,
+        },
+        costPrice: {
+          name: "costPrice",
+          type: "Float",
+          optional: true,
+        },
+        salePrice: {
+          name: "salePrice",
+          type: "Float",
+          optional: true,
+        },
+        minimumStock: {
+          name: "minimumStock",
+          type: "Int",
+          optional: true,
+        },
+        storageLocation: {
+          name: "storageLocation",
+          type: "String",
+          optional: true,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdProducts"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdProducts",
+            name: "createdProducts",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        updatedById: {
+          name: "updatedById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["updatedByUser"],
+        },
+        updatedByUser: {
+          name: "updatedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedProducts"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("updatedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "updatedProducts",
+            name: "updatedProducts",
+            fields: ["updatedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        deletedById: {
+          name: "deletedById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["deletedByUser"],
+        },
+        deletedByUser: {
+          name: "deletedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedProducts"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("deletedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "deletedProducts",
+            name: "deletedProducts",
+            fields: ["deletedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        deletedAt: {
+          name: "deletedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        deletedReason: {
+          name: "deletedReason",
+          type: "String",
+          optional: true,
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "products",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        orderItems: {
+          name: "orderItems",
+          type: "OrderItem",
+          array: true,
+          relation: { opposite: "product" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@deny",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.field("deletedAt"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("product") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    Client: {
+      name: "Client",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        email: {
+          name: "email",
+          type: "String",
+        },
+        phone: {
+          name: "phone",
+          type: "String",
+        },
+        status: {
+          name: "status",
+          type: "ClientStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("active") },
+              ],
+            },
+          ],
+          default: "active",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdClients"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdClients",
+            name: "createdClients",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        updatedById: {
+          name: "updatedById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["updatedByUser"],
+        },
+        updatedByUser: {
+          name: "updatedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedClients"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("updatedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "updatedClients",
+            name: "updatedClients",
+            fields: ["updatedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        deletedById: {
+          name: "deletedById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["deletedByUser"],
+        },
+        deletedByUser: {
+          name: "deletedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedClients"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("deletedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "deletedClients",
+            name: "deletedClients",
+            fields: ["deletedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        deletedAt: {
+          name: "deletedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        deletedReason: {
+          name: "deletedReason",
+          type: "String",
+          optional: true,
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "clients",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@deny",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.field("deletedAt"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("client") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    OnboardingProcess: {
+      name: "OnboardingProcess",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        employeeType: {
+          name: "employeeType",
+          type: "EmployeeType",
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        content: {
+          name: "content",
+          type: "String",
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "onboardingProcesses",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("onboarding_processes"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    OnboardingDocument: {
+      name: "OnboardingDocument",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        employeeType: {
+          name: "employeeType",
+          type: "EmployeeType",
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        fileUrl: {
+          name: "fileUrl",
+          type: "String",
+        },
+        fileName: {
+          name: "fileName",
+          type: "String",
+        },
+        fileSize: {
+          name: "fileSize",
+          type: "Int",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "onboardingDocuments",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("onboarding_documents"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    OnboardingChat: {
+      name: "OnboardingChat",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "onboardingChats",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        employeeType: {
+          name: "employeeType",
+          type: "EmployeeType",
+        },
+        role: {
+          name: "role",
+          type: "ChatRole",
+        },
+        content: {
+          name: "content",
+          type: "String",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "onboardingChats",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("onboarding_chats"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    KnowledgeChat: {
+      name: "KnowledgeChat",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "knowledgeChats",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        role: {
+          name: "role",
+          type: "ChatRole",
+        },
+        content: {
+          name: "content",
+          type: "String",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "knowledgeChats",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("knowledge_chats") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    GroupChatMessage: {
+      name: "GroupChatMessage",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "groupChatMessages",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        userName: {
+          name: "userName",
+          type: "String",
+        },
+        message: {
+          name: "message",
+          type: "String",
+        },
+        messageType: {
+          name: "messageType",
+          type: "GroupChatMessageType",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal("user") }],
+            },
+          ],
+          default: "user",
+        },
+        parentMessageId: {
+          name: "parentMessageId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["parentMessage"],
+        },
+        parentMessage: {
+          name: "parentMessage",
+          type: "GroupChatMessage",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("GroupChatReplies"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("parentMessageId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "replies",
+            name: "GroupChatReplies",
+            fields: ["parentMessageId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        replies: {
+          name: "replies",
+          type: "GroupChatMessage",
+          array: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("GroupChatReplies"),
+                },
+              ],
+            },
+          ],
+          relation: { opposite: "parentMessage", name: "GroupChatReplies" },
+        },
+        metadata: {
+          name: "metadata",
+          type: "Json",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "groupChatMessages",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("group_chat_messages"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    OnboardingChecklistStep: {
+      name: "OnboardingChecklistStep",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        employeeType: {
+          name: "employeeType",
+          type: "EmployeeType",
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "onboardingChecklistSteps",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        progress: {
+          name: "progress",
+          type: "OnboardingChecklistProgress",
+          array: true,
+          relation: { opposite: "step" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("onboarding_checklist_steps"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    OnboardingChecklistProgress: {
+      name: "OnboardingChecklistProgress",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "onboardingChecklistProgress",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        stepId: {
+          name: "stepId",
+          type: "String",
+          foreignKeyFor: ["step"],
+        },
+        step: {
+          name: "step",
+          type: "OnboardingChecklistStep",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("stepId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "progress",
+            fields: ["stepId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        completed: {
+          name: "completed",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        completedAt: {
+          name: "completedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "onboardingChecklistProgress",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([
+                ExpressionUtils.field("userId"),
+                ExpressionUtils.field("stepId"),
+              ]),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("onboarding_checklist_progress"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        userId_stepId: {
+          userId: { type: "String" },
+          stepId: { type: "String" },
+        },
+      },
+    },
+    CalendarEvent: {
+      name: "CalendarEvent",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "calendarEvents",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        start: {
+          name: "start",
+          type: "DateTime",
+        },
+        end: {
+          name: "end",
+          type: "DateTime",
+        },
+        allDay: {
+          name: "allDay",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        color: {
+          name: "color",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("#3b82f6") },
+              ],
+            },
+          ],
+          default: "#3b82f6",
+        },
+        eventType: {
+          name: "eventType",
+          type: "CalendarEventType",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("OTHER") },
+              ],
+            },
+          ],
+          default: "OTHER",
+        },
+        rrule: {
+          name: "rrule",
+          type: "String",
+          optional: true,
+        },
+        meetingId: {
+          name: "meetingId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["meeting"],
+        },
+        meeting: {
+          name: "meeting",
+          type: "Meeting",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("meetingId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "calendarEvents",
+            fields: ["meetingId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "calendarEvents",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("calendar_events") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    KanbanBoard: {
+      name: "KanbanBoard",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "kanbanBoards",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "kanbanBoards",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        columns: {
+          name: "columns",
+          type: "KanbanColumn",
+          array: true,
+          relation: { opposite: "board" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("kanban_boards") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    KanbanColumn: {
+      name: "KanbanColumn",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        boardId: {
+          name: "boardId",
+          type: "String",
+          foreignKeyFor: ["board"],
+        },
+        board: {
+          name: "board",
+          type: "KanbanBoard",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("boardId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "columns",
+            fields: ["boardId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        position: {
+          name: "position",
+          type: "Int",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        cards: {
+          name: "cards",
+          type: "KanbanCard",
+          array: true,
+          relation: { opposite: "column" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("kanban_columns") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    KanbanCard: {
+      name: "KanbanCard",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        columnId: {
+          name: "columnId",
+          type: "String",
+          foreignKeyFor: ["column"],
+        },
+        column: {
+          name: "column",
+          type: "KanbanColumn",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("columnId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "cards",
+            fields: ["columnId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        position: {
+          name: "position",
+          type: "Int",
+        },
+        color: {
+          name: "color",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("#3b82f6") },
+              ],
+            },
+          ],
+          default: "#3b82f6",
+        },
+        dueDate: {
+          name: "dueDate",
+          type: "DateTime",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("createdKanbanCards"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdKanbanCards",
+            name: "createdKanbanCards",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        updatedById: {
+          name: "updatedById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["updatedByUser"],
+        },
+        updatedByUser: {
+          name: "updatedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("updatedKanbanCards"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("updatedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "updatedKanbanCards",
+            name: "updatedKanbanCards",
+            fields: ["updatedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        deletedAt: {
+          name: "deletedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        deletedById: {
+          name: "deletedById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["deletedByUser"],
+        },
+        deletedByUser: {
+          name: "deletedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("deletedKanbanCards"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("deletedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "deletedKanbanCards",
+            name: "deletedKanbanCards",
+            fields: ["deletedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        deletedReason: {
+          name: "deletedReason",
+          type: "String",
+          optional: true,
+        },
+      },
+      attributes: [
+        {
+          name: "@@deny",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.field("deletedAt"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("kanban_cards") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    SalesOrder: {
+      name: "SalesOrder",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "salesOrders",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        orderNumber: {
+          name: "orderNumber",
+          type: "String",
+          unique: true,
+          attributes: [{ name: "@unique" }],
+        },
+        customerName: {
+          name: "customerName",
+          type: "String",
+          optional: true,
+        },
+        customerPhone: {
+          name: "customerPhone",
+          type: "String",
+          optional: true,
+        },
+        customerAddress: {
+          name: "customerAddress",
+          type: "String",
+          optional: true,
+        },
+        customerNeighborhood: {
+          name: "customerNeighborhood",
+          type: "String",
+          optional: true,
+        },
+        customerCity: {
+          name: "customerCity",
+          type: "String",
+          optional: true,
+        },
+        customerState: {
+          name: "customerState",
+          type: "String",
+          optional: true,
+        },
+        customerZipcode: {
+          name: "customerZipcode",
+          type: "String",
+          optional: true,
+        },
+        customerTaxId: {
+          name: "customerTaxId",
+          type: "String",
+          optional: true,
+        },
+        customerStateRegistration: {
+          name: "customerStateRegistration",
+          type: "String",
+          optional: true,
+        },
+        orderDate: {
+          name: "orderDate",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        paymentTerm: {
+          name: "paymentTerm",
+          type: "String",
+          optional: true,
+        },
+        checkValue: {
+          name: "checkValue",
+          type: "Float",
+          optional: true,
+        },
+        downPayment: {
+          name: "downPayment",
+          type: "Float",
+          optional: true,
+        },
+        totalAmount: {
+          name: "totalAmount",
+          type: "Float",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        status: {
+          name: "status",
+          type: "OrderStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("draft") },
+              ],
+            },
+          ],
+          default: "draft",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "salesOrders",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        items: {
+          name: "items",
+          type: "OrderItem",
+          array: true,
+          relation: { opposite: "order" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("sales_orders") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        orderNumber: { type: "String" },
+      },
+    },
+    OrderItem: {
+      name: "OrderItem",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        orderId: {
+          name: "orderId",
+          type: "String",
+          foreignKeyFor: ["order"],
+        },
+        order: {
+          name: "order",
+          type: "SalesOrder",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("orderId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "items",
+            fields: ["orderId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        productId: {
+          name: "productId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["product"],
+        },
+        product: {
+          name: "product",
+          type: "Product",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("productId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "orderItems",
+            fields: ["productId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        productName: {
+          name: "productName",
+          type: "String",
+        },
+        quantity: {
+          name: "quantity",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(1) }],
+            },
+          ],
+          default: 1,
+        },
+        unitPrice: {
+          name: "unitPrice",
+          type: "Float",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        totalPrice: {
+          name: "totalPrice",
+          type: "Float",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        position: {
+          name: "position",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("order_items") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    UserScore: {
+      name: "UserScore",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          unique: true,
+          attributes: [{ name: "@unique" }],
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "userScore",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        totalPoints: {
+          name: "totalPoints",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "userScores",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("user_scores") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        userId: { type: "String" },
+      },
+    },
+    Achievement: {
+      name: "Achievement",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+          unique: true,
+          attributes: [{ name: "@unique" }],
+        },
+        description: {
+          name: "description",
+          type: "String",
+        },
+        points: {
+          name: "points",
+          type: "Int",
+        },
+        milestoneType: {
+          name: "milestoneType",
+          type: "MilestoneType",
+        },
+        milestoneCount: {
+          name: "milestoneCount",
+          type: "Int",
+        },
+        icon: {
+          name: "icon",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "achievements",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        userAchievements: {
+          name: "userAchievements",
+          type: "UserAchievement",
+          array: true,
+          relation: { opposite: "achievement" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("achievements") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        name: { type: "String" },
+      },
+    },
+    UserAchievement: {
+      name: "UserAchievement",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "userAchievements",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        achievementId: {
+          name: "achievementId",
+          type: "String",
+          foreignKeyFor: ["achievement"],
+        },
+        achievement: {
+          name: "achievement",
+          type: "Achievement",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("achievementId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "userAchievements",
+            fields: ["achievementId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        earnedAt: {
+          name: "earnedAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "userAchievements",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([
+                ExpressionUtils.field("userId"),
+                ExpressionUtils.field("achievementId"),
+              ]),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("user_achievements"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        userId_achievementId: {
+          userId: { type: "String" },
+          achievementId: { type: "String" },
+        },
+      },
+    },
+    UserActionCount: {
+      name: "UserActionCount",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "userActionCounts",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        actionType: {
+          name: "actionType",
+          type: "MilestoneType",
+        },
+        count: {
+          name: "count",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        lastActionAt: {
+          name: "lastActionAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "userActionCounts",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([
+                ExpressionUtils.field("userId"),
+                ExpressionUtils.field("actionType"),
+              ]),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("user_action_counts"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        userId_actionType: {
+          userId: { type: "String" },
+          actionType: { type: "MilestoneType" },
+        },
+      },
+    },
+    TutorialSector: {
+      name: "TutorialSector",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        icon: {
+          name: "icon",
+          type: "String",
+          optional: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "tutorialSectors",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        sections: {
+          name: "sections",
+          type: "TutorialSection",
+          array: true,
+          relation: { opposite: "sector" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("tutorial_sectors"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    TutorialSection: {
+      name: "TutorialSection",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        sectorId: {
+          name: "sectorId",
+          type: "String",
+          foreignKeyFor: ["sector"],
+        },
+        sector: {
+          name: "sector",
+          type: "TutorialSector",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("sectorId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "sections",
+            fields: ["sectorId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        steps: {
+          name: "steps",
+          type: "TutorialStep",
+          array: true,
+          relation: { opposite: "section" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("tutorial_sections"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    TutorialStep: {
+      name: "TutorialStep",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        sectionId: {
+          name: "sectionId",
+          type: "String",
+          foreignKeyFor: ["section"],
+        },
+        section: {
+          name: "section",
+          type: "TutorialSection",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("sectionId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "steps",
+            fields: ["sectionId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        youtubeVideoUrl: {
+          name: "youtubeVideoUrl",
+          type: "String",
+        },
+        durationMinutes: {
+          name: "durationMinutes",
+          type: "Int",
+          optional: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        progress: {
+          name: "progress",
+          type: "TutorialStepProgress",
+          array: true,
+          relation: { opposite: "step" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            { name: "name", value: ExpressionUtils.literal("tutorial_steps") },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    TutorialStepProgress: {
+      name: "TutorialStepProgress",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "tutorialStepProgress",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        stepId: {
+          name: "stepId",
+          type: "String",
+          foreignKeyFor: ["step"],
+        },
+        step: {
+          name: "step",
+          type: "TutorialStep",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("stepId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "progress",
+            fields: ["stepId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        completed: {
+          name: "completed",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        completedAt: {
+          name: "completedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "tutorialStepProgress",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([
+                ExpressionUtils.field("userId"),
+                ExpressionUtils.field("stepId"),
+              ]),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("tutorial_step_progress"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        userId_stepId: {
+          userId: { type: "String" },
+          stepId: { type: "String" },
+        },
+      },
+    },
+    Meeting: {
+      name: "Meeting",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "meetings",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        meetingDate: {
+          name: "meetingDate",
+          type: "DateTime",
+        },
+        durationMinutes: {
+          name: "durationMinutes",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(60) }],
+            },
+          ],
+          default: 60,
+        },
+        location: {
+          name: "location",
+          type: "String",
+          optional: true,
+        },
+        participants: {
+          name: "participants",
+          type: "String",
+          array: true,
+        },
+        notes: {
+          name: "notes",
+          type: "String",
+          optional: true,
+        },
+        transcript: {
+          name: "transcript",
+          type: "String",
+          optional: true,
+        },
+        rrule: {
+          name: "rrule",
+          type: "String",
+          optional: true,
+        },
+        status: {
+          name: "status",
+          type: "MeetingStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("scheduled") },
+              ],
+            },
+          ],
+          default: "scheduled",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "meetings",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        calendarEvents: {
+          name: "calendarEvents",
+          type: "CalendarEvent",
+          array: true,
+          relation: { opposite: "meeting" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("meetings") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    Mindmap: {
+      name: "Mindmap",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "mindmaps",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        nodes: {
+          name: "nodes",
+          type: "Json",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal("[]") }],
+            },
+          ],
+          default: "[]",
+        },
+        edges: {
+          name: "edges",
+          type: "Json",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal("[]") }],
+            },
+          ],
+          default: "[]",
+        },
+        viewport: {
+          name: "viewport",
+          type: "Json",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.literal('{"x": 0, "y": 0, "zoom": 1}'),
+                },
+              ],
+            },
+          ],
+          default: '{"x": 0, "y": 0, "zoom": 1}',
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "mindmaps",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [{ name: "name", value: ExpressionUtils.literal("mindmaps") }],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    OffboardingChecklistStep: {
+      name: "OffboardingChecklistStep",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        category: {
+          name: "category",
+          type: "OffboardingCategory",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("handover") },
+              ],
+            },
+          ],
+          default: "handover",
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        requiresAdminApproval: {
+          name: "requiresAdminApproval",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingChecklistSteps",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        progress: {
+          name: "progress",
+          type: "OffboardingProgress",
+          array: true,
+          relation: { opposite: "step" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("offboarding_checklist_steps"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    OffboardingProcess: {
+      name: "OffboardingProcess",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("OffboardingProcessUser"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingProcessesAsUser",
+            name: "OffboardingProcessUser",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        initiatedById: {
+          name: "initiatedById",
+          type: "String",
+          foreignKeyFor: ["initiatedBy"],
+        },
+        initiatedBy: {
+          name: "initiatedBy",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("OffboardingProcessInitiator"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("initiatedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingProcessesAsInitiator",
+            name: "OffboardingProcessInitiator",
+            fields: ["initiatedById"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        employeeName: {
+          name: "employeeName",
+          type: "String",
+        },
+        employeeEmail: {
+          name: "employeeEmail",
+          type: "String",
+        },
+        department: {
+          name: "department",
+          type: "String",
+          optional: true,
+        },
+        lastWorkingDay: {
+          name: "lastWorkingDay",
+          type: "DateTime",
+          optional: true,
+        },
+        reason: {
+          name: "reason",
+          type: "OffboardingReason",
+          optional: true,
+        },
+        status: {
+          name: "status",
+          type: "OffboardingStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.literal("in_progress"),
+                },
+              ],
+            },
+          ],
+          default: "in_progress",
+        },
+        notes: {
+          name: "notes",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        completedAt: {
+          name: "completedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingProcesses",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        progress: {
+          name: "progress",
+          type: "OffboardingProgress",
+          array: true,
+          relation: { opposite: "process" },
+        },
+        handoverTasks: {
+          name: "handoverTasks",
+          type: "OffboardingHandoverTask",
+          array: true,
+          relation: { opposite: "process" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("offboarding_processes"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    OffboardingProgress: {
+      name: "OffboardingProgress",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        processId: {
+          name: "processId",
+          type: "String",
+          foreignKeyFor: ["process"],
+        },
+        process: {
+          name: "process",
+          type: "OffboardingProcess",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("processId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "progress",
+            fields: ["processId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        stepId: {
+          name: "stepId",
+          type: "String",
+          foreignKeyFor: ["step"],
+        },
+        step: {
+          name: "step",
+          type: "OffboardingChecklistStep",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("stepId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "progress",
+            fields: ["stepId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        completed: {
+          name: "completed",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        completedAt: {
+          name: "completedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        completedById: {
+          name: "completedById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["completedBy"],
+        },
+        completedBy: {
+          name: "completedBy",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal(
+                    "OffboardingProgressCompletedBy"
+                  ),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("completedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingProgressCompletedBy",
+            name: "OffboardingProgressCompletedBy",
+            fields: ["completedById"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        adminApproved: {
+          name: "adminApproved",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        adminApprovedAt: {
+          name: "adminApprovedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        adminApprovedById: {
+          name: "adminApprovedById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["adminApprovedBy"],
+        },
+        adminApprovedBy: {
+          name: "adminApprovedBy",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal(
+                    "OffboardingProgressApprovedBy"
+                  ),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("adminApprovedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingProgressApprovedBy",
+            name: "OffboardingProgressApprovedBy",
+            fields: ["adminApprovedById"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        notes: {
+          name: "notes",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingProgress",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([
+                ExpressionUtils.field("processId"),
+                ExpressionUtils.field("stepId"),
+              ]),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("offboarding_progress"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        processId_stepId: {
+          processId: { type: "String" },
+          stepId: { type: "String" },
+        },
+      },
+    },
+    OffboardingHandoverTask: {
+      name: "OffboardingHandoverTask",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        processId: {
+          name: "processId",
+          type: "String",
+          foreignKeyFor: ["process"],
+        },
+        process: {
+          name: "process",
+          type: "OffboardingProcess",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("processId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "handoverTasks",
+            fields: ["processId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        taskTitle: {
+          name: "taskTitle",
+          type: "String",
+        },
+        taskDescription: {
+          name: "taskDescription",
+          type: "String",
+          optional: true,
+        },
+        assignedToId: {
+          name: "assignedToId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["assignedTo"],
+        },
+        assignedTo: {
+          name: "assignedTo",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("OffboardingHandoverAssignee"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("assignedToId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingHandoverAssignments",
+            name: "OffboardingHandoverAssignee",
+            fields: ["assignedToId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        assignedToName: {
+          name: "assignedToName",
+          type: "String",
+          optional: true,
+        },
+        status: {
+          name: "status",
+          type: "HandoverTaskStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("pending") },
+              ],
+            },
+          ],
+          default: "pending",
+        },
+        priority: {
+          name: "priority",
+          type: "HandoverTaskPriority",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("medium") },
+              ],
+            },
+          ],
+          default: "medium",
+        },
+        dueDate: {
+          name: "dueDate",
+          type: "DateTime",
+          optional: true,
+        },
+        completedAt: {
+          name: "completedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "offboardingHandoverTasks",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("offboarding_handover_tasks"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    PreboardingStage: {
+      name: "PreboardingStage",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        color: {
+          name: "color",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("#6366f1") },
+              ],
+            },
+          ],
+          default: "#6366f1",
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "preboardingStages",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        candidates: {
+          name: "candidates",
+          type: "PreboardingCandidate",
+          array: true,
+          relation: { opposite: "stage" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("preboarding_stages"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    PreboardingJobPosition: {
+      name: "PreboardingJobPosition",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        department: {
+          name: "department",
+          type: "String",
+          optional: true,
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        requirements: {
+          name: "requirements",
+          type: "String",
+          optional: true,
+        },
+        responsibilities: {
+          name: "responsibilities",
+          type: "String",
+          optional: true,
+        },
+        location: {
+          name: "location",
+          type: "String",
+          optional: true,
+        },
+        workModel: {
+          name: "workModel",
+          type: "WorkModel",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("presencial") },
+              ],
+            },
+          ],
+          default: "presencial",
+        },
+        employmentType: {
+          name: "employmentType",
+          type: "EmploymentType",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal("clt") }],
+            },
+          ],
+          default: "clt",
+        },
+        salaryMin: {
+          name: "salaryMin",
+          type: "Float",
+          optional: true,
+        },
+        salaryMax: {
+          name: "salaryMax",
+          type: "Float",
+          optional: true,
+        },
+        vacancies: {
+          name: "vacancies",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(1) }],
+            },
+          ],
+          default: 1,
+        },
+        filledVacancies: {
+          name: "filledVacancies",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        priority: {
+          name: "priority",
+          type: "JobPositionPriority",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("normal") },
+              ],
+            },
+          ],
+          default: "normal",
+        },
+        status: {
+          name: "status",
+          type: "JobPositionStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("aberta") },
+              ],
+            },
+          ],
+          default: "aberta",
+        },
+        hiringManager: {
+          name: "hiringManager",
+          type: "String",
+          optional: true,
+        },
+        hiringManagerEmail: {
+          name: "hiringManagerEmail",
+          type: "String",
+          optional: true,
+        },
+        deadline: {
+          name: "deadline",
+          type: "DateTime",
+          optional: true,
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["createdBy"],
+        },
+        createdBy: {
+          name: "createdBy",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("JobPositionCreatedBy"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdJobPositions",
+            name: "JobPositionCreatedBy",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "preboardingJobPositions",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        candidates: {
+          name: "candidates",
+          type: "PreboardingCandidate",
+          array: true,
+          relation: { opposite: "jobPosition" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("preboarding_job_positions"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    PreboardingCandidate: {
+      name: "PreboardingCandidate",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        email: {
+          name: "email",
+          type: "String",
+          optional: true,
+        },
+        phone: {
+          name: "phone",
+          type: "String",
+          optional: true,
+        },
+        position: {
+          name: "position",
+          type: "String",
+        },
+        department: {
+          name: "department",
+          type: "String",
+          optional: true,
+        },
+        stageId: {
+          name: "stageId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["stage"],
+        },
+        stage: {
+          name: "stage",
+          type: "PreboardingStage",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("stageId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "candidates",
+            fields: ["stageId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        jobPositionId: {
+          name: "jobPositionId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["jobPosition"],
+        },
+        jobPosition: {
+          name: "jobPosition",
+          type: "PreboardingJobPosition",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("jobPositionId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "candidates",
+            fields: ["jobPositionId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        source: {
+          name: "source",
+          type: "String",
+          optional: true,
+        },
+        resumeUrl: {
+          name: "resumeUrl",
+          type: "String",
+          optional: true,
+        },
+        expectedSalary: {
+          name: "expectedSalary",
+          type: "Float",
+          optional: true,
+        },
+        expectedStartDate: {
+          name: "expectedStartDate",
+          type: "DateTime",
+          optional: true,
+        },
+        notes: {
+          name: "notes",
+          type: "String",
+          optional: true,
+        },
+        rating: {
+          name: "rating",
+          type: "Int",
+          optional: true,
+        },
+        status: {
+          name: "status",
+          type: "CandidateStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("active") },
+              ],
+            },
+          ],
+          default: "active",
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["createdBy"],
+        },
+        createdBy: {
+          name: "createdBy",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("CandidateCreatedBy"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdCandidates",
+            name: "CandidateCreatedBy",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "preboardingCandidates",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        activities: {
+          name: "activities",
+          type: "PreboardingActivity",
+          array: true,
+          relation: { opposite: "candidate" },
+        },
+        interviews: {
+          name: "interviews",
+          type: "PreboardingInterview",
+          array: true,
+          relation: { opposite: "candidate" },
+        },
+        questions: {
+          name: "questions",
+          type: "PreboardingCandidateQuestion",
+          array: true,
+          relation: { opposite: "candidate" },
+        },
+        documents: {
+          name: "documents",
+          type: "PreboardingCandidateDocument",
+          array: true,
+          relation: { opposite: "candidate" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("preboarding_candidates"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    PreboardingActivity: {
+      name: "PreboardingActivity",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        candidateId: {
+          name: "candidateId",
+          type: "String",
+          foreignKeyFor: ["candidate"],
+        },
+        candidate: {
+          name: "candidate",
+          type: "PreboardingCandidate",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("candidateId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "activities",
+            fields: ["candidateId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        activityType: {
+          name: "activityType",
+          type: "ActivityType",
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["createdBy"],
+        },
+        createdBy: {
+          name: "createdBy",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("ActivityCreatedBy"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdActivities",
+            name: "ActivityCreatedBy",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "preboardingActivities",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("preboarding_activities"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    PreboardingInterview: {
+      name: "PreboardingInterview",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        candidateId: {
+          name: "candidateId",
+          type: "String",
+          foreignKeyFor: ["candidate"],
+        },
+        candidate: {
+          name: "candidate",
+          type: "PreboardingCandidate",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("candidateId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "interviews",
+            fields: ["candidateId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        interviewerName: {
+          name: "interviewerName",
+          type: "String",
+        },
+        interviewerEmail: {
+          name: "interviewerEmail",
+          type: "String",
+          optional: true,
+        },
+        interviewType: {
+          name: "interviewType",
+          type: "InterviewType",
+        },
+        scheduledAt: {
+          name: "scheduledAt",
+          type: "DateTime",
+        },
+        durationMinutes: {
+          name: "durationMinutes",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(60) }],
+            },
+          ],
+          default: 60,
+        },
+        location: {
+          name: "location",
+          type: "String",
+          optional: true,
+        },
+        meetingLink: {
+          name: "meetingLink",
+          type: "String",
+          optional: true,
+        },
+        notes: {
+          name: "notes",
+          type: "String",
+          optional: true,
+        },
+        feedback: {
+          name: "feedback",
+          type: "String",
+          optional: true,
+        },
+        rating: {
+          name: "rating",
+          type: "Int",
+          optional: true,
+        },
+        status: {
+          name: "status",
+          type: "InterviewStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("scheduled") },
+              ],
+            },
+          ],
+          default: "scheduled",
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "preboardingInterviews",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("preboarding_interviews"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    PreboardingCandidateQuestion: {
+      name: "PreboardingCandidateQuestion",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        candidateId: {
+          name: "candidateId",
+          type: "String",
+          foreignKeyFor: ["candidate"],
+        },
+        candidate: {
+          name: "candidate",
+          type: "PreboardingCandidate",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("candidateId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "questions",
+            fields: ["candidateId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        questionType: {
+          name: "questionType",
+          type: "QuestionType",
+        },
+        question: {
+          name: "question",
+          type: "String",
+        },
+        expectedAnswer: {
+          name: "expectedAnswer",
+          type: "String",
+          optional: true,
+        },
+        answer: {
+          name: "answer",
+          type: "String",
+          optional: true,
+        },
+        rating: {
+          name: "rating",
+          type: "Int",
+          optional: true,
+        },
+        notes: {
+          name: "notes",
+          type: "String",
+          optional: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        isAiGenerated: {
+          name: "isAiGenerated",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "preboardingCandidateQuestions",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("preboarding_candidate_questions"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    PreboardingCandidateDocument: {
+      name: "PreboardingCandidateDocument",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        candidateId: {
+          name: "candidateId",
+          type: "String",
+          foreignKeyFor: ["candidate"],
+        },
+        candidate: {
+          name: "candidate",
+          type: "PreboardingCandidate",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("candidateId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "documents",
+            fields: ["candidateId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        documentType: {
+          name: "documentType",
+          type: "String",
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        fileName: {
+          name: "fileName",
+          type: "String",
+        },
+        fileUrl: {
+          name: "fileUrl",
+          type: "String",
+        },
+        fileSize: {
+          name: "fileSize",
+          type: "Int",
+          optional: true,
+        },
+        mimeType: {
+          name: "mimeType",
+          type: "String",
+          optional: true,
+        },
+        aiAnalysis: {
+          name: "aiAnalysis",
+          type: "String",
+          optional: true,
+        },
+        adherenceScore: {
+          name: "adherenceScore",
+          type: "Float",
+          optional: true,
+        },
+        analyzedAt: {
+          name: "analyzedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["createdBy"],
+        },
+        createdBy: {
+          name: "createdBy",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("DocumentCreatedBy"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdDocuments",
+            name: "DocumentCreatedBy",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "preboardingCandidateDocuments",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("preboarding_candidate_documents"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FirstStepsJobType: {
+      name: "FirstStepsJobType",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        icon: {
+          name: "icon",
+          type: "String",
+          optional: true,
+        },
+        color: {
+          name: "color",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("#6366f1") },
+              ],
+            },
+          ],
+          default: "#6366f1",
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "firstStepsJobTypes",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        steps: {
+          name: "steps",
+          type: "FirstStepsItem",
+          array: true,
+          relation: { opposite: "jobType" },
+        },
+        members: {
+          name: "members",
+          type: "Member",
+          array: true,
+          relation: { opposite: "jobType" },
+        },
+        quizzes: {
+          name: "quizzes",
+          type: "FirstStepsQuiz",
+          array: true,
+          relation: { opposite: "jobType" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("first_steps_job_types"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FirstStepsItem: {
+      name: "FirstStepsItem",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        jobTypeId: {
+          name: "jobTypeId",
+          type: "String",
+          foreignKeyFor: ["jobType"],
+        },
+        jobType: {
+          name: "jobType",
+          type: "FirstStepsJobType",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("jobTypeId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "steps",
+            fields: ["jobTypeId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        linkType: {
+          name: "linkType",
+          type: "FirstStepsLinkType",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal("none") }],
+            },
+          ],
+          default: "none",
+        },
+        linkUrl: {
+          name: "linkUrl",
+          type: "String",
+          optional: true,
+        },
+        linkLabel: {
+          name: "linkLabel",
+          type: "String",
+          optional: true,
+        },
+        linkOpenInNewTab: {
+          name: "linkOpenInNewTab",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        estimatedMinutes: {
+          name: "estimatedMinutes",
+          type: "Int",
+          optional: true,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "firstStepsItems",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        progress: {
+          name: "progress",
+          type: "FirstStepsProgress",
+          array: true,
+          relation: { opposite: "step" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("first_steps_items"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FirstStepsProgress: {
+      name: "FirstStepsProgress",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "firstStepsProgress",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        stepId: {
+          name: "stepId",
+          type: "String",
+          foreignKeyFor: ["step"],
+        },
+        step: {
+          name: "step",
+          type: "FirstStepsItem",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("stepId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "progress",
+            fields: ["stepId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        completed: {
+          name: "completed",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        completedAt: {
+          name: "completedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "firstStepsProgress",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@unique",
+          args: [
+            {
+              name: "fields",
+              value: ExpressionUtils.array([
+                ExpressionUtils.field("userId"),
+                ExpressionUtils.field("stepId"),
+              ]),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("first_steps_progress"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        userId_stepId: {
+          userId: { type: "String" },
+          stepId: { type: "String" },
+        },
+      },
+    },
+    FirstStepsQuiz: {
+      name: "FirstStepsQuiz",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        jobTypeId: {
+          name: "jobTypeId",
+          type: "String",
+          foreignKeyFor: ["jobType"],
+        },
+        jobType: {
+          name: "jobType",
+          type: "FirstStepsJobType",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("jobTypeId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "quizzes",
+            fields: ["jobTypeId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        title: {
+          name: "title",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.literal("Quiz de Conhecimento"),
+                },
+              ],
+            },
+          ],
+          default: "Quiz de Conhecimento",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        passingScore: {
+          name: "passingScore",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(70) }],
+            },
+          ],
+          default: 70,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "firstStepsQuizzes",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        questions: {
+          name: "questions",
+          type: "FirstStepsQuizQuestion",
+          array: true,
+          relation: { opposite: "quiz" },
+        },
+        attempts: {
+          name: "attempts",
+          type: "FirstStepsQuizAttempt",
+          array: true,
+          relation: { opposite: "quiz" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("first_steps_quizzes"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FirstStepsQuizQuestion: {
+      name: "FirstStepsQuizQuestion",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        quizId: {
+          name: "quizId",
+          type: "String",
+          foreignKeyFor: ["quiz"],
+        },
+        quiz: {
+          name: "quiz",
+          type: "FirstStepsQuiz",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("quizId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "questions",
+            fields: ["quizId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        question: {
+          name: "question",
+          type: "String",
+        },
+        options: {
+          name: "options",
+          type: "String",
+          array: true,
+        },
+        correctAnswer: {
+          name: "correctAnswer",
+          type: "Int",
+        },
+        explanation: {
+          name: "explanation",
+          type: "String",
+          optional: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "firstStepsQuizQuestions",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("first_steps_quiz_questions"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FirstStepsQuizAttempt: {
+      name: "FirstStepsQuizAttempt",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        userId: {
+          name: "userId",
+          type: "String",
+          foreignKeyFor: ["user"],
+        },
+        user: {
+          name: "user",
+          type: "User",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("userId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "firstStepsQuizAttempts",
+            fields: ["userId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        quizId: {
+          name: "quizId",
+          type: "String",
+          foreignKeyFor: ["quiz"],
+        },
+        quiz: {
+          name: "quiz",
+          type: "FirstStepsQuiz",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("quizId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "attempts",
+            fields: ["quizId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        score: {
+          name: "score",
+          type: "Int",
+        },
+        passed: {
+          name: "passed",
+          type: "Boolean",
+        },
+        answers: {
+          name: "answers",
+          type: "Json",
+        },
+        completedAt: {
+          name: "completedAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "firstStepsQuizAttempts",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("first_steps_quiz_attempts"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FeedbackDepartment: {
+      name: "FeedbackDepartment",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        email: {
+          name: "email",
+          type: "String",
+          optional: true,
+        },
+        phone: {
+          name: "phone",
+          type: "String",
+          optional: true,
+        },
+        color: {
+          name: "color",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("#6366f1") },
+              ],
+            },
+          ],
+          default: "#6366f1",
+        },
+        icon: {
+          name: "icon",
+          type: "String",
+          optional: true,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        defaultSlaHours: {
+          name: "defaultSlaHours",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(72) }],
+            },
+          ],
+          default: 72,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackDepartments",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        categories: {
+          name: "categories",
+          type: "FeedbackCategory",
+          array: true,
+          relation: { opposite: "department" },
+        },
+        feedbacks: {
+          name: "feedbacks",
+          type: "CitizenFeedback",
+          array: true,
+          relation: { opposite: "department" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("feedback_departments"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FeedbackCategory: {
+      name: "FeedbackCategory",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        icon: {
+          name: "icon",
+          type: "String",
+          optional: true,
+        },
+        color: {
+          name: "color",
+          type: "String",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("#3b82f6") },
+              ],
+            },
+          ],
+          default: "#3b82f6",
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        departmentId: {
+          name: "departmentId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["department"],
+        },
+        department: {
+          name: "department",
+          type: "FeedbackDepartment",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("departmentId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "categories",
+            fields: ["departmentId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackCategories",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        subcategories: {
+          name: "subcategories",
+          type: "FeedbackSubcategory",
+          array: true,
+          relation: { opposite: "category" },
+        },
+        feedbacks: {
+          name: "feedbacks",
+          type: "CitizenFeedback",
+          array: true,
+          relation: { opposite: "category" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("feedback_categories"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FeedbackSubcategory: {
+      name: "FeedbackSubcategory",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        name: {
+          name: "name",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        icon: {
+          name: "icon",
+          type: "String",
+          optional: true,
+        },
+        active: {
+          name: "active",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(true) }],
+            },
+          ],
+          default: true,
+        },
+        orderIndex: {
+          name: "orderIndex",
+          type: "Int",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(0) }],
+            },
+          ],
+          default: 0,
+        },
+        defaultPriority: {
+          name: "defaultPriority",
+          type: "FeedbackPriority",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("medium") },
+              ],
+            },
+          ],
+          default: "medium",
+        },
+        categoryId: {
+          name: "categoryId",
+          type: "String",
+          foreignKeyFor: ["category"],
+        },
+        category: {
+          name: "category",
+          type: "FeedbackCategory",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("categoryId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "subcategories",
+            fields: ["categoryId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackSubcategories",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        feedbacks: {
+          name: "feedbacks",
+          type: "CitizenFeedback",
+          array: true,
+          relation: { opposite: "subcategory" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("read,update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("feedback_subcategories"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    CitizenFeedback: {
+      name: "CitizenFeedback",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        referenceNumber: {
+          name: "referenceNumber",
+          type: "String",
+          unique: true,
+          optional: true,
+          attributes: [{ name: "@unique" }],
+        },
+        title: {
+          name: "title",
+          type: "String",
+        },
+        description: {
+          name: "description",
+          type: "String",
+        },
+        categoryId: {
+          name: "categoryId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["category"],
+        },
+        category: {
+          name: "category",
+          type: "FeedbackCategory",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("categoryId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbacks",
+            fields: ["categoryId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        subcategoryId: {
+          name: "subcategoryId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["subcategory"],
+        },
+        subcategory: {
+          name: "subcategory",
+          type: "FeedbackSubcategory",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("subcategoryId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbacks",
+            fields: ["subcategoryId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        departmentId: {
+          name: "departmentId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["department"],
+        },
+        department: {
+          name: "department",
+          type: "FeedbackDepartment",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("departmentId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbacks",
+            fields: ["departmentId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        assignedToId: {
+          name: "assignedToId",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["assignedTo"],
+        },
+        assignedTo: {
+          name: "assignedTo",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackAssignee"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("assignedToId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "assignedFeedbacks",
+            name: "FeedbackAssignee",
+            fields: ["assignedToId"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        status: {
+          name: "status",
+          type: "FeedbackStatus",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal("open") }],
+            },
+          ],
+          default: "open",
+        },
+        priority: {
+          name: "priority",
+          type: "FeedbackPriority",
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                { name: "value", value: ExpressionUtils.literal("medium") },
+              ],
+            },
+          ],
+          default: "medium",
+        },
+        source: {
+          name: "source",
+          type: "FeedbackSource",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal("web") }],
+            },
+          ],
+          default: "web",
+        },
+        address: {
+          name: "address",
+          type: "String",
+          optional: true,
+        },
+        neighborhood: {
+          name: "neighborhood",
+          type: "String",
+          optional: true,
+        },
+        city: {
+          name: "city",
+          type: "String",
+          optional: true,
+        },
+        state: {
+          name: "state",
+          type: "String",
+          optional: true,
+        },
+        zipCode: {
+          name: "zipCode",
+          type: "String",
+          optional: true,
+        },
+        latitude: {
+          name: "latitude",
+          type: "Float",
+          optional: true,
+        },
+        longitude: {
+          name: "longitude",
+          type: "Float",
+          optional: true,
+        },
+        locationDescription: {
+          name: "locationDescription",
+          type: "String",
+          optional: true,
+        },
+        citizenName: {
+          name: "citizenName",
+          type: "String",
+          optional: true,
+        },
+        citizenEmail: {
+          name: "citizenEmail",
+          type: "String",
+          optional: true,
+        },
+        citizenPhone: {
+          name: "citizenPhone",
+          type: "String",
+          optional: true,
+        },
+        isAnonymous: {
+          name: "isAnonymous",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        dueDate: {
+          name: "dueDate",
+          type: "DateTime",
+          optional: true,
+        },
+        slaHours: {
+          name: "slaHours",
+          type: "Int",
+          optional: true,
+        },
+        slaBreached: {
+          name: "slaBreached",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        resolvedAt: {
+          name: "resolvedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        resolutionNotes: {
+          name: "resolutionNotes",
+          type: "String",
+          optional: true,
+        },
+        satisfactionRating: {
+          name: "satisfactionRating",
+          type: "Int",
+          optional: true,
+        },
+        satisfactionComment: {
+          name: "satisfactionComment",
+          type: "String",
+          optional: true,
+        },
+        internalNotes: {
+          name: "internalNotes",
+          type: "String",
+          optional: true,
+        },
+        tags: {
+          name: "tags",
+          type: "String",
+          array: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackCreator"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "createdFeedbacks",
+            name: "FeedbackCreator",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "SetNull",
+            hasDefault: true,
+          },
+        },
+        updatedAt: {
+          name: "updatedAt",
+          type: "DateTime",
+          updatedAt: true,
+          attributes: [{ name: "@updatedAt" }],
+        },
+        updatedById: {
+          name: "updatedById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["updatedByUser"],
+        },
+        updatedByUser: {
+          name: "updatedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackUpdater"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("updatedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "updatedFeedbacks",
+            name: "FeedbackUpdater",
+            fields: ["updatedById"],
+            references: ["id"],
+            onDelete: "SetNull",
+            hasDefault: true,
+          },
+        },
+        closedAt: {
+          name: "closedAt",
+          type: "DateTime",
+          optional: true,
+        },
+        closedById: {
+          name: "closedById",
+          type: "String",
+          optional: true,
+          foreignKeyFor: ["closedByUser"],
+        },
+        closedByUser: {
+          name: "closedByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackCloser"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("closedById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "closedFeedbacks",
+            name: "FeedbackCloser",
+            fields: ["closedById"],
+            references: ["id"],
+            onDelete: "SetNull",
+          },
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "citizenFeedbacks",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+        attachments: {
+          name: "attachments",
+          type: "FeedbackAttachment",
+          array: true,
+          relation: { opposite: "feedback" },
+        },
+        comments: {
+          name: "comments",
+          type: "FeedbackComment",
+          array: true,
+          relation: { opposite: "feedback" },
+        },
+        statusHistory: {
+          name: "statusHistory",
+          type: "FeedbackStatusHistory",
+          array: true,
+          relation: { opposite: "feedback" },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            { name: "condition", value: ExpressionUtils.literal(true) },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("citizen_feedbacks"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+        referenceNumber: { type: "String" },
+      },
+    },
+    FeedbackAttachment: {
+      name: "FeedbackAttachment",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        feedbackId: {
+          name: "feedbackId",
+          type: "String",
+          foreignKeyFor: ["feedback"],
+        },
+        feedback: {
+          name: "feedback",
+          type: "CitizenFeedback",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("feedbackId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "attachments",
+            fields: ["feedbackId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        fileName: {
+          name: "fileName",
+          type: "String",
+        },
+        fileUrl: {
+          name: "fileUrl",
+          type: "String",
+        },
+        fileSize: {
+          name: "fileSize",
+          type: "Int",
+          optional: true,
+        },
+        mimeType: {
+          name: "mimeType",
+          type: "String",
+          optional: true,
+        },
+        description: {
+          name: "description",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackAttachmentCreator"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackAttachments",
+            name: "FeedbackAttachmentCreator",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "SetNull",
+            hasDefault: true,
+          },
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackAttachments",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            { name: "condition", value: ExpressionUtils.literal(true) },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("feedback_attachments"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FeedbackComment: {
+      name: "FeedbackComment",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        feedbackId: {
+          name: "feedbackId",
+          type: "String",
+          foreignKeyFor: ["feedback"],
+        },
+        feedback: {
+          name: "feedback",
+          type: "CitizenFeedback",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("feedbackId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "comments",
+            fields: ["feedbackId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        content: {
+          name: "content",
+          type: "String",
+        },
+        isInternal: {
+          name: "isInternal",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        isFromCitizen: {
+          name: "isFromCitizen",
+          type: "Boolean",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.literal(false) }],
+            },
+          ],
+          default: false,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal("FeedbackCommentCreator"),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackComments",
+            name: "FeedbackCommentCreator",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "SetNull",
+            hasDefault: true,
+          },
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackComments",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            { name: "condition", value: ExpressionUtils.literal(true) },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.binary(
+                  ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                  "==",
+                  ExpressionUtils.field("organizationId")
+                ),
+                "||",
+                ExpressionUtils.binary(
+                  ExpressionUtils.binary(
+                    ExpressionUtils.field("isInternal"),
+                    "==",
+                    ExpressionUtils.literal(false)
+                  ),
+                  "&&",
+                  ExpressionUtils.binary(
+                    ExpressionUtils.field("isFromCitizen"),
+                    "==",
+                    ExpressionUtils.literal(true)
+                  )
+                )
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("feedback_comments"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+    FeedbackStatusHistory: {
+      name: "FeedbackStatusHistory",
+      fields: {
+        id: {
+          name: "id",
+          type: "String",
+          id: true,
+          attributes: [
+            { name: "@id" },
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.call("dbgenerated", [
+                    ExpressionUtils.literal("uuidv7()"),
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.call("dbgenerated", [
+            ExpressionUtils.literal("uuidv7()"),
+          ]),
+        },
+        feedbackId: {
+          name: "feedbackId",
+          type: "String",
+          foreignKeyFor: ["feedback"],
+        },
+        feedback: {
+          name: "feedback",
+          type: "CitizenFeedback",
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("feedbackId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "statusHistory",
+            fields: ["feedbackId"],
+            references: ["id"],
+            onDelete: "Cascade",
+          },
+        },
+        fromStatus: {
+          name: "fromStatus",
+          type: "FeedbackStatus",
+          optional: true,
+        },
+        toStatus: {
+          name: "toStatus",
+          type: "FeedbackStatus",
+        },
+        notes: {
+          name: "notes",
+          type: "String",
+          optional: true,
+        },
+        createdAt: {
+          name: "createdAt",
+          type: "DateTime",
+          attributes: [
+            {
+              name: "@default",
+              args: [{ name: "value", value: ExpressionUtils.call("now") }],
+            },
+          ],
+          default: ExpressionUtils.call("now"),
+        },
+        createdById: {
+          name: "createdById",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "userId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "userId",
+          ]),
+          foreignKeyFor: ["createdByUser"],
+        },
+        createdByUser: {
+          name: "createdByUser",
+          type: "User",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "name",
+                  value: ExpressionUtils.literal(
+                    "FeedbackStatusHistoryCreator"
+                  ),
+                },
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("createdById"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("SetNull") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackStatusHistory",
+            name: "FeedbackStatusHistoryCreator",
+            fields: ["createdById"],
+            references: ["id"],
+            onDelete: "SetNull",
+            hasDefault: true,
+          },
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+          attributes: [
+            {
+              name: "@default",
+              args: [
+                {
+                  name: "value",
+                  value: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                    "organizationId",
+                  ]),
+                },
+              ],
+            },
+          ],
+          default: ExpressionUtils.member(ExpressionUtils.call("auth"), [
+            "organizationId",
+          ]),
+          foreignKeyFor: ["organization"],
+        },
+        organization: {
+          name: "organization",
+          type: "Organization",
+          optional: true,
+          attributes: [
+            {
+              name: "@relation",
+              args: [
+                {
+                  name: "fields",
+                  value: ExpressionUtils.array([
+                    ExpressionUtils.field("organizationId"),
+                  ]),
+                },
+                {
+                  name: "references",
+                  value: ExpressionUtils.array([ExpressionUtils.field("id")]),
+                },
+                { name: "onDelete", value: ExpressionUtils.literal("Cascade") },
+              ],
+            },
+          ],
+          relation: {
+            opposite: "feedbackStatusHistory",
+            fields: ["organizationId"],
+            references: ["id"],
+            onDelete: "Cascade",
+            hasDefault: true,
+          },
+        },
+      },
+      attributes: [
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("create") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.call("auth"),
+                "!=",
+                ExpressionUtils._null()
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            { name: "operation", value: ExpressionUtils.literal("read") },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@allow",
+          args: [
+            {
+              name: "operation",
+              value: ExpressionUtils.literal("update,delete"),
+            },
+            {
+              name: "condition",
+              value: ExpressionUtils.binary(
+                ExpressionUtils.member(ExpressionUtils.call("auth"), [
+                  "organizationId",
+                ]),
+                "==",
+                ExpressionUtils.field("organizationId")
+              ),
+            },
+          ],
+        },
+        {
+          name: "@@map",
+          args: [
+            {
+              name: "name",
+              value: ExpressionUtils.literal("feedback_status_history"),
+            },
+          ],
+        },
+      ],
+      idFields: ["id"],
+      uniqueFields: {
+        id: { type: "String" },
+      },
+    },
+  } as const;
+  typeDefs = {
+    Auth: {
+      name: "Auth",
+      fields: {
+        userId: {
+          name: "userId",
+          type: "String",
+          attributes: [{ name: "@id" }],
+        },
+        organizationId: {
+          name: "organizationId",
+          type: "String",
+          optional: true,
+        },
+        organizationRole: {
+          name: "organizationRole",
+          type: "String",
+          optional: true,
+        },
+      },
+      attributes: [{ name: "@@auth" }],
+    },
+  } as const;
+  enums = {
+    UserRole: {
+      values: {
+        admin: "admin",
+        user: "user",
+      },
+    },
+    MemberRole: {
+      values: {
+        owner: "owner",
+        admin: "admin",
+        secretary: "secretary",
+        patient: "patient",
+        member: "member",
+      },
+    },
+    ClientStatus: {
+      values: {
+        active: "active",
+        inactive: "inactive",
+      },
+    },
+    EmployeeType: {
+      values: {
+        vendedor: "vendedor",
+        gerente_estoque: "gerente_estoque",
+      },
+    },
+    ChatRole: {
+      values: {
+        user: "user",
+        assistant: "assistant",
+        system: "system",
+      },
+    },
+    OrderStatus: {
+      values: {
+        draft: "draft",
+        pending: "pending",
+        completed: "completed",
+        cancelled: "cancelled",
+      },
+    },
+    MilestoneType: {
+      values: {
+        sales: "sales",
+        events: "events",
+        kanban_tasks: "kanban_tasks",
+        onboarding: "onboarding",
+      },
+    },
+    GroupChatMessageType: {
+      values: {
+        user: "user",
+        ai: "ai",
+        system: "system",
+      },
+    },
+    OffboardingCategory: {
+      values: {
+        handover: "handover",
+        documentation: "documentation",
+        administrative: "administrative",
+        equipment: "equipment",
+        access: "access",
+      },
+    },
+    OffboardingStatus: {
+      values: {
+        in_progress: "in_progress",
+        pending_approval: "pending_approval",
+        completed: "completed",
+        cancelled: "cancelled",
+      },
+    },
+    OffboardingReason: {
+      values: {
+        resignation: "resignation",
+        termination: "termination",
+        retirement: "retirement",
+        transfer: "transfer",
+      },
+    },
+    HandoverTaskStatus: {
+      values: {
+        pending: "pending",
+        in_progress: "in_progress",
+        completed: "completed",
+      },
+    },
+    HandoverTaskPriority: {
+      values: {
+        low: "low",
+        medium: "medium",
+        high: "high",
+        critical: "critical",
+      },
+    },
+    CandidateStatus: {
+      values: {
+        active: "active",
+        hired: "hired",
+        rejected: "rejected",
+        withdrawn: "withdrawn",
+      },
+    },
+    ActivityType: {
+      values: {
+        note: "note",
+        stage_change: "stage_change",
+        interview: "interview",
+        email: "email",
+        call: "call",
+        document: "document",
+        other: "other",
+      },
+    },
+    InterviewType: {
+      values: {
+        phone: "phone",
+        video: "video",
+        in_person: "in_person",
+        technical: "technical",
+        behavioral: "behavioral",
+      },
+    },
+    InterviewStatus: {
+      values: {
+        scheduled: "scheduled",
+        completed: "completed",
+        cancelled: "cancelled",
+        no_show: "no_show",
+      },
+    },
+    WorkModel: {
+      values: {
+        presencial: "presencial",
+        remoto: "remoto",
+        hibrido: "hibrido",
+      },
+    },
+    EmploymentType: {
+      values: {
+        clt: "clt",
+        pj: "pj",
+        estagio: "estagio",
+        temporario: "temporario",
+      },
+    },
+    JobPositionPriority: {
+      values: {
+        baixa: "baixa",
+        normal: "normal",
+        alta: "alta",
+        urgente: "urgente",
+      },
+    },
+    JobPositionStatus: {
+      values: {
+        aberta: "aberta",
+        pausada: "pausada",
+        fechada: "fechada",
+        cancelada: "cancelada",
+      },
+    },
+    QuestionType: {
+      values: {
+        hard_skills: "hard_skills",
+        soft_skills: "soft_skills",
+      },
+    },
+    MeetingStatus: {
+      values: {
+        scheduled: "scheduled",
+        in_progress: "in_progress",
+        completed: "completed",
+        cancelled: "cancelled",
+      },
+    },
+    FirstStepsLinkType: {
+      values: {
+        internal: "internal",
+        external: "external",
+        none: "none",
+      },
+    },
+    CalendarEventType: {
+      values: {
+        MEETING: "MEETING",
+        ONBOARDING: "ONBOARDING",
+        TRAINING: "TRAINING",
+        INTERVIEW: "INTERVIEW",
+        TASK: "TASK",
+        OTHER: "OTHER",
+      },
+    },
+    FeedbackStatus: {
+      values: {
+        open: "open",
+        in_progress: "in_progress",
+        under_review: "under_review",
+        resolved: "resolved",
+        closed: "closed",
+        rejected: "rejected",
+      },
+    },
+    FeedbackPriority: {
+      values: {
+        low: "low",
+        medium: "medium",
+        high: "high",
+        urgent: "urgent",
+        critical: "critical",
+      },
+    },
+    FeedbackSource: {
+      values: {
+        web: "web",
+        mobile: "mobile",
+        phone: "phone",
+        email: "email",
+        in_person: "in_person",
+        social_media: "social_media",
+      },
+    },
+  } as const;
+  authType = "Auth" as const;
+  plugins = {};
 }
 export const schema = new SchemaType();

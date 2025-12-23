@@ -4,6 +4,7 @@ import type { BetterAuthOptions, BetterAuthPlugin } from "better-auth";
 import { betterAuth } from "better-auth";
 import { oAuthProxy } from "better-auth/plugins";
 import { admin } from "better-auth/plugins/admin";
+import { anonymous } from "better-auth/plugins/anonymous";
 import { organization } from "better-auth/plugins/organization";
 import { Pool } from "pg";
 import { v7 as uuidv7 } from "uuid";
@@ -48,6 +49,9 @@ export function initAuth<
       }),
       expo(),
       admin(),
+      anonymous({
+        emailDomainName: "citizen.feedback.local",
+      }),
       organization(),
       ...(options.extraPlugins ?? []),
     ],

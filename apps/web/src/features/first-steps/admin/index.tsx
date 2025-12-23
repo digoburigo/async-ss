@@ -1,7 +1,6 @@
+import { Button } from "@acme/ui/button";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft } from "lucide-react";
-
-import { Button } from "@acme/ui/button";
 
 import { authClient } from "~/clients/auth-client";
 import { ConfigDrawer } from "~/components/config-drawer";
@@ -23,7 +22,7 @@ function AdminContent() {
   const isOrgAdmin =
     activeMember?.role === "admin" || activeMember?.role === "owner";
 
-  if (!session || !activeOrganization) {
+  if (!(session && activeOrganization)) {
     return (
       <div className="flex flex-1 items-center justify-center py-12">
         <p className="text-muted-foreground">Carregando...</p>
@@ -34,7 +33,7 @@ function AdminContent() {
   if (!isOrgAdmin) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center gap-4 py-12">
-        <h2 className="text-xl font-semibold">Acesso Negado</h2>
+        <h2 className="font-semibold text-xl">Acesso Negado</h2>
         <p className="text-muted-foreground">
           Você não tem permissão para acessar esta página.
         </p>
@@ -77,7 +76,7 @@ export function FirstStepsAdmin() {
                 Voltar
               </Link>
             </Button>
-            <h2 className="text-2xl font-bold tracking-tight">
+            <h2 className="font-bold text-2xl tracking-tight">
               Primeiros Passos - Administração
             </h2>
             <p className="text-muted-foreground">

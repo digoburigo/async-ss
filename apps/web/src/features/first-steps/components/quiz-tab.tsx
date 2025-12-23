@@ -1,11 +1,3 @@
-import { useState } from "react";
-import {
-  CheckCircleIcon,
-  PlayIcon,
-  TrophyIcon,
-  XCircleIcon,
-} from "lucide-react";
-
 import { Button } from "@acme/ui/base-ui/button";
 import {
   Card,
@@ -14,6 +6,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@acme/ui/base-ui/card";
+import {
+  CheckCircleIcon,
+  PlayIcon,
+  TrophyIcon,
+  XCircleIcon,
+} from "lucide-react";
+import { useState } from "react";
 
 import { QuizPlayer } from "./quiz-player";
 
@@ -93,7 +92,7 @@ export function QuizTab({ quiz, userId }: QuizTabProps) {
               ) : null}
             </div>
             {hasPassed ? (
-              <div className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-sm text-green-700 dark:bg-green-900/30 dark:text-green-400">
+              <div className="flex items-center gap-2 rounded-full bg-green-100 px-3 py-1 text-green-700 text-sm dark:bg-green-900/30 dark:text-green-400">
                 <CheckCircleIcon className="size-4" />
                 Aprovado
               </div>
@@ -102,21 +101,21 @@ export function QuizTab({ quiz, userId }: QuizTabProps) {
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid grid-cols-2 gap-4 text-sm md:grid-cols-4">
-            <div className="bg-muted/50 rounded-lg p-3">
+            <div className="rounded-lg bg-muted/50 p-3">
               <div className="text-muted-foreground">Questões</div>
-              <div className="text-xl font-semibold">{questionsCount}</div>
+              <div className="font-semibold text-xl">{questionsCount}</div>
             </div>
-            <div className="bg-muted/50 rounded-lg p-3">
+            <div className="rounded-lg bg-muted/50 p-3">
               <div className="text-muted-foreground">Nota mínima</div>
-              <div className="text-xl font-semibold">{quiz.passingScore}%</div>
+              <div className="font-semibold text-xl">{quiz.passingScore}%</div>
             </div>
-            <div className="bg-muted/50 rounded-lg p-3">
+            <div className="rounded-lg bg-muted/50 p-3">
               <div className="text-muted-foreground">Tentativas</div>
-              <div className="text-xl font-semibold">{userAttempts.length}</div>
+              <div className="font-semibold text-xl">{userAttempts.length}</div>
             </div>
-            <div className="bg-muted/50 rounded-lg p-3">
+            <div className="rounded-lg bg-muted/50 p-3">
               <div className="text-muted-foreground">Melhor nota</div>
-              <div className="text-xl font-semibold">
+              <div className="font-semibold text-xl">
                 {bestAttempt ? `${bestAttempt.score}%` : "-"}
               </div>
             </div>
@@ -132,7 +131,7 @@ export function QuizTab({ quiz, userId }: QuizTabProps) {
               {userAttempts.length > 0 ? "Tentar novamente" : "Iniciar Quiz"}
             </Button>
           ) : (
-            <div className="text-muted-foreground rounded-lg border border-dashed p-4 text-center">
+            <div className="rounded-lg border border-dashed p-4 text-center text-muted-foreground">
               Nenhuma questão cadastrada neste quiz.
             </div>
           )}
@@ -185,7 +184,7 @@ export function QuizTab({ quiz, userId }: QuizTabProps) {
                       </div>
                     </div>
                     <div className="text-right">
-                      <div className="text-lg font-semibold">
+                      <div className="font-semibold text-lg">
                         {attempt.score}%
                       </div>
                       <div className="text-muted-foreground text-sm">
