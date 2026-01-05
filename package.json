@@ -33,11 +33,11 @@
   "devDependencies": {
     "@acme/prettier-config": "workspace:*",
     "@biomejs/biome": "2.3.11",
-    "@turbo/gen": "^2.7.2",
+    "@turbo/gen": "^2.7.3",
     "dotenv-cli": "^11.0.0",
-    "oxlint": "^1.36.0",
+    "oxlint": "^1.37.0",
     "prettier": "catalog:",
-    "turbo": "^2.7.2",
+    "turbo": "^2.7.3",
     "typescript": "catalog:",
     "ultracite": "7.0.8"
   },
