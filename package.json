@@ -35,7 +35,7 @@
     "@biomejs/biome": "2.3.11",
     "@turbo/gen": "^2.7.3",
     "dotenv-cli": "^11.0.0",
-    "oxlint": "^1.37.0",
+    "oxlint": "^1.38.0",
     "prettier": "catalog:",
     "turbo": "^2.7.3",
     "typescript": "catalog:",
