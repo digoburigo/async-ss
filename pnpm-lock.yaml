@@ -294,22 +294,22 @@ importers:
         version: 3.0.12
       '@elysiajs/cors':
         specifier: ^1.4.1
-        version: 1.4.1(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.1(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@elysiajs/node':
         specifier: ^1.4.3
-        version: 1.4.3(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.3(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@elysiajs/openapi':
         specifier: ^1.4.13
-        version: 1.4.13(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.13(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@sinclair/typebox':
-        specifier: ^0.34.46
-        version: 0.34.46
+        specifier: ^0.34.47
+        version: 0.34.47
       '@zenstackhq/server':
         specifier: ^3.1.1
-        version: 3.1.1(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(hono@4.10.6)(next@16.0.10(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0))(pg@8.16.3)(zod@4.3.5)
+        version: 3.1.1(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(hono@4.10.6)(next@16.0.10(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0))(pg@8.16.3)(zod@4.3.5)
       elysia:
         specifier: ^1.4.21
-        version: 1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+        version: 1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       kysely:
         specifier: 'catalog:'
         version: 0.28.9
@@ -391,7 +391,7 @@ importers:
         version: 11.8.1(@tanstack/react-query@5.90.16(react@19.1.4))(@trpc/client@11.8.1(@trpc/server@11.8.1(typescript@5.9.3))(typescript@5.9.3))(@trpc/server@11.8.1(typescript@5.9.3))(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(typescript@5.9.3)
       '@zenstackhq/server':
         specifier: ^3.1.1
-        version: 3.1.1(better-sqlite3@12.4.1)(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(hono@4.10.6)(next@16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0))(pg@8.16.3)(zod@4.3.5)
+        version: 3.1.1(better-sqlite3@12.4.1)(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(hono@4.10.6)(next@16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0))(pg@8.16.3)(zod@4.3.5)
       '@zenstackhq/tanstack-query':
         specifier: ^3.1.1
         version: 3.1.1(@tanstack/react-query@5.90.16(react@19.1.4))
@@ -488,7 +488,7 @@ importers:
         version: 3.2.2(react@19.1.4)
       '@elysiajs/eden':
         specifier: ^1.4.6
-        version: 1.4.6(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
+        version: 1.4.6(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))
       '@fontsource-variable/geist':
         specifier: ^5.2.8
         version: 5.2.8
@@ -6028,8 +6028,8 @@ packages:
   '@sinclair/typebox@0.27.8':
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
 
-  '@sinclair/typebox@0.34.46':
-    resolution: {integrity: sha512-kiW7CtS/NkdvTUjkjUJo7d5JsFfbJ14YjdhDk9KoEgK6nFjKNXZPrX0jfLA8ZlET4cFLHxOZ/0vFKOP+bOxIOQ==}
+  '@sinclair/typebox@0.34.47':
+    resolution: {integrity: sha512-ZGIBQ+XDvO5JQku9wmwtabcVTHJsgSWAHYtVuM9pBNNR5E88v6Jcj/llpmsjivig5X8A8HHOb4/mbEKPS5EvAw==}
 
   '@sindresorhus/merge-streams@4.0.0':
     resolution: {integrity: sha512-tlqY9xq5ukxTUZBmoOp+m61cqwQD5pHJtFY3Mn8CA8ps6yghLH/Hw8UPdqg4OLmFW3IFlcXnQNmo/dh8HzXYIQ==}
@@ -16483,23 +16483,23 @@ snapshots:
 
   '@electric-sql/pglite@0.3.2': {}
 
-  '@elysiajs/cors@1.4.1(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/cors@1.4.1(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
-      elysia: 1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
 
-  '@elysiajs/eden@1.4.6(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/eden@1.4.6(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
-      elysia: 1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
 
-  '@elysiajs/node@1.4.3(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/node@1.4.3(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
       crossws: 0.4.1(srvx@0.10.0)
-      elysia: 1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       srvx: 0.10.0
 
-  '@elysiajs/openapi@1.4.13(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
+  '@elysiajs/openapi@1.4.13(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))':
     dependencies:
-      elysia: 1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
 
   '@emnapi/core@1.7.1':
     dependencies:
@@ -20643,7 +20643,7 @@ snapshots:
 
   '@sinclair/typebox@0.27.8': {}
 
-  '@sinclair/typebox@0.34.46': {}
+  '@sinclair/typebox@0.34.47': {}
 
   '@sindresorhus/merge-streams@4.0.0': {}
 
@@ -22720,7 +22720,7 @@ snapshots:
       ts-pattern: 5.9.0
       typescript: 5.9.3
 
-  '@zenstackhq/server@3.1.1(better-sqlite3@12.4.1)(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(hono@4.10.6)(next@16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0))(pg@8.16.3)(zod@4.3.5)':
+  '@zenstackhq/server@3.1.1(better-sqlite3@12.4.1)(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(hono@4.10.6)(next@16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0))(pg@8.16.3)(zod@4.3.5)':
     dependencies:
       '@zenstackhq/common-helpers': 3.1.1
       '@zenstackhq/orm': 3.1.1(better-sqlite3@12.4.1)(pg@8.16.3)(zod@4.3.5)
@@ -22732,7 +22732,7 @@ snapshots:
       zod: 4.3.5
       zod-validation-error: 4.0.2(zod@4.3.5)
     optionalDependencies:
-      elysia: 1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       hono: 4.10.6
       next: 16.0.10(@babel/core@7.28.5)(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0)
     transitivePeerDependencies:
@@ -22740,7 +22740,7 @@ snapshots:
       - pg
       - sql.js
 
-  '@zenstackhq/server@3.1.1(elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(hono@4.10.6)(next@16.0.10(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0))(pg@8.16.3)(zod@4.3.5)':
+  '@zenstackhq/server@3.1.1(elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3))(hono@4.10.6)(next@16.0.10(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0))(pg@8.16.3)(zod@4.3.5)':
     dependencies:
       '@zenstackhq/common-helpers': 3.1.1
       '@zenstackhq/orm': 3.1.1(better-sqlite3@12.4.1)(pg@8.16.3)(zod@4.3.5)
@@ -22752,7 +22752,7 @@ snapshots:
       zod: 4.3.5
       zod-validation-error: 4.0.2(zod@4.3.5)
     optionalDependencies:
-      elysia: 1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
+      elysia: 1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3)
       hono: 4.10.6
       next: 16.0.10(@opentelemetry/api@1.9.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.1.4(react@19.1.4))(react@19.1.4)(sass@1.51.0)
     transitivePeerDependencies:
@@ -24461,11 +24461,11 @@ snapshots:
 
   elkjs@0.9.3: {}
 
-  elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3):
+  elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.1.17))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3):
     dependencies:
-      '@sinclair/typebox': 0.34.46
+      '@sinclair/typebox': 0.34.47
       cookie: 1.1.1
-      exact-mirror: 0.2.3(@sinclair/typebox@0.34.46)
+      exact-mirror: 0.2.3(@sinclair/typebox@0.34.47)
       fast-decode-uri-component: 1.0.1
       file-type: 21.0.0
       memoirist: 0.4.0
@@ -24474,11 +24474,11 @@ snapshots:
       '@types/bun': 1.3.2(@types/react@19.1.17)
       typescript: 5.9.3
 
-  elysia@1.4.21(@sinclair/typebox@0.34.46)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.46))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3):
+  elysia@1.4.21(@sinclair/typebox@0.34.47)(@types/bun@1.3.2(@types/react@19.2.2))(exact-mirror@0.2.3(@sinclair/typebox@0.34.47))(file-type@21.0.0)(openapi-types@12.1.3)(typescript@5.9.3):
     dependencies:
-      '@sinclair/typebox': 0.34.46
+      '@sinclair/typebox': 0.34.47
       cookie: 1.1.1
-      exact-mirror: 0.2.3(@sinclair/typebox@0.34.46)
+      exact-mirror: 0.2.3(@sinclair/typebox@0.34.47)
       fast-decode-uri-component: 1.0.1
       file-type: 21.0.0
       memoirist: 0.4.0
@@ -24995,9 +24995,9 @@ snapshots:
 
   eventsource-parser@3.0.6: {}
 
-  exact-mirror@0.2.3(@sinclair/typebox@0.34.46):
+  exact-mirror@0.2.3(@sinclair/typebox@0.34.47):
     optionalDependencies:
-      '@sinclair/typebox': 0.34.46
+      '@sinclair/typebox': 0.34.47
 
   exec-async@2.2.0: {}
 
